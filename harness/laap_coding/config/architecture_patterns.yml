@@ -1,0 +1,162 @@
+architecture_patterns:
+  - id: cqrs
+    name: CQRS
+    category: architecture
+    description: Command Query Responsibility Segregation - 分离命令操作和查询操作，使用不同的模型处理写入和读取
+    triggers:
+      - "需要高并发读写分离的场景"
+      - "命令和查询的性能需求差异较大"
+      - "需要灵活的数据模型支持不同的查询视图"
+      - "存在复杂的业务逻辑需要事务保证"
+      - "需要事件驱动架构支持"
+    structure:
+      - "命令模型与查询模型完全分离"
+      - "命令操作只负责写入，不返回数据"
+      - "查询操作只负责读取，不修改状态"
+      - "通过事件或消息队列同步两个模型"
+      - "命令模型使用领域驱动设计模式"
+      - "查询模型使用读优化的数据库结构"
+    quality_gates:
+      - "命令和查询的代码路径完全隔离"
+      - "命令操作必须通过事务保证一致性"
+      - "查询操作的响应时间 < 100ms"
+      - "事件处理的最终一致性延迟 < 5s"
+      - "没有跨模型的直接依赖"
+    keywords:
+      - command
+      - query
+      - separation
+      - event
+      - write
+      - read
+      - segregate
+      - responsibility
+
+  - id: modular_monolith
+    name: Modular Monolith
+    category: architecture
+    description: 模块化单体架构 - 在单一代码库中构建清晰的模块边界，每个模块拥有独立的业务域和接口
+    triggers:
+      - "团队规模较小，需要快速迭代"
+      - "需要统一的技术栈和部署流程"
+      - "业务领域相对集中，模块间依赖明确"
+      - "希望避免微服务的复杂性"
+      - "需要跨模块的事务支持"
+    structure:
+      - "单一代码仓库，多个业务模块"
+      - "模块间通过明确定义的接口通信"
+      - "每个模块拥有独立的目录结构"
+      - "共享基础设施层（数据库、缓存等）"
+      - "模块内部高内聚，模块间松耦合"
+      - "支持独立测试和部署"
+    quality_gates:
+      - "模块间依赖图无循环依赖"
+      - "每个模块的代码行数 < 10000"
+      - "模块接口数量 < 20"
+      - "跨模块调用必须通过接口"
+      - "模块测试覆盖率 > 80%"
+    keywords:
+      - module
+      - monolith
+      - boundary
+      - cohesive
+      - decoupled
+      - single
+      - repository
+
+  - id: event_sourcing
+    name: Event Sourcing
+    category: architecture
+    description: 事件溯源 - 将状态变更存储为不可变的事件序列，通过重放事件重建当前状态
+    triggers:
+      - "需要完整的审计日志和历史追踪"
+      - "业务逻辑本质上是事件驱动的"
+      - "需要支持时间旅行调试和分析"
+      - "需要多维度的状态投影"
+      - "需要事件驱动的微服务集成"
+    structure:
+      - "不可变的事件日志存储"
+      - "事件按时间顺序追加写入"
+      - "通过事件重放重建聚合根状态"
+      - "支持多个投影视图"
+      - "事件版本化管理"
+      - "快照机制优化重放性能"
+    quality_gates:
+      - "事件必须是不可变的"
+      - "事件命名使用过去时态"
+      - "事件存储的写入性能 > 1000 TPS"
+      - "快照间隔合理，重放时间 < 10s"
+      - "事件模式向后兼容"
+    keywords:
+      - event
+      - store
+      - projection
+      - immutable
+      - replay
+      - snapshot
+      - history
+      - audit
+
+  - id: repository
+    name: Repository Pattern
+    category: design
+    description: 仓储模式 - 为数据访问提供抽象层，将领域模型与数据持久化解耦
+    triggers:
+      - "需要在内存和持久化之间切换"
+      - "数据访问逻辑复杂，需要统一管理"
+      - "需要支持多种数据源"
+      - "需要简化单元测试（可mock）"
+      - "领域层不应该依赖具体的数据访问技术"
+    structure:
+      - "定义通用的仓储接口"
+      - "实现层负责具体的数据访问"
+      - "仓储返回领域模型而非数据传输对象"
+      - "支持聚合根级别的操作"
+      - "仓储方法命名使用领域语言"
+      - "查询规范模式支持复杂查询"
+    quality_gates:
+      - "领域层只依赖仓储接口"
+      - "仓储接口不暴露底层技术细节"
+      - "查询方法支持分页和排序"
+      - "仓储实现有完整的单元测试"
+      - "没有在领域层直接操作数据库"
+    keywords:
+      - repository
+      - data
+      - access
+      - abstraction
+      - persistence
+      - interface
+      - domain
+
+  - id: dependency_injection
+    name: Dependency Injection
+    category: design
+    description: 依赖注入 - 通过外部注入依赖，实现控制反转，降低组件间耦合
+    triggers:
+      - "需要提高代码的可测试性"
+      - "组件依赖关系复杂，难以管理"
+      - "需要支持多种实现方式"
+      - "希望实现关注点分离"
+      - "需要灵活的配置和替换"
+    structure:
+      - "依赖通过构造函数、属性或方法注入"
+      - "依赖关系在配置中声明"
+      - "使用依赖注入容器管理生命周期"
+      - "组件面向接口编程"
+      - "高层模块不依赖低层模块，两者都依赖抽象"
+      - "抽象不依赖细节，细节依赖抽象"
+    quality_gates:
+      - "没有硬编码的依赖实例化"
+      - "依赖注入容器配置清晰"
+      - "循环依赖被检测和报告"
+      - "依赖关系图可视化"
+      - "单元测试可以轻松替换依赖实现"
+    keywords:
+      - dependency
+      - inject
+      - container
+      - inversion
+      - control
+      - ioc
+      - decouple

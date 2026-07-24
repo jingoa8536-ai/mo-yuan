@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>零 Token 方案 · 生产级</title>
+<style>
+:root {
+  --bg: #1a0a1a;
+  --bg-alt: #2a0a1a;
+  --surface: rgba(255,100,100,0.03);
+  --text: #ffe0d0;
+  --text-secondary: rgba(255,224,208,0.5);
+  --accent: #ff6b6b;
+  --radius: 16px;
+  --font: 'Inter', sans-serif;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter', sans-serif; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased; }
+nav { position:fixed;top:0;width:100%;z-index:100;padding:16px 40px;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(24px);background:rgba(0,0,0,0.7);border-bottom:1px solid var(--border,rgba(255,255,255,0.05)); }
+nav a { color:var(--text-secondary);text-decoration:none;font-size:12px;font-weight:500;transition:color.3s }
+nav a:hover { color:var(--text) }
+@media (max-width:768px) { [style*="grid-template-columns"] { grid-template-columns:1fr!important; } section { padding:60px 20px!important; } nav { padding:12px 20px; } }
+
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.170.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.170.0/examples/jsm/"}}</script>
+<script type="module">import*as THREE from"three";import{EffectComposer}from"three/addons/postprocessing/EffectComposer.js";import{RenderPass}from"three/addons/postprocessing/RenderPass.js";import{UnrealBloomPass}from"three/addons/postprocessing/UnrealBloomPass.js";
+addEventListener("DOMContentLoaded",()=>{const e=document.getElementById("three-canvas");if(!e)return;const s=new THREE.Scene,ca=new THREE.PerspectiveCamera(75,e.clientWidth/e.clientHeight,.1,1e3),r=new THREE.WebGLRenderer({alpha:true,antialias:true});r.setSize(e.clientWidth,e.clientHeight);r.setPixelRatio(Math.min(devicePixelRatio,2));e.appendChild(r.domElement);const pt=new THREE.BufferGeometry,n=2e3,p=new Float32Array(n*3);for(let i=0;i<n*3;i++)p[i]=(Math.random()-.5)*20;pt.setAttribute("position",new THREE.BufferAttribute(p,3));const pm=new THREE.PointsMaterial({size:.03,color:0x7c7cff,transparent:true,opacity:.4,blending:THREE.AdditiveBlending}),ps=new THREE.Points(pt,pm);s.add(ps);ca.position.z=8;let rot=0;function a(){requestAnimationFrame(a);rot+=.001;ps.rotation.y=rot;r.render(s,ca);}a();});</script>
+</head>
+<body>
+
+<section style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden">
+  <div id="three-canvas" style="position:absolute;inset:0;pointer-events:none;z-index:0"></div>
+  <div style="position:relative;z-index:1;padding:0 20px">
+    <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 14px;border-radius:100px;background:rgba(ff6b6b,0.1) 2>#ff6b6b;font-size:11px;margin-bottom:20px">v2.0</span>
+    <h1 style="font-size:clamp(48px,8vw,88px);font-weight:800;letter-spacing:-3px;line-height:1.05;margin-bottom:20px;background:linear-gradient(180deg,var(--text),var(--text-secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent">生产级零 Token 方案</h1>
+    <p style="font-size:clamp(16px,2vw,22px);color:var(--text-secondary);max-width:680px;margin:0 auto 32px;line-height:1.6">CDN 链接 · 用户风格 · 组件库 · 全部零 Token</p>
+    <div style="display:flex;gap:12px;justify-content:center"><a href="#" style="display:inline-flex;padding:12px 28px;border-radius:100px;background:var(--accent);color:var(--bg);font-size:14px;font-weight:600;text-decoration:none">开始使用</a></div>
+  </div>
+</section><section style="padding:80px 40px;max-width:1200px;margin:0 auto"><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px"><div style="text-align:center;padding:48px 24px;border-radius:var(--radius,16px);background:var(--surface,rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.05)"><div style="font-size:48px;font-weight:800;letter-spacing:-3px;color:var(--accent)">9</div><div style="font-size:13px;color:var(--text-secondary);margin-top:8px">预设风格</div></div><div style="text-align:center;padding:48px 24px;border-radius:var(--radius,16px);background:var(--surface,rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.05)"><div style="font-size:48px;font-weight:800;letter-spacing:-3px;color:var(--accent)">0</div><div style="font-size:13px;color:var(--text-secondary);margin-top:8px">Token 消耗</div></div><div style="text-align:center;padding:48px 24px;border-radius:var(--radius,16px);background:var(--surface,rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.05)"><div style="font-size:48px;font-weight:800;letter-spacing:-3px;color:var(--accent)">∞</div><div style="font-size:13px;color:var(--text-secondary);margin-top:8px">自定义变体</div></div></div></section><section style="padding:120px 40px;max-width:1200px;margin:0 auto">
+  <div style="font-size:12px;font-weight:600;letter-spacing:3px;color:var(--accent);margin-bottom:8px">核心能力</div>
+  <h2 style="font-size:clamp(32px,5vw,56px);font-weight:700;letter-spacing:-2px;margin-bottom:16px">生产级特性</h2>
+  
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px"><div style="padding:32px;border-radius:var(--radius,16px);background:var(--surface,rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.05);transition:all.4s"><h3 style="font-size:16px;font-weight:600;margin-bottom:8px">CDN 直接链接</h3><p style="font-size:13px;color:var(--text-secondary);line-height:1.7">不打包、不缓存。Tailwind/Three.js/GSAP/Lucide 直接从 CDN 加载</p></div><div style="padding:32px;border-radius:var(--radius,16px);background:var(--surface,rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.05);transition:all.4s"><h3 style="font-size:16px;font-weight:600;margin-bottom:8px">用户风格选择</h3><p style="font-size:13px;color:var(--text-secondary);line-height:1.7">9 种预设 + 任意 CSS 变量覆盖。风格引擎实时生成</p></div><div style="padding:32px;border-radius:var(--radius,16px);background:var(--surface,rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.05);transition:all.4s"><h3 style="font-size:16px;font-weight:600;margin-bottom:8px">仓库组件库</h3><p style="font-size:13px;color:var(--text-secondary);line-height:1.7">已下载的 shadcn/ui、daisyui 等仓库作为组件源</p></div><div style="padding:32px;border-radius:var(--radius,16px);background:var(--surface,rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.05);transition:all.4s"><h3 style="font-size:16px;font-weight:600;margin-bottom:8px">零 Token 生成</h3><p style="font-size:13px;color:var(--text-secondary);line-height:1.7">纯 Python 合成。每次生成 0 token</p></div><div style="padding:32px;border-radius:var(--radius,16px);background:var(--surface,rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.05);transition:all.4s"><h3 style="font-size:16px;font-weight:600;margin-bottom:8px">生产级 CDN</h3><p style="font-size:13px;color:var(--text-secondary);line-height:1.7">版本锁定、自动切换 prod/dev、import map 管理</p></div><div style="padding:32px;border-radius:var(--radius,16px);background:var(--surface,rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.05);transition:all.4s"><h3 style="font-size:16px;font-weight:600;margin-bottom:8px">无限扩展</h3><p style="font-size:13px;color:var(--text-secondary);line-height:1.7">新风格 = 加一条 JSON。新库 = git clone</p></div></div>
+</section>
+<footer style="text-align:center;padding:48px 40px;border-top:1px solid var(--border,rgba(255,255,255,0.05));font-size:12px;color:var(--text-tertiary,rgba(255,255,255,0.2))">Harness Production Composer v2 · 零 Token</footer>
+<script>
+document.querySelectorAll("[style*='padding:32px']").forEach(el=>{const o=new IntersectionObserver(e=>{if(e[0].isIntersecting){el.style.opacity="1";el.style.transform="translateY(0)";o.unobserve(el)}},{threshold:.1});el.style.opacity="0";el.style.transform="translateY(30px)";el.style.transition="all .8s cubic-bezier(.16,1,.3,1)";o.observe(el);});
+</script>
+</body>
+</html>

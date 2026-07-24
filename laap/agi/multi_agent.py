@@ -345,7 +345,7 @@ class SafeRollback:
     """
     
     def __init__(self, repo_root: str = "", backup_dir: str = ""):
-        self.repo_root = repo_root or os.environ.get("LAAP_ROOT", str(Path.cwd()))
+        self.repo_root = repo_root or os.environ.get("LAAP_ROOT", r"D:\LAAP")
         self.backup_dir = backup_dir or os.path.join(self.repo_root, ".safe_rollback")
         os.makedirs(self.backup_dir, exist_ok=True)
         self._memory_snapshots: Dict[str, str] = {}  # filepath → content
@@ -483,7 +483,7 @@ class EventBus:
 
     def __init__(self, events_path: str = ""):
         self.events_path = events_path or os.path.join(
-            os.environ.get("LAAP_ROOT", str(Path.cwd())), ".agent_events.json"
+            os.environ.get("LAAP_ROOT", r"D:\\LAAP"), ".agent_events.json"
         )
         self._events: List[Dict[str, Any]] = []
         self._subscriptions: Dict[str, List[str]] = {}  # event_type -> [agent_id, ...]

@@ -61,10 +61,7 @@ try:
 except ImportError:
     pass  # 可选模块，降级处理
 try:
-    from laap.agi.autonomy import AutonomousEngine, Goal, GoalStatus, Plan, PlanStep
-    AutonomyEngine = AutonomousEngine  # 兼容旧别名
-    ActionPlan = Plan
-    ActionStep = PlanStep
+    from laap.agi.autonomy import AutonomyEngine, Goal, GoalStatus, ActionPlan, ActionStep
 except ImportError:
     pass  # 可选模块，降级处理
 try:
@@ -73,14 +70,6 @@ except ImportError:
     pass  # 可选模块，降级处理
 try:
     from laap.agi.gw_workspace import GlobalWorkspace, CoalitionalProcess, ProcessType
-except ImportError:
-    pass  # 可选模块，降级处理
-try:
-    from laap.agi.safety import ASISafetyEngine as SafetyEngine
-except ImportError:
-    pass  # 可选模块，降级处理
-try:
-    from laap.agi.perception import UnifiedPerceptionEngine as PerceptionEngine
 except ImportError:
     pass  # 可选模块，降级处理
 try:
@@ -117,7 +106,4 @@ __all__ = [
     "MetaCognitiveMonitor", "CognitiveEpisode", "ReflectionTrigger",
     "ConsciousnessHarness", "ConsciousContext",
     "UnifiedMemory",
-    "AutonomousEngine", "AutonomyEngine", "Goal", "GoalStatus", "Plan", "ActionPlan", "PlanStep", "ActionStep",
-    "ConsciousStream", "Qualia", "Frame",
-    "SafetyEngine", "PerceptionEngine",
 ]

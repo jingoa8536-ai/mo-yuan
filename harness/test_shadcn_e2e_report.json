@@ -1,0 +1,77 @@
+{
+  "test_name": "shadcn-ui-end-to-end",
+  "timestamp": "2026-07-05 10:16:14",
+  "steps": [
+    {
+      "step": "import_dependencies",
+      "status": "passed",
+      "message": "依赖模块导入成功"
+    },
+    {
+      "step": "initialize_integrator",
+      "status": "passed",
+      "message": "集成器初始化成功，Token状态: 未配置"
+    },
+    {
+      "step": "start_server",
+      "status": "passed",
+      "message": "MCP Server 启动成功，耗时: 2009ms"
+    },
+    {
+      "step": "list_components",
+      "status": "passed",
+      "message": "获取到 61 个组件"
+    },
+    {
+      "step": "list_blocks",
+      "status": "passed",
+      "message": "获取到 0 个 blocks"
+    },
+    {
+      "step": "setup_matching_engine",
+      "status": "passed",
+      "message": "匹配引擎初始化成功，同步 61 个 shadcn 组件"
+    },
+    {
+      "step": "intent_matching",
+      "status": "passed",
+      "message": "匹配完成，共 92 个结果，其中 61 个 shadcn 组件"
+    },
+    {
+      "step": "assemble_page",
+      "status": "passed",
+      "message": "页面组装完成，代码长度: 301 字符"
+    },
+    {
+      "step": "generate_output",
+      "status": "passed",
+      "message": "测试页面已生成: d:\\LAAP\\harness\\test_output_shadcn_page.html"
+    },
+    {
+      "step": "stop_server",
+      "status": "passed",
+      "message": "MCP Server 已停止"
+    }
+  ],
+  "success": true,
+  "metrics": {
+    "api_limit": {
+      "limit": 60,
+      "remaining": 60,
+      "used": 0,
+      "with_token": false
+    },
+    "token_configured": false,
+    "server_start_time_ms": 2009,
+    "total_components": 61,
+    "list_components_time_ms": 960,
+    "total_blocks": 0,
+    "synced_shadcn_components": 61,
+    "match_time_ms": 1,
+    "total_match_results": 92,
+    "shadcn_match_count": 61,
+    "assemble_time_ms": 33350,
+    "page_code_length": 301
+  },
+  "output_file": "d:\\LAAP\\harness\\test_output_shadcn_page.html"
+}

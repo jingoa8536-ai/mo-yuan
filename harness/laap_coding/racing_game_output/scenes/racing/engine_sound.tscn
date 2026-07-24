@@ -1,0 +1,9 @@
+[gd_scene load_steps=1 format=3 uid="uid://abc123"]
+
+[node name="EngineSound3D" type="AudioStreamPlayer3D" parent="."]
+stream = "res://audio/samples/engine.ogg"
+autoplay = false
+max_distance = 100.0
+bus = "Engine"
+attenuation_model = 2
+doppler_tracking = 2

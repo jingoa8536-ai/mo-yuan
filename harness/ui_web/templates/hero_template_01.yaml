@@ -1,0 +1,64 @@
+id: hero_template_01
+name: 居中 Hero — 大字 + CTA + 背景渐变
+category: hero
+description: 经典居中布局，大标题 + 副标题 + 主要/次要按钮 + 渐变背景
+tags: [hero, center, gradient, cta, simple]
+
+components:
+  - section: hero
+    layout: center
+    max_width: 72rem
+    padding: "py-24 md:py-32"
+    
+    background:
+      type: gradient
+      from: "#6366f1"
+      to: "#0a0a0f"
+      angle: 135
+    
+    content:
+      badge:
+        component: badge
+        text: "🚀 新品发布"
+        variant: accent
+        animation: fadeInUp
+        
+      title:
+        component: typography
+        variant: h1
+        text: "用 AI 驱动\n下一个时代"
+        size: "5xl"
+        align: center
+        weight: bold
+        animation: fadeInUp
+        delay: 0.1
+        
+      subtitle:
+        component: typography
+        variant: body
+        text: "Lorem ipsum dolor sit amet consectetur adipiscing elit"
+        size: xl
+        align: center
+        color: text_secondary
+        max_width: 36rem
+        animation: fadeInUp
+        delay: 0.2
+        
+      cta:
+        - component: button
+          variant: primary
+          text: "开始免费使用"
+          size: lg
+          animation: fadeInUp
+          delay: 0.3
+        - component: button
+          variant: ghost
+          text: "了解更多 →"
+          size: lg
+          animation: fadeInUp
+          delay: 0.35
+
+quality_gates:
+  visual_consistency: 96
+  responsive: true
+  accessibility: true

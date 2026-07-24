@@ -1,0 +1,83 @@
+{
+  "$schema": "https://laap.harness/protocol/v1.0/props-schema.json",
+  "component_id": "engine-sound-crossfade",
+  "type": "object",
+  "properties": {
+    "audioEnabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "是否启用音频引擎"
+    },
+    "masterVolume": {
+      "type": "number",
+      "default": 0.6,
+      "minimum": 0,
+      "maximum": 1,
+      "description": "主增益音量"
+    },
+    "engineBands": {
+      "type": "array",
+      "default": "ENGINE_BANDS (from design-physics.json)",
+      "description": "引擎段映射，默认从 design-physics.json 加载"
+    },
+    "stateVolumes": {
+      "type": "object",
+      "default": { "off": 0.22, "steady": 0.26, "on": 0.31 },
+      "description": "节流阀状态对应的基础音量"
+    },
+    "reverbConfig": {
+      "type": "object",
+      "default": "REVERB_CONFIG (from design-physics.json)",
+      "description": "Web Audio reverb 处理链配置"
+    },
+    "useSynthFallback": {
+      "type": "boolean",
+      "default": true,
+      "description": "音频样本加载失败时是否启用 OscillatorNode 合成"
+    }
+  },
+  "required": [],
+
+  "input_events": [
+    {
+      "name": "init",
+      "description": "初始化音频系统（必须在用户手势后调用）",
+      "params": [],
+      "returns": "Promise<void>"
+    },
+    {
+      "name": "startEngine",
+      "description": "启动引擎（比赛开始时）",
+      "params": []
+    },
+    {
+      "name": "stopEngine",
+      "description": "停止引擎",
+      "params": []
+    },
+    {
+      "name": "updateEngine",
+      "description": "每帧更新引擎声（RPM×节流阀三维交叉淡入）",
+      "params": [
+        { "name": "rpm", "type": "number", "range": [0, 9000] },
+        { "name": "throttle", "type": "number", "range": [0, 1] },
+        { "name": "brake", "type": "number", "range": [0, 1] },
+        { "name": "speed", "type": "number", "unit": "m/s" }
+      ],
+      "frequency": "per_frame"
+    },
+    {
+      "name": "playTick",
+      "description": "播放 UI tick 音效"
+    },
+    {
+      "name": "playBackfire",
+      "description": "播放排气回火音效（随机选择 3 个样本之一）"
+    },
+    {
+      "name": "setSkid",
+      "description": "设置轮胎打滑声强度",
+      "params": [{ "name": "intensity", "type": "number", "range": [0, 1] }]
+    }
+  ]
+}

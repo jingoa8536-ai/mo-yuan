@@ -1,0 +1,128 @@
+[
+  {
+    "topic": "consciousness+neural+correlates",
+    "arxiv_id": "2607.01095v1",
+    "title": "Automatic detection of solar filament oscillations I: Multi-scale spectral pipeline",
+    "published": "2026-07-01",
+    "summary": "Solar filament oscillations provide important diagnostics of prominence magnetic structure and stability, but their detection in long Hαarchives has traditionally relied on visual inspection, manually"
+  },
+  {
+    "topic": "consciousness+neural+correlates",
+    "arxiv_id": "2607.01078v1",
+    "title": "Purifying one-neutron removal as a probe of single-particle strength",
+    "published": "2026-07-01",
+    "summary": "One-neutron removal reactions exhibit a strong proton-neutron asymmetry dependence in the inclusive reduction factor $R_s$, a long-standing issue that has been discussed in terms of both possible intr"
+  },
+  {
+    "topic": "consciousness+neural+correlates",
+    "arxiv_id": "2607.01076v1",
+    "title": "Universal Short-Imaginary-Time Quantum Critical Dynamics Near Boundaries",
+    "published": "2026-07-01",
+    "summary": "While imaginary-time evolution has long served as a standard paradigm for ground-state preparation in numerical simulations and quantum devices, its intrinsic dynamical properties has been largely ove"
+  },
+  {
+    "topic": "artificial+general+intelligence+emergence",
+    "arxiv_id": "2607.01101v1",
+    "title": "The Economic Benefits and Costs of AI and Policies to Mitigate AI's Impact on Inequality",
+    "published": "2026-07-01",
+    "summary": "We examine the economic impact of increasingly productive AI and policies that spread its benefits across the economy. Improvements in AI productivity trigger labor reallocation and changes in absolut"
+  },
+  {
+    "topic": "artificial+general+intelligence+emergence",
+    "arxiv_id": "2607.01100v1",
+    "title": "CPDDNet: Color-Polarization Denoising and Demosaicking Network",
+    "published": "2026-07-01",
+    "summary": "Color-polarization imaging using a color-polarization filter array (CPFA) sensor captures both texture (color intensity) and physical (polarization) information of the scene in a single shot, enabling"
+  },
+  {
+    "topic": "artificial+general+intelligence+emergence",
+    "arxiv_id": "2607.01097v1",
+    "title": "Numerical Study of Compressibility and Velocity Parameter Effects on Spatially Evolving Supersonic Turbulent Shear Layers",
+    "published": "2026-07-01",
+    "summary": "Direct Numerical Simulations (DNS) of a spatially developing supersonic turbulent shear layer are conducted for a range of convective Mach numbers ($M_c$) and velocity parameters ($λ$) to examine the "
+  },
+  {
+    "topic": "quantum+cognition+brain",
+    "arxiv_id": "2607.01098v1",
+    "title": "Room temperature valley coherence in monolayer WSe2 mediated by chiral nematic liquid crystal",
+    "published": "2026-07-01",
+    "summary": "Valley coherence refers to a phase-coherent superposition of inequivalent momentum valleys, in which quantum information can be encoded in the relative valley phase. Chiral nematic liquid crystals, by"
+  },
+  {
+    "topic": "quantum+cognition+brain",
+    "arxiv_id": "2607.01085v1",
+    "title": "Fisher Glasses: Tail-Certified Quantum Metrology in Quenched Environments",
+    "published": "2026-07-01",
+    "summary": "Quantum metrological advantage is certified by averaged Fisher responses: contrast, susceptibility, or quantum Fisher information (QFI). This fails in quenched sensors, where slow environmental variab"
+  },
+  {
+    "topic": "quantum+cognition+brain",
+    "arxiv_id": "2607.01081v1",
+    "title": "Exact dimer ground states of long-range spin chains and ladders",
+    "published": "2026-07-01",
+    "summary": "Interacting spin chains and ladders are known to support a plethora of quantum phases with complex ground-state phase diagrams. In this work, we study a large family of such models and determine preci"
+  },
+  {
+    "topic": "emergent+behavior+neural+network",
+    "arxiv_id": "2607.01100v1",
+    "title": "CPDDNet: Color-Polarization Denoising and Demosaicking Network",
+    "published": "2026-07-01",
+    "summary": "Color-polarization imaging using a color-polarization filter array (CPFA) sensor captures both texture (color intensity) and physical (polarization) information of the scene in a single shot, enabling"
+  },
+  {
+    "topic": "emergent+behavior+neural+network",
+    "arxiv_id": "2607.01095v1",
+    "title": "Automatic detection of solar filament oscillations I: Multi-scale spectral pipeline",
+    "published": "2026-07-01",
+    "summary": "Solar filament oscillations provide important diagnostics of prominence magnetic structure and stability, but their detection in long Hαarchives has traditionally relied on visual inspection, manually"
+  },
+  {
+    "topic": "emergent+behavior+neural+network",
+    "arxiv_id": "2607.01090v1",
+    "title": "First Gamma-Ray Burst Observations with SVOM",
+    "published": "2026-07-01",
+    "summary": "Following its launch on 22 June 2024, the Space-based multi-band astronomical Variable Objects Monitor (SVOM) successfully completed its flight acceptance, commissioning, and scientific validation pha"
+  },
+  {
+    "topic": "self+improving+ai+system",
+    "arxiv_id": "2607.01102v1",
+    "title": "SAGE: Structured Agentic Graph Editing for Software Diagrams",
+    "published": "2026-07-01",
+    "summary": "Software diagrams are difficult to edit through human-friendly interfaces because edits expressed in natural language must still preserve visual layout, editable structure, and semantic relationships."
+  },
+  {
+    "topic": "self+improving+ai+system",
+    "arxiv_id": "2607.01101v1",
+    "title": "The Economic Benefits and Costs of AI and Policies to Mitigate AI's Impact on Inequality",
+    "published": "2026-07-01",
+    "summary": "We examine the economic impact of increasingly productive AI and policies that spread its benefits across the economy. Improvements in AI productivity trigger labor reallocation and changes in absolut"
+  },
+  {
+    "topic": "self+improving+ai+system",
+    "arxiv_id": "2607.01097v1",
+    "title": "Numerical Study of Compressibility and Velocity Parameter Effects on Spatially Evolving Supersonic Turbulent Shear Layers",
+    "published": "2026-07-01",
+    "summary": "Direct Numerical Simulations (DNS) of a spatially developing supersonic turbulent shear layer are conducted for a range of convective Mach numbers ($M_c$) and velocity parameters ($λ$) to examine the "
+  },
+  {
+    "topic": "machine+consciousness+theory",
+    "arxiv_id": "2607.01089v1",
+    "title": "Group-invariant Coresets for Data-efficient Active Learning",
+    "published": "2026-07-01",
+    "summary": "Active learning reduces labeling cost by querying the most informative unlabeled samples, but standard coreset methods ignore known data symmetries and can waste budget on transformed versions of the "
+  },
+  {
+    "topic": "machine+consciousness+theory",
+    "arxiv_id": "2607.01087v1",
+    "title": "Cheap Code, Costly Judgment: A Case Study on Governable Agentic Software Engineering",
+    "published": "2026-07-01",
+    "summary": "Generative AI is shifting software engineering from a practice organized around scarce implementation effort toward one organized around abundant, low-cost code production. This shift changes the cent"
+  },
+  {
+    "topic": "machine+consciousness+theory",
+    "arxiv_id": "2607.01083v1",
+    "title": "Staleness-Learning Rate Scaling Laws for Asynchronous RLHF",
+    "published": "2026-07-01",
+    "summary": "High-throughput RLHF systems often decouple rollout generation from policy optimization, leading to the use of stale rollouts during learner updates. In this work, we study the effect of such stalenes"
+  }
+]

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://laap.harness/protocol/v1.0/props-schema.json",
+  "component_id": "keyframes-pack",
+  "type": "object",
+  "properties": {
+    "import_path": {
+      "type": "string",
+      "default": "./apex-animations.css",
+      "description": "在 globals.css 中 import 的路径"
+    },
+    "prefix": {
+      "type": "string",
+      "default": "animate-",
+      "description": "工具类前缀"
+    },
+    "reduced_motion": {
+      "type": "boolean",
+      "default": false,
+      "description": "是否在 prefers-reduced-motion 时禁用 infinite 动画"
+    }
+  },
+
+  "utility_classes": [
+    { "class": "animate-clock-blink", "animation": "clock-blink 1s step-end infinite", "use_case": "时钟分隔符闪烁" },
+    { "class": "animate-home-corner-panel-rise", "animation": "home-corner-panel-rise 0.22s cubic-bezier(0.22,1,0.36,1)", "use_case": "首页角落面板进入" },
+    { "class": "animate-home-lb-row-in", "animation": "home-lb-row-in 0.35s ease-out backwards", "use_case": "首页排行榜逐行进入" },
+    { "class": "animate-home-live-pulse", "animation": "home-live-pulse 2s ease-in-out infinite", "use_case": "LIVE 指示器脉动" },
+    { "class": "animate-lobby-backdrop-in", "animation": "lobby-backdrop-in 0.3s ease-out", "use_case": "大厅背景淡入" },
+    { "class": "animate-lobby-pulse", "animation": "lobby-pulse 2s ease-in-out infinite", "use_case": "大厅脉动" },
+    { "class": "animate-lobby-window-in", "animation": "lobby-window-in 0.3s cubic-bezier(0.22,1,0.36,1)", "use_case": "大厅窗口进入" },
+    { "class": "animate-notif-pop", "animation": "notif-pop 0.3s cubic-bezier(0.16,1,0.3,1)", "use_case": "通知弹出" },
+    { "class": "animate-pm-fade-in", "animation": "pm-fade-in 0.2s ease-out", "use_case": "PM 模态淡入" },
+    { "class": "animate-pm-flash", "animation": "pm-flash 0.4s ease-out", "use_case": "PM 闪烁" },
+    { "class": "animate-pm-saved-toast", "animation": "pm-saved-toast 2.5s ease-in-out forwards", "use_case": "保存成功 toast" },
+    { "class": "animate-race-chat-in", "animation": "race-chat-in 0.25s ease-out", "use_case": "比赛聊天进入" },
+    { "class": "animate-racing-hud-blink", "animation": "racing-hud-blink 1s ease-in-out infinite", "use_case": "HUD 红线 RPM 闪烁" },
+    { "class": "animate-racing-hud-rise", "animation": "racing-hud-rise 0.42s ease-out", "use_case": "HUD 面板进入" },
+    { "class": "animate-racing-waiting-pulse", "animation": "racing-waiting-pulse 1.6s ease-in-out infinite", "use_case": "等待对手脉动" },
+    { "class": "animate-replay-overlay-fade", "animation": "replay-overlay-fade 0.3s ease-out", "use_case": "回放覆盖层淡入" },
+    { "class": "animate-replay-rec-pulse", "animation": "replay-rec-pulse 1s ease-in-out infinite", "use_case": "REC 录制指示器" },
+    { "class": "animate-settings-panel-rise", "animation": "settings-panel-rise 0.22s cubic-bezier(0.22,1,0.36,1)", "use_case": "设置面板进入" },
+    { "class": "animate-splash-loading-dot", "animation": "splash-loading-dot 1.4s ease-in-out infinite", "use_case": "启动加载点动画" },
+    { "class": "animate-thumb-frame-breathe", "animation": "thumb-frame-breathe 2s ease-in-out infinite", "use_case": "缩略图框架呼吸" },
+    { "class": "animate-thumb-img-compensate", "animation": "thumb-img-compensate 2s ease-in-out infinite", "use_case": "缩略图图片补偿" },
+    { "class": "animate-wheel-spin", "animation": "wheel-spin 0.6s linear infinite", "use_case": "车轮旋转" }
+  ],
+
+  "application_examples": {
+    "HUD_panel": "className='animate-racing-hud-rise'",
+    "RPM_redline": "className={`font-stats text-2xl ${rpm > 7600 ? 'text-red-500 animate-racing-hud-blink' : 'text-[#3683ff]'}`}",
+    "leaderboard_row": "style={{ animationDelay: `${index * 50}ms` }} className='animate-home-lb-row-in'",
+    "live_indicator": "className='animate-home-live-pulse'",
+    "settings_modal": "className='animate-settings-panel-rise'"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "2606.27350v1",
+  "title": "CHIA: An open-source framework for principled, agentic AI-driven hardware/software co-design research",
+  "published": "2026-06-25",
+  "authors": [
+    "Angela Cui",
+    "Ferran Hermida-Rivera",
+    "Jack Toubes"
+  ],
+  "abstract": "Agentic artificial intelligence shows great promise for radically improving the pace of innovation in hardware/software co-design research across computer architecture, systems, compilers, and VLSI. Thus far, however, applications of AI in these contexts have generally been demonstrated in isolated settings on small-scale problems, due to the difficulty of designing and deploying complex AI-infused hardware and software development workflows.   This paper introduces CHIA, an open-source hardware/software co-design framework for agile and principled research on the application of AI to co-desig"
+}

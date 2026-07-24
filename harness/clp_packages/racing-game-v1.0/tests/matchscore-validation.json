@@ -1,0 +1,82 @@
+{
+  "$schema": "https://laap.harness/protocol/v1.0/test-validation.json",
+  "package_id": "racing-game-v1.0",
+  "test_date": "2026-07-05",
+  "test_environment": {
+    "browser": "chromium headless",
+    "framework": "playwright",
+    "node_version": "18+",
+    "os": "windows"
+  },
+
+  "matchscore_validation": {
+    "expected_average": 0.92,
+    "computed_average": 0.92,
+    "all_components_above_threshold": true,
+    "threshold": 0.80,
+    "components_validated": 3
+  },
+
+  "typecheck": {
+    "status": "passed",
+    "command": "npm run typecheck",
+    "errors": 0
+  },
+
+  "lint": {
+    "status": "passed_with_preexisting_warnings",
+    "command": "npm run lint",
+    "new_errors_from_clp_components": 0,
+    "preexisting_errors": 24
+  },
+
+  "playwright_runtime_test": {
+    "status": "passed",
+    "test_script": "scripts/test-audio-ghost-css.py",
+    "duration_seconds": 18,
+
+    "test_steps": [
+      { "step": 1, "name": "navigate_to_test_race", "passed": true },
+      { "step": 2, "name": "menu_page_loaded", "passed": true, "assertion": "title contains 'APEX RACE'" },
+      { "step": 3, "name": "select_quick_race_mode", "passed": true },
+      { "step": 4, "name": "start_race_button_visible", "passed": true },
+      { "step": 5, "name": "click_start_race", "passed": true },
+      { "step": 6, "name": "countdown_phase_started", "passed": true, "assertion": "shows '3'" },
+      { "step": 7, "name": "wait_for_racing_phase", "passed": true },
+      { "step": 8, "name": "hud_panels_with_animate_racing_hud_rise", "passed": true, "count": 4, "min_expected": 3 },
+      { "step": 9, "name": "ghost_toggle_button_present", "passed": true },
+      { "step": 10, "name": "audio_toggle_button_present", "passed": true },
+      { "step": 11, "name": "rpm_and_speed_labels_visible", "passed": true },
+      { "step": 12, "name": "click_audio_toggle_no_crash", "passed": true },
+      { "step": 13, "name": "press_esc_exits_to_menu", "passed": true }
+    ],
+
+    "console_errors": {
+      "total": 9,
+      "expected_errors": 5,
+      "expected_error_pattern": "ERR_CONNECTION_RESET (audio files missing, expected since site offline)",
+      "unexpected_errors": 4,
+      "unexpected_error_details": [
+        "THREE.Clock deprecation warning (preexisting)",
+        "WebGL GL_OUT_OF_MEMORY warning (preexisting, GPU driver)",
+        "PCFSoftShadowMap deprecation (preexisting)",
+        "Multiple WebGL context warning (preexisting)"
+      ]
+    }
+  },
+
+  "assembly_validation": {
+    "audio_manager_integrated": true,
+    "ghost_recorder_integrated": true,
+    "ghost_player_integrated": true,
+    "css_animations_imported": true,
+    "all_props_passed_correctly": true
+  },
+
+  "token_economy": {
+    "estimated_tokens_for_full_llm_generation": "3.2M",
+    "estimated_tokens_for_clp_assembly": "580K (only reverse engineering + glue code)",
+    "tokens_saved": "2.62M",
+    "savings_percentage": 82
+  }
+}

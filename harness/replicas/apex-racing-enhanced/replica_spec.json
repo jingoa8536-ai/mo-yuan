@@ -1,0 +1,71 @@
+{
+  "title": "APEX Racing",
+  "description": "Set a lap, climb the leaderboard, and challenge the next driver to beat your time in APEX.",
+  "tech_stack": [
+    "React",
+    "Next.js"
+  ],
+  "design_tokens": {
+    "colors": [
+      "5e6774",
+      "445060",
+      "0c1118",
+      "d8e5ff",
+      "cbd5e1",
+      "fbbf24",
+      "bfdbfe",
+      "0f151c"
+    ],
+    "typography": [
+      "Inter",
+      "system-ui"
+    ],
+    "spacing": [
+      "16px",
+      "24px",
+      "32px"
+    ]
+  },
+  "layout_pattern": {
+    "columns": 12,
+    "gutter": "24px",
+    "pattern": "game-dashboard"
+  },
+  "components": [
+    "hero",
+    "leaderboard",
+    "stats",
+    "cta",
+    "footer"
+  ],
+  "features": {
+    "game_elements": [
+      "leaderboard",
+      "lap_timer",
+      "car",
+      "track",
+      "timer"
+    ],
+    "ui_components": [
+      "button",
+      "card"
+    ],
+    "racing_features": [
+      "排行榜",
+      "圈速计时",
+      "比赛",
+      "赛车",
+      "赛道"
+    ],
+    "color_scheme": [
+      "5e6774",
+      "445060",
+      "0c1118",
+      "d8e5ff",
+      "cbd5e1",
+      "fbbf24",
+      "bfdbfe",
+      "0f151c"
+    ]
+  }
+}

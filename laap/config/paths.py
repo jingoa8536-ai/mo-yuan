@@ -1,7 +1,7 @@
 """LAAP 统一路径解析模块。
 
 所有业务代码应当通过本模块获取项目根目录、Hermes 根目录以及各类运行时目录，
-而不是继续使用硬编码绝对路径。
+而不是继续使用 ``D:\\LAAP``、``D:\\hermes-agent-main (1)\\hermes-agent-main`` 等硬编码路径。
 """
 
 from __future__ import annotations

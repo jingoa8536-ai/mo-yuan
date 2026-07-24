@@ -1,0 +1,29 @@
+{
+  "url": "https://apex-racing-v1.vercel.app/",
+  "domain": "apex-racing-v1.vercel.app",
+  "title": "APEX",
+  "tech_stack": [
+    "React"
+  ],
+  "design_tokens": {
+    "colors": [],
+    "typography": [],
+    "spacing": []
+  },
+  "layout_pattern": {
+    "columns": 12,
+    "gutter": "24px",
+    "pattern": "standard"
+  },
+  "pages": [
+    {
+      "url": "https://apex-racing-v1.vercel.app/",
+      "title": "APEX",
+      "headings": [],
+      "content_type": "homepage"
+    }
+  ],
+  "component_selections": [
+    "shadcn_ui"
+  ]
+}

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>APEX Racing</title>
+    <meta name="description" content="Set a lap, climb the leaderboard, and challenge the next driver to beat your time in APEX.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">APEX</span>
+            </div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <p class="loading-text">Loading game assets...</p>
+        </div>
+    </div>
+    <!-- Main Menu -->
+    <div id="main-menu" class="menu-screen">
+        <div class="menu-content">
+            <div class="menu-logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">APEX</span>
+            </div>
+            <h1>HOT LAPS</h1>
+            <p class="menu-subtitle">Set a lap, climb the leaderboard, and challenge the next driver to beat your time.</p>
+            <div class="menu-buttons">
+                <button class="menu-btn primary" onclick="startGame()">START RACE</button>
+                <button class="menu-btn secondary" onclick="showLeaderboard()">LEADERBOARD</button>
+                <button class="menu-btn secondary" onclick="showControls()">CONTROLS</button>
+            </div>
+            <div class="menu-stats">
+                <div class="menu-stat">
+                    <span class="stat-num">10K+</span>
+                    <span class="stat-label">Active Players</span>
+                </div>
+                <div class="menu-stat">
+                    <span class="stat-num">1M+</span>
+                    <span class="stat-label">Races Completed</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Game Canvas -->
+    <div id="game-container" class="game-container">
+        <canvas id="game-canvas"></canvas>
+        <!-- HUD -->
+        <div class="hud">
+            <div class="hud-left">
+                <div class="hud-speed">
+                    <span class="speed-value" id="speed">0</span>
+                    <span class="speed-unit">KM/H</span>
+                </div>
+                <div class="hud-gear">
+                    <span class="gear-value" id="gear">N</span>
+                </div>
+            </div>
+            <div class="hud-center">
+                <div class="hud-lap">
+                    <span class="lap-label">LAP</span>
+                    <span class="lap-value" id="lap">1/3</span>
+                </div>
+                <div class="hud-time">
+                    <span class="time-label">TIME</span>
+                    <span class="time-value" id="time">00:00.000</span>
+                </div>
+            </div>
+            <div class="hud-right">
+                <div class="hud-position">
+                    <span class="pos-label">POS</span>
+                    <span class="pos-value" id="position">1</span>
+                </div>
+                <div class="hud-checkpoint">
+                    <span class="check-label" id="checkpoint">Next: Turn 1</span>
+                </div>
+            </div>
+        </div>
+        <!-- Mini Map -->
+        <div class="minimap" id="minimap">
+            <canvas id="minimap-canvas" width="200" height="200"></canvas>
+        </div>
+        <!-- Mobile Controls -->
+        <div class="mobile-controls">
+            <div class="control-left" id="steering-wheel">
+                <div class="steering-inner"></div>
+            </div>
+            <div class="control-right">
+                <div class="accel-btn" id="accel-btn">GAS</div>
+                <div class="brake-btn" id="brake-btn">BRAKE</div>
+            </div>
+        </div>
+    </div>
+    <!-- Pause Menu -->
+    <div id="pause-menu" class="overlay-menu hidden">
+        <div class="menu-content">
+            <h2>PAUSED</h2>
+            <div class="menu-buttons">
+                <button class="menu-btn primary" onclick="resumeGame()">RESUME</button>
+                <button class="menu-btn secondary" onclick="restartGame()">RESTART</button>
+                <button class="menu-btn secondary" onclick="quitToMenu()">QUIT TO MENU</button>
+            </div>
+        </div>
+    </div>
+    <!-- Race Complete -->
+    <div id="race-complete" class="overlay-menu hidden">
+        <div class="menu-content">
+            <h2>RACE COMPLETE!</h2>
+            <div class="race-result">
+                <div class="result-time">
+                    <span class="result-label">FINAL TIME</span>
+                    <span class="result-value" id="final-time">00:00.000</span>
+                </div>
+                <div class="result-laps">
+                    <span class="result-label">LAPS</span>
+                    <span class="result-value" id="final-laps">3</span>
+                </div>
+            </div>
+            <input type="text" id="player-name" placeholder="Enter your name" maxlength="12">
+            <div class="menu-buttons">
+                <button class="menu-btn primary" onclick="saveScore()">SAVE SCORE</button>
+                <button class="menu-btn secondary" onclick="restartGame()">RACE AGAIN</button>
+                <button class="menu-btn secondary" onclick="quitToMenu()">MAIN MENU</button>
+            </div>
+        </div>
+    </div>
+    <!-- Leaderboard -->
+    <div id="leaderboard-modal" class="overlay-menu hidden">
+        <div class="menu-content">
+            <h2>LEADERBOARD</h2>
+            <div class="leaderboard-list" id="leaderboard-list">
+            </div>
+            <div class="menu-buttons">
+                <button class="menu-btn secondary" onclick="hideLeaderboard()">CLOSE</button>
+            </div>
+        </div>
+    </div>
+    <!-- Controls -->
+    <div id="controls-modal" class="overlay-menu hidden">
+        <div class="menu-content">
+            <h2>CONTROLS</h2>
+            <div class="controls-list">
+                <div class="control-item">
+                    <span class="control-key">W / UP</span>
+                    <span class="control-action">Accelerate</span>
+                </div>
+                <div class="control-item">
+                    <span class="control-key">S / DOWN</span>
+                    <span class="control-action">Brake / Reverse</span>
+                </div>
+                <div class="control-item">
+                    <span class="control-key">A / LEFT</span>
+                    <span class="control-action">Steer Left</span>
+                </div>
+                <div class="control-item">
+                    <span class="control-key">D / RIGHT</span>
+                    <span class="control-action">Steer Right</span>
+                </div>
+                <div class="control-item">
+                    <span class="control-key">SPACE</span>
+                    <span class="control-action">Handbrake</span>
+                </div>
+                <div class="control-item">
+                    <span class="control-key">C</span>
+                    <span class="control-action">Camera View</span>
+                </div>
+                <div class="control-item">
+                    <span class="control-key">R</span>
+                    <span class="control-action">Restart</span>
+                </div>
+                <div class="control-item">
+                    <span class="control-key">ESC</span>
+                    <span class="control-action">Pause</span>
+                </div>
+            </div>
+            <div class="menu-buttons">
+                <button class="menu-btn secondary" onclick="hideControls()">CLOSE</button>
+            </div>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>

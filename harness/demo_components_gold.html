@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Species Library Component Demo - Black Gold Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            50: '#fefce8',
+                            100: '#fef9c3',
+                            200: '#fef08a',
+                            300: '#fde047',
+                            400: '#facc15',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                            700: '#a16207',
+                            800: '#854d0e',
+                            900: '#713f12',
+                            950: '#4a270a',
+                        },
+                        obsidian: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#020617',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'SF Pro Display', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                        display: ['Playfair Display', 'Georgia', 'serif'],
+                    },
+                    animation: {
+                        'shimmer': 'shimmer 2s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'slide-up': 'slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+                        'fade-in': 'fadeIn 0.8s ease-out',
+                        'bounce-hard': 'bounceHard 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+                        'bounce-card': 'bounceCard 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+                        'bounce-dot': 'bounceDot 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+                        'pulse-glow': 'pulseGlow 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'text-pulse': 'textPulse 0.3s ease',
+                    },
+                    keyframes: {
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition: '200% 0' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 20px rgba(234, 179, 8, 0.3)' },
+                            '100%': { boxShadow: '0 0 40px rgba(234, 179, 8, 0.6)' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        bounceHard: {
+                            '0%': { transform: 'scale(1)' },
+                            '30%': { transform: 'scale(1.12)' },
+                            '50%': { transform: 'scale(0.95)' },
+                            '70%': { transform: 'scale(1.08)' },
+                            '85%': { transform: 'scale(0.98)' },
+                            '100%': { transform: 'scale(1.05)' },
+                        },
+                        bounceCard: {
+                            '0%': { transform: 'translateY(0) scale(1)' },
+                            '30%': { transform: 'translateY(-18px) scale(1.04)' },
+                            '50%': { transform: 'translateY(-8px) scale(0.99)' },
+                            '70%': { transform: 'translateY(-14px) scale(1.02)' },
+                            '85%': { transform: 'translateY(-10px) scale(1.01)' },
+                            '100%': { transform: 'translateY(-12px) scale(1.02)' },
+                        },
+                        bounceDot: {
+                            '0%': { transform: 'scale(1)' },
+                            '40%': { transform: 'scale(1.5)' },
+                            '60%': { transform: 'scale(1.15)' },
+                            '80%': { transform: 'scale(1.35)' },
+                            '100%': { transform: 'scale(1.3)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(234, 179, 8, 0.4), 0 0 40px rgba(234, 179, 8, 0.2)' },
+                            '50%': { boxShadow: '0 0 30px rgba(234, 179, 8, 0.6), 0 0 80px rgba(234, 179, 8, 0.3)' },
+                        },
+                        textPulse: {
+                            '0%': { opacity: '1' },
+                            '50%': { opacity: '0.7' },
+                            '100%': { opacity: '1' },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #020617;
+            background-image: 
+                radial-gradient(at 20% 30%, rgba(234, 179, 8, 0.03) 0px, transparent 50%),
+                radial-gradient(at 80% 70%, rgba(234, 179, 8, 0.02) 0px, transparent 50%),
+                radial-gradient(at 50% 50%, rgba(234, 179, 8, 0.01) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        .glass-card {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(234, 179, 8, 0.1);
+        }
+
+        .gold-gradient {
+            background: linear-gradient(135deg, #eab308 0%, #ca8a04 50%, #a16207 100%);
+        }
+
+        .gold-text-gradient {
+            background: linear-gradient(135deg, #fef08a 0%, #eab308 50%, #ca8a04 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gold-border-gradient {
+            position: relative;
+        }
+
+        .gold-border-gradient::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            padding: 1px;
+            border-radius: inherit;
+            background: linear-gradient(135deg, #eab308 0%, #ca8a04 50%, #a16207 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        .button-gold {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .button-gold::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(135deg, #fef08a 0%, #eab308 50%, #ca8a04 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: inherit;
+            z-index: -1;
+        }
+
+        .button-gold:hover {
+            animation: button-bounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transform: scale(1.05);
+        }
+
+        .button-gold:hover::before {
+            opacity: 1;
+        }
+
+        .button-gold:hover span {
+            color: #0f172a;
+            animation: text-pulse 0.3s ease;
+        }
+
+        .button-gold span {
+            position: relative;
+            z-index: 1;
+            transition: color 0.3s ease;
+        }
+
+        @keyframes button-bounce {
+            0% { transform: scale(1); }
+            30% { transform: scale(1.12); }
+            50% { transform: scale(0.95); }
+            70% { transform: scale(1.08); }
+            85% { transform: scale(0.98); }
+            100% { transform: scale(1.05); }
+        }
+
+        @keyframes text-pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        .card-hover {
+            transition: all 0.2s ease;
+        }
+
+        .card-hover:hover {
+            animation: card-bounce 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transform: translateY(-12px) scale(1.02);
+            border-color: rgba(234, 179, 8, 0.4);
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6), 0 0 50px rgba(234, 179, 8, 0.15);
+        }
+
+        @keyframes card-bounce {
+            0% { transform: translateY(0) scale(1); }
+            30% { transform: translateY(-18px) scale(1.04); }
+            50% { transform: translateY(-8px) scale(0.99); }
+            70% { transform: translateY(-14px) scale(1.02); }
+            85% { transform: translateY(-10px) scale(1.01); }
+            100% { transform: translateY(-12px) scale(1.02); }
+        }
+
+        .color-dot {
+            transition: all 0.2s ease;
+        }
+
+        .color-dot:hover {
+            animation: dot-bounce 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transform: scale(1.3);
+            box-shadow: 0 0 25px currentColor;
+        }
+
+        .color-dot.selected {
+            animation: dot-pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            transform: scale(1.4);
+            box-shadow: 0 0 30px currentColor, 0 0 60px currentColor;
+        }
+
+        @keyframes dot-bounce {
+            0% { transform: scale(1); }
+            40% { transform: scale(1.5); }
+            60% { transform: scale(1.15); }
+            80% { transform: scale(1.35); }
+            100% { transform: scale(1.3); }
+        }
+
+        @keyframes dot-pulse {
+            0%, 100% { box-shadow: 0 0 20px currentColor, 0 0 40px currentColor; }
+            50% { box-shadow: 0 0 30px currentColor, 0 0 80px currentColor; }
+        }
+
+        .code-block {
+            background: #0f172a;
+            border: 1px solid rgba(234, 179, 8, 0.1);
+            border-radius: 12px;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .table-cell-gold {
+            border-bottom: 1px solid rgba(234, 179, 8, 0.1);
+        }
+
+        .table-cell-gold:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen text-slate-100 font-sans">
+    <div class="max-w-7xl mx-auto px-6 py-12">
+        <header class="text-center mb-16 animate-fade-in">
+            <div class="inline-flex items-center gap-3 mb-6">
+                <div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center">
+                    <span class="text-obsidian-900 font-bold text-xl">S</span>
+                </div>
+                <span class="text-gold-400 text-sm font-semibold tracking-[0.3em] uppercase">Species Library</span>
+            </div>
+            <h1 class="text-5xl md:text-6xl font-display font-bold mb-4">
+                <span class="gold-text-gradient">Component Demonstration</span>
+            </h1>
+            <p class="text-slate-400 text-lg max-w-2xl mx-auto leading-relaxed">
+                Compiled AI Paradigm: Species Versioning, Zero-Token Generation, Self-Growth System
+            </p>
+            <div class="flex justify-center gap-6 mt-8">
+                <div class="flex items-center gap-2 text-sm text-slate-500">
+                    <div class="w-2 h-2 rounded-full bg-gold-500"></div>
+                    <span>Versioned Components</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-slate-500">
+                    <div class="w-2 h-2 rounded-full bg-gold-500"></div>
+                    <span>Zero-Token Generation</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-slate-500">
+                    <div class="w-2 h-2 rounded-full bg-gold-500"></div>
+                    <span>Self-Growth</span>
+                </div>
+            </div>
+        </header>
+
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <div class="glass-card rounded-2xl p-8 card-hover gold-border-gradient">
+                <div class="flex items-center justify-between mb-8">
+                    <div>
+                        <h2 class="text-2xl font-display font-semibold gold-text-gradient mb-2">Button v3</h2>
+                        <p class="text-slate-400 text-sm">Gradient Premium Button Component</p>
+                    </div>
+                    <div class="px-4 py-2 rounded-full bg-gold-500/10 border border-gold-500/20">
+                        <span class="text-gold-400 text-xs font-semibold tracking-wider uppercase">Version 3</span>
+                    </div>
+                </div>
+
+                <div class="bg-obsidian-900/50 rounded-xl p-8 flex items-center justify-center mb-8 min-h-[160px]">
+                    <button id="button-preview" class="button-gold px-10 py-4 rounded-full bg-obsidian-800 border border-gold-500/30 text-gold-400 font-semibold tracking-wide uppercase text-sm">
+                        <span>Submit</span>
+                    </button>
+                </div>
+
+                <div class="overflow-x-auto scrollbar-hide">
+                    <table class="w-full text-sm">
+                        <tbody>
+                            <tr class="table-cell-gold">
+                                <td class="py-3 text-slate-500 w-1/3">Label</td>
+                                <td class="py-3 text-slate-200">Submit</td>
+                            </tr>
+                            <tr class="table-cell-gold">
+                                <td class="py-3 text-slate-500">Color</td>
+                                <td class="py-3">
+                                    <span id="button-color-display" class="gold-text-gradient font-semibold">gradient</span>
+                                </td>
+                            </tr>
+                            <tr class="table-cell-gold">
+                                <td class="py-3 text-slate-500">Variant</td>
+                                <td class="py-3 text-slate-200">Primary</td>
+                            </tr>
+                            <tr class="table-cell-gold">
+                                <td class="py-3 text-slate-500">Size</td>
+                                <td class="py-3 text-slate-200">Large</td>
+                            </tr>
+                            <tr class="table-cell-gold">
+                                <td class="py-3 text-slate-500">Rounded</td>
+                                <td class="py-3 text-slate-200">True</td>
+                            </tr>
+                            <tr class="table-cell-gold">
+                                <td class="py-3 text-slate-500">Shadow</td>
+                                <td class="py-3 text-slate-200">True</td>
+                            </tr>
+                            <tr class="table-cell-gold">
+                                <td class="py-3 text-slate-500">Hover Effect</td>
+                                <td class="py-3 text-slate-200">True</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="mt-6 pt-6 border-t border-gold-500/10">
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-full bg-obsidian-800 border border-gold-500/20 text-gold-400 text-xs">ui</span>
+                        <span class="px-3 py-1 rounded-full bg-obsidian-800 border border-gold-500/20 text-gold-400 text-xs">button</span>
+                        <span class="px-3 py-1 rounded-full bg-obsidian-800 border border-gold-500/20 text-gold-400 text-xs">versioned</span>
+                        <span class="px-3 py-1 rounded-full bg-obsidian-800 border border-gold-500/20 text-gold-400 text-xs">enhanced</span>
+                        <span class="px-3 py-1 rounded-full bg-obsidian-800 border border-gold-500/20 text-gold-400 text-xs">premium</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-2xl p-8 card-hover gold-border-gradient">
+                <div class="flex items-center justify-between mb-8">
+                    <div>
+                        <h2 class="text-2xl font-display font-semibold gold-text-gradient mb-2">Card v2</h2>
+                        <p class="text-slate-400 text-sm">Shadow Enhanced Card Component</p>
+                    </div>
+                    <div class="px-4 py-2 rounded-full bg-gold-500/10 border border-gold-500/20">
+                        <span class="text-gold-400 text-xs font-semibold tracking-wider uppercase">Version 2</span>
+                    </div>
+                </div>
+
+                <div class="bg-obsidian-900/50 rounded-xl p-8 flex items-center justify-center mb-8 min-h-[160px]">
+                    <div class="card-demo bg-obsidian-800/80 rounded-xl p-6 max-w-[280px] w-full border border-gold-500/10 hover:border-gold-500/30 transition-colors duration-400">
+                        <h3 class="text-lg font-display font-semibold gold-text-gradient mb-3">Welcome</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Hello World</p>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto scrollbar-hide">
+                    <table class="w-full text-sm">
+                        <tbody>
+                            <tr class="table-cell-gold">
+                                <td class="py-3 text-slate-500 w-1/3">Title</td>
+                                <td class="py-3 text-slate-200">Welcome</td>
+                            </tr>
+                            <tr class="table-cell-gold">
+                                <td class="py-3 text-slate-500">Content</td>
+                                <td class="py-3 text-slate-200">Hello World</td>
+                            </tr>
+                            <tr class="table-cell-gold">
+                                <td class="py-3 text-slate-500">Bordered</td>
+                                <td class="py-3 text-slate-200">False</td>
+                            </tr>
+                            <tr class="table-cell-gold">
+                                <td class="py-3 text-slate-500">Shadow</td>
+                                <td class="py-3 text-slate-200">True</td>
+                            </tr>
+                            <tr class="table-cell-gold">
+                                <td class="py-3 text-slate-500">Hover Lift</td>
+                                <td class="py-3 text-slate-200">True</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="mt-6 pt-6 border-t border-gold-500/10">
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-full bg-obsidian-800 border border-gold-500/20 text-gold-400 text-xs">ui</span>
+                        <span class="px-3 py-1 rounded-full bg-obsidian-800 border border-gold-500/20 text-gold-400 text-xs">card</span>
+                        <span class="px-3 py-1 rounded-full bg-obsidian-800 border border-gold-500/20 text-gold-400 text-xs">versioned</span>
+                        <span class="px-3 py-1 rounded-full bg-obsidian-800 border border-gold-500/20 text-gold-400 text-xs">enhanced</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="glass-card rounded-2xl p-8 gold-border-gradient">
+            <h2 class="text-2xl font-display font-semibold gold-text-gradient mb-2">Species Property Update</h2>
+            <p class="text-slate-400 text-sm mb-8">Modify button color in species library and automatically regenerate component code</p>
+
+            <div class="flex flex-wrap items-center gap-8 mb-8">
+                <div class="flex flex-col gap-4">
+                    <span class="text-slate-500 text-sm font-medium">Select Color</span>
+                    <div class="flex gap-4">
+                        <button class="color-dot w-10 h-10 rounded-full bg-blue-500 selected" data-color="blue" title="Blue"></button>
+                        <button class="color-dot w-10 h-10 rounded-full gold-gradient" data-color="gradient" title="Gradient"></button>
+                        <button class="color-dot w-10 h-10 rounded-full bg-red-500" data-color="red" title="Red"></button>
+                        <button class="color-dot w-10 h-10 rounded-full bg-green-500" data-color="green" title="Green"></button>
+                        <button class="color-dot w-10 h-10 rounded-full bg-purple-500" data-color="purple" title="Purple"></button>
+                        <button class="color-dot w-10 h-10 rounded-full bg-orange-500" data-color="orange" title="Orange"></button>
+                    </div>
+                </div>
+                <button onclick="updateButtonColor()" class="button-gold px-8 py-3 rounded-full bg-gold-500 text-obsidian-900 font-semibold tracking-wide uppercase text-sm hover:bg-gold-400 transition-all">
+                    <span>Update Property</span>
+                </button>
+            </div>
+
+            <div class="code-block p-6 overflow-x-auto scrollbar-hide">
+                <pre id="generated-code" class="text-slate-300 text-sm font-mono leading-relaxed">def render_button(label="Submit", color="blue", variant="primary", size="lg", 
+                  rounded=True, shadow=True, hover_effect=True):
+    """Render button component"""
+    classes = ["btn"]
+    
+    if color == "gradient":
+        classes.append("btn-gradient")
+    else:
+        classes.append(f"btn-{color}")
+    
+    classes.append(f"btn-{variant}")
+    classes.append(f"btn-{size}")
+    
+    if rounded:
+        classes.append("btn-rounded")
+    if shadow:
+        classes.append("btn-shadow")
+    if hover_effect:
+        classes.append("btn-hover")
+    
+    class_str = " ".join(classes)
+    return f'<button class="{class_str}">{label}</button>'</pre>
+            </div>
+        </section>
+
+        <footer class="mt-16 text-center">
+            <div class="inline-flex items-center gap-4 px-6 py-4 rounded-full bg-obsidian-900/50 border border-gold-500/10">
+                <div class="w-8 h-8 rounded-full gold-gradient flex items-center justify-center">
+                    <span class="text-obsidian-900 font-bold">S</span>
+                </div>
+                <span class="text-slate-400 text-sm">Cognitive Species Library</span>
+                <span class="text-gold-500/50">|</span>
+                <span class="text-slate-500 text-xs">Compiled AI Paradigm</span>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        let selectedColor = 'blue';
+        const colorMap = {
+            'blue': '#3b82f6',
+            'gradient': 'linear-gradient(135deg, #eab308 0%, #ca8a04 50%, #a16207 100%)',
+            'red': '#ef4444',
+            'green': '#22c55e',
+            'purple': '#a855f7',
+            'orange': '#f97316'
+        };
+
+        document.querySelectorAll('.color-dot').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.color-dot').forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedColor = this.dataset.color;
+            });
+        });
+
+        function updateButtonColor() {
+            const buttonPreview = document.getElementById('button-preview');
+            const colorDisplay = document.getElementById('button-color-display');
+            const codeBlock = document.getElementById('generated-code');
+            
+            if (selectedColor === 'gradient') {
+                buttonPreview.style.background = colorMap[selectedColor];
+                buttonPreview.style.borderColor = 'rgba(234, 179, 8, 0.5)';
+                buttonPreview.querySelector('span').style.color = '#0f172a';
+                colorDisplay.innerHTML = '<span class="gold-text-gradient font-semibold">gradient</span>';
+            } else {
+                buttonPreview.style.background = 'rgb(15, 23, 42)';
+                buttonPreview.style.borderColor = colorMap[selectedColor];
+                buttonPreview.querySelector('span').style.color = '#ffffff';
+                colorDisplay.textContent = selectedColor;
+                colorDisplay.classList.remove('gold-text-gradient');
+            }
+
+            codeBlock.textContent = `def render_button(label="Submit", color="${selectedColor}", variant="primary", size="lg", 
+                  rounded=True, shadow=True, hover_effect=True):
+    """Render button component"""
+    classes = ["btn"]
+    
+    if color == "${selectedColor === 'gradient' ? 'gradient' : selectedColor}":
+        classes.append("btn-${selectedColor}")
+    else:
+        classes.append(f"btn-{{color}}")
+    
+    classes.append(f"btn-{{variant}}")
+    classes.append(f"btn-{{size}}")
+    
+    if rounded:
+        classes.append("btn-rounded")
+    if shadow:
+        classes.append("btn-shadow")
+    if hover_effect:
+        classes.append("btn-hover")
+    
+    class_str = " ".join(classes)
+    return f'<button class="{{class_str}}">{{label}}</button>'`;
+        }
+    </script>
+</body>
+</html>

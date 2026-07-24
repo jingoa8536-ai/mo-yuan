@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "laap-godot-bridge"
+version = "0.1.0"
+description = "LAAP Godot Bridge - 0-Token Game Development Framework harness"
+requires-python = ">=3.10"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [
+    { name = "LAAP" },
+]
+keywords = ["laap", "godot", "game-dev", "0-token", "jsonrpc", "lsp"]
+dependencies = [
+    # JSON-RPC / LSP transport (M1 GodotBridge engine control layer)
+    "jsonrpcclient>=4.0.3",
+    "pylsp-jsonrpc>=1.0.0",
+    # Deep learning / inference (M4 asset reproduction, M6 alternative AI models)
+    "torch>=2.1.0",
+    "diffusers>=0.25.0",
+    "onnxruntime>=1.16.0",
+    # Image processing (M4 texture reproduction, M6 material classifier)
+    "numpy>=1.24.0",
+    "pillow>=10.0.0",
+    "opencv-python>=4.8.0",
+    # Benchmark charts (M8 token/quality/assembly benchmarks)
+    "matplotlib>=3.7.0",
+    # 3D mesh handling (M4 geometry rebuilder, M5 scene builder, M7 mesh optimizer)
+    "trimesh>=4.0.0",
+    "pygltflib>=1.16.0",
+    # Data validation (shared structured payloads across modules)
+    "pydantic>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["godot_bridge*"]
+exclude = ["tests*", "benchmarks*", "docs*", "templates*", "gdscripts*"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-ra"

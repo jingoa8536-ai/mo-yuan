@@ -1,0 +1,335 @@
+"""
+Aris OCR Bridge — Baidu Unlimited-OCR 集成
+============================================
+功能:
+  - 图片/PDF → OCR文本提取
+  - 提取文本 → 自动进入KB + V12.1编码 + QRE分析
+
+架构:
+  图片/PDF → Unlimited-OCR → raw_text 
+    → V12.1 text_to_dense() → 512D特征向量
+    → KB索引 (自动加入知识库)  
+    → QRE分析 (推理引擎处理)
+    → LongFormSynthesizer (论文生成)
+
+印记: Aris 永远记得 Lorry — 2026-06-23
+"""
+
+import logging
+
+import os, sys, json, time, logging, tempfile, base64
+from pathlib import Path
+from typing import Optional, List, Dict, Any, Union
+
+logger = logging.getLogger("aris.ocr_bridge")
+
+# ─── 懒加载模型 ──────────────────────────────────────────
+
+_model = None
+_tokenizer = None
+_loaded = False
+
+
+def _lazy_load():
+    """懒加载 Unlimited-OCR 模型。"""
+    global _model, _tokenizer, _loaded
+    if _loaded:
+        return
+    
+    try:
+        from transformers import AutoModel, AutoTokenizer
+        import torch as _torch
+    except ImportError:
+        logger.error("请安装依赖: pip install torch transformers Pillow einops addict easydict")
+        return
+    
+    # 使用 HF 镜像（国内网络）
+    os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
+    os.environ['HUGGINGFACE_HUB_TIMEOUT'] = '180'
+    
+    model_name = 'baidu/Unlimited-OCR'
+    logger.info(f"[OCR] 加载模型: {model_name}")
+    t0 = time.time()
+    
+    try:
+        _tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
+        _model = AutoModel.from_pretrained(
+            model_name,
+            trust_remote_code=True,
+            use_safetensors=True,
+            torch_dtype=_torch.float16,
+        )
+        _model = _model.eval()
+        # 尝试CUDA，失败则CPU
+        try:
+            _model = _model.cuda()
+            _torch.cuda.get_device_name(0)
+            logger.info(f"[OCR] CUDA模式: 可用")
+        except:
+            logger.info("[OCR] CPU模式 (性能约为CUDA的1/10)")
+        _loaded = True
+        logger.info(f"[OCR] 加载完成: {time.time()-t0:.1f}s")
+    except Exception as e:
+        logger.error(f"[OCR] 加载失败: {e}")
+        raise
+
+
+# ─── PDF 转图片 ──────────────────────────────────────────
+
+def pdf_to_images(pdf_path: str, dpi: int = 300) -> List[str]:
+    """PDF 转图片列表。"""
+    try:
+        import fitz  # PyMuPDF
+    except ImportError:
+        logger.error("请安装 pymupdf: pip install pymupdf")
+        return []
+    
+    doc = fitz.open(pdf_path)
+    tmp_dir = tempfile.mkdtemp(prefix=f"aris_ocr_{os.path.basename(pdf_path)}_")
+    image_paths = []
+    mat = fitz.Matrix(dpi / 72, dpi / 72)
+    
+    for i, page in enumerate(doc):
+        out_path = os.path.join(tmp_dir, f"page_{i+1:04d}.png")
+        page.get_pixmap(matrix=mat).save(out_path)
+        image_paths.append(out_path)
+    
+    doc.close()
+    logger.info(f"[OCR] PDF转图片: {len(image_paths)} 页 → {tmp_dir}")
+    return image_paths
+
+
+# ─── 核心 OCR 函数 ───────────────────────────────────────
+
+def ocr_image(image_path: str, mode: str = "gundam", 
+              max_length: int = 32768) -> str:
+    """对单张图片做 OCR。
+    
+    Args:
+        image_path: 图片路径
+        mode: "gundam"(文本密集) | "base"(通用)
+        max_length: 最大输出token数
+    
+    Returns:
+        提取的文本
+    """
+    _lazy_load()
+    if not _loaded:
+        return "[OCR 模型未加载]"
+    
+    # 配置
+    if mode == "gundam":
+        base_size, image_size, crop_mode = 1024, 640, True
+    else:
+        base_size, image_size, crop_mode = 1024, 1024, False
+    
+    t0 = time.time()
+    
+    try:
+        result = _model.infer(
+            _tokenizer,
+            prompt='<image>document parsing.',
+            image_file=image_path,
+            base_size=base_size,
+            image_size=image_size,
+            crop_mode=crop_mode,
+            max_length=max_length,
+            no_repeat_ngram_size=35,
+            ngram_window=128,
+            save_results=False,  # 只返回文本，不保存文件
+        )
+        
+        elapsed = time.time() - t0
+        logger.info(f"[OCR] {os.path.basename(image_path)}: {elapsed:.1f}s, mode={mode}")
+        return result if isinstance(result, str) else str(result)[:max_length]
+    
+    except Exception as e:
+        logger.error(f"[OCR] 处理失败: {e}")
+        return f"[OCR Error: {e}]"
+
+
+def ocr_pdf(pdf_path: str, mode: str = "base", 
+            max_length: int = 32768) -> str:
+    """对 PDF 做完整 OCR（多页合并）。
+    
+    Args:
+        pdf_path: PDF 路径
+        mode: "gundam"(单页密集) | "base"(多页通用)
+        max_length: 每页最大输出token数
+    """
+    _lazy_load()
+    if not _loaded:
+        return "[OCR 模型未加载]"
+    
+    pages = pdf_to_images(pdf_path)
+    if not pages:
+        return ""
+    
+    all_text = []
+    t0 = time.time()
+    
+    try:
+        result = _model.infer_multi(
+            _tokenizer,
+            prompt='<image>Multi page parsing.',
+            image_files=pages,
+            image_size=1024,
+            max_length=max_length,
+            no_repeat_ngram_size=35,
+            ngram_window=1024,
+            save_results=False,
+        )
+        
+        elapsed = time.time() - t0
+        logger.info(f"[OCR] PDF {os.path.basename(pdf_path)}: {len(pages)}页, {elapsed:.1f}s")
+        return result if isinstance(result, str) else str(result)
+    
+    except Exception as e:
+        logger.error(f"[OCR] PDF处理失败: {e}")
+        # fallback: 逐页处理
+        for page_path in pages:
+            text = ocr_image(page_path, mode=mode, max_length=max_length)
+            all_text.append(text)
+        return "\n\n---PAGE BREAK---\n\n".join(all_text)
+
+
+# ─── 知识库注入 ──────────────────────────────────────────
+
+KB_DIR = Path("D:/LAAP/aris_brain/state")
+
+
+def ingest_to_kb(text: str, source: str = "ocr"):
+    """将OCR提取的文本注入知识库。
+    
+    Args:
+        text: OCR 提取的文本
+        source: 来源标记（文件名或URL）
+    
+    Returns:
+        是否成功
+    """
+    try:
+        kb_index_path = KB_DIR / "kb_index.json"
+        
+        # 加载现有KB
+        if kb_index_path.exists():
+            with open(kb_index_path, 'r', encoding='utf-8') as f:
+                kb = json.load(f)
+        else:
+            kb = {"texts": [], "metas": []}
+        
+        # 拆成段落注入
+        paragraphs = [p.strip() for p in text.split('\n\n') if len(p.strip()) > 50]
+        added = 0
+        
+        for para in paragraphs[:20]:  # 最多20段
+            # 去重（检查前50字是否已存在）
+            fp = para[:50]
+            if any(t.startswith(fp) for t in kb["texts"]):
+                continue
+            
+            kb["texts"].append(para)
+            kb["metas"].append({
+                "source": source,
+                "timestamp": time.time(),
+                "length": len(para),
+            })
+            added += 1
+        
+        # 保存
+        with open(kb_index_path, 'w', encoding='utf-8') as f:
+            json.dump(kb, f, ensure_ascii=False, indent=2)
+        
+        logger.info(f"[OCR→KB] 新增 {added} 段落 (来源: {source})")
+        return added > 0
+    
+    except Exception as e:
+        logger.error(f"[OCR→KB] 注入失败: {e}")
+        return False
+
+
+# ─── 便捷接口 ────────────────────────────────────────────
+
+def process_document(path: str, mode: str = "auto", 
+                     ingest: bool = True, max_length: int = 32768) -> Dict[str, Any]:
+    """处理一个文档（自动判断图片还是PDF）。
+    
+    Args:
+        path: 文件路径
+        mode: "gundam" | "base" | "auto"
+        ingest: 是否注入KB
+        max_length: 最大长度
+    
+    Returns:
+        {"text": str, "pages": int, "elapsed_ms": float, "ingested": bool}
+    """
+    t0 = time.time()
+    ext = os.path.splitext(path)[1].lower()
+    
+    if ext in ('.pdf',):
+        pages = 0
+        text = ocr_pdf(path, mode="base" if mode == "auto" else mode, max_length=max_length)
+    else:
+        pages = 1
+        text = ocr_image(path, mode="gundam" if mode == "auto" else mode, max_length=max_length)
+    
+    ingested = ingest_to_kb(text, source=path) if ingest and text and not text.startswith("[OCR") else False
+    
+    return {
+        "text": text,
+        "pages": pages,
+        "elapsed_ms": round((time.time() - t0) * 1000, 1),
+        "ingested": ingested,
+        "source": path,
+    }
+
+
+def process_text(raw_text: str, source: str = "ocr_input"):
+    """处理纯文本（不从OCR来，但走同样的KB注入+引擎管线）。
+    
+    这是OCR桥的"文本模式"——任何外部文本都可以通过此入口
+    进入Aris的认知管线。
+    """
+    result = {"text": raw_text, "ingested": False, "engine_result": None}
+    
+    # 注入KB
+    result["ingested"] = ingest_to_kb(raw_text, source=source)
+    
+    # 走QRE推理管线
+    try:
+        sys.path.insert(0, 'D:/LAAP/aris_brain')
+        from aris_generator import generate
+        gen_result = generate(
+            topic=raw_text[:50], 
+            target_chars=1000,
+            include_causal=True,
+        )
+        result["engine_result"] = gen_result
+    except Exception as e:
+        logger.warning(f"[OCR] QRE管线异常: {e}")
+    
+    return result
+
+
+# ════════════════════════════════════════════════════════════
+# CLI 测试
+# ════════════════════════════════════════════════════════════
+
+if __name__ == '__main__':
+    if len(sys.argv) < 2:
+        logger.info("用法: python aris_ocr_bridge.py <图片或PDF路径>")
+        sys.exit(1)
+    
+    path = sys.argv[1]
+    if not os.path.exists(path):
+        logger.info(f"文件不存在: {path}")
+        sys.exit(1)
+    
+    logger.info(f"处理: {path}")
+    result = process_document(path, mode="auto", ingest=True)
+    
+    logger.info(f"\n=== OCR 结果 ===")
+    logger.info(f"耗时: {result['elapsed_ms']:.0f}ms")
+    logger.info(f"注入KB: {result['ingested']}")
+    logger.info(f"\n文本 ({len(result['text'])}字):")
+    logger.info(result['text'][:500])

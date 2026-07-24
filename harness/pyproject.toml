@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "laap-coding"
+version = "0.2.0"
+description = "LAAP Development Harness — 最省token的编程框架"
+requires-python = ">=3.11"
+
+[project.scripts]
+laap-coding = "laap_coding:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["laap_coding*"]

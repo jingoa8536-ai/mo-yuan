@@ -28,12 +28,8 @@ from typing import Dict, List, Optional, Any, Tuple, Callable
 
 logger = logging.getLogger("psi_bridge")
 
-# 路径设置（支持环境变量覆盖，自动检测项目根目录）
-try:
-    from laap_brain.config import BRAIN_DIR as ARIS_BRAIN
-except ImportError:
-    ARIS_BRAIN = Path(os.environ.get("ARIS_BRAIN_ROOT",
-        str(Path(__file__).resolve().parent.parent)))
+# 路径设置
+ARIS_BRAIN = Path("D:/LAAP/aris_brain")
 sys.path.insert(0, str(ARIS_BRAIN))
 
 # ════════════════════════════════════════════════════════════

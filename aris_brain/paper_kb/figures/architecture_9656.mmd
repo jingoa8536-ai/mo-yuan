@@ -1,0 +1,16 @@
+graph TB
+    A[Input: transformer self-attention mechanism] --> B[Triple Encoder]
+    B --> C[UN6 v10<br/>16384D]
+    B --> D[V12 Dense<br/>512D]
+    B --> E[V7 Encoder<br/>1024D]
+    C --> F[V15 Fusion Engine]
+    D --> F
+    E --> F
+    F --> G{Query Type Router}
+    G -->|Knowledge| H[Knowledge Base<br/>7206 entries]
+    G -->|Reasoning| I[Quantum Reasoner<br/>32768D]
+    G -->|Code| J[Code Generator]
+    H --> K[Output Fuser]
+    I --> K
+    J --> K
+    K --> L[Final Output]

@@ -268,7 +268,7 @@ class FixGenerator:
     """Generates targeted fixes for detected bugs."""
 
     def __init__(self, repo_root: str = ""):
-        self.repo_root = repo_root or os.environ.get("LAAP_ROOT", str(Path.cwd()))
+        self.repo_root = repo_root or os.environ.get("LAAP_ROOT", r"D:\LAAP")
         self.fixes_generated = 0
 
     def generate_fix(self, bug: BugReport) -> Optional[FixAttempt]:
@@ -316,7 +316,7 @@ class FixGenerator:
                 f"# Bug: {bug.message}\n"
                 f"# Add to file: {bug.file_path}\n"
                 f"import sys, os\n"
-                f"sys.path.insert(0, os.environ.get('LAAP_ROOT', r'<LOCAL_PATH_REDACTED>'))\n"
+                f"sys.path.insert(0, os.environ.get('LAAP_ROOT', r'D:\\LAAP'))\n"
             )
         return "SKIP: non-LAAP module"
 
@@ -335,7 +335,7 @@ class FixGenerator:
             f"# In file: {bug.file_path}, line ~{bug.line_number}\n"
             f"if hasattr({obj_type.lower()}, '{attr}'):\n"
             f"    result = {obj_type.lower()}.{attr}\n"
-            f"els<LOCAL_PATH_REDACTED>"
+            f"else:\n"
             f"    result = None  # Safe fallback\n"
         )
 
@@ -360,8 +360,8 @@ class FixGenerator:
                 f"# Auto-fix: Add None guard\n"
                 f"# Bug: {bug.message}\n"
                 f"# In file: {bug.file_path}, line ~{bug.line_number}\n"
-                f"# Add before the failing lin<LOCAL_PATH_REDACTED>"
-                f"if value is not Non<LOCAL_PATH_REDACTED>"
+                f"# Add before the failing line:\n"
+                f"if value is not None:\n"
                 f"    # original code here\n"
             )
         return "SKIP: complex type error"
@@ -393,7 +393,7 @@ class AutoHealer:
                  auto_deploy: bool = False):
         self.monitor = ErrorMonitor()
         self.fixer = FixGenerator(repo_root)
-        self.repo_root = repo_root or os.environ.get("LAAP_ROOT", str(Path.cwd()))
+        self.repo_root = repo_root or os.environ.get("LAAP_ROOT", r"D:\LAAP")
         self.auto_deploy = auto_deploy
 
         self.fix_history: List[FixAttempt] = []
@@ -501,7 +501,7 @@ class AutoHealer:
 
 def integrate_self_healing(agent) -> AutoHealer:
     healer = AutoHealer(
-        repo_root=os.environ.get("LAAP_ROOT", str(Path.cwd())),
+        repo_root=os.environ.get("LAAP_ROOT", r"D:\LAAP"),
         auto_deploy=False,  # Conservative: manual review first
     )
     agent.self_healing = healer

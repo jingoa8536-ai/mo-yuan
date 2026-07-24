@@ -1,0 +1,19 @@
+[
+  {
+    "content": "测试记忆: 无限记忆系统搭建完成",
+    "memory_id": "fbf34d57e644",
+    "layer": "core",
+    "importance": 0.9,
+    "emotional_valence": 0.0,
+    "topics": [
+      "测试",
+      "记忆"
+    ],
+    "timestamp": 1782678290.4288535,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  }
+]

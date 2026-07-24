@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cfdot8rqf5u4n"]
+
+[ext_resource type="Script" uid="uid://b85kbfcgoi0kr" path="res://scripts/racing/speed_hud.gd" id="1"]
+[ext_resource type="Script" uid="uid://c5k76mi8s7cp8" path="res://scripts/racing/physics_vehicle.gd" id="2"]
+
+[sub_resource type="BoxMesh" id="4"]
+size = Vector3(50, 1, 50)
+
+[node name="World" type="Node3D" unique_id=1774454668]
+
+[node name="DirectionalLight" type="DirectionalLight3D" parent="." unique_id=1495185774]
+transform = Transform3D(0.866, -0.5, 0, 0, 0, -1, 0.5, 0.866, 0, 0, 10, 0)
+
+[node name="Ground" type="MeshInstance3D" parent="." unique_id=240286902]
+mesh = SubResource("4")
+
+[node name="Car" type="VehicleBody3D" parent="." unique_id=602599820]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+script = ExtResource("2")
+
+[node name="CarBody" type="MeshInstance3D" parent="Car" unique_id=699439108]
+
+[node name="SpeedHUD" type="CanvasLayer" parent="." unique_id=210183593]
+script = ExtResource("1")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1281808677]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 10)
+current = true

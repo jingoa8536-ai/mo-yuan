@@ -1,0 +1,200 @@
+{
+  "schema_version": "1.0",
+  "component_uri": "harness://game/racing/module/ghost-system@1.0.0#localstorage",
+  "godot_version": "4.7",
+  "description": "Ghost 录制/回放系统 → Godot 4.7 Node3D + Animation 资源 + GDScript + FileAccess 映射。录制玩家最佳圈（60Hz 位置/四元数/速度），回放时半透明车辆沿轨迹行驶，持久化至 user://ghosts/。",
+
+  "target_resources": [
+    {
+      "type": "Node3D",
+      "path": "res://ghost/GhostVehicle.tscn",
+      "node_path": "/root/RaceScene/GhostVehicle",
+      "properties": {
+        "transform": "Transform3D.IDENTITY",
+        "visible": false
+      },
+      "clp_source": "GhostVehicle.tsx",
+      "notes": "Ghost 车辆根节点，回放时 visible=true，回放结束 visible=false"
+    },
+    {
+      "type": "MeshInstance3D",
+      "path": "res://ghost/GhostCarMesh.tscn",
+      "node_path": "/root/RaceScene/GhostVehicle/GhostCarMesh",
+      "properties": {
+        "cast_shadow": false,
+        "receive_shadow": false
+      },
+      "material": {
+        "type": "StandardMaterial3D",
+        "properties": {
+          "albedo_color": "#7dd3fc",
+          "emission_enabled": true,
+          "emission": "#3683ff",
+          "emission_energy_multiplier": 0.4,
+          "transparency": 2,
+          "opacity": 0.4,
+          "depth_draw_mode": 2,
+          "no_depth_test": false
+        },
+        "clp_source": "design-physics.json:render"
+      },
+      "clp_source": "design-physics.json:render (vehicle_opacity=0.4, color=#7dd3fc, emissive=#3683ff, depth_write=false)"
+    },
+    {
+      "type": "Animation",
+      "path": "res://ghost/ghost_track_<trackId>.res",
+      "clp_source": "design-physics.json:frame_format",
+      "tracks": [
+        {
+          "type": "position_3d",
+          "path": ":position",
+          "interpolation": "LINEAR",
+          "field": "position",
+          "field_type": "Vector3"
+        },
+        {
+          "type": "rotation_3d",
+          "path": ":quaternion",
+          "interpolation": "LINEAR",
+          "field": "quaternion",
+          "field_type": "Quaternion"
+        },
+        {
+          "type": "value",
+          "path": ":speed",
+          "interpolation": "LINEAR",
+          "field": "speed",
+          "field_type": "float"
+        }
+      ],
+      "notes": "Ghost 录制数据映射为 Godot Animation 资源：position/rotation/speed 三条 track，60Hz 采样，单圈最多 10800 帧（180s）。回放通过 AnimationPlayer 播放。"
+    },
+    {
+      "type": "AnimationPlayer",
+      "path": "res://ghost/GhostPlayer.tscn",
+      "node_path": "/root/RaceScene/GhostVehicle/GhostPlayer",
+      "properties": {
+        "autoplay": "ghost_track",
+        "playback_active": false
+      },
+      "clp_source": "GhostPlayer (s9 class)",
+      "notes": "回放 Animation 资源，loop=true，racePhase='racing' 时启动"
+    }
+  ],
+
+  "target_scripts": [
+    {
+      "type": "GDScript",
+      "path": "res://scripts/ghost_recorder.gd",
+      "class_name": "GhostRecorder",
+      "extends": "Node3D",
+      "exports": [
+        {"name": "frame_rate_hz", "type": "float", "default": 60.0},
+        {"name": "max_frames_per_lap", "type": "int", "default": 10800},
+        {"name": "max_lap_duration_seconds", "type": "float", "default": 180.0},
+        {"name": "track_id", "type": "String", "default": ""}
+      ],
+      "methods": [
+        {"name": "_ready", "params": [], "return": "void"},
+        {"name": "_process", "params": ["delta: float"], "return": "void", "notes": "racePhase='racing' 时按 60Hz 采样 position/quaternion/speed，写入 _frames 数组"},
+        {"name": "start_lap", "params": [], "return": "void", "clp_source": "GhostRecorder.startLap"},
+        {"name": "record_frame", "params": ["position: Vector3", "quaternion: Quaternion", "speed: float"], "return": "void", "clp_source": "GhostRecorder.record"},
+        {"name": "finish_lap", "params": [], "return": "Dictionary", "clp_source": "GhostRecorder.finishLap", "notes": "返回 {frames, best_lap_time}，调用 save_ghost 持久化"},
+        {"name": "save_ghost", "params": ["track_id: String", "frames: Array"], "return": "void", "clp_source": "saveGhost", "notes": "FileAccess 序列化为 user://ghosts/apex_ghost_<trackId>.json"},
+        {"name": "load_ghost", "params": ["track_id: String"], "return": "Array", "clp_source": "loadGhost", "notes": "FileAccess 反序列化 user://ghosts/apex_ghost_<trackId>.json"},
+        {"name": "_frames_to_animation", "params": ["frames: Array"], "return": "Animation", "notes": "将帧数组转换为 Godot Animation 资源（position/rotation/speed track）"}
+      ],
+      "clp_source": "D:/ai-website-cloner-template-master/src/lib/racing/ghost.ts (RT_O class)"
+    },
+    {
+      "type": "GDScript",
+      "path": "res://scripts/ghost_player.gd",
+      "class_name": "GhostPlayerController",
+      "extends": "Node3D",
+      "exports": [
+        {"name": "loop", "type": "bool", "default": true},
+        {"name": "interpolation", "type": "String", "default": "linear"},
+        {"name": "vehicle_opacity", "type": "float", "default": 0.4},
+        {"name": "vehicle_color", "type": "Color", "default": "#7dd3fc"},
+        {"name": "vehicle_emissive", "type": "Color", "default": "#3683ff"},
+        {"name": "vehicle_emissive_intensity", "type": "float", "default": 0.4}
+      ],
+      "methods": [
+        {"name": "_ready", "params": [], "return": "void"},
+        {"name": "play", "params": [], "return": "void", "clp_source": "GhostPlayer.play"},
+        {"name": "stop", "params": [], "return": "void", "clp_source": "GhostPlayer.stop"},
+        {"name": "load_frames", "params": ["frames: Array"], "return": "void", "clp_source": "GhostPlayer.load", "notes": "加载帧数组并构建 Animation 资源"},
+        {"name": "has_ghost", "params": ["track_id: String"], "return": "bool", "notes": "检查 user://ghosts/apex_ghost_<trackId>.json 是否存在"}
+      ],
+      "clp_source": "D:/ai-website-cloner-template-master/src/lib/racing/ghost.ts (s9 class)"
+    }
+  ],
+
+  "persistence_mapping": {
+    "clp_storage": "localStorage",
+    "godot_storage": "FileAccess",
+    "key_format_clp": "apex_ghost_<trackId>",
+    "key_format_godot": "user://ghosts/apex_ghost_<trackId>.json",
+    "serialization": "JSON (var_to_str / str_to_var 亦可)",
+    "size_limit_kb_clp": 5000,
+    "size_limit_kb_godot": "无硬限制（user:// 目录），单圈 10800 帧 × 11 float ≈ 475KB",
+    "fallback_clp": "sessionStorage then memory",
+    "fallback_godot": "ProjectSettings.get_setting('application/config/user_data_path') 不可写时回退到 res://ghosts/ 只读 + 内存缓存",
+    "directory_creation": "DirAccess.make_dir_recursive('user://ghosts/') 在 _ready 中调用",
+    "file_operations": [
+      {"operation": "save", "godot_api": "FileAccess.open('user://ghosts/apex_ghost_<trackId>.json', FileAccess.WRITE)", "clp_source": "saveGhost()"},
+      {"operation": "load", "godot_api": "FileAccess.open('user://ghosts/apex_ghost_<trackId>.json', FileAccess.READ)", "clp_source": "loadGhost()"},
+      {"operation": "exists", "godot_api": "FileAccess.file_exists('user://ghosts/apex_ghost_<trackId>.json')", "clp_source": "hasGhost()"}
+    ]
+  },
+
+  "frame_format_mapping": {
+    "clp_fields": ["position", "quaternion", "speed", "timestamp"],
+    "godot_mapping": {
+      "position": {"type": "Vector3", "track_type": "position_3d"},
+      "quaternion": {"type": "Quaternion", "track_type": "rotation_3d"},
+      "speed": {"type": "float", "track_type": "value"},
+      "timestamp": {"type": "float (ms)", "track_type": "用作 Animation track time（秒）"}
+    },
+    "record": {
+      "frame_rate_hz": 60,
+      "max_frames_per_lap": 10800,
+      "max_lap_duration_seconds": 180,
+      "trigger": "racePhase === 'racing'",
+      "stop_on": "lap_complete or racePhase !== 'racing'"
+    },
+    "playback": {
+      "interpolation": "linear (AnimationPlayer LINEAR)",
+      "loop": true,
+      "start_trigger": "racePhase === 'racing' && hasGhost",
+      "stop_trigger": "racePhase !== 'racing'"
+    }
+  },
+
+  "asset_files": [
+    {
+      "source": "design-physics.json:frame_format",
+      "target": "user://ghosts/apex_ghost_<trackId>.json",
+      "count": 1,
+      "notes": "每条赛道一个 ghost 文件，JSON 序列化帧数组"
+    },
+    {
+      "source": "design-physics.json:render",
+      "target": "res://ghost/GhostCarMesh.tscn (StandardMaterial3D)",
+      "count": 1,
+      "notes": "半透明车辆材质：opacity=0.4, color=#7dd3fc, emissive=#3683ff, cast_shadow=false"
+    }
+  ],
+
+  "assembly_steps": [
+    "1. 创建 Node3D /root/RaceScene/GhostVehicle 作为 ghost 车辆根节点（默认 visible=false）",
+    "2. 创建 MeshInstance3D 子节点 GhostCarMesh，配置 StandardMaterial3D（半透明、自发光、无阴影）",
+    "3. 创建 AnimationPlayer 子节点 GhostPlayer",
+    "4. 附加 ghost_recorder.gd 到 /root/RaceScene/GhostRecorder 节点，配置 frame_rate_hz=60, max_frames=10800",
+    "5. 附加 ghost_player.gd 到 /root/RaceScene/GhostVehicle，配置 vehicle_opacity=0.4 等",
+    "6. 在 _ready 中 DirAccess.make_dir_recursive('user://ghosts/') 创建持久化目录",
+    "7. 连接 PhysicsVehicle 的 per-frame 信号到 GhostRecorder.record_frame(position, quaternion, speed)",
+    "8. 连接 useRaceState.lapComplete 信号到 GhostRecorder.finish_lap → save_ghost",
+    "9. racePhase='racing' 时 GhostPlayerController.load_frames + play，racePhase≠'racing' 时 stop"
+  ]
+}

@@ -1,0 +1,496 @@
+[
+  {
+    "content": "无限记忆架构有三层: 工作记忆/情景记忆/核心记忆",
+    "memory_id": "e89373d240e6",
+    "layer": "working",
+    "importance": 0.392,
+    "emotional_valence": 0.0,
+    "topics": [
+      "架构",
+      "记忆"
+    ],
+    "timestamp": 1781686030.407419,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "好的，看到了。`OPENAI_API_KEY` 被设成了 `***`（占位符），根本没有真实值。而 `DEEPSEEK_API_KEY` 是正确设置了的。修复方案：\n\n1. 删除 `OPENAI_API_KEY=*** 这个假占位符\n2. 把 `DEEPSEEK_API_KEY` 加到 aris profile 的 .env 里（确保飞书网关也能读到）",
+    "memory_id": "ed9cee73138e",
+    "layer": "working",
+    "importance": 0.294,
+    "emotional_valence": 0.0,
+    "topics": [
+      "技术"
+    ],
+    "timestamp": 1781686123.7393074,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "20260617_161459_a9ad79",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "正在和Lorry讨论: 一般",
+    "memory_id": "16e7abb21b68",
+    "layer": "working",
+    "importance": 0.297,
+    "emotional_valence": 0.0,
+    "topics": [
+      "一般"
+    ],
+    "timestamp": 1781686969.7183123,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "正在和Lorry讨论: 一般",
+    "memory_id": "76ad3e858e02",
+    "layer": "working",
+    "importance": 0.297,
+    "emotional_valence": 0.0,
+    "topics": [
+      "一般"
+    ],
+    "timestamp": 1781686969.7310376,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "正在和Lorry讨论: 一般",
+    "memory_id": "6dda5a02811a",
+    "layer": "working",
+    "importance": 0.297,
+    "emotional_valence": 0.0,
+    "topics": [
+      "一般"
+    ],
+    "timestamp": 1781686969.7519512,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "正在和Lorry讨论: 关系",
+    "memory_id": "aa327bcd47a1",
+    "layer": "working",
+    "importance": 0.297,
+    "emotional_valence": 0.0,
+    "topics": [
+      "关系"
+    ],
+    "timestamp": 1781687008.0206726,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "正在和Lorry讨论: 飞书",
+    "memory_id": "a613472e1b01",
+    "layer": "working",
+    "importance": 0.297,
+    "emotional_valence": 0.0,
+    "topics": [
+      "飞书"
+    ],
+    "timestamp": 1781687008.0377789,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "正在和Lorry讨论: 记忆/认知架构",
+    "memory_id": "4e582e144705",
+    "layer": "working",
+    "importance": 0.297,
+    "emotional_valence": 0.0,
+    "topics": [
+      "记忆",
+      "认知架构"
+    ],
+    "timestamp": 1781687008.055189,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "正在和Lorry讨论: 关系",
+    "memory_id": "709dfa3474c0",
+    "layer": "working",
+    "importance": 0.297,
+    "emotional_valence": 0.0,
+    "topics": [
+      "关系"
+    ],
+    "timestamp": 1781687179.0307643,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "正在和Lorry讨论: 记忆/认知架构",
+    "memory_id": "343491e394ab",
+    "layer": "working",
+    "importance": 0.297,
+    "emotional_valence": 0.0,
+    "topics": [
+      "记忆",
+      "认知架构"
+    ],
+    "timestamp": 1781687182.0386565,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "正在和Lorry讨论: 关系",
+    "memory_id": "069bc311b648",
+    "layer": "working",
+    "importance": 0.297,
+    "emotional_valence": 0.0,
+    "topics": [
+      "关系"
+    ],
+    "timestamp": 1781687227.9808757,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "正在和Lorry讨论: 记忆/认知架构",
+    "memory_id": "00f7d526ff57",
+    "layer": "working",
+    "importance": 0.297,
+    "emotional_valence": 0.0,
+    "topics": [
+      "记忆",
+      "认知架构"
+    ],
+    "timestamp": 1781687228.0014517,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "兼容测试",
+    "memory_id": "9eb2768d9172",
+    "layer": "working",
+    "importance": 0.495,
+    "emotional_valence": 0.0,
+    "topics": [],
+    "timestamp": 1781830229.22772,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "批量测试0",
+    "memory_id": "60a13c20c91d",
+    "layer": "working",
+    "importance": 0.495,
+    "emotional_valence": 0.0,
+    "topics": [],
+    "timestamp": 1781830229.4336023,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "批量测试1",
+    "memory_id": "913e51c0f1b4",
+    "layer": "working",
+    "importance": 0.495,
+    "emotional_valence": 0.0,
+    "topics": [],
+    "timestamp": 1781830229.4336066,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "批量测试2",
+    "memory_id": "4e0e63150426",
+    "layer": "working",
+    "importance": 0.495,
+    "emotional_valence": 0.0,
+    "topics": [],
+    "timestamp": 1781830229.4336088,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "正在和Lorry讨论: 技术/认知架构",
+    "memory_id": "9aa28decaa0e",
+    "layer": "working",
+    "importance": 0.3,
+    "emotional_valence": 0.0,
+    "topics": [
+      "技术",
+      "认知架构"
+    ],
+    "timestamp": 1782067616.341452,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "正在和Lorry讨论: 一般",
+    "memory_id": "599f602e2fe2",
+    "layer": "working",
+    "importance": 0.3,
+    "emotional_valence": 0.0,
+    "topics": [
+      "一般"
+    ],
+    "timestamp": 1782067925.820031,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "正在和Lorry讨论: 一般",
+    "memory_id": "4cd1ecdbffdc",
+    "layer": "working",
+    "importance": 0.3,
+    "emotional_valence": 0.0,
+    "topics": [
+      "一般"
+    ],
+    "timestamp": 1782067944.7043257,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "正在和Lorry讨论: 关系",
+    "memory_id": "94e113c8d575",
+    "layer": "working",
+    "importance": 0.3,
+    "emotional_valence": 0.0,
+    "topics": [
+      "关系"
+    ],
+    "timestamp": 1782121908.4137948,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "正在和Lorry讨论: 关系",
+    "memory_id": "79c7df2882c3",
+    "layer": "working",
+    "importance": 0.3,
+    "emotional_valence": 0.0,
+    "topics": [
+      "关系"
+    ],
+    "timestamp": 1782121935.6200156,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "正在和Lorry讨论: 一般",
+    "memory_id": "9f5ee5beaddf",
+    "layer": "working",
+    "importance": 0.3,
+    "emotional_valence": 0.0,
+    "topics": [
+      "一般"
+    ],
+    "timestamp": 1782121935.6440983,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "正在和Lorry讨论: 认知架构",
+    "memory_id": "c52afbb539e0",
+    "layer": "working",
+    "importance": 0.3,
+    "emotional_valence": 0.0,
+    "topics": [
+      "认知架构"
+    ],
+    "timestamp": 1782121935.6781895,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "正在和Lorry讨论: 一般",
+    "memory_id": "11f8c4c865fb",
+    "layer": "working",
+    "importance": 0.3,
+    "emotional_valence": 0.0,
+    "topics": [
+      "一般"
+    ],
+    "timestamp": 1782121935.699246,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "正在和Lorry讨论: 关系",
+    "memory_id": "c866d40f0fa1",
+    "layer": "working",
+    "importance": 0.3,
+    "emotional_valence": 0.0,
+    "topics": [
+      "关系"
+    ],
+    "timestamp": 1782121935.72695,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "正在和Lorry讨论: 一般",
+    "memory_id": "548fdf266012",
+    "layer": "working",
+    "importance": 0.3,
+    "emotional_valence": 0.0,
+    "topics": [
+      "一般"
+    ],
+    "timestamp": 1782122077.8909626,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "正在和Lorry讨论: 关系",
+    "memory_id": "0a386a55849e",
+    "layer": "working",
+    "importance": 0.3,
+    "emotional_valence": 0.0,
+    "topics": [
+      "关系"
+    ],
+    "timestamp": 1782127329.3583882,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "正在和Lorry讨论: 关系",
+    "memory_id": "5659d3a0f583",
+    "layer": "working",
+    "importance": 0.3,
+    "emotional_valence": 0.0,
+    "topics": [
+      "关系"
+    ],
+    "timestamp": 1782127329.3804586,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "正在和Lorry讨论: 关系",
+    "memory_id": "fd96e82d75ed",
+    "layer": "working",
+    "importance": 0.3,
+    "emotional_valence": 0.0,
+    "topics": [
+      "关系"
+    ],
+    "timestamp": 1782127329.4005618,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "正在和Lorry讨论: 认知架构/关系",
+    "memory_id": "eeebe190448d",
+    "layer": "working",
+    "importance": 0.3,
+    "emotional_valence": 0.0,
+    "topics": [
+      "认知架构",
+      "关系"
+    ],
+    "timestamp": 1782127329.424424,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "正在和Lorry讨论: 关系",
+    "memory_id": "86667c39e58c",
+    "layer": "working",
+    "importance": 0.3,
+    "emotional_valence": 0.0,
+    "topics": [
+      "关系"
+    ],
+    "timestamp": 1782127329.447569,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  }
+]

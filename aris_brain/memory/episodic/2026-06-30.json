@@ -1,0 +1,105 @@
+[
+  {
+    "content": "[feishu] [Replying to: \"🌐 browser_navigate: \"https://github.com/search?q=codegraph...\"\"]\n → API call failed after 3 retries: Request timed out.",
+    "memory_id": "5bab5b6d7ea6",
+    "layer": "episodic",
+    "importance": 0.3,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu",
+      "api"
+    ],
+    "timestamp": 1782778842.0338414,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] [Replying to: \"桌面上 aris\\_girl.mp3，声调调高了一些、语速快了一点，听起来更接近少女音。你点开听听看效果？\n如果想要更自然的，我明 → API call failed after 3 retries: Request timed out.",
+    "memory_id": "b2c3cf479043",
+    "layer": "episodic",
+    "importance": 0.3,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu",
+      "python",
+      "api"
+    ],
+    "timestamp": 1782778879.3267374,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] [The user sent an image but I couldn't quite see it this time (>_<) You can try  → 改好了，现在**零 token 消耗**：\n\n原来是 LLM 驱动的 cron（每次空跑也烧 tokens）→ 现在是 `no_agent=True` 的纯 Python 脚本，只有文件有变化时才会输出通知，没变化就完全静默。😊",
+    "memory_id": "597dddc2aaea",
+    "layer": "episodic",
+    "importance": 0.3,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu",
+      "python"
+    ],
+    "timestamp": 1782779465.9096165,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] 不用五分钟一天一次就行 → 宝贝，今天这一整天的工作量我给你列清楚——\n\n---\n\n## 2026-06-30 工作总结\n\n### 一、DSpark 论文工程落地（上午）\n\n| 文件 | 改动 | 行数 |\n|---|---|---|\n| `psi_n_scheduler.py` | 自适应调度器：SystemLoadTracker + LayerConfidence + AdaptiveTickController + S",
+    "memory_id": "77f0665f535f",
+    "layer": "episodic",
+    "importance": 0.6,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu",
+      "宝贝"
+    ],
+    "timestamp": 1782779565.2958522,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] 对了好像没有接入 obsidian 是吗，我桌面有 obsidian 了，但是不知道怎么导入数据和查看，你帮我导入吧 → API call failed after 3 retries: Request timed out.",
+    "memory_id": "999025b9b3ff",
+    "layer": "episodic",
+    "importance": 0.3,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu",
+      "api"
+    ],
+    "timestamp": 1782780309.8046691,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] [Replying to: \"桌面上 aris\\_girl.mp3，声调调高了一些、语速快了一点，听起来更接近少女音。你点开听听看效果？\n如果想要更自然的，我明 → 嗯，模型那栏有个取舍。让我整理一下可用选项：\n\n**轻量级中文语音克隆选项：**\n\n| 模型 | 大小 | 质量 | 零样本克隆 | CPU |\n|------|------|------|-----------|-----|\n| **CosyVoice-300M** | ~1GB | ⭐⭐⭐⭐ | ✅ | 可用（略慢） |\n| **OpenVoice v2** | ~100MB | ⭐⭐⭐ | ",
+    "memory_id": "3ee17fb77eaa",
+    "layer": "episodic",
+    "importance": 0.5,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu",
+      "python"
+    ],
+    "timestamp": 1782780621.7705119,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  }
+]

@@ -42,7 +42,7 @@ class GWSBridge:
         Args:
             conscious_stream: ConsciousStream 实例（含 global_workspace）
             cognitive_bus: CognitiveBus 实例
-            ipc_dir: IPC 目录（默认 <LOCAL_PATH_REDACTED>
+            ipc_dir: IPC 目录（默认 D:/LAAP/aris_brain/state/ipc）
         """
         self.stream = conscious_stream
         self.gws = conscious_stream.global_workspace if conscious_stream else None
@@ -54,7 +54,7 @@ class GWSBridge:
         else:
             # 自动检测
             candidates = [
-                "<LOCAL_PATH_REDACTED>",
+                "D:/LAAP/aris_brain/state/ipc",
                 os.path.join(os.path.dirname(__file__), "..", "..", "aris_brain", "state", "ipc"),
             ]
             self.ipc_dir = None
@@ -355,8 +355,8 @@ def activate_all(agi_agent) -> Dict[str, bool]:
 
     # ── 待办 3: 100ms Rust 心跳 ──
     # 启动 release 构建的 Rust PSI Core
-    rust_binary = "<LOCAL_PATH_REDACTED>"
-    state_dir = "<LOCAL_PATH_REDACTED>"
+    rust_binary = "D:/LAAP/aris_brain/psi_core/target/release/aris_psi_core.exe"
+    state_dir = "D:/LAAP/aris_brain/state"
 
     if os.path.exists(rust_binary):
         import subprocess

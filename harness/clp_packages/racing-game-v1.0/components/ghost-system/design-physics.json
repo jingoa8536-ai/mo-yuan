@@ -1,0 +1,58 @@
+{
+  "$schema": "https://laap.harness/protocol/v1.0/design-physics.json",
+  "component_id": "ghost-system",
+
+  "frame_format": {
+    "fields": ["position", "quaternion", "speed", "timestamp"],
+    "position_type": "THREE.Vector3",
+    "quaternion_type": "THREE.Quaternion",
+    "speed_unit": "m/s",
+    "timestamp_unit": "ms"
+  },
+
+  "record": {
+    "frame_rate_hz": 60,
+    "max_frames_per_lap": 10800,
+    "max_lap_duration_seconds": 180,
+    "compression": "none (raw frame array)",
+    "trigger": "racePhase === 'racing'",
+    "stop_on": "lap_complete or racePhase !== 'racing'"
+  },
+
+  "playback": {
+    "interpolation": "linear",
+    "loop": true,
+    "start_trigger": "racePhase === 'racing' && hasGhost",
+    "stop_trigger": "racePhase !== 'racing'"
+  },
+
+  "persistence": {
+    "storage": "localStorage",
+    "key_format": "apex_ghost_<trackId>",
+    "serialization": "JSON",
+    "size_limit_kb": 5000,
+    "fallback": "sessionStorage then memory"
+  },
+
+  "render": {
+    "vehicle_opacity": 0.4,
+    "vehicle_color": "#7dd3fc",
+    "vehicle_emissive": "#3683ff",
+    "vehicle_emissive_intensity": 0.4,
+    "cast_shadow": false,
+    "receive_shadow": false,
+    "depth_write": false,
+    "material_type": "MeshStandardMaterial"
+  },
+
+  "evidence": {
+    "bundle_file": "D:/LAAP/_apex_assets/index-BHLGw_OM.js",
+    "key_classes": ["RT_O (GhostRecorder)", "s9 (GhostPlayer)", "saveGhost", "loadGhost"],
+    "extraction_method": "subagent reverse engineering + manual verification",
+    "missing_features": [
+      "ghost 哈希签名（防作弊）",
+      "challenge ghost UI（向他人发起挑战）",
+      "ghost 分享 URL 生成"
+    ]
+  }
+}

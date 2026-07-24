@@ -168,7 +168,7 @@ class SafetyGuard:
             # Wrap in dummy class for indented methods (ast.parse requires top-level indent=0)
             test_code = mutation.mutated_code
             if test_code.startswith((' ', '\t')):
-                test_code = 'class _Dumm<LOCAL_PATH_REDACTED>' + test_code
+                test_code = 'class _Dummy:\n' + test_code
             ast.parse(test_code)
         except SyntaxError as e:
             return False, f"Syntax error in mutated code: {e}"
@@ -538,7 +538,7 @@ class SandboxTester:
                 # Apply mutation — wrap in dummy class for standalone function validation
                 sandbox_code = mutation.mutated_code
                 if sandbox_code.startswith((' ', '\t')):
-                    sandbox_code = 'class _SandboxTes<LOCAL_PATH_REDACTED>' + sandbox_code
+                    sandbox_code = 'class _SandboxTest:\n' + sandbox_code
                 dest.write_text(sandbox_code, encoding='utf-8')
 
                 # Run tests
@@ -599,7 +599,7 @@ class SandboxTester:
         try:
             _check = mutation.mutated_code
             if _check.startswith((' ', '\t')):
-                _check = 'class _Dumm<LOCAL_PATH_REDACTED>' + _check
+                _check = 'class _Dummy:\n' + _check
             ast.parse(_check)
         except SyntaxError as e:
             errors.append(f"SYNTAX ERROR: {e}")
@@ -799,7 +799,7 @@ class CodeEvolutionEngine:
     test them in isolation, and deploy or rollback.
 
     Usage:
-        engine = CodeEvolutionEngine(repo_root=str(Path.cwd()))
+        engine = CodeEvolutionEngine(repo_root=r"D:\LAAP")
         engine.auto_improve("laap/agi/")
     """
 
@@ -978,7 +978,7 @@ def integrate_code_evolution(agent, repo_root: str = "") -> CodeEvolutionEngine:
         llm_fn = getattr(agent, 'llm', None)
     
     engine = CodeEvolutionEngine(
-        repo_root=repo_root or os.environ.get("LAAP_ROOT", str(Path.cwd())),
+        repo_root=repo_root or os.environ.get("LAAP_ROOT", r"D:\LAAP"),
         llm_fn=llm_fn,
     )
     agent.code_evolution = engine

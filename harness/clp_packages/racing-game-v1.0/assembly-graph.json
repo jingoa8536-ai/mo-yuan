@@ -1,0 +1,327 @@
+{
+  "$schema": "https://laap.harness/protocol/v1.0/assembly-graph.json",
+  "package_id": "racing-game-v1.0",
+  "description": "装配图谱：定义 3 个 CLP 组件之间及与外部系统之间的连接关系",
+
+  "nodes": [
+    {
+      "id": "engine-sound-crossfade",
+      "uri": "harness://game/audio/module/engine-sound-crossfade@1.0.0#howler-webaudio",
+      "type": "module",
+      "layer": "audio",
+      "inputs": [
+        { "name": "rpm", "type": "number", "range": [0, 9000], "source": "PhysicsVehicle" },
+        { "name": "throttle", "type": "number", "range": [0, 1], "source": "ControlInput" },
+        { "name": "brake", "type": "number", "range": [0, 1], "source": "ControlInput" },
+        { "name": "speed", "type": "number", "unit": "m/s", "source": "PhysicsVehicle" },
+        { "name": "racePhase", "type": "enum", "values": ["menu", "countdown", "racing", "finished"], "source": "useRaceState" }
+      ],
+      "outputs": [
+        { "name": "audio_context", "type": "AudioContext", "consumed_by": "browser" }
+      ],
+      "side_effects": ["play_engine_samples", "play_sfx", "synth_fallback"]
+    },
+    {
+      "id": "ghost-system",
+      "uri": "harness://game/racing/module/ghost-system@1.0.0#localstorage",
+      "type": "module",
+      "layer": "racing",
+      "inputs": [
+        { "name": "position", "type": "THREE.Vector3", "source": "PhysicsVehicle" },
+        { "name": "quaternion", "type": "THREE.Quaternion", "source": "PhysicsVehicle" },
+        { "name": "speed", "type": "number", "source": "PhysicsVehicle" },
+        { "name": "racePhase", "type": "enum", "source": "useRaceState" },
+        { "name": "currentLap", "type": "number", "source": "useRaceState" }
+      ],
+      "outputs": [
+        { "name": "ghost_frames", "type": "GhostFrame[]", "consumed_by": "GhostVehicle" },
+        { "name": "best_lap_time", "type": "number", "consumed_by": "localStorage" }
+      ],
+      "side_effects": ["record_lap", "playback_lap", "persist_localStorage"]
+    },
+    {
+      "id": "keyframes-pack",
+      "uri": "harness://frontend/animation/module/keyframes-pack@1.0.0#apex-racing",
+      "type": "module",
+      "layer": "ui",
+      "inputs": [
+        { "name": "applied_to", "type": "DOM_element", "source": "React_component" },
+        { "name": "trigger", "type": "enum", "values": ["mount", "phase_change", "rpm_redline"], "source": "useRaceState" }
+      ],
+      "outputs": [
+        { "name": "animation_state", "type": "CSS_Animation", "consumed_by": "browser_render" }
+      ],
+      "side_effects": ["apply_utility_class"]
+    }
+  ],
+
+  "edges": [
+    {
+      "from": "PhysicsVehicle",
+      "to": "engine-sound-crossfade",
+      "type": "data_flow",
+      "signal": "updateEngine(rpm, throttle, brake, speed)",
+      "frequency": "per_frame",
+      "protocol": "function_call"
+    },
+    {
+      "from": "PhysicsVehicle",
+      "to": "ghost-system",
+      "type": "data_flow",
+      "signal": "record(position, quaternion, speed)",
+      "frequency": "per_frame_during_racing",
+      "protocol": "function_call"
+    },
+    {
+      "from": "useRaceState",
+      "to": "engine-sound-crossfade",
+      "type": "lifecycle_event",
+      "signal": "racePhaseChange",
+      "frequency": "occasional",
+      "protocol": "useEffect"
+    },
+    {
+      "from": "useRaceState",
+      "to": "ghost-system",
+      "type": "lifecycle_event",
+      "signal": "lapComplete",
+      "frequency": "per_lap",
+      "protocol": "useEffect"
+    },
+    {
+      "from": "ghost-system",
+      "to": "GhostVehicle",
+      "type": "render_data",
+      "signal": "ghost_frames",
+      "frequency": "per_frame",
+      "protocol": "props"
+    },
+    {
+      "from": "keyframes-pack",
+      "to": "HUD_panels",
+      "type": "css_class",
+      "signal": "animate-racing-hud-rise",
+      "frequency": "mount",
+      "protocol": "className"
+    },
+    {
+      "from": "keyframes-pack",
+      "to": "RPM_display",
+      "type": "css_class_conditional",
+      "signal": "animate-racing-hud-blink (when rpm > 7600)",
+      "frequency": "per_frame_conditional",
+      "protocol": "className"
+    }
+  ],
+
+  "assembly_sequence": [
+    "1. Mount keyframes-pack (CSS import, 0 runtime cost)",
+    "2. Mount PhysicsVehicle with audioEnabled=true, ghostRecorder, ghostPlayer props",
+    "3. On user gesture (startRace): audioManager.init() then startEngine()",
+    "4. On racePhase='racing': ghostRecorder.startLap(), ghostPlayer.play()",
+    "5. Per frame: PhysicsVehicle.useFrame → audioManager.updateEngine() + ghostRecorder.record()",
+    "6. On lapComplete: ghostRecorder.finishLap() → saveGhostToLocal() → ghostPlayer.load(newFrames)",
+    "7. On racePhase='finished': audioManager.stopEngine(), ghostPlayer.stop()"
+  ],
+
+  "cognitive_bus_events": [
+    {
+      "event_type": "qre_pattern_match",
+      "direction": "PSI→Harness",
+      "payload": { "type": "3d-racing-game", "confidence": 0.92 },
+      "action": "lookup clp://racing-game-v1.0/"
+    },
+    {
+      "event_type": "v12_kernel",
+      "direction": "PSI→Harness",
+      "payload": { "observation": "原网站离线", "effect": "audio_download_failed" },
+      "action": "switch AudioManager to synthesis_fallback mode"
+    },
+    {
+      "event_type": "emotion_concern",
+      "direction": "PSI→Harness",
+      "payload": { "trigger": "user_questioned_pixel_fidelity" },
+      "action": "trigger evidence-extraction workflow"
+    },
+    {
+      "event_type": "harness_execution_result",
+      "direction": "Harness→PSI",
+      "payload": { "result": "matchscore_average=0.92, tokens_saved=82%" },
+      "action": "PSI learns pattern for future racing projects"
+    }
+  ],
+
+  "godot_assembly": {
+    "target_godot_version": "4.7",
+    "description": "Godot 4.7 装配图谱：定义 3 个 CLP 组件到 Godot 原生资源的映射关系、装配顺序与依赖边。与 web_assembly（assembly_sequence）并行，描述同一 CLP 包在 Godot 引擎下的装配路径。",
+    "mapping_files": [
+      {
+        "component_id": "engine-sound-crossfade",
+        "component_uri": "harness://game/audio/module/engine-sound-crossfade@1.0.0#howler-webaudio",
+        "path": "components/audio-manager/godot-mapping.json",
+        "target_engine": "godot-4.7"
+      },
+      {
+        "component_id": "ghost-system",
+        "component_uri": "harness://game/racing/module/ghost-system@1.0.0#localstorage",
+        "path": "components/ghost-system/godot-mapping.json",
+        "target_engine": "godot-4.7"
+      },
+      {
+        "component_id": "keyframes-pack",
+        "component_uri": "harness://frontend/animation/module/keyframes-pack@1.0.0#apex-racing",
+        "path": "components/css-animations/godot-mapping.json",
+        "target_engine": "godot-4.7"
+      }
+    ],
+
+    "mapping_edges": [
+      {
+        "from": "harness://game/audio/module/engine-sound-crossfade@1.0.0#howler-webaudio",
+        "to": "res://audio/EngineSound3D.tscn",
+        "resource_type": "AudioStreamPlayer3D",
+        "mapping_file": "components/audio-manager/godot-mapping.json",
+        "notes": "Howler.js AudioManager → AudioStreamPlayer3D + AudioBusLayout(Engine/Master/SFX)"
+      },
+      {
+        "from": "harness://game/audio/module/engine-sound-crossfade@1.0.0#howler-webaudio",
+        "to": "res://audio/engine_buses.tres",
+        "resource_type": "AudioBusLayout",
+        "mapping_file": "components/audio-manager/godot-mapping.json",
+        "notes": "reverb_chain → AudioEffectReverb + HPF(140Hz) + LPF(4200Hz)"
+      },
+      {
+        "from": "harness://game/audio/module/engine-sound-crossfade@1.0.0#howler-webaudio",
+        "to": "res://scripts/engine_sound.gd",
+        "resource_type": "GDScript",
+        "mapping_file": "components/audio-manager/godot-mapping.json",
+        "notes": "AudioManager.ts → EngineSoundController (update_engine/_process 交叉淡入)"
+      },
+      {
+        "from": "harness://game/audio/module/engine-sound-crossfade@1.0.0#howler-webaudio",
+        "to": "res://audio/samples/911cup_*.ogg",
+        "resource_type": "AudioStreamOggVorbis",
+        "mapping_file": "components/audio-manager/godot-mapping.json",
+        "notes": "24 engine_bands + 2 limiter 采样"
+      },
+      {
+        "from": "harness://game/racing/module/ghost-system@1.0.0#localstorage",
+        "to": "res://ghost/GhostVehicle.tscn",
+        "resource_type": "Node3D",
+        "mapping_file": "components/ghost-system/godot-mapping.json",
+        "notes": "GhostVehicle.tsx → Node3D + MeshInstance3D(半透明 StandardMaterial3D)"
+      },
+      {
+        "from": "harness://game/racing/module/ghost-system@1.0.0#localstorage",
+        "to": "res://ghost/ghost_track_<trackId>.res",
+        "resource_type": "Animation",
+        "mapping_file": "components/ghost-system/godot-mapping.json",
+        "notes": "Ghost 帧 → Animation 资源(position_3d/rotation_3d/value track)"
+      },
+      {
+        "from": "harness://game/racing/module/ghost-system@1.0.0#localstorage",
+        "to": "res://scripts/ghost_recorder.gd",
+        "resource_type": "GDScript",
+        "mapping_file": "components/ghost-system/godot-mapping.json",
+        "notes": "GhostRecorder(RT_O) → GhostRecorder (start_lap/record_frame/finish_lap/save_ghost)"
+      },
+      {
+        "from": "harness://game/racing/module/ghost-system@1.0.0#localstorage",
+        "to": "res://scripts/ghost_player.gd",
+        "resource_type": "GDScript",
+        "mapping_file": "components/ghost-system/godot-mapping.json",
+        "notes": "GhostPlayer(s9) → GhostPlayerController (play/stop/load_frames)"
+      },
+      {
+        "from": "harness://game/racing/module/ghost-system@1.0.0#localstorage",
+        "to": "user://ghosts/apex_ghost_<trackId>.json",
+        "resource_type": "FileAccess",
+        "mapping_file": "components/ghost-system/godot-mapping.json",
+        "notes": "localStorage → FileAccess (user://ghosts/)"
+      },
+      {
+        "from": "harness://frontend/animation/module/keyframes-pack@1.0.0#apex-racing",
+        "to": "res://ui/UIAnimationPlayer.tscn",
+        "resource_type": "AnimationPlayer",
+        "mapping_file": "components/css-animations/godot-mapping.json",
+        "notes": "CSS @keyframes → AnimationPlayer"
+      },
+      {
+        "from": "harness://frontend/animation/module/keyframes-pack@1.0.0#apex-racing",
+        "to": "res://ui/animations/apex_keyframes.tres",
+        "resource_type": "AnimationLibrary",
+        "mapping_file": "components/css-animations/godot-mapping.json",
+        "notes": "22 个 @keyframes → 22 个 Animation 资源"
+      },
+      {
+        "from": "harness://frontend/animation/module/keyframes-pack@1.0.0#apex-racing",
+        "to": "res://scripts/ui_animations.gd",
+        "resource_type": "GDScript",
+        "mapping_file": "components/css-animations/godot-mapping.json",
+        "notes": "CSS 工具类 → UIAnimationController (play_animation/_css_to_godot_easing)"
+      }
+    ],
+
+    "execution_order": [
+      {
+        "step": 1,
+        "component_id": "engine-sound-crossfade",
+        "action": "装配 AudioStreamPlayer3D + AudioBusLayout + 加载 26 个 911cup_*.ogg 采样 + 18 个 SFX + 附加 engine_sound.gd",
+        "reason": "音频系统无运行时依赖，可先行装配；reverb_chain 需在 Engine bus 上挂载 AudioEffectReverb",
+        "depends_on": []
+      },
+      {
+        "step": 2,
+        "component_id": "ghost-system",
+        "action": "装配 GhostVehicle Node3D + MeshInstance3D(半透明) + AnimationPlayer + 附加 ghost_recorder.gd/ghost_player.gd + 创建 user://ghosts/ 目录",
+        "reason": "Ghost 系统依赖 PhysicsVehicle 的 per-frame position/quaternion 信号，须在车辆节点就绪后装配",
+        "depends_on": ["engine-sound-crossfade"]
+      },
+      {
+        "step": 3,
+        "component_id": "keyframes-pack",
+        "action": "装配 AnimationPlayer + 构建 22 个 Animation 资源(AnimationLibrary) + 附加 ui_animations.gd + 连接 racePhase/rpm 信号",
+        "reason": "UI 动画依赖 racePhase 与 rpm 信号，须在赛车逻辑（含 ghost）就绪后装配；racing-hud-blink 依赖 rpm>7600 触发",
+        "depends_on": ["engine-sound-crossfade", "ghost-system"]
+      }
+    ],
+
+    "godot_runtime_signals": [
+      {
+        "signal": "update_engine(rpm, throttle, speed)",
+        "from": "PhysicsVehicle",
+        "to": "EngineSoundController",
+        "frequency": "per_frame",
+        "mapping_file": "components/audio-manager/godot-mapping.json"
+      },
+      {
+        "signal": "record_frame(position, quaternion, speed)",
+        "from": "PhysicsVehicle",
+        "to": "GhostRecorder",
+        "frequency": "per_frame_during_racing",
+        "mapping_file": "components/ghost-system/godot-mapping.json"
+      },
+      {
+        "signal": "lapComplete",
+        "from": "useRaceState",
+        "to": "GhostRecorder.finish_lap → save_ghost",
+        "frequency": "per_lap",
+        "mapping_file": "components/ghost-system/godot-mapping.json"
+      },
+      {
+        "signal": "racePhaseChange",
+        "from": "useRaceState",
+        "to": "UIAnimationController.play_animation + GhostPlayerController.play/stop + EngineSoundController.start/stop",
+        "frequency": "occasional",
+        "mapping_file": "components/css-animations/godot-mapping.json"
+      },
+      {
+        "signal": "rpm_redline (rpm > 7600)",
+        "from": "PhysicsVehicle",
+        "to": "UIAnimationController.play_animation('racing-hud-blink')",
+        "frequency": "per_frame_conditional",
+        "mapping_file": "components/css-animations/godot-mapping.json"
+      }
+    ]
+  }
+}

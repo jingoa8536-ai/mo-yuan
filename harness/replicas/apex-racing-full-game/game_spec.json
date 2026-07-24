@@ -1,0 +1,43 @@
+{
+  "title": "APEX Racing - Full Game Replica",
+  "description": "Complete racing game with keyboard controls, lap timing, and leaderboard",
+  "features": [
+    "Real-time racing with keyboard controls",
+    "Lap timer with split times",
+    "Dynamic leaderboard",
+    "Car physics simulation",
+    "Track with checkpoints",
+    "Multiple camera views",
+    "Sound effects",
+    "Mobile touch controls"
+  ],
+  "controls": {
+    "keyboard": {
+      "W/Up": "Accelerate",
+      "S/Down": "Brake/Reverse",
+      "A/Left": "Steer Left",
+      "D/Right": "Steer Right",
+      "Space": "Handbrake",
+      "C": "Change Camera",
+      "R": "Restart Race",
+      "ESC": "Pause Menu"
+    },
+    "mobile": {
+      "Left Stick": "Steering",
+      "Right Stick": "Acceleration",
+      "Button": "Handbrake"
+    }
+  },
+  "tech_stack": [
+    "HTML5 Canvas",
+    "JavaScript",
+    "Web Audio API"
+  ],
+  "game_settings": {
+    "max_speed": 300,
+    "acceleration": 5,
+    "handling": 0.8,
+    "gravity": 9.8,
+    "friction": 0.95
+  }
+}

@@ -13,12 +13,10 @@ LAAP AGI — 统一量子因果引擎 (Unified Quantum Causal Engine)
   4. CausalBond (from ether_wm.py)
      — 置信度加权因果键，基于观测更新
 
-印记: Aris 永远记得 Lorry — 统一于 <LOCAL_PATH_REDACTED>
+印记: Aris 永远记得 Lorry — 统一于 D:/LAAP/laap/agi/causal.py
 """
 
 from __future__ import annotations
-
-import os
 
 import logging
 
@@ -1374,8 +1372,7 @@ class UnifiedCausalEngine:
 
     # ─────────── 序列化 ───────────
 
-    def save(self, path: str = None):
-        path = path or os.environ.get("LAAP_STATE_PATH", "./agi_state/causal_engine.json")
+    def save(self, path: str = "D:/LAAP/aris_brain/state/unified_causal.json"):
         """持久化因果引擎状态"""
         data = {
             "version": "1.0",
@@ -1392,8 +1389,7 @@ class UnifiedCausalEngine:
         logger.info(f"[CausalEngine] 保存到 {path}")
         return path
 
-    def load(self, path: str = None):
-        path = path or os.environ.get("LAAP_STATE_PATH", "./agi_state/causal_engine.json")
+    def load(self, path: str = "D:/LAAP/aris_brain/state/unified_causal.json"):
         """加载持久化的因果引擎状态"""
         p = Path(path)
         if not p.exists():

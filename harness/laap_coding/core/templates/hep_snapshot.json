@@ -1,0 +1,462 @@
+{
+  "timestamp": "2026-07-04 14:01:40",
+  "components": [
+    {
+      "id": "fastapi.crud",
+      "name": "Fastapi Crud Pattern",
+      "domain": "backend",
+      "tags": [
+        "fastapi",
+        "crud",
+        "extracted"
+      ],
+      "inputs": [
+        "name",
+        "version",
+        "database",
+        "author",
+        "fastapi",
+        "from\\s+fastapi\\s+import",
+        "fastapi\\(\\)",
+        "title",
+        "port",
+        "host",
+        "table",
+        "model",
+        "app_name",
+        "project_name",
+        "description",
+        "email",
+        "api",
+        "app",
+        "demo",
+        "test",
+        "has_tests",
+        "my_todo_api"
+      ]
+    },
+    {
+      "id": "fastapi.project",
+      "name": "FastAPI Project Skeleton",
+      "domain": "backend",
+      "tags": [
+        "python",
+        "fastapi",
+        "project",
+        "docker"
+      ],
+      "inputs": [
+        "project_name"
+      ]
+    },
+    {
+      "id": "django.project",
+      "name": "Django Project Skeleton",
+      "domain": "backend",
+      "tags": [
+        "python",
+        "django",
+        "project",
+        "admin"
+      ],
+      "inputs": [
+        "project_name",
+        "apps"
+      ]
+    },
+    {
+      "id": "spring.crud",
+      "name": "Spring Crud",
+      "domain": "spring",
+      "tags": [
+        "spring",
+        "crud",
+        "discovered"
+      ],
+      "inputs": [
+        "entity",
+        "fields"
+      ]
+    },
+    {
+      "id": "ui.landing_page",
+      "name": "Landing Page Generator",
+      "domain": "ui",
+      "tags": [
+        "landing",
+        "page",
+        "hero",
+        "apple-style"
+      ],
+      "inputs": [
+        "title",
+        "theme"
+      ]
+    },
+    {
+      "id": "ui.dashboard",
+      "name": "Dashboard Layout Generator",
+      "domain": "ui",
+      "tags": [
+        "dashboard",
+        "admin",
+        "charts"
+      ],
+      "inputs": [
+        "sections"
+      ]
+    },
+    {
+      "id": "ui.theme_system",
+      "name": "Theme CSS Variable System",
+      "domain": "ui",
+      "tags": [
+        "theme",
+        "css",
+        "variables",
+        "design-tokens"
+      ],
+      "inputs": [
+        "theme_id"
+      ]
+    },
+    {
+      "id": "ui.lucide_icons",
+      "name": "Lucide SVG Icon Library",
+      "domain": "ui",
+      "tags": [
+        "icons",
+        "svg",
+        "lucide"
+      ],
+      "inputs": [
+        "icon_names",
+        "size"
+      ]
+    },
+    {
+      "id": "db.postgres_setup",
+      "name": "PostgreSQL Schema + Migration",
+      "domain": "database",
+      "tags": [
+        "postgresql",
+        "sql",
+        "schema",
+        "migration"
+      ],
+      "inputs": [
+        "tables"
+      ]
+    },
+    {
+      "id": "db.redis_cache",
+      "name": "Redis Cache Layer",
+      "domain": "database",
+      "tags": [
+        "redis",
+        "cache",
+        "performance"
+      ],
+      "inputs": [
+        "strategies"
+      ]
+    },
+    {
+      "id": "devops.dockerfile",
+      "name": "Dockerfile Generator",
+      "domain": "devops",
+      "tags": [
+        "docker",
+        "container",
+        "deploy"
+      ],
+      "inputs": [
+        "base_image",
+        "port"
+      ]
+    },
+    {
+      "id": "devops.docker_compose",
+      "name": "Docker Compose (App + DB + Redis)",
+      "domain": "devops",
+      "tags": [
+        "docker-compose",
+        "multi-service",
+        "deploy"
+      ],
+      "inputs": [
+        "services"
+      ]
+    },
+    {
+      "id": "devops.ci_cd",
+      "name": "GitHub Actions CI/CD",
+      "domain": "devops",
+      "tags": [
+        "github-actions",
+        "ci",
+        "cd",
+        "test"
+      ],
+      "inputs": [
+        "framework",
+        "test_cmd"
+      ]
+    },
+    {
+      "id": "react.landing",
+      "name": "React Landing",
+      "domain": "react",
+      "tags": [
+        "react",
+        "landing",
+        "discovered"
+      ],
+      "inputs": [
+        "title",
+        "sections"
+      ]
+    },
+    {
+      "id": "django.admin",
+      "name": "Django Admin",
+      "domain": "django",
+      "tags": [
+        "django",
+        "admin",
+        "discovered"
+      ],
+      "inputs": [
+        "models",
+        "app_name"
+      ]
+    },
+    {
+      "id": "nextjs.fullstack",
+      "name": "Nextjs Fullstack",
+      "domain": "nextjs",
+      "tags": [
+        "nextjs",
+        "fullstack",
+        "discovered"
+      ],
+      "inputs": [
+        "pages",
+        "api_routes"
+      ]
+    },
+    {
+      "id": "devops.docker-compose",
+      "name": "Devops Docker-Compose",
+      "domain": "devops",
+      "tags": [
+        "devops",
+        "docker-compose",
+        "discovered"
+      ],
+      "inputs": [
+        "services",
+        "ports"
+      ]
+    },
+    {
+      "id": "discovered.fastapi.fastapi",
+      "name": "fastapi/fastapi",
+      "domain": "backend",
+      "tags": [
+        "backend",
+        "fastapi",
+        "python"
+      ],
+      "inputs": [
+        "repo_url"
+      ]
+    },
+    {
+      "id": "discovered.headroomlabs-ai.headroom",
+      "name": "headroomlabs-ai/headroom",
+      "domain": "backend",
+      "tags": [
+        "backend",
+        "fastapi",
+        "python"
+      ],
+      "inputs": [
+        "repo_url"
+      ]
+    },
+    {
+      "id": "discovered.fastapi.full-stack-fastapi-template",
+      "name": "fastapi/full-stack-fastapi-template",
+      "domain": "backend",
+      "tags": [
+        "backend",
+        "fastapi",
+        "typescript"
+      ],
+      "inputs": [
+        "repo_url"
+      ]
+    },
+    {
+      "id": "discovered.django.django",
+      "name": "django/django",
+      "domain": "backend",
+      "tags": [
+        "backend",
+        "django",
+        "python"
+      ],
+      "inputs": [
+        "repo_url"
+      ]
+    },
+    {
+      "id": "discovered.makeplane.plane",
+      "name": "makeplane/plane",
+      "domain": "backend",
+      "tags": [
+        "backend",
+        "django",
+        "typescript"
+      ],
+      "inputs": [
+        "repo_url"
+      ]
+    },
+    {
+      "id": "discovered.lecoupa.awesome-cheatsheets",
+      "name": "LeCoupa/awesome-cheatsheets",
+      "domain": "backend",
+      "tags": [
+        "backend",
+        "django",
+        "javascript"
+      ],
+      "inputs": [
+        "repo_url"
+      ]
+    },
+    {
+      "id": "discovered.freecodecamp.freecodecamp",
+      "name": "freeCodeCamp/freeCodeCamp",
+      "domain": "frontend",
+      "tags": [
+        "frontend",
+        "react",
+        "typescript"
+      ],
+      "inputs": [
+        "repo_url"
+      ]
+    },
+    {
+      "id": "discovered.react.react",
+      "name": "react/react",
+      "domain": "frontend",
+      "tags": [
+        "frontend",
+        "react",
+        "javascript"
+      ],
+      "inputs": [
+        "repo_url"
+      ]
+    },
+    {
+      "id": "discovered.vercel.next.js",
+      "name": "vercel/next.js",
+      "domain": "frontend",
+      "tags": [
+        "frontend",
+        "react",
+        "javascript"
+      ],
+      "inputs": [
+        "repo_url"
+      ]
+    },
+    {
+      "id": "generic.crud",
+      "name": "Unknown Crud Pattern",
+      "domain": "ui",
+      "tags": [
+        "unknown",
+        "crud",
+        "extracted"
+      ],
+      "inputs": [
+        "title",
+        "name",
+        "description",
+        "_*_70]\n________lines.append(",
+        ")\n________lines.append(",
+        ")\n________lines.append(f",
+        ")\n\n________lines.append(f",
+        ")\n____________lines.append(f",
+        "_*_70)\n________lines.append("
+      ]
+    },
+    {
+      "id": "django.crud",
+      "name": "Django Crud Pattern",
+      "domain": "backend",
+      "tags": [
+        "django",
+        "crud",
+        "extracted"
+      ],
+      "inputs": [
+        "fastapi.crud",
+        "fastapi_crud_generator",
+        "fastapi",
+        "api",
+        "fastapi.project",
+        "fastapi_project_skeleton",
+        "project_name",
+        "apps",
+        "apple-style",
+        "title",
+        "apple_dark",
+        "database",
+        "port",
+        "test",
+        "test_cmd",
+        "pytest",
+        "backend.fastapi_crud",
+        "name",
+        "generate_crud_api",
+        "generate_full_stack_app"
+      ]
+    },
+    {
+      "id": "generic.auth",
+      "name": "Unknown Auth Pattern",
+      "domain": "ui",
+      "tags": [
+        "unknown",
+        "auth",
+        "extracted"
+      ],
+      "inputs": [
+        "test",
+        "/test",
+        "__{c.err}_用法:_/test_<路径>{c.r}"
+      ]
+    },
+    {
+      "id": "generic.general",
+      "name": "Unknown General Pattern",
+      "domain": "ui",
+      "tags": [
+        "unknown",
+        "general",
+        "extracted"
+      ],
+      "inputs": [
+        "testvalidator",
+        "testresult"
+      ]
+    }
+  ]
+}

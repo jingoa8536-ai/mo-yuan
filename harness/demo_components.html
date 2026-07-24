@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>物种库组件演示 - Button v3 & Card v2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .demo-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .component-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .component-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+        }
+
+        .component-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .component-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .component-title h2 {
+            font-size: 1.4rem;
+            color: #333;
+        }
+
+        .version-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .preview-area {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 150px;
+        }
+
+        .props-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .props-table th, .props-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .props-table th {
+            background: #f5f5f5;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .props-table td {
+            color: #333;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-gradient {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .btn-lg {
+            padding: 16px 40px;
+            font-size: 1.1rem;
+        }
+
+        .btn-md {
+            padding: 12px 28px;
+        }
+
+        .btn-rounded {
+            border-radius: 50px;
+        }
+
+        .btn-shadow {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            max-width: 300px;
+            width: 100%;
+        }
+
+        .card h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .card-shadow {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .card-hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.18);
+        }
+
+        .card-bordered {
+            border: 2px solid #e0e0e0;
+        }
+
+        .update-panel {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .update-panel h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .color-selector {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .color-option {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .color-option:hover {
+            transform: scale(1.1);
+            border-color: #333;
+        }
+
+        .color-option.selected {
+            border-color: #333;
+            transform: scale(1.15);
+        }
+
+        .color-option.blue { background: #667eea; }
+        .color-option.gradient { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .color-option.red { background: #ef4444; }
+        .color-option.green { background: #22c55e; }
+        .color-option.purple { background: #a855f7; }
+        .color-option.orange { background: #f97316; }
+
+        .update-btn {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+            padding: 14px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .update-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(34, 197, 94, 0.4);
+        }
+
+        .code-section {
+            background: #1e1e1e;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+
+        .code-section pre {
+            color: #d4d4d4;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: white;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .species-info {
+            background: #f0f7ff;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .species-info p {
+            color: #4a5568;
+            font-size: 0.85rem;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧠 认知物种库组件演示</h1>
+            <p>展示编译式AI范式：物种版本化 · 零Token生成 · 自我生长</p>
+        </div>
+
+        <div class="demo-section">
+            <div class="component-card">
+                <div class="component-header">
+                    <div class="component-title">
+                        <h2>Button v3</h2>
+                        <span class="version-badge">渐变按钮</span>
+                    </div>
+                    <span style="color: #888; font-size: 0.85rem;">模板: button</span>
+                </div>
+                
+                <div class="preview-area" id="button-preview">
+                    <button class="btn btn-gradient btn-primary btn-lg btn-rounded btn-shadow btn-hover">Submit</button>
+                </div>
+
+                <table class="props-table">
+                    <tr><th>属性</th><th>当前值</th></tr>
+                    <tr><td>label</td><td>Submit</td></tr>
+                    <tr><td>color</td><td><span id="button-color-value">gradient</span></td></tr>
+                    <tr><td>variant</td><td>primary</td></tr>
+                    <tr><td>size</td><td>lg</td></tr>
+                    <tr><td>rounded</td><td>true</td></tr>
+                    <tr><td>shadow</td><td>true</td></tr>
+                    <tr><td>hover_effect</td><td>true</td></tr>
+                </table>
+
+                <div class="species-info">
+                    <p><strong>标签:</strong> ui, button, versioned, enhanced, premium</p>
+                    <p><strong>来源:</strong> compiled (从物种库编译生成)</p>
+                </div>
+            </div>
+
+            <div class="component-card">
+                <div class="component-header">
+                    <div class="component-title">
+                        <h2>Card v2</h2>
+                        <span class="version-badge">阴影卡片</span>
+                    </div>
+                    <span style="color: #888; font-size: 0.85rem;">模板: card</span>
+                </div>
+                
+                <div class="preview-area">
+                    <div class="card card-shadow card-hover-lift">
+                        <h3>Welcome</h3>
+                        <p>Hello World</p>
+                    </div>
+                </div>
+
+                <table class="props-table">
+                    <tr><th>属性</th><th>当前值</th></tr>
+                    <tr><td>title</td><td>Welcome</td></tr>
+                    <tr><td>content</td><td>Hello World</td></tr>
+                    <tr><td>bordered</td><td>false</td></tr>
+                    <tr><td>shadow</td><td>true</td></tr>
+                    <tr><td>hover_lift</td><td>true</td></tr>
+                </table>
+
+                <div class="species-info">
+                    <p><strong>标签:</strong> ui, card, versioned, enhanced</p>
+                    <p><strong>来源:</strong> compiled (从物种库编译生成)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="update-panel">
+            <h2>🎨 物种库属性修改演示</h2>
+            <p style="color: #666; margin-bottom: 20px;">修改物种库中的按钮颜色属性，系统将自动更新组件代码</p>
+            
+            <div class="color-selector">
+                <div class="color-option blue" data-color="blue" title="蓝色"></div>
+                <div class="color-option gradient selected" data-color="gradient" title="渐变"></div>
+                <div class="color-option red" data-color="red" title="红色"></div>
+                <div class="color-option green" data-color="green" title="绿色"></div>
+                <div class="color-option purple" data-color="purple" title="紫色"></div>
+                <div class="color-option orange" data-color="orange" title="橙色"></div>
+            </div>
+
+            <button class="update-btn" onclick="updateButtonColor()">更新物种库属性</button>
+
+            <div class="code-section">
+                <pre id="generated-code">def render_button(label="Submit", color="gradient", variant="primary", size="lg", 
+                  rounded=True, shadow=True, hover_effect=True):
+    '''渲染渐变按钮组件'''
+    classes = ["btn"]
+    
+    if color == "gradient":
+        classes.append("btn-gradient")
+    else:
+        classes.append(f"btn-{color}")
+    
+    classes.append(f"btn-{variant}")
+    classes.append(f"btn-{size}")
+    
+    if rounded:
+        classes.append("btn-rounded")
+    if shadow:
+        classes.append("btn-shadow")
+    if hover_effect:
+        classes.append("btn-hover")
+    
+    class_str = " ".join(classes)
+    return f'&lt;button class="{class_str}"&gt;{label}&lt;/button&gt;'</pre>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>认知物种库 · 编译式AI范式 · 自我生长系统</p>
+        </div>
+    </div>
+
+    <script>
+        let selectedColor = 'gradient';
+
+        document.querySelectorAll('.color-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedColor = this.dataset.color;
+            });
+        });
+
+        function updateButtonColor() {
+            const preview = document.getElementById('button-preview');
+            const colorValue = document.getElementById('button-color-value');
+            const codeSection = document.getElementById('generated-code');
+            
+            let btnClass = 'btn btn-primary btn-lg btn-rounded btn-shadow btn-hover ';
+            if (selectedColor === 'gradient') {
+                btnClass += 'btn-gradient';
+            } else {
+                btnClass += `btn-${selectedColor}`;
+            }
+            
+            preview.innerHTML = `<button class="${btnClass}">Submit</button>`;
+            colorValue.textContent = selectedColor;
+            
+            const colorMap = {
+                'blue': '#667eea',
+                'gradient': 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+                'red': '#ef4444',
+                'green': '#22c55e',
+                'purple': '#a855f7',
+                'orange': '#f97316'
+            };
+            
+            codeSection.textContent = `def render_button(label="Submit", color="${selectedColor}", variant="primary", size="lg", \n                  rounded=True, shadow=True, hover_effect=True):\n    '''渲染按钮组件'''\n    classes = ["btn"]\n    \n    if color == "${selectedColor === 'gradient' ? 'gradient' : selectedColor}":\n        classes.append("btn-${selectedColor}")\n    else:\n        classes.append(f"btn-{color}")\n    \n    classes.append(f"btn-{variant}")\n    classes.append(f"btn-{size}")\n    \n    if rounded:\n        classes.append("btn-rounded")\n    if shadow:\n        classes.append("btn-shadow")\n    if hover_effect:\n        classes.append("btn-hover")\n    \n    class_str = " ".join(classes)\n    return f'<button class="{class_str}">{label}</button>'`;
+
+            alert(`✅ 物种库属性已更新！\n\n按钮颜色已从 "gradient" 修改为 "${selectedColor}"\n\n系统将自动重新生成组件代码并更新所有引用该物种的位置。`);
+        }
+    </script>
+</body>
+</html>

@@ -15,14 +15,10 @@ import logging
 import os
 import sys
 import time
-from pathlib import Path
 from typing import NoReturn
 
 # Ensure LAAP package is importable
-_laap_root = os.environ.get("LAAP_ROOT")
-if _laap_root is None:
-    # Infer project root from this file location (laap/agi/heartbeat_daemon.py)
-    _laap_root = str(Path(__file__).resolve().parents[2])
+_laap_root = os.environ.get("LAAP_ROOT", r"D:\LAAP")
 if _laap_root not in sys.path:
     sys.path.insert(0, _laap_root)
 

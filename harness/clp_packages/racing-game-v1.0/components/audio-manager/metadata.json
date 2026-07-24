@@ -1,0 +1,45 @@
+{
+  "$schema": "https://laap.harness/protocol/v1.0/component-metadata.json",
+  "component_id": "engine-sound-crossfade",
+  "uri": "harness://game/audio/module/engine-sound-crossfade@1.0.0#howler-webaudio",
+  "name": "Engine Sound Crossfade System",
+  "category": "module",
+  "domain": "game",
+  "subdomain": "audio",
+  "granularity": "module",
+  "variant": "howler-webaudio",
+  "version": "1.0.0",
+
+  "description": "基于 Howler.js + Web Audio API 的引擎声交叉淡入系统。3 节流阀状态 × RPM 段三维交叉淡入，含 reverb 处理链和合成 fallback。",
+
+  "tags": ["audio", "engine-sound", "crossfade", "howler", "web-audio-api", "racing"],
+  "keywords": ["RPM", "throttle", "engine sample", "biquadFilter", "convolver"],
+
+  "dependencies": [
+    "howler@^2.2.4"
+  ],
+  "dependencies_internal": [],
+
+  "props_schema": "props-schema.json",
+  "design_physics": "design-physics.json",
+  "template_path": "template.ts",
+  "example_path": "example-usage.tsx",
+
+  "quality_score": 0.94,
+  "compatibility": ["nextjs", "react", "vanilla-js"],
+  "framework_agnostic": false,
+
+  "variants": [
+    "howler-webaudio (primary, with sample playback)",
+    "pure-synth (fallback, OscillatorNode only)",
+    "tone-js (alternative, requires tone package)"
+  ],
+
+  "source_project": "Apex Racing Replica",
+  "source_file": "D:/ai-website-cloner-template-master/src/lib/audio/AudioManager.ts",
+  "evidence_file": "evidence/audio-mapping.json",
+
+  "license": "MIT",
+  "author": "LAAP Harness Engineering",
+  "last_updated": "2026-07-05T12:00:00+08:00"
+}

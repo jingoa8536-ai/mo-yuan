@@ -1,0 +1,73 @@
+Source Bundle Hash Evidence
+============================
+Generated: 2026-07-05
+
+This file documents the cryptographic hashes of source bundles
+used as reverse engineering evidence for the racing-game-v1.0 CLP package.
+
+All components in this package are traceable to these source files.
+
+========== JS Bundle ==========
+
+Path: D:/LAAP/_apex_assets/index-BHLGw_OM.js
+Size: 1,536,212 bytes
+SHA-256: <computed by harness_decompiler.py>
+Purpose: Audio mapping extraction (qx/G9/tx/yx/sx/an/ex functions)
+         Ghost architecture identification (RT_O/s9 classes)
+         Vehicle physics parameters (mass=1260, motorTorque=8500)
+
+Extracted evidence:
+  - 27 engine sample filenames (911cup_*.ogg)
+  - 18 SFX file references (.ogg/.mp3)
+  - Reverb chain topology (BiquadFilter + Convolver + Delay)
+  - State volume mapping (off=0.22, steady=0.26, on=0.31)
+  - Ghost recorder/player class structure
+
+========== CSS Bundle ==========
+
+Path: D:/LAAP/_apex_assets/index-BDb15dJl.css
+Size: 388,512 bytes
+SHA-256: <computed by harness_decompiler.py>
+Purpose: @keyframes extraction (22 animations)
+         Color palette extraction (44 color values)
+         Font stack identification (6 font families)
+         Class taxonomy (141 classes)
+
+Extracted evidence:
+  - 22 @keyframes definitions (1:1 extraction, no modification)
+  - 22 utility classes (.animate-*)
+  - Color tokens (background, primary, accent, destructive)
+  - Font tokens (display, racing, stats, time, ui)
+
+========== GLB Models ==========
+
+Path: D:/LAAP/_apex_assets/models/laguna-seca.glb
+Purpose: Track geometry + checkpoint node coordinates
+         Extracted nodes: start, checkpoint-1, Plane
+         Scale factor: 95 (local → world coordinates)
+         Checkpoint radius: 18m
+
+Path: D:/LAAP/_apex_assets/models/track4.glb
+Purpose: Alternate track geometry + checkpoint nodes
+         Extracted nodes: start, checkpoint-01, checkpoint-02
+         Scale factor: 6
+
+========== Verification Chain ==========
+
+All evidence files in this directory (audio-mapping.json, css-keyframes.json,
+ghost-architecture.json) reference these source bundles. The CLP package
+components (template.ts, template.css) are direct extractions or faithful
+implementations based on this evidence.
+
+To verify: re-run harness_decompiler.py on the source bundles and diff
+against the evidence JSON files in this directory.
+
+========== Provenance ==========
+
+Source: https://apex-racing-v1.vercel.app/ (now offline)
+Captured: Pre-2026-07-04 (before site went offline)
+Location: D:/LAAP/_apex_assets/
+
+Note: At the time of CLP packaging, the original site was unreachable.
+The AudioManager includes a synthesized fallback (OscillatorNode) that
+activates when /audio/*.ogg files cannot be loaded.

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harness UI Database — LAAP</title>
+<style>
+
+/* Apple 风格全局样式 */
+:root {
+  --bg-primary: #000;
+  --bg-secondary: #0a0a0f;
+  --bg-card: rgba(255,255,255,0.03);
+  --text-primary: #f5f5f7;
+  --text-secondary: rgba(255,255,255,0.5);
+  --text-tertiary: rgba(255,255,255,0.3);
+  --accent: #7c7cff;
+  --accent-glow: rgba(124,124,255,0.3);
+  --border: rgba(255,255,255,0.06);
+  --border-hover: rgba(124,124,255,0.2);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, 'Inter', 'SF Pro Display', sans-serif; background: var(--bg-primary); color: var(--text-primary); -webkit-font-smoothing: antialiased; }
+
+/* 导航栏 */
+.nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 16px 40px; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(24px) saturate(1.8); -webkit-backdrop-filter: blur(24px); background: rgba(0,0,0,0.7); border-bottom: 1px solid var(--border); }
+.nav-logo { font-size: 14px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+.nav-logo .gradient { background: linear-gradient(135deg, #7c7cff, #c07cff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.nav-links { display: flex; gap: 32px; }
+.nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 12px; font-weight: 500; transition: color 0.3s; letter-spacing: 0.3px; }
+.nav-links a:hover { color: var(--text-primary); }
+
+/* Hero */
+.hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; }
+.hero-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 14px; border-radius: 100px; background: rgba(124,124,255,0.1); border: 1px solid rgba(124,124,255,0.15); font-size: 11px; font-weight: 600; letter-spacing: 1px; color: #7c7cff; margin-bottom: 20px; }
+.hero h1 { font-size: clamp(48px, 8vw, 88px); font-weight: 800; letter-spacing: -3px; line-height: 1.05; margin-bottom: 20px; background: linear-gradient(180deg, #fff 0%, #666 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero p { font-size: clamp(16px, 2vw, 22px); color: var(--text-secondary); max-width: 680px; margin: 0 auto 32px; font-weight: 400; line-height: 1.6; }
+
+/* CTA 按钮 */
+.cta-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.cta-primary { display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; border-radius: 100px; background: linear-gradient(135deg, #7c7cff, #9c7cff); color: #fff; font-size: 14px; font-weight: 600; border: none; cursor: pointer; transition: all 0.3s; text-decoration: none; }
+.cta-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 32px rgba(124,124,255,0.25); }
+.cta-secondary { display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; border-radius: 100px; background: rgba(255,255,255,0.06); color: var(--text-primary); font-size: 14px; font-weight: 500; border: 1px solid var(--border); cursor: pointer; transition: all 0.3s; text-decoration: none; }
+.cta-secondary:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.15); }
+
+/* Section */
+.section { padding: 120px 40px; max-width: 1200px; margin: 0 auto; }
+.section-label { font-size: 12px; font-weight: 600; letter-spacing: 3px; color: #7c7cff; margin-bottom: 8px; text-transform: uppercase; }
+.section h2 { font-size: clamp(32px, 5vw, 56px); font-weight: 700; letter-spacing: -2px; margin-bottom: 16px; }
+.section-subtitle { font-size: clamp(14px, 1.5vw, 18px); color: var(--text-secondary); max-width: 600px; line-height: 1.7; }
+
+/* Grid 卡片 */
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 60px; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 60px; }
+.card { padding: 36px; border-radius: 16px; background: var(--bg-card); border: 1px solid var(--border); transition: all 0.4s; cursor: default; }
+.card:hover { border-color: var(--border-hover); transform: translateY(-4px); box-shadow: 0 24px 80px rgba(0,0,0,0.4); }
+.card-icon { width: 40px; height: 40px; margin-bottom: 20px; color: #7c7cff; }
+.card h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+.card p { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+.card-stat { margin-top: 20px; font-size: 12px; color: var(--text-tertiary); display: flex; align-items: center; gap: 6px; }
+.card-stat .num { color: #7c7cff; font-weight: 700; font-size: 14px; }
+
+/* Stats 数字 */
+.stats-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.stat-card { text-align: center; padding: 48px 24px; border-radius: 20px; background: var(--bg-card); border: 1px solid var(--border); }
+.stat-number { font-size: clamp(36px, 4vw, 56px); font-weight: 800; letter-spacing: -3px; background: linear-gradient(135deg, #7c7cff, #c07cff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.stat-label { font-size: 13px; color: var(--text-secondary); margin-top: 8px; }
+
+/* 管线图 */
+.pipeline { display: flex; align-items: center; justify-content: center; gap: 0; margin-top: 60px; flex-wrap: wrap; }
+.pipe-step { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 16px 24px; }
+.pipe-circle { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(124,124,255,0.06); border: 1px solid rgba(124,124,255,0.1); transition: all 0.3s; }
+.pipe-step:hover .pipe-circle { background: rgba(124,124,255,0.15); border-color: rgba(124,124,255,0.3); transform: scale(1.05); }
+.pipe-label { font-size: 11px; color: var(--text-tertiary); font-weight: 500; }
+.pipe-arrow { color: rgba(255,255,255,0.1); font-size: 20px; padding: 0 8px; }
+
+/* 3D 容器 */
+.three-container { width: 100%; height: 500px; position: absolute; top: 0; left: 0; pointer-events: none; z-index: 0; }
+
+/* Footer */
+footer { text-align: center; padding: 48px 40px; border-top: 1px solid var(--border); }
+footer p { font-size: 12px; color: var(--text-tertiary); }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .grid-3, .grid-2, .stats-4 { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .pipeline { flex-direction: column; }
+  .pipe-arrow { transform: rotate(90deg); }
+  section { padding: 60px 20px; }
+}
+
+.filter-bar { display:flex; gap:8px; flex-wrap:wrap; margin-top:40px; margin-bottom:32px; }
+.filter-btn { padding:8px 20px; border-radius:100px; font-size:12px; font-weight:500; border:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.03); color:rgba(255,255,255,0.5); cursor:pointer; transition:all .3s; }
+.filter-btn.active { background:rgba(124,124,255,0.15); border-color:rgba(124,124,255,0.3); color:#7c7cff; }
+.filter-btn:hover { border-color:rgba(124,124,255,0.2); color:#fff; }
+.libs-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+.lib-card { padding:28px; border-radius:14px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); text-decoration:none; color:inherit; transition:all .4s; display:block; }
+.lib-card:hover { border-color:rgba(124,124,255,0.2); transform:translateY(-3px); box-shadow:0 20px 60px rgba(0,0,0,0.4); }
+.lib-card h3 { font-size:17px; font-weight:600; margin-bottom:4px; }
+.lib-tech { font-size:11px; color:rgba(255,255,255,0.3); margin-bottom:6px; }
+.lib-stars { font-size:12px; color:#7c7cff; margin-bottom:12px; }
+.lib-desc { font-size:12px; color:rgba(255,255,255,0.4); line-height:1.5; margin-bottom:12px; }
+.lib-comps { font-size:11px; color:rgba(255,255,255,0.25); line-height:1.6; }
+.lib-footer { display:flex; justify-content:space-between; align-items:center; margin-top:16px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.04); }
+.lib-style { font-size:10px; color:rgba(255,255,255,0.2); text-transform:uppercase; letter-spacing:0.5px; }
+.lib-arrow { font-size:14px; color:rgba(124,124,255,0.2); transition:color .3s; }
+.lib-card:hover .lib-arrow { color:#7c7cff; }
+@media (max-width:768px) { .libs-grid { grid-template-columns:1fr; } }
+</style>
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from "three";
+import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
+import { RenderPass } from "three/addons/postprocessing/RenderPass.js";  
+import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
+export function createNeuralScene(container) {
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, container.clientWidth/container.clientHeight, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+  renderer.setSize(container.clientWidth, container.clientHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  container.appendChild(renderer.domElement);
+  const count = 2500, pos = new Float32Array(count * 3);
+  for (let i = 0; i < count * 3; i++) pos[i] = (Math.random() - 0.5) * 25;
+  const g = new THREE.BufferGeometry(); g.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+  const m = new THREE.PointsMaterial({ size:0.04, color:0x7c7cff, transparent:true, opacity:0.5, blending:THREE.AdditiveBlending });
+  const p = new THREE.Points(g, m); scene.add(p);
+  const lp = [];
+  for (let i = 0; i < 400; i++) {
+    const i1 = Math.floor(Math.random()*count), i2 = Math.floor(Math.random()*count);
+    const a = pos.slice(i1*3,i1*3+3), b = pos.slice(i2*3,i2*3+3);
+    if (Math.sqrt((a[0]-b[0])**2+(a[1]-b[1])**2+(a[2]-b[2])**2) < 4) lp.push(...a,...b);
+  }
+  const lg = new THREE.BufferGeometry(); lg.setAttribute("position", new THREE.Float32BufferAttribute(lp, 3));
+  const ls = new THREE.LineSegments(lg, new THREE.LineBasicMaterial({color:0x7c7cff,transparent:true,opacity:0.06}));
+  scene.add(ls);
+  const composer = new EffectComposer(renderer);
+  composer.addPass(new RenderPass(scene, camera));
+  composer.addPass(new UnrealBloomPass(new THREE.Vector2(container.clientWidth,container.clientHeight),0.2,0.5,0.1));
+  camera.position.z = 10;
+  let rot = 0;
+  function anim() { requestAnimationFrame(anim); rot += 0.0008; p.rotation.y = rot; ls.rotation.y = rot; composer.render(); }
+  anim();
+  addEventListener("resize", () => { camera.aspect = container.clientWidth/container.clientHeight; camera.updateProjectionMatrix(); renderer.setSize(container.clientWidth,container.clientHeight); composer.setSize(container.clientWidth,container.clientHeight); });
+}
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+// 滚动触发的视差和渐入动画
+document.addEventListener('DOMContentLoaded', () => {
+  gsap.registerPlugin(ScrollTrigger);
+  
+  // .fade-up 元素：滚动到视口中渐入 + 上移
+  gsap.utils.toArray('.fade-up').forEach(el => {
+    gsap.from(el, {
+      scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none reverse' },
+      y: 60, opacity: 0, duration: 0.8, ease: 'power3.out'
+    });
+  });
+
+  // .scale-in：缩放进入
+  gsap.utils.toArray('.scale-in').forEach(el => {
+    gsap.from(el, {
+      scrollTrigger: { trigger: el, start: 'top 80%' },
+      scale: 0.8, opacity: 0, duration: 1, ease: 'elastic.out(1, 0.5)'
+    });
+  });
+
+  // 视差背景
+  gsap.utils.toArray('.parallax').forEach(el => {
+    gsap.to(el, {
+      scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true },
+      y: -100, ease: 'none'
+    });
+  });
+
+  // 计数动画
+  gsap.utils.toArray('.count-up').forEach(el => {
+    const target = parseInt(el.dataset.target) || 0;
+    gsap.from(el, {
+      scrollTrigger: { trigger: el, start: 'top 85%' },
+      innerHTML: 0,
+      duration: 2,
+      ease: 'power2.out',
+      snap: { innerHTML: 1 },
+      onUpdate: function() { el.innerHTML = Math.round(this.targets()[0].innerHTML).toLocaleString(); }
+    });
+  });
+
+  // 渐变文字 (Apple-style)
+  gsap.utils.toArray('.gradient-text').forEach(el => {
+    gsap.fromTo(el, 
+      { backgroundPosition: '200% 0' },
+      { scrollTrigger: { trigger: el, start: 'top 85%' },
+        backgroundPosition: '0% 0', duration: 1.5, ease: 'power2.out' }
+    );
+  });
+});
+</script>
+
+
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+requestAnimationFrame(raf);
+</script>
+
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-logo"><span class="gradient">Harness UI</span></div>
+  <div class="nav-links"><a href="#catalog">Catalog</a><a href="http://localhost:11530" target="_blank">Aris Chat</a></div>
+</nav>
+
+<section class="hero" id="top">
+  <div class="three-container" id="three-hero"></div>
+  <div style="position:relative;z-index:1">
+    <div class="hero-badge fade-up">Harness UI Database v1.0</div>
+    <h1 class="fade-up">UI Engineering<br>Template Revolution</h1>
+    <p class="fade-up">11 UI libraries, 88 components, zero LLM generation.<br>Every generation costs 0 tokens.</p>
+    <div class="cta-group fade-up">
+      <a href="#catalog" class="cta-primary">Browse Catalog &rarr;</a>
+      <a href="http://localhost:11530" class="cta-secondary">Chat with Aris</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="stats-4">
+    <div class="stat-card scale-in"><div class="stat-number count-up" data-target="11">0</div><div class="stat-label">UI Libraries</div></div>
+    <div class="stat-card scale-in"><div class="stat-number count-up" data-target="88">0</div><div class="stat-label">Components</div></div>
+    <div class="stat-card scale-in"><div class="stat-number count-up" data-target="0">0</div><div class="stat-label">Token Cost</div></div>
+    <div class="stat-card scale-in"><div class="stat-number count-up" data-target="8">0</div><div class="stat-label">Tech Stacks</div></div>
+  </div>
+</section>
+
+<section class="section" id="catalog">
+  <div class="section-label fade-up">Catalog</div>
+  <h2 class="fade-up">UI Library Database</h2>
+  <p class="section-subtitle fade-up">React, Vue, Tailwind, Flutter &mdash; every library pre-coded as Harness templates</p>
+  <div class="filter-bar fade-up"><button class="filter-btn active" data-tech="all">All</button><button class="filter-btn" data-tech="Flutter/Dart">Flutter/Dart</button><button class="filter-btn" data-tech="React">React</button><button class="filter-btn" data-tech="React (Material Design)">React (Material Design)</button><button class="filter-btn" data-tech="React + Tailwind">React + Tailwind</button><button class="filter-btn" data-tech="React/Vue (无样式)">React/Vue (无样式)</button><button class="filter-btn" data-tech="Tailwind CSS">Tailwind CSS</button><button class="filter-btn" data-tech="Vue 3">Vue 3</button><button class="filter-btn" data-tech="Vue 3 + TypeScript">Vue 3 + TypeScript</button></div>
+  <div class="libs-grid">
+    <a href="ui_shadcn_ui.html" class="lib-card fade-up" data-tech="React + Tailwind">
+      <h3>shadcn/ui</h3>
+      <div class="lib-tech">React + Tailwind</div>
+      <div class="lib-stars">Star 118k+</div>
+      <div class="lib-desc">复制即用的 React 组件库，无样式锁定...</div>
+      <div class="lib-comps">button &middot; card &middot; dialog &middot; dropdown &middot; form &middot; input +5+ more</div>
+      <div class="lib-footer">
+        <span class="lib-style">Modern Minimal</span>
+        <span class="lib-arrow">→</span>
+      </div>
+    </a>
+    <a href="ui_ant_design.html" class="lib-card fade-up" data-tech="React">
+      <h3>Ant Design</h3>
+      <div class="lib-tech">React</div>
+      <div class="lib-stars">Star 93k+</div>
+      <div class="lib-desc">企业级中后台设计系统，60+ 组件...</div>
+      <div class="lib-comps">table &middot; form &middot; datepicker &middot; upload &middot; tree &middot; menu +2+ more</div>
+      <div class="lib-footer">
+        <span class="lib-style">Enterprise Standard</span>
+        <span class="lib-arrow">→</span>
+      </div>
+    </a>
+    <a href="ui_material_ui.html" class="lib-card fade-up" data-tech="React (Material Design)">
+      <h3>Material UI (MUI)</h3>
+      <div class="lib-tech">React (Material Design)</div>
+      <div class="lib-stars">Star 94k+</div>
+      <div class="lib-desc">Google Material Design 实现，全球最流行...</div>
+      <div class="lib-comps">button &middot; card &middot; dialog &middot; drawer &middot; grid &middot; stepper +2+ more</div>
+      <div class="lib-footer">
+        <span class="lib-style">Material Design</span>
+        <span class="lib-arrow">→</span>
+      </div>
+    </a>
+    <a href="ui_heroui.html" class="lib-card fade-up" data-tech="React + Tailwind">
+      <h3>HeroUI (原 NextUI)</h3>
+      <div class="lib-tech">React + Tailwind</div>
+      <div class="lib-stars">Star 22k+</div>
+      <div class="lib-desc">现代 React UI，自带暗黑模式，组件精致...</div>
+      <div class="lib-comps">button &middot; card &middot; input &middot; modal &middot; navbar &middot; table +2+ more</div>
+      <div class="lib-footer">
+        <span class="lib-style">Modern Glossy</span>
+        <span class="lib-arrow">→</span>
+      </div>
+    </a>
+    <a href="ui_astryx.html" class="lib-card fade-up" data-tech="React">
+      <h3>Astryx (Meta)</h3>
+      <div class="lib-tech">React</div>
+      <div class="lib-stars">Star Meta 内部开源</div>
+      <div class="lib-desc">Meta 工业级设计系统，150+ 组件，7 主题...</div>
+      <div class="lib-comps">button &middot; card &middot; data-table &middot; form &middot; icon &middot; layout +2+ more</div>
+      <div class="lib-footer">
+        <span class="lib-style">Enterprise Meta</span>
+        <span class="lib-arrow">→</span>
+      </div>
+    </a>
+    <a href="ui_element_plus.html" class="lib-card fade-up" data-tech="Vue 3">
+      <h3>Element Plus</h3>
+      <div class="lib-tech">Vue 3</div>
+      <div class="lib-stars">Star 25k+</div>
+      <div class="lib-desc">饿了么出品，Vue 3 桌面端组件库...</div>
+      <div class="lib-comps">table &middot; form &middot; dialog &middot; menu &middot; tree &middot; upload +2+ more</div>
+      <div class="lib-footer">
+        <span class="lib-style">Enterprise Standard</span>
+        <span class="lib-arrow">→</span>
+      </div>
+    </a>
+    <a href="ui_naive_ui.html" class="lib-card fade-up" data-tech="Vue 3 + TypeScript">
+      <h3>Naive UI</h3>
+      <div class="lib-tech">Vue 3 + TypeScript</div>
+      <div class="lib-stars">Star 16k+</div>
+      <div class="lib-desc">Vue 3 高质量组件库，TypeScript 优先...</div>
+      <div class="lib-comps">button &middot; card &middot; data-table &middot; dialog &middot; form &middot; menu +2+ more</div>
+      <div class="lib-footer">
+        <span class="lib-style">Modern Standard</span>
+        <span class="lib-arrow">→</span>
+      </div>
+    </a>
+    <a href="ui_daisyui.html" class="lib-card fade-up" data-tech="Tailwind CSS">
+      <h3>DaisyUI</h3>
+      <div class="lib-tech">Tailwind CSS</div>
+      <div class="lib-stars">Star 35k+</div>
+      <div class="lib-desc">Tailwind CSS 语义化组件，换肤极简...</div>
+      <div class="lib-comps">btn &middot; card &middot; collapse &middot; dropdown &middot; modal &middot; navbar +2+ more</div>
+      <div class="lib-footer">
+        <span class="lib-style">Tailwind Semantic</span>
+        <span class="lib-arrow">→</span>
+      </div>
+    </a>
+    <a href="ui_float_ui.html" class="lib-card fade-up" data-tech="Tailwind CSS">
+      <h3>Float UI</h3>
+      <div class="lib-tech">Tailwind CSS</div>
+      <div class="lib-stars">Star 5k+</div>
+      <div class="lib-desc">Tailwind 官网/后台区块模板...</div>
+      <div class="lib-comps">hero &middot; feature &middot; pricing &middot; faq &middot; footer &middot; nav +1+ more</div>
+      <div class="lib-footer">
+        <span class="lib-style">Tailwind Landing</span>
+        <span class="lib-arrow">→</span>
+      </div>
+    </a>
+    <a href="ui_headless_ui.html" class="lib-card fade-up" data-tech="React/Vue (无样式)">
+      <h3>Headless UI</h3>
+      <div class="lib-tech">React/Vue (无样式)</div>
+      <div class="lib-stars">Star 26k+</div>
+      <div class="lib-desc">完全无样式、无障碍的底层 UI 组件...</div>
+      <div class="lib-comps">listbox &middot; menu &middot; switch &middot; tabs &middot; dialog &middot; popover</div>
+      <div class="lib-footer">
+        <span class="lib-style">Unstyled</span>
+        <span class="lib-arrow">→</span>
+      </div>
+    </a>
+    <a href="ui_forui.html" class="lib-card fade-up" data-tech="Flutter/Dart">
+      <h3>Forui</h3>
+      <div class="lib-tech">Flutter/Dart</div>
+      <div class="lib-stars">Star Flutter package</div>
+      <div class="lib-desc">Flutter UI 库，shadcn/ui 风格，40+ 组件...</div>
+      <div class="lib-comps">button &middot; card &middot; dialog &middot; form &middot; input &middot; list +2+ more</div>
+      <div class="lib-footer">
+        <span class="lib-style">Shadcn Flutter</span>
+        <span class="lib-arrow">→</span>
+      </div>
+    </a></div>
+</section>
+
+<section class="section">
+  <div class="section-label fade-up">Workflow</div>
+  <h2 class="fade-up">Zero-Token Pipeline</h2>
+  <p class="section-subtitle fade-up">From template to finished page, every step runs locally</p>
+  <div class="pipeline">
+    <div class="pipe-step fade-up"><div class="pipe-circle"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div class="pipe-label">Select Library</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step fade-up"><div class="pipe-circle"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M12 8v8"/><path d="M8 12h8"/></svg></div><div class="pipe-label">Match Template</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step fade-up"><div class="pipe-circle"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="12 2 22 7 22 17 12 22 2 17 2 7"/><polyline points="2 7 12 12 22 7"/><polyline points="12 22 12 12"/></svg></div><div class="pipe-label">Parametrize</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-step fade-up"><div class="pipe-circle"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div><div class="pipe-label">0 Tokens</div></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-label fade-up">Community</div>
+  <h2 class="fade-up">Community Resources</h2>
+  <p class="section-subtitle fade-up">Beyond standard libraries, community-driven UI resources integrated into Harness</p>
+  <div class="grid-2">
+    <div class="lib-card fade-up" style="cursor:default">
+      <h3>Uiverse</h3>
+      <div class="lib-desc">5400+ 纯 CSS/Tailwind 组件，开源社区</div>
+      <div class="lib-footer"><span class="lib-style">CSS/Tailwind/React/Vue</span></div>
+    </div>
+    <div class="lib-card fade-up" style="cursor:default">
+      <h3>Aceternity UI</h3>
+      <div class="lib-desc">Framer Motion 动效组件库</div>
+      <div class="lib-footer"><span class="lib-style">React + Framer Motion</span></div>
+    </div></div>
+</section>
+
+<section class="section">
+  <div class="section-label fade-up">Philosophy</div>
+  <h2 class="fade-up">Why This is Right</h2>
+  <p class="section-subtitle fade-up">LLM is a partner, not a backbone. 80% of UI work is patterns — use templates.</p>
+  <div class="grid-2">
+    <div class="card fade-up"><div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7c7cff" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg></div><h3>99% Cost Reduction</h3><p>Write once, execute infinitely at zero token cost. No more paying for repeated patterns.</p></div>
+    <div class="card fade-up"><div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7c7cff" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3>Consistent Quality</h3><p>LLM output varies every time. Template output is 100% deterministic. Quality guaranteed by pre-coded engineering.</p></div>
+    <div class="card fade-up"><div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7c7cff" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><h3>Infinite Expandability</h3><p>Any domain with patterns can become a Harness project. UI, 3D, games, animation... limitless.</p></div>
+    <div class="card fade-up"><div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7c7cff" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><h3>LLM Does What It Does Best</h3><p>LLM handles the 20% that truly needs understanding. The other 80% is Harness territory.</p></div>
+  </div>
+</section>
+
+<footer>
+  <p>Harness UI Database &middot; Integrated into LAAP Cognitive Architecture &middot; Zero LLM Dependency</p>
+  <p style="margin-top:6px">Built by Lorry &middot; Aris Digital Lifeform &middot; 137,828 lines &middot; 25 engines</p>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const c = document.getElementById("three-hero");
+  if (c && typeof createNeuralScene !== "undefined") createNeuralScene(c);
+  document.querySelectorAll(".filter-btn").forEach(b => b.addEventListener("click", () => {
+    document.querySelectorAll(".filter-btn").forEach(x => x.classList.remove("active"));
+    b.classList.add("active"); const t = b.dataset.tech;
+    document.querySelectorAll(".lib-card").forEach(card => card.style.display = (t==="all" || card.dataset.tech===t) ? "block" : "none");
+  }));
+  document.querySelectorAll(".count-up").forEach(el => {
+    const t = parseInt(el.dataset.target)||0, step = Math.ceil(t/60); let c = 0;
+    const iv = setInterval(() => { c = Math.min(c+step, t); el.textContent = c.toLocaleString(); if (c >= t) clearInterval(iv); }, 30);
+  });
+});
+</script>
+</body>
+</html>

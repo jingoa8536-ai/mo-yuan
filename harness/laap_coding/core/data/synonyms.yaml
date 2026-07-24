@@ -1,0 +1,618 @@
+# synonyms.yaml — 同义词库配置
+# 由 semantic_expander.py 硬编码迁移而来（Task C2.1）
+# 格式：每项包含 canonical（规范词）与 synonyms（同义词列表）
+# 运行时由 load_synonyms() 热加载，支持自定义 yaml_path 覆盖
+
+- canonical: "button"
+  synonyms:
+    - "btn"
+    - "buttons"
+    - "clickable"
+    - "action"
+
+- canonical: "card"
+  synonyms:
+    - "cards"
+    - "panel"
+    - "widget"
+    - "tile"
+
+- canonical: "dialog"
+  synonyms:
+    - "modal"
+    - "popup"
+    - "overlay"
+    - "dialog-box"
+
+- canonical: "input"
+  synonyms:
+    - "field"
+    - "textbox"
+    - "form-control"
+    - "entry"
+
+- canonical: "nav"
+  synonyms:
+    - "navigation"
+    - "menu"
+    - "navbar"
+    - "sidebar"
+
+- canonical: "header"
+  synonyms:
+    - "head"
+    - "top-bar"
+    - "banner"
+    - "hero"
+
+- canonical: "footer"
+  synonyms:
+    - "foot"
+    - "bottom-bar"
+    - "copyright"
+
+- canonical: "list"
+  synonyms:
+    - "items"
+    - "collection"
+    - "array"
+    - "grid"
+
+- canonical: "table"
+  synonyms:
+    - "datatable"
+    - "grid"
+    - "spreadsheet"
+    - "tabular"
+
+- canonical: "form"
+  synonyms:
+    - "forms"
+    - "input-form"
+    - "data-entry"
+    - "submit"
+
+- canonical: "icon"
+  synonyms:
+    - "icons"
+    - "symbol"
+    - "glyph"
+    - "emblem"
+
+- canonical: "badge"
+  synonyms:
+    - "tag"
+    - "label"
+    - "pill"
+    - "indicator"
+
+- canonical: "progress"
+  synonyms:
+    - "loading"
+    - "bar"
+    - "indicator"
+    - "status"
+
+- canonical: "alert"
+  synonyms:
+    - "notification"
+    - "toast"
+    - "message"
+    - "warning"
+
+- canonical: "avatar"
+  synonyms:
+    - "profile"
+    - "user-icon"
+    - "picture"
+    - "face"
+
+- canonical: "tooltip"
+  synonyms:
+    - "hint"
+    - "help-text"
+    - "popover"
+    - "info"
+
+- canonical: "dropdown"
+  synonyms:
+    - "select"
+    - "menu"
+    - "picker"
+    - "combo"
+
+- canonical: "slider"
+  synonyms:
+    - "range"
+    - "scale"
+    - "track"
+    - "control"
+
+- canonical: "switch"
+  synonyms:
+    - "toggle"
+    - "flip"
+    - "on-off"
+    - "binary"
+
+- canonical: "tabs"
+  synonyms:
+    - "tab-bar"
+    - "navigation"
+    - "panel-switch"
+    - "sections"
+
+- canonical: "accordion"
+  synonyms:
+    - "expandable"
+    - "collapsible"
+    - "toggle-panel"
+
+- canonical: "carousel"
+  synonyms:
+    - "slider"
+    - "gallery"
+    - "slideshow"
+    - "rotator"
+
+- canonical: "breadcrumb"
+  synonyms:
+    - "nav-path"
+    - "trail"
+    - "navigation-history"
+
+- canonical: "pagination"
+  synonyms:
+    - "page-nav"
+    - "page-control"
+    - "pager"
+
+- canonical: "search"
+  synonyms:
+    - "find"
+    - "query"
+    - "filter"
+    - "lookup"
+
+- canonical: "upload"
+  synonyms:
+    - "file-upload"
+    - "import"
+    - "attach"
+    - "drop"
+
+- canonical: "download"
+  synonyms:
+    - "export"
+    - "save"
+    - "get-file"
+
+- canonical: "settings"
+  synonyms:
+    - "config"
+    - "preferences"
+    - "options"
+    - "setup"
+
+- canonical: "dashboard"
+  synonyms:
+    - "panel"
+    - "control-center"
+    - "analytics"
+
+- canonical: "landing"
+  synonyms:
+    - "home"
+    - "hero"
+    - "welcome"
+    - "entry"
+
+- canonical: "about"
+  synonyms:
+    - "info"
+    - "company"
+    - "team"
+    - "story"
+
+- canonical: "contact"
+  synonyms:
+    - "reach"
+    - "connect"
+    - "message"
+    - "email"
+
+- canonical: "product"
+  synonyms:
+    - "item"
+    - "goods"
+    - "service"
+    - "offering"
+
+- canonical: "blog"
+  synonyms:
+    - "article"
+    - "post"
+    - "content"
+    - "news"
+
+- canonical: "docs"
+  synonyms:
+    - "documentation"
+    - "guide"
+    - "manual"
+    - "help"
+
+- canonical: "react"
+  synonyms:
+    - "reactjs"
+    - "react-js"
+    - "facebook-react"
+
+- canonical: "vue"
+  synonyms:
+    - "vuejs"
+    - "vue-js"
+    - "vue3"
+
+- canonical: "angular"
+  synonyms:
+    - "angularjs"
+    - "ng"
+    - "google-angular"
+
+- canonical: "tailwind"
+  synonyms:
+    - "tailwindcss"
+    - "tw"
+    - "tailwind-css"
+
+- canonical: "css"
+  synonyms:
+    - "stylesheet"
+    - "styling"
+    - "style"
+
+- canonical: "javascript"
+  synonyms:
+    - "js"
+    - "ecmascript"
+    - "es"
+
+- canonical: "typescript"
+  synonyms:
+    - "ts"
+    - "typed-js"
+
+- canonical: "node"
+  synonyms:
+    - "nodejs"
+    - "node-js"
+    - "server-side"
+
+- canonical: "express"
+  synonyms:
+    - "expressjs"
+    - "express-js"
+
+- canonical: "fastapi"
+  synonyms:
+    - "fast-api"
+    - "python-api"
+
+- canonical: "django"
+  synonyms:
+    - "django-framework"
+    - "python-django"
+
+- canonical: "postgresql"
+  synonyms:
+    - "postgres"
+    - "pg"
+    - "sql-db"
+
+- canonical: "mongodb"
+  synonyms:
+    - "mongo"
+    - "no-sql"
+    - "document-db"
+
+- canonical: "redis"
+  synonyms:
+    - "cache"
+    - "key-value"
+    - "in-memory"
+
+- canonical: "dark"
+  synonyms:
+    - "dark-mode"
+    - "night"
+    - "theme-dark"
+
+- canonical: "light"
+  synonyms:
+    - "light-mode"
+    - "day"
+    - "theme-light"
+
+- canonical: "modern"
+  synonyms:
+    - "contemporary"
+    - "current"
+    - "new"
+
+- canonical: "minimal"
+  synonyms:
+    - "simple"
+    - "clean"
+    - "elegant"
+
+- canonical: "enterprise"
+  synonyms:
+    - "corporate"
+    - "business"
+    - "professional"
+
+- canonical: "mobile"
+  synonyms:
+    - "phone"
+    - "handheld"
+    - "responsive"
+
+- canonical: "desktop"
+  synonyms:
+    - "computer"
+    - "laptop"
+    - "large-screen"
+
+- canonical: "api"
+  synonyms:
+    - "endpoint"
+    - "interface"
+    - "service"
+
+- canonical: "auth"
+  synonyms:
+    - "authentication"
+    - "login"
+    - "security"
+
+- canonical: "state"
+  synonyms:
+    - "store"
+    - "context"
+    - "data-flow"
+
+- canonical: "router"
+  synonyms:
+    - "routing"
+    - "navigation"
+    - "pages"
+
+- canonical: "test"
+  synonyms:
+    - "testing"
+    - "unit"
+    - "integration"
+    - "jest"
+
+- canonical: "docker"
+  synonyms:
+    - "container"
+    - "devops"
+    - "deployment"
+
+- canonical: "kubernetes"
+  synonyms:
+    - "k8s"
+    - "orchestration"
+    - "cluster"
+
+- canonical: "graphql"
+  synonyms:
+    - "gql"
+    - "api-query"
+    - "data-graph"
+
+- canonical: "rest"
+  synonyms:
+    - "restful"
+    - "api-design"
+    - "http-api"
+
+- canonical: "performance"
+  synonyms:
+    - "speed"
+    - "optimization"
+    - "fast"
+
+- canonical: "accessibility"
+  synonyms:
+    - "a11y"
+    - "wcag"
+    - "inclusive"
+
+- canonical: "animation"
+  synonyms:
+    - "motion"
+    - "transition"
+    - "effect"
+
+- canonical: "transition"
+  synonyms:
+    - "animation"
+    - "fade"
+    - "slide"
+
+- canonical: "motion"
+  synonyms:
+    - "animation"
+    - "movement"
+    - "dynamic"
+
+- canonical: "effect"
+  synonyms:
+    - "visual"
+    - "animation"
+    - "style"
+
+- canonical: "layout"
+  synonyms:
+    - "grid"
+    - "flex"
+    - "arrangement"
+
+- canonical: "grid"
+  synonyms:
+    - "layout"
+    - "table"
+    - "matrix"
+
+- canonical: "flex"
+  synonyms:
+    - "flexbox"
+    - "layout"
+    - "responsive"
+
+- canonical: "responsive"
+  synonyms:
+    - "mobile-first"
+    - "adaptive"
+    - "fluid"
+
+- canonical: "theme"
+  synonyms:
+    - "style"
+    - "colors"
+    - "design"
+
+- canonical: "color"
+  synonyms:
+    - "colour"
+    - "palette"
+    - "scheme"
+
+- canonical: "palette"
+  synonyms:
+    - "colors"
+    - "scheme"
+    - "theme"
+
+- canonical: "typography"
+  synonyms:
+    - "fonts"
+    - "text"
+    - "type"
+
+- canonical: "font"
+  synonyms:
+    - "typeface"
+    - "typography"
+    - "text-style"
+
+- canonical: "spacing"
+  synonyms:
+    - "margin"
+    - "padding"
+    - "gap"
+
+- canonical: "margin"
+  synonyms:
+    - "spacing"
+    - "gap"
+    - "space"
+
+- canonical: "padding"
+  synonyms:
+    - "spacing"
+    - "inner"
+    - "gap"
+
+- canonical: "border"
+  synonyms:
+    - "edge"
+    - "frame"
+    - "outline"
+
+- canonical: "radius"
+  synonyms:
+    - "rounded"
+    - "curve"
+    - "corner"
+
+- canonical: "shadow"
+  synonyms:
+    - "depth"
+    - "elevation"
+    - "drop-shadow"
+
+- canonical: "elevation"
+  synonyms:
+    - "depth"
+    - "shadow"
+    - "layer"
+
+- canonical: "component"
+  synonyms:
+    - "widget"
+    - "element"
+    - "module"
+
+- canonical: "library"
+  synonyms:
+    - "framework"
+    - "toolkit"
+    - "collection"
+
+- canonical: "framework"
+  synonyms:
+    - "library"
+    - "toolkit"
+    - "platform"
+
+- canonical: "toolkit"
+  synonyms:
+    - "framework"
+    - "library"
+    - "tools"
+
+- canonical: "styling"
+  synonyms:
+    - "css"
+    - "style"
+    - "design"
+
+- canonical: "design"
+  synonyms:
+    - "ui"
+    - "ux"
+    - "styling"
+
+- canonical: "ui"
+  synonyms:
+    - "user-interface"
+    - "interface"
+    - "frontend"
+
+- canonical: "ux"
+  synonyms:
+    - "user-experience"
+    - "experience"
+    - "interaction"
+
+- canonical: "frontend"
+  synonyms:
+    - "client"
+    - "browser"
+    - "ui"
+
+- canonical: "backend"
+  synonyms:
+    - "server"
+    - "api"
+    - "database"
+
+- canonical: "fullstack"
+  synonyms:
+    - "full-stack"
+    - "both-ends"
+    - "full-stack-dev"

@@ -356,6 +356,13 @@ class ChromaMemoryBackend(MemoryBackend):
 def _get_vector_db_backend(path: Path) -> MemoryBackend:
     """Choose vector database backend based on env and availability."""
     backend_name = os.environ.get("LAAP_VECTOR_DB", "json").lower()
+    if backend_name == "mempalace":
+        try:
+            from mempalace_backend import MemPalaceBackend
+            logger.info("Using MemPalace backend (hybrid BM25 + vector search)")
+            return MemPalaceBackend()
+        except Exception as e:
+            logger.warning(f"MemPalace backend requested but unavailable: {e}; falling back")
     if backend_name == "chromadb":
         try:
             persist_dir = BRAIN_DIR / "memory" / "vector_db"

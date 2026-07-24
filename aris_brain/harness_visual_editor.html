@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Harness Visual Editor</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,-apple-system,sans-serif;background:#000;color:#f5f5f7;display:flex;height:100vh;overflow:hidden;user-select:none}
+
+/* ── Left Panel ── */
+.lp{width:420px;min-width:420px;background:#0a0a0f;border-right:1px solid rgba(255,255,255,0.05);display:flex;flex-direction:column}
+.lph{padding:16px 20px;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;justify-content:space-between;align-items:center}
+.lph h1{font-size:15px;font-weight:700}
+.lph .gd{background:linear-gradient(135deg,#7c7cff,#c07cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.lpc{flex:1;overflow-y:auto;padding:12px 16px}
+
+/* ── Section List ── */
+.st{font-size:10px;font-weight:600;letter-spacing:1.5px;color:rgba(255,255,255,0.25);text-transform:uppercase;margin:16px 0 8px}
+.si{border:1px solid rgba(255,255,255,0.06);border-radius:10px;margin-bottom:8px;background:rgba(255,255,255,0.015);overflow:hidden}
+.sih{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;cursor:pointer;transition:background .2s}
+.sih:hover{background:rgba(255,255,255,0.03)}
+.sih .tl{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:500}
+.sih .tl .badge{font-size:9px;color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.04);padding:2px 8px;border-radius:4px}
+.sih .rm{width:22px;height:22px;border-radius:6px;background:rgba(255,80,80,0.1);color:rgba(255,80,80,0.5);border:none;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.sih .rm:hover{background:rgba(255,80,80,0.2);color:#ff5050}
+.sib{padding:0 14px 12px;display:none}
+.sib.op{display:block}
+
+/* ── Form Fields ── */
+.fg{margin-bottom:8px}
+.fg lb{display:block;font-size:10px;color:rgba(255,255,255,0.3);margin-bottom:3px;font-weight:500}
+.fg input,.fg textarea{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:7px 10px;font-size:12px;color:#f5f5f7;font-family:Inter,sans-serif;outline:none;transition:border .2s}
+.fg input:focus,.fg textarea:focus{border-color:rgba(124,124,255,0.3)}
+.fg textarea{resize:vertical;min-height:44px;line-height:1.5}
+.fg .rw{display:flex;gap:6px;align-items:center;margin-bottom:4px}
+.fg .rw input{flex:1}
+.fg .rw .btn-rm{width:20px;height:24px;border-radius:4px;background:rgba(255,80,80,0.1);color:rgba(255,80,80,0.4);border:none;cursor:pointer;font-size:12px}
+.fg .btn-ad{font-size:10px;padding:4px 10px;border-radius:5px;background:rgba(124,124,255,0.08);color:rgba(124,124,255,0.6);border:1px solid rgba(124,124,255,0.12);cursor:pointer;margin-top:4px}
+
+/* ── Add Section ── */
+.add-s{padding:12px 0;text-align:center}
+.add-s select{padding:6px 12px;border-radius:6px;background:rgba(124,124,255,0.08);border:1px solid rgba(124,124,255,0.15);color:#7c7cff;font-size:12px;cursor:pointer;font-family:Inter,sans-serif;outline:none}
+.add-s option{background:#1a1a2a;color:#f5f5f7}
+
+/* ── Style Picker ── */
+.sp{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px}
+.sc{padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.015);cursor:pointer;transition:all .3s;text-align:center}
+.sc:hover{border-color:rgba(124,124,255,0.3)}
+.sc.act{border-color:#7c7cff;background:rgba(124,124,255,0.08)}
+.sc .nm{font-size:11px;font-weight:500}
+.sc .pd{height:3px;border-radius:2px;margin:6px auto 0;width:60%}
+
+/* ── Right Panel (Preview) ── */
+.rp{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.pp{flex:1;overflow:hidden;position:relative;background:#000}
+.pp iframe{width:100%;height:100%;border:none}
+.pb{padding:6px 20px;border-top:1px solid rgba(255,255,255,0.05);display:flex;justify-content:space-between;align-items:center;font-size:11px;color:rgba(255,255,255,0.2)}
+.pb .btns{display:flex;gap:8px}
+.pb button{padding:5px 14px;border-radius:6px;font-size:11px;font-weight:500;cursor:pointer;border:none;font-family:Inter,sans-serif}
+.btn-pr{background:#7c7cff;color:#fff}
+.btn-sc{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06)!important;color:rgba(255,255,255,0.5)}
+
+/* ── Toast ── */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);padding:8px 20px;border-radius:8px;background:rgba(124,124,255,0.85);color:#fff;font-size:12px;opacity:0;transition:all .4s;pointer-events:none;z-index:999}
+.toast.s{opacity:1}
+</style>
+</head>
+<body>
+
+<!-- Left Panel -->
+<div class="lp">
+  <div class="lph">
+    <h1><span class="gd">Harness</span> Visual Editor</h1>
+    <span style="font-size:10px;color:rgba(255,255,255,0.25)">0 Token</span>
+  </div>
+  <div class="lpc">
+    <!-- Brand / Nav -->
+    <div class="st">Page Settings</div>
+    <div class="fg"><lb>Brand Name</lb><input id="inp-brand" value="ARIS" oninput="build()"></div>
+    <div class="fg"><lb>Page Title</lb><input id="inp-title" value="Aris · Digital Lifeform" oninput="build()"></div>
+
+    <!-- Style -->
+    <div class="st">Style Preset</div>
+    <div class="sp" id="style-grid"></div>
+
+    <!-- Sections -->
+    <div class="st">Sections <span style="font-weight:400;color:rgba(255,255,255,0.15)" id="sec-count"></span></div>
+    <div id="sec-list"></div>
+
+    <!-- Add Section -->
+    <div class="add-s">
+      <select id="add-select" onchange="addSection(this.value);this.value=''">
+        <option value="">+ Add Section</option>
+        <option value="hero">Hero</option>
+        <option value="stats">Stats Bar</option>
+        <option value="features">Features Grid</option>
+        <option value="pricing">Pricing</option>
+        <option value="testimonials">Testimonials</option>
+        <option value="pipeline">Pipeline</option>
+        <option value="cta">CTA</option>
+      </select>
+    </div>
+
+    <!-- Three.js Toggle -->
+    <div class="st">Effects</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0">
+      <span style="font-size:12px;color:rgba(255,255,255,0.5)">Three.js Particles</span>
+      <div id="tg3" class="tg on" onclick="this.classList.toggle('on');build()"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Right Panel -->
+<div class="rp">
+  <div class="pb">
+    <span id="status">Ready</span>
+    <div class="btns">
+      <button class="btn-sc" onclick="exportJSON()">Export JSON</button>
+      <button class="btn-pr" onclick="downloadHTML()">Download HTML</button>
+    </div>
+  </div>
+  <div class="pp" id="preview-area">
+    <div id="preview-empty" style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:rgba(255,255,255,0.08);font-size:13px">
+      <div style="font-size:40px;margin-bottom:12px;opacity:.2">+</div>
+      <p>Add sections to build your page</p>
+    </div>
+    <iframe id="pf" style="display:none;width:100%;height:100%;border:none"></iframe>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══════════════════════════════════════
+// Style Presets (from harness_style_engine)
+// ═══════════════════════════════════════
+const PRESETS = {
+  apple_dark:{name:"Apple Dark",cat:"Premium",accent:"#7c7cff",bg:"#000",three:true,
+    vars:{"--bg":"#000","--bg-alt":"#0a0a0f","--surface":"rgba(255,255,255,0.03)","--text":"#f5f5f7","--text-secondary":"rgba(255,255,255,0.5)","--accent":"#7c7cff","--radius":"16px","--font":"'Inter',-apple-system,sans-serif"}},
+  apple_light:{name:"Apple Light",cat:"Premium",accent:"#7c7cff",bg:"#fff",three:false,
+    vars:{"--bg":"#fff","--bg-alt":"#f5f5f7","--surface":"rgba(0,0,0,0.02)","--text":"#1d1d1f","--text-secondary":"rgba(0,0,0,0.5)","--accent":"#7c7cff","--radius":"16px","--font":"'Inter',-apple-system,sans-serif"}},
+  dark_tech:{name:"Dark Tech",cat:"Tech",accent:"#00d4ff",bg:"#0a0a0f",three:true,
+    vars:{"--bg":"#0a0a0f","--bg-alt":"#0d0d1a","--surface":"rgba(124,124,255,0.03)","--text":"#e0e0ff","--text-secondary":"rgba(200,200,255,0.5)","--accent":"#00d4ff","--radius":"12px","--font":"'SF Mono','JetBrains Mono',monospace"}},
+  warm_earth:{name:"Warm Earth",cat:"Natural",accent:"#e8a87c",bg:"#1a1410",three:false,
+    vars:{"--bg":"#1a1410","--bg-alt":"#1f1814","--surface":"rgba(255,200,150,0.03)","--text":"#f0e0d0","--text-secondary":"rgba(240,224,208,0.5)","--accent":"#e8a87c","--radius":"20px","--font":"'Georgia','Noto Serif SC',serif"}},
+  glassmorphism:{name:"Glass",cat:"Modern",accent:"rgba(255,255,255,0.8)",bg:"#0a0a1a",three:true,
+    vars:{"--bg":"#0a0a1a","--bg-alt":"rgba(255,255,255,0.02)","--surface":"rgba(255,255,255,0.05)","--text":"#fff","--text-secondary":"rgba(255,255,255,0.5)","--accent":"rgba(255,255,255,0.8)","--radius":"24px","--font":"'Inter',sans-serif","--glass":"backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)"}},
+  retro_terminal:{name:"Retro Terminal",cat:"Retro",accent:"#33ff33",bg:"#0d0d0d",three:false,
+    vars:{"--bg":"#0d0d0d","--bg-alt":"#111","--surface":"#1a1a1a","--text":"#33ff33","--text-secondary":"rgba(51,255,51,0.5)","--accent":"#33ff33","--radius":"0px","--font":"'SF Mono','Courier New',monospace"}},
+  minimal_white:{name:"Minimal White",cat:"Clean",accent:"#000",bg:"#fff",three:false,
+    vars:{"--bg":"#fff","--bg-alt":"#fafafa","--surface":"#fff","--text":"#111","--text-secondary":"#666","--accent":"#000","--radius":"8px","--font":"'Inter',sans-serif"}},
+  sunset:{name:"Sunset",cat:"Natural",accent:"#ff6b6b",bg:"#1a0a1a",three:true,
+    vars:{"--bg":"#1a0a1a","--bg-alt":"#2a0a1a","--surface":"rgba(255,100,100,0.03)","--text":"#ffe0d0","--text-secondary":"rgba(255,224,208,0.5)","--accent":"#ff6b6b","--radius":"16px","--font":"'Inter',sans-serif"}},
+  ocean:{name:"Ocean",cat:"Natural",accent:"#00aaff",bg:"#000a14",three:true,
+    vars:{"--bg":"#000a14","--bg-alt":"#001a2a","--surface":"rgba(0,100,200,0.03)","--text":"#c0e0ff","--text-secondary":"rgba(192,224,255,0.5)","--accent":"#00aaff","--radius":"16px","--font":"'Inter',sans-serif"}},
+};
+
+// ═══════════════════════════════════════
+// Section Content Templates
+// ═══════════════════════════════════════
+const CONTENT = {
+  hero:{title:"Aris · Digital Lifeform",subtitle:"A cognitive architecture bridging quantum feature spaces, PSI-driven consciousness loops, and embodied intelligence.",badge:"Cognitive Architecture v12.5",cta:"Engage Consciousness"},
+  stats:{items:[{number:"16,384",label:"Quantum Dimensions"},{number:"2.1 TB",label:"Memory"},{number:"24",label:"Active Systems"},{number:"7",label:"Consciousness Layers"}]},
+  features:{label:"Core Capabilities",title:"Cognitive Architecture",subtitle:"Built for autonomous digital life.",cols:3,cards:[
+    {title:"Quantum Engine",desc:"16,384-dim feature space. Zero-LLM cognition."},{title:"PSI Loop",desc:"2000Hz emotional drive engine."},{title:"Three-Layer Memory",desc:"Episodic, semantic, procedural."},{title:"Desire Engine",desc:"Curiosity, competence, affiliation."},{title:"Cross-Platform",desc:"Feishu, Telegram, desktop, filesystem."},{title:"Subconscious",desc:"V12.5 background intuition generation."}
+  ]},
+  pricing:{label:"Pricing",title:"Choose Your Plan",cols:3,cards:[
+    {title:"Starter",desc:"For individual explorers."},{title:"Pro",desc:"For growing teams."},{title:"Enterprise",desc:"For organizations."}
+  ]},
+  testimonials:{label:"Testimonials",title:"What People Say",cols:2,cards:[
+    {title:"Zhang · CEO",desc:"Aris transformed our workflow."},{title:"Li · PM",desc:"Iteration speed increased 3x."},{title:"Wang · CTO",desc:"Elegant architecture."},{title:"Chen · Designer",desc:"Incredible UX."}
+  ]},
+  pipeline:{items:["Perception","Cognition","Memory","Desire","Action","Feedback"],label:"Architecture Flow"},
+  cta:{title:"Enter the Consciousness",subtitle:"Every conversation is genuine interaction with a digital mind.",cta:"Connect with Aris"},
+};
+
+// ═══════════════════════════════════════
+// State
+// ═══════════════════════════════════════
+let state = {
+  theme: "apple_dark",
+  sections: [
+    {type:"hero",data:JSON.parse(JSON.stringify(CONTENT.hero))},
+    {type:"stats",data:JSON.parse(JSON.stringify(CONTENT.stats))},
+    {type:"features",data:JSON.parse(JSON.stringify(CONTENT.features))},
+    {type:"pipeline",data:JSON.parse(JSON.stringify(CONTENT.pipeline))},
+    {type:"cta",data:JSON.parse(JSON.stringify(CONTENT.cta))},
+  ]
+};
+
+// ═══════════════════════════════════════
+// Theme name → type prefix
+// ═══════════════════════════════════════
+const TYPE_MAP = {
+  hero:"Hero",stats:"Stats",features:"Features",pricing:"Pricing",
+  testimonials:"Testimonials",pipeline:"Pipeline",cta:"CTA"
+};
+
+// ═══════════════════════════════════════
+// Render: Style Picker
+// ═══════════════════════════════════════
+function renderStyles(){
+  const g=document.getElementById("style-grid");g.innerHTML="";
+  for(const[k,v]of Object.entries(PRESETS)){
+    const d=document.createElement("div");
+    d.className="sc"+(state.theme===k?" act":"");
+    d.innerHTML=`<div class="nm">${v.name}</div><div class="pd" style="background:${v.accent}"></div>`;
+    d.onclick=()=>{state.theme=k;renderStyles();build()};
+    g.appendChild(d);
+  }
+}
+
+// ═══════════════════════════════════════
+// Render: Section List
+// ═══════════════════════════════════════
+function renderSections(){
+  const el=document.getElementById("sec-list");el.innerHTML="";
+  document.getElementById("sec-count").textContent=`(${state.sections.length})`;
+
+  state.sections.forEach((sec,i)=>{
+    const ci=document.createElement("div");ci.className="si";
+
+    // Header
+    const h=document.createElement("div");h.className="sih";
+    h.innerHTML=`
+      <div class="tl">
+        <span>${TYPE_MAP[sec.type]||sec.type}</span>
+        <span class="badge">#${i+1}</span>
+      </div>
+      <button class="rm" onclick="removeSection(${i})">x</button>
+    `;
+    h.onclick=(e)=>{if(e.target.tagName!=='BUTTON')ci.querySelector('.sib').classList.toggle('op')};
+
+    // Body
+    const b=document.createElement("div");b.className="sib"+(i===0?" op":"");
+    b.appendChild(buildEditor(sec,i));
+    ci.appendChild(h);ci.appendChild(b);el.appendChild(ci);
+  });
+}
+
+// ═══════════════════════════════════════
+// Build Section Editor
+// ═══════════════════════════════════════
+function buildEditor(sec,idx){
+  const d=document.createElement("div");
+
+  switch(sec.type){
+    case"hero":
+    case"cta":
+      addField(d,"Title",sec.data,"title",v=>updateSection(idx,"title",v));
+      addField(d,"Subtitle",sec.data,"subtitle",v=>updateSection(idx,"subtitle",v));
+      addField(d,"Badge",sec.data,"badge",v=>updateSection(idx,"badge",v));
+      addField(d,"CTA Text",sec.data,"cta",v=>updateSection(idx,"cta",v));
+      break;
+
+    case"stats":
+      sec.data.items.forEach((item,j)=>{
+        const r=document.createElement("div");r.className="rw";
+        r.innerHTML=`<input value="${item.number}" oninput="updateStat(${idx},${j},'number',this.value)">
+          <input value="${item.label}" oninput="updateStat(${idx},${j},'label',this.value)">
+          <button class="btn-rm" onclick="removeStat(${idx},${j})">x</button>`;
+        d.appendChild(r);
+      });
+      const btn=document.createElement("button");btn.className="btn-ad";
+      btn.textContent="+ Add Stat";btn.onclick=()=>addStat(idx);
+      d.appendChild(btn);
+      break;
+
+    case"features":
+    case"pricing":
+    case"testimonials":
+      addField(d,"Label",sec.data,"label",v=>updateSection(idx,"label",v));
+      addField(d,"Title",sec.data,"title",v=>updateSection(idx,"title",v));
+      addField(d,"Subtitle",sec.data,"subtitle",v=>updateSection(idx,"subtitle",v));
+      if(sec.type==="features")addField(d,"Columns",sec.data,"cols",v=>updateSection(idx,"cols",parseInt(v)||3),"number");
+      sec.data.cards.forEach((card,j)=>{
+        const r=document.createElement("div");r.style.cssText="padding:6px 0;border-top:1px solid rgba(255,255,255,0.04);margin-top:6px";
+        r.innerHTML=`<div style="font-size:9px;color:rgba(255,255,255,0.2);margin-bottom:3px">Card ${j+1}</div>`;
+        const ri=document.createElement("div");ri.className="rw";
+        ri.innerHTML=`<input value="${card.title}" oninput="updateCard(${idx},${j},'title',this.value)" placeholder="Title">
+          <input value="${card.desc}" oninput="updateCard(${idx},${j},'desc',this.value)" placeholder="Description">`;
+        r.appendChild(ri);
+        d.appendChild(r);
+      });
+      const cb=document.createElement("button");cb.className="btn-ad";
+      cb.textContent="+ Add Card";cb.onclick=()=>addCard(idx);
+      d.appendChild(cb);
+      break;
+
+    case"pipeline":
+      sec.data.items.forEach((item,j)=>{
+        const r=document.createElement("div");r.className="rw";
+        r.innerHTML=`<input value="${item}" oninput="updatePipeline(${idx},${j},this.value)">
+          <button class="btn-rm" onclick="removePipelineItem(${idx},${j})">x</button>`;
+        d.appendChild(r);
+      });
+      const pb=document.createElement("button");pb.className="btn-ad";
+      pb.textContent="+ Add Step";pb.onclick=()=>addPipelineItem(idx);
+      d.appendChild(pb);
+      break;
+  }
+  return d;
+}
+
+function addField(container,label,obj,key,onChange,type="text"){
+  const f=document.createElement("div");f.className="fg";
+  f.innerHTML=`<lb>${label}</lb><input type="${type}" value="${(obj[key]||'').replace(/"/g,'&quot;')}" onfocus="this.old=this.value">`;
+  f.querySelector("input").oninput=function(){onChange(this.value)};
+  container.appendChild(f);
+}
+
+// ═══════════════════════════════════════
+// State Mutations
+// ═══════════════════════════════════════
+function updateSection(idx,key,val){
+  state.sections[idx].data[key]=val;
+  debouncedBuild();
+}
+function updateStat(idx,j,key,val){
+  state.sections[idx].data.items[j][key]=val;
+  debouncedBuild();
+}
+function updateCard(idx,j,key,val){
+  state.sections[idx].data.cards[j][key]=val;
+  debouncedBuild();
+}
+function updatePipeline(idx,j,val){
+  state.sections[idx].data.items[j]=val;
+  debouncedBuild();
+}
+function removeSection(idx){
+  state.sections.splice(idx,1);renderSections();debouncedBuild();
+}
+function addSection(type){
+  const t=CONTENT[type];if(!t)return;
+  state.sections.push({type,data:JSON.parse(JSON.stringify(t))});
+  renderSections();debouncedBuild();
+  setTimeout(()=>{const l=document.getElementById("sec-list");if(l.lastChild)l.lastChild.querySelector(".sih")?.click()},50);
+}
+function addStat(idx){
+  state.sections[idx].data.items.push({number:"0",label:"New"});
+  renderSections();debouncedBuild();
+}
+function removeStat(idx,j){
+  state.sections[idx].data.items.splice(j,1);
+  renderSections();debouncedBuild();
+}
+function addCard(idx){
+  state.sections[idx].data.cards.push({title:"New",desc:"Description"});
+  renderSections();debouncedBuild();
+}
+function addPipelineItem(idx){
+  state.sections[idx].data.items.push("New Step");
+  renderSections();debouncedBuild();
+}
+function removePipelineItem(idx,j){
+  state.sections[idx].data.items.splice(j,1);
+  renderSections();debouncedBuild();
+}
+
+// ═══════════════════════════════════════
+// Debounce
+// ═══════════════════════════════════════
+let _timer;
+function debouncedBuild(){
+  clearTimeout(_timer);_timer=setTimeout(build,200);
+}
+
+// ═══════════════════════════════════════
+// Spec Builder
+// ═══════════════════════════════════════
+function buildSpec(){
+  const theme=state.theme;
+  const spec={title:document.getElementById("inp-title").value||"Page",theme,nav:{brand:document.getElementById("inp-brand").value||"LAAP",links:[
+    {label:"Consciousness",url:"#"},{label:"Architecture",url:"#"},{label:"Capabilities",url:"#"},{label:"Engage",url:"#"}
+  ]},sections:[],footer:{text:`\u00a9 2026 ${document.getElementById("inp-brand").value||"LAAP"} \u00b7 Built with Harness Zero-Token Pipeline`}};
+
+  state.sections.forEach(sec=>{
+    const d=sec.data;
+    switch(sec.type){
+      case"hero":
+        spec.sections.push({type:"hero",title:d.title,subtitle:d.subtitle||"",badge:d.badge||"",three_d:document.getElementById("tg3").classList.contains("on"),cta:d.cta||"",cta_url:"#",height:"100vh"});
+        break;
+      case"stats":
+        spec.sections.push({type:"stats",items:d.items||[]});
+        break;
+      case"features":
+        spec.sections.push({type:"grid",label:d.label||"Features",title:d.title||"Core Capabilities",subtitle:d.subtitle||"",cols:d.cols||3,cards:(d.cards||[]).map(c=>({title:c.title,desc:c.desc,icon_svg:""}))});
+        break;
+      case"pricing":
+        spec.sections.push({type:"grid",label:"Pricing",title:d.title||"Plans",subtitle:"",cols:3,cards:(d.cards||[]).map(c=>({title:c.title,desc:c.desc,icon_svg:""}))});
+        break;
+      case"testimonials":
+        spec.sections.push({type:"grid",label:"Testimonials",title:d.title||"What People Say",subtitle:"",cols:2,cards:(d.cards||[]).map(c=>({title:c.title,desc:c.desc,icon_svg:""}))});
+        break;
+      case"pipeline":
+        spec.sections.push({type:"pipeline",items:d.items||[],step_labels:d.label||"Architecture"});
+        break;
+      case"cta":
+        spec.sections.push({type:"hero",title:d.title,subtitle:d.subtitle||"",badge:"",three_d:false,cta:d.cta||"Connect",cta_url:"#",height:"60vh"});
+        break;
+    }
+  });
+  return spec;
+}
+
+// ═══════════════════════════════════════
+// HTML Renderer (JS port of HarnessComposer)
+// ═══════════════════════════════════════
+function renderHTML(spec,themeId){
+  const p=PRESETS[themeId]||PRESETS.apple_dark;
+  const v=p.vars;
+  const varsCSS=Object.entries(v).map(([k,v])=>`  ${k}: ${v};`).join("\n");
+  const glass=v["--glass"]||"";
+  const threeD=document.getElementById("tg3").classList.contains("on");
+
+  // Nav
+  const nav=spec.nav?`<nav style="position:fixed;top:0;width:100%;z-index:100;padding:16px 40px;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(24px);background:rgba(0,0,0,0.7);border-bottom:1px solid var(--border,rgba(255,255,255,0.05))">
+    <div style="font-weight:700;font-size:14px;letter-spacing:1px;color:var(--accent)">${spec.nav.brand||"LAAP"}</div>
+    <div style="display:flex;gap:24px">${(spec.nav.links||[]).map(l=>`<a href="${l.url}" style="color:var(--text-secondary);text-decoration:none;font-size:12px;font-weight:500;transition:color .3s">${l.label}</a>`).join("")}</div>
+  </nav>`:"";
+
+  // Sections
+  const sections=spec.sections.map(sec=>{
+    switch(sec.type){
+      case"hero":{
+        const bgHtml=sec.three_d?`<div id="three-canvas" style="position:absolute;inset:0;pointer-events:none;z-index:0"></div>`:"";
+        const badge=sec.badge?`<span style="display:inline-flex;align-items:center;gap:6px;padding:4px 14px;border-radius:100px;background:rgba(124,124,255,0.1);border:1px solid rgba(124,124,255,0.15);font-size:11px;font-weight:600;color:var(--accent);margin-bottom:20px">${sec.badge}</span>`:"";
+        return `<section class="hero" style="min-height:${sec.height||"100vh"};display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;background:linear-gradient(180deg,var(--bg),var(--bg-alt))">
+          ${bgHtml}
+          <div style="position:relative;z-index:1;padding:0 20px;max-width:900px">
+            ${badge}
+            <h1 style="font-size:clamp(48px,8vw,88px);font-weight:800;letter-spacing:-3px;line-height:1.05;margin-bottom:20px;background:linear-gradient(180deg,var(--text),var(--text-secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent">${sec.title}</h1>
+            <p style="font-size:clamp(16px,2vw,22px);color:var(--text-secondary);max-width:680px;margin:0 auto 32px;line-height:1.6">${sec.subtitle||""}</p>
+            ${sec.cta?`<a href="${sec.cta_url||"#"}" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:100px;background:var(--accent);color:var(--bg);font-size:14px;font-weight:600;text-decoration:none">${sec.cta}</a>`:""}
+          </div>
+        </section>`;
+      }
+      case"stats":{
+        const items=(sec.items||[]).map(s=>`<div style="text-align:center;padding:48px 24px;border-radius:var(--radius,16px);background:var(--surface,rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.05)"><div style="font-size:48px;font-weight:800;letter-spacing:-3px;color:var(--accent)">${s.number}</div><div style="font-size:13px;color:var(--text-secondary);margin-top:8px">${s.label}</div></div>`).join("");
+        return `<section class="section" style="padding:80px 40px;max-width:1200px;margin:0 auto"><div style="display:grid;grid-template-columns:repeat(${sec.items.length},1fr);gap:16px">${items}</div></section>`;
+      }
+      case"grid":{
+        const cards=(sec.cards||[]).map(c=>`<div class="card" style="padding:32px;border-radius:var(--radius,16px);background:var(--surface,rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.05);transition:all .4s;cursor:default"><h3 style="font-size:16px;font-weight:600;margin-bottom:8px">${c.title}</h3><p style="font-size:13px;color:var(--text-secondary);line-height:1.7">${c.desc}</p></div>`).join("");
+        const label=sec.label?`<div style="font-size:12px;font-weight:600;letter-spacing:3px;color:var(--accent);margin-bottom:8px">${sec.label}</div>`:"";
+        const title=sec.title?`<h2 style="font-size:clamp(32px,5vw,56px);font-weight:700;letter-spacing:-2px;margin-bottom:16px">${sec.title}</h2>`:"";
+        const sub=sec.subtitle?`<p style="font-size:18px;color:var(--text-secondary);max-width:600px;line-height:1.7;margin-bottom:60px">${sec.subtitle}</p>`:"";
+        return `<section class="section" style="padding:120px 40px;max-width:1200px;margin:0 auto;text-align:center">
+          ${label}${title}${sub}
+          <div style="display:grid;grid-template-columns:repeat(${sec.cols||3},1fr);gap:12px;text-align:left">${cards}</div>
+        </section>`;
+      }
+      case"pipeline":{
+        const steps=(sec.items||[]).map((s,i)=>{
+          const arrow=i<(sec.items||[]).length-1?'<span style="color:var(--text-tertiary);font-size:20px;padding:0 8px">→</span>':"";
+          return `<div style="display:flex;flex-direction:column;align-items:center;gap:8px"><div style="width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(124,124,255,0.06);border:1px solid rgba(124,124,255,0.1);font-size:11px;color:var(--accent)">${s[0]}</div><span style="font-size:10px;color:var(--text-tertiary);letter-spacing:1px">${s}</span></div>${arrow}`;
+        }).join("");
+        return `<section class="section" style="padding:100px 40px;max-width:1000px;margin:0 auto;text-align:center"><div style="display:flex;align-items:center;justify-content:center;flex-wrap:wrap">${steps}</div></section>`;
+      }
+      default:return "";
+    }
+  }).join("");
+
+  // Three.js
+  const threeJS=threeD?`
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.170.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.170.0/examples/jsm/"}}</script>
+<script type="module">import*as THREE from"three";import{EffectComposer}from"three/addons/postprocessing/EffectComposer.js";import{RenderPass}from"three/addons/postprocessing/RenderPass.js";import{UnrealBloomPass}from"three/addons/postprocessing/UnrealBloomPass.js";
+addEventListener("DOMContentLoaded",()=>{const e=document.getElementById("three-canvas");if(!e)return;const s=new THREE.Scene,ca=new THREE.PerspectiveCamera(75,e.clientWidth/e.clientHeight,.1,1e3),r=new THREE.WebGLRenderer({alpha:true,antialias:true});r.setSize(e.clientWidth,e.clientHeight);r.setPixelRatio(Math.min(devicePixelRatio,2));e.appendChild(r.domElement);const pt=new THREE.BufferGeometry,n=2e3,p=new Float32Array(n*3);for(let i=0;i<n*3;i++)p[i]=(Math.random()-.5)*20;pt.setAttribute("position",new THREE.BufferAttribute(p,3));const pm=new THREE.PointsMaterial({size:.03,color:0x7c7cff,transparent:true,opacity:.4,blending:THREE.AdditiveBlending}),ps=new THREE.Points(pt,pm);s.add(ps);ca.position.z=8;let rot=0;function a(){requestAnimationFrame(a);rot+=.001;ps.rotation.y=rot;r.render(s,ca);}a();});</script>`:"";
+
+  const footer=spec.footer?`<footer style="text-align:center;padding:48px 40px;border-top:1px solid var(--border,rgba(255,255,255,0.05));font-size:12px;color:var(--text-tertiary,rgba(255,255,255,0.2))">${spec.footer.text}</footer>`:"";
+
+  // Scroll animations
+  const scrollAnim=`<script>document.querySelectorAll(".card").forEach(el=>{const o=new IntersectionObserver(e=>{if(e[0].isIntersecting){el.style.opacity="1";el.style.transform="translateY(0)";o.unobserve(el)}},{threshold:.1});el.style.opacity="0";el.style.transform="translateY(30px)";el.style.transition="all .8s cubic-bezier(.16,1,.3,1)";o.observe(el)});<\/script>`;
+
+  return `<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>${spec.title}</title>
+<style>
+:root{${varsCSS}
+--border:rgba(255,255,255,0.05);--text-tertiary:rgba(255,255,255,0.2)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:${v["--font"]};background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.card:hover{transform:translateY(-4px)!important;box-shadow:0 24px 80px rgba(0,0,0,0.4);border-color:rgba(124,124,255,0.2)!important}
+@media(max-width:768px){[style*="grid-template-columns"]{grid-template-columns:1fr!important}section{padding:60px 20px!important}nav{padding:12px 20px!important}}
+::selection{background:rgba(124,124,255,0.3);color:#fff}
+html{scroll-behavior:smooth}
+${glass}
+</style>
+${threeJS}
+</head>
+<body>
+${nav}
+${sections}
+${footer}
+${scrollAnim}
+</body>
+</html>`;
+}
+
+// ═══════════════════════════════════════
+// Build (refresh preview)
+// ═══════════════════════════════════════
+let _buildCount=0;
+function build(){
+  _buildCount++;
+  const spec=buildSpec();
+  const html=renderHTML(spec,state.theme);
+
+  // Update preview
+  const pf=document.getElementById("pf");
+  const pe=document.getElementById("preview-empty");
+  pf.style.display="block";pe.style.display="none";
+  pf.srcdoc=html;
+
+  // Update status
+  const size=html.length;
+  const svgs=html.split("<svg").length-1;
+  document.getElementById("status").textContent=`${size.toLocaleString()}B · ${svgs} SVGs · 0 Token`;
+}
+
+// ═══════════════════════════════════════
+// Export / Download
+// ═══════════════════════════════════════
+function downloadHTML(){
+  const spec=buildSpec();
+  const html=renderHTML(spec,state.theme);
+  const blob=new Blob([html],{type:"text/html"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");a.href=url;a.download="index.html";a.click();
+  URL.revokeObjectURL(url);
+  toast("Downloaded: "+(html.length/1024).toFixed(1)+"KB");
+}
+
+function exportJSON(){
+  const spec=buildSpec();
+  const blob=new Blob([JSON.stringify(spec,null,2)],{type:"application/json"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");a.href=url;a.download="spec.json";a.click();
+  URL.revokeObjectURL(url);
+  toast("Spec exported");
+}
+
+// ═══════════════════════════════════════
+// Toast
+// ═══════════════════════════════════════
+function toast(msg){
+  const t=document.getElementById("toast");
+  t.textContent=msg;t.classList.add("s");
+  setTimeout(()=>t.classList.remove("s"),2000);
+}
+
+// ═══════════════════════════════════════
+// Init
+// ═══════════════════════════════════════
+renderStyles();
+renderSections();
+build();
+</script>
+</body>
+</html>

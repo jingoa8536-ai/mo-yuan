@@ -1,0 +1,11 @@
+{
+  "id": "2606.27373v1",
+  "title": "Paying More Attention to Visual Tokens in Self-Evolving Large Multimodal Models",
+  "published": "2026-06-25",
+  "authors": [
+    "Shravan Venkatraman",
+    "Ritesh Thawkar",
+    "Omkar Thawakar"
+  ],
+  "abstract": "Recently, self-evolving large multimodal models (LMMs) have received attention for improving visual reasoning in a purely unsupervised setting. However, multi-role self-play and self-consistency reward schemes in existing self-evolving LMMs optimize answer agreement without ensuring the decoder attends to visual content, relying instead on statistical language priors to produce self consistent outputs. This leads to a persistent failure mode we term visual under-conditioning, where the decoder relies on language priors rather than the image during generation, manifesting as insufficient attent"
+}

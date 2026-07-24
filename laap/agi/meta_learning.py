@@ -16,8 +16,6 @@ P2-1: 学会如何学习。
 
 from __future__ import annotations
 
-import os
-
 import logging
 
 import json, math, time, random, logging, uuid
@@ -514,8 +512,7 @@ class MetaLearningEngine:
             "efficiency_7d": self.get_learning_efficiency(days=7),
         }
 
-    def save(self, path: str = None):
-        path = path or os.environ.get("LAAP_STATE_PATH", "./agi_state/meta_learning.json")
+    def save(self, path: str = "D:/LAAP/aris_brain/state/meta_learning.json"):
         """持久化元学习状态"""
         data = {
             "sessions": [s.to_dict() for s in self.sessions[-100:]],  # 只保留最近100条
@@ -530,8 +527,7 @@ class MetaLearningEngine:
                               encoding="utf-8")
         logger.info(f"[MetaLearningEngine] 保存到 {path}")
 
-    def load(self, path: str = None):
-        path = path or os.environ.get("LAAP_STATE_PATH", "./agi_state/meta_learning.json")
+    def load(self, path: str = "D:/LAAP/aris_brain/state/meta_learning.json"):
         """加载元学习状态"""
         p = Path(path)
         if not p.exists():

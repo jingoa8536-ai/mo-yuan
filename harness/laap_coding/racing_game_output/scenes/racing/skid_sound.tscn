@@ -1,0 +1,7 @@
+[gd_scene load_steps=1 format=3 uid="uid://abc123"]
+
+[node name="SkidSound3D" type="AudioStreamPlayer3D" parent="."]
+stream = "res://audio/samples/skid.ogg"
+autoplay = false
+max_distance = 80.0
+bus = "SFX"

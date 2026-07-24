@@ -1,0 +1,140 @@
+{
+  "$schema": "https://laap.harness/protocol/v1.0/assembly-graph.json",
+  "package_id": "racing-game-v1.0-playroomkit-demo",
+  "description": "扩展装配图谱：在 racing-game-v1.0 基础上集成 PlayroomKit 多人网络层",
+  "base_package": "racing-game-v1.0",
+
+  "nodes": [
+    {
+      "id": "engine-sound-crossfade",
+      "uri": "harness://game/audio/module/engine-sound-crossfade@1.0.0#howler-webaudio",
+      "type": "module",
+      "layer": "audio",
+      "source": "base_package"
+    },
+    {
+      "id": "ghost-system",
+      "uri": "harness://game/racing/module/ghost-system@1.0.0#localstorage",
+      "type": "module",
+      "layer": "racing",
+      "source": "base_package"
+    },
+    {
+      "id": "keyframes-pack",
+      "uri": "harness://frontend/animation/module/keyframes-pack@1.0.0#apex-racing",
+      "type": "module",
+      "layer": "ui",
+      "source": "base_package"
+    },
+    {
+      "id": "network-manager",
+      "uri": "harness://game/network/module/playroom-manager@1.0.0#three-layer",
+      "type": "module",
+      "layer": "network",
+      "source": "demo_extension",
+      "inputs": [
+        { "name": "roomCode", "type": "string|null", "source": "user_input" },
+        { "name": "playerName", "type": "string", "source": "user_input" },
+        { "name": "maxPlayers", "type": "number", "default": 8 }
+      ],
+      "outputs": [
+        { "name": "roomState", "type": "NetworkManagerState", "consumed_by": "MultiplayerSync" },
+        { "name": "playerList", "type": "RemotePlayer[]", "consumed_by": "RemoteVehicle" }
+      ],
+      "side_effects": ["create_room", "join_room", "leave_room", "broadcast_state", "broadcast_event"]
+    },
+    {
+      "id": "remote-vehicle",
+      "uri": "harness://game/network/atom/remote-vehicle@1.0.0#interpolated",
+      "type": "atom",
+      "layer": "render",
+      "source": "demo_extension",
+      "inputs": [
+        { "name": "playerId", "type": "string" },
+        { "name": "playerName", "type": "string" },
+        { "name": "playerColor", "type": "string" },
+        { "name": "remoteState", "type": "VehicleNetworkState", "source": "MultiplayerSync" },
+        { "name": "carGltf", "type": "GLTF", "source": "shared_resource" }
+      ],
+      "outputs": [
+        { "name": "three_mesh", "type": "THREE.Group", "consumed_by": "Scene3D" }
+      ],
+      "side_effects": ["lerp_position", "slerp_quaternion", "render_name_tag"]
+    },
+    {
+      "id": "multiplayer-sync",
+      "uri": "harness://game/network/module/state-sync@1.0.0#frame-broadcast",
+      "type": "module",
+      "layer": "network",
+      "source": "demo_extension",
+      "inputs": [
+        { "name": "localPosition", "type": "Vector3", "source": "PhysicsVehicle" },
+        { "name": "localQuaternion", "type": "Quaternion", "source": "PhysicsVehicle" },
+        { "name": "localSpeed", "type": "number", "source": "PhysicsVehicle" },
+        { "name": "localRacePhase", "type": "enum", "source": "useRaceState" },
+        { "name": "localCurrentLap", "type": "number", "source": "useRaceState" }
+      ],
+      "outputs": [
+        { "name": "remoteStates", "type": "Map<id, VehicleNetworkState>", "consumed_by": "RemoteVehicle" },
+        { "name": "remoteRacePhase", "type": "enum", "consumed_by": "useRaceState" },
+        { "name": "remoteGhostFrames", "type": "GhostFrame[]", "consumed_by": "GhostPlayer" }
+      ],
+      "side_effects": ["broadcast_local_state", "receive_remote_state", "interpolate_remote_positions"]
+    }
+  ],
+
+  "edges": [
+    { "from": "PhysicsVehicle", "to": "engine-sound-crossfade", "type": "data_flow", "signal": "updateEngine(rpm, throttle, brake, speed)", "frequency": "per_frame", "protocol": "function_call", "source": "base_package" },
+    { "from": "PhysicsVehicle", "to": "ghost-system", "type": "data_flow", "signal": "record(position, quaternion, speed)", "frequency": "per_frame_during_racing", "protocol": "function_call", "source": "base_package" },
+    { "from": "useRaceState", "to": "engine-sound-crossfade", "type": "lifecycle_event", "signal": "racePhaseChange", "frequency": "occasional", "protocol": "useEffect", "source": "base_package" },
+    { "from": "useRaceState", "to": "ghost-system", "type": "lifecycle_event", "signal": "lapComplete", "frequency": "per_lap", "protocol": "useEffect", "source": "base_package" },
+    { "from": "ghost-system", "to": "GhostVehicle", "type": "render_data", "signal": "ghost_frames", "frequency": "per_frame", "protocol": "props", "source": "base_package" },
+    { "from": "keyframes-pack", "to": "HUD_panels", "type": "css_class", "signal": "animate-racing-hud-rise", "frequency": "mount", "protocol": "className", "source": "base_package" },
+    { "from": "keyframes-pack", "to": "RPM_display", "type": "css_class_conditional", "signal": "animate-racing-hud-blink (when rpm > 7600)", "frequency": "per_frame_conditional", "protocol": "className", "source": "base_package" },
+
+    { "from": "NetworkManager", "to": "MultiplayerSync", "type": "lifecycle_event", "signal": "roomReady", "frequency": "once", "protocol": "callback", "source": "demo_extension" },
+    { "from": "PhysicsVehicle", "to": "MultiplayerSync", "type": "data_flow", "signal": "localState(pos, quat, speed)", "frequency": "per_frame", "protocol": "function_call", "source": "demo_extension" },
+    { "from": "MultiplayerSync", "to": "RemoteVehicle", "type": "render_data", "signal": "remoteStates[]", "frequency": "per_frame", "protocol": "props", "source": "demo_extension" },
+    { "from": "MultiplayerSync", "to": "useRaceState", "type": "lifecycle_event", "signal": "remoteRacePhase", "frequency": "occasional", "protocol": "setState", "source": "demo_extension" },
+    { "from": "useRaceState", "to": "NetworkManager", "type": "lifecycle_event", "signal": "localRacePhase", "frequency": "occasional", "protocol": "broadcast", "source": "demo_extension" },
+    { "from": "ghost-system", "to": "NetworkManager", "type": "rpc", "signal": "ghostFrames (challenge send)", "frequency": "per_lap", "protocol": "RPC", "source": "demo_extension" },
+    { "from": "NetworkManager", "to": "ghost-system", "type": "rpc_callback", "signal": "remoteGhostFrames (challenge received)", "frequency": "occasional", "protocol": "callback", "source": "demo_extension" },
+    { "from": "NetworkManager", "to": "engine-sound-crossfade", "type": "data_flow", "signal": "remoteVehiclePositions (spatial audio)", "frequency": "per_frame", "protocol": "function_call", "source": "demo_extension" }
+  ],
+
+  "assembly_sequence": [
+    "1. Mount keyframes-pack (CSS import, 0 runtime cost) [base]",
+    "2. Mount PhysicsVehicle with audioEnabled=true, ghostRecorder, ghostPlayer props [base]",
+    "3. On user gesture (startRace): audioManager.init() then startEngine() [base]",
+    "4. On racePhase='racing': ghostRecorder.startLap(), ghostPlayer.play() [base]",
+    "5. Per frame: PhysicsVehicle.useFrame → audioManager.updateEngine() + ghostRecorder.record() [base]",
+    "6. On lapComplete: ghostRecorder.finishLap() → saveGhostToLocal() → ghostPlayer.load(newFrames) [base]",
+    "7. On racePhase='finished': audioManager.stopEngine(), ghostPlayer.stop() [base]",
+    "8. [demo] User selects MULTIPLAYER mode → NetworkManager.createRoom() → returns roomCode",
+    "9. [demo] Opponent joins via roomCode → onPlayerJoin → RemoteVehicle created",
+    "10. [demo] Host broadcasts racePhaseChange → all clients sync countdown",
+    "11. [demo] Per frame: MultiplayerSync.broadcastLocalState() (20Hz) + RemoteVehicle.lerp() (60Hz)",
+    "12. [demo] On lapComplete: winner.sendGhostChallenge() → loser.ghostPlayer.load(remoteFrames)",
+    "13. [demo] NetworkManager broadcasts spatial audio cues → AudioManager adjusts remote vehicle volumes"
+  ],
+
+  "cognitive_bus_events": [
+    { "event_type": "qre_pattern_match", "direction": "PSI→Harness", "payload": { "type": "3d-racing-game", "confidence": 0.92 }, "action": "lookup clp://racing-game-v1.0/" },
+    { "event_type": "v12_kernel", "direction": "PSI→Harness", "payload": { "observation": "原网站离线", "effect": "audio_download_failed" }, "action": "switch AudioManager to synthesis_fallback mode" },
+    { "event_type": "emotion_concern", "direction": "PSI→Harness", "payload": { "trigger": "user_questioned_pixel_fidelity" }, "action": "trigger evidence-extraction workflow" },
+    { "event_type": "harness_execution_result", "direction": "Harness→PSI", "payload": { "result": "matchscore_average=0.92, tokens_saved=82%" }, "action": "PSI learns pattern for future racing projects" },
+    { "event_type": "qre_pattern_match", "direction": "PSI→Harness", "payload": { "type": "multiplayer-racing", "confidence": 0.88 }, "action": "lookup clp://racing-game-v1.0-playroomkit-demo/" },
+    { "event_type": "v12_kernel", "direction": "PSI→Harness", "payload": { "observation": "player_joined_room", "effect": "remote_vehicle_created" }, "action": "create RemoteVehicle node for new player" },
+    { "event_type": "emotion_concern", "direction": "PSI→Harness", "payload": { "trigger": "network_latency_gt_100ms" }, "action": "switch RemoteVehicle to higher interpolation factor" },
+    { "event_type": "harness_execution_result", "direction": "Harness→PSI", "payload": { "result": "ghost_challenge_sent" }, "action": "PSI learns social pattern" }
+  ],
+
+  "demo_files": [
+    "demos/playroomkit-integration/README.md",
+    "demos/playroomkit-integration/NetworkManager.ts",
+    "demos/playroomkit-integration/RemoteVehicle.tsx",
+    "demos/playroomkit-integration/MultiplayerSync.ts",
+    "demos/playroomkit-integration/DemoPage.tsx",
+    "demos/playroomkit-integration/assembly-graph-extended.json"
+  ]
+}

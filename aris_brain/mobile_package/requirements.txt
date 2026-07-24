@@ -1,0 +1,5 @@
+# LAAP Mobile v3 — 手机依赖
+# Termux上运行:
+#   pkg install python
+#   pip install numpy
+numpy

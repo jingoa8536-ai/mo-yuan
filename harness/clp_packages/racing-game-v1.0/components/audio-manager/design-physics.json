@@ -1,0 +1,90 @@
+{
+  "$schema": "https://laap.harness/protocol/v1.0/design-physics.json",
+  "component_id": "engine-sound-crossfade",
+
+  "engine_bands": [
+    { "id": "off-idle", "state": "off", "rpm": 1000, "samples": ["911cup_offidle"], "gain": 0.9 },
+    { "id": "off-verylow", "state": "off", "rpm": 2500, "samples": ["911cup_offverylow_1", "911cup_offverylow_2", "911cup_offverylow_3"] },
+    { "id": "off-low", "state": "off", "rpm": 4000, "samples": ["911cup_offlow"] },
+    { "id": "off-mid", "state": "off", "rpm": 6000, "samples": ["911cup_offmid"] },
+    { "id": "off-high", "state": "off", "rpm": 8000, "samples": ["911cup_offhigh"], "gain": 0.92 },
+
+    { "id": "steady-idle", "state": "steady", "rpm": 1000, "samples": ["911cup_steadyidle"], "gain": 0.88 },
+    { "id": "steady-verylow", "state": "steady", "rpm": 2500, "samples": ["911cup_steadyverylow_1", "911cup_steadyverylow_2"] },
+    { "id": "steady-low", "state": "steady", "rpm": 4000, "samples": ["911cup_steadylow"] },
+    { "id": "steady-lowmid", "state": "steady", "rpm": 4500, "samples": ["911cup_steadylowmid"], "gain": 0.92 },
+    { "id": "steady-mid", "state": "steady", "rpm": 6000, "samples": ["911cup_steadymid"] },
+    { "id": "steady-high", "state": "steady", "rpm": 8000, "samples": ["911cup_steadyhigh"] },
+    { "id": "steady-veryhigh", "state": "steady", "rpm": 9000, "samples": ["911cup_steadyveryhigh"], "gain": 0.96 },
+
+    { "id": "on-idle", "state": "on", "rpm": 1000, "samples": ["911cup_onidle_1", "911cup_onidle_2", "911cup_onidle_3"] },
+    { "id": "on-verylow", "state": "on", "rpm": 2500, "samples": ["911cup_onverylow_1", "911cup_onverylow_2"] },
+    { "id": "on-low", "state": "on", "rpm": 4000, "samples": ["911cup_onlow"] },
+    { "id": "on-mid", "state": "on", "rpm": 6000, "samples": ["911cup_onmid"] },
+    { "id": "on-high", "state": "on", "rpm": 8000, "samples": ["911cup_onhigh"] },
+    { "id": "on-veryhigh", "state": "on", "rpm": 9000, "samples": ["911cup_onveryhigh"], "gain": 0.96 }
+  ],
+
+  "limiter_samples": ["911cup_limiter", "911cup_steadylimiter"],
+
+  "state_volumes": {
+    "off": 0.22,
+    "steady": 0.26,
+    "on": 0.31
+  },
+
+  "reverb_chain": {
+    "dry_mix": 1.0,
+    "wet_send": 0.42,
+    "wet_level": 0.42,
+    "pre_delay_seconds": 0.018,
+    "decay_seconds": 0.58,
+    "highpass_hz": 140,
+    "lowpass_hz": 4200
+  },
+
+  "sfx_files": {
+    "tick": "/audio/tick.mp3",
+    "hover": "/audio/tick.mp3",
+    "accept": "/audio/accept.mp3",
+    "confirm": "/audio/accept.mp3",
+    "return": "/audio/return.mp3",
+    "startGame": "/audio/start-game.mp3",
+    "backfire": ["/audio/backfire1.ogg", "/audio/backfire2.ogg", "/audio/backfire3.ogg"],
+    "carSkid": "/audio/CarSkid.ogg",
+    "curb": "/audio/curb.ogg",
+    "dirt": "/audio/dirt.ogg",
+    "gravel": "/audio/gravel.ogg",
+    "carhit": ["/audio/carhit0.ogg", "/audio/carhit1.ogg", "/audio/carhit2.ogg"],
+    "thump": "/audio/thump.ogg",
+    "lapPb": "/audio/lap-pb.ogg",
+    "goodTime": "/audio/good-time.ogg",
+    "badTime": "/audio/bad-time.ogg"
+  },
+
+  "synth_fallback": {
+    "osc1_type": "sawtooth",
+    "osc2_type": "square",
+    "base_freq_hz": 60,
+    "rpm_freq_multiplier": 280,
+    "filter_type": "lowpass",
+    "filter_base_hz": 400,
+    "filter_throttle_multiplier": 3000,
+    "filter_q": 5,
+    "volume_min": 0.05,
+    "volume_throttle_multiplier": 0.15
+  },
+
+  "crossfade": {
+    "fade_out_ms": 150,
+    "fade_in_ms": 150,
+    "limiter_threshold_rpm": 8500,
+    "limiter_volume": 0.15
+  },
+
+  "evidence": {
+    "bundle_file": "D:/LAAP/_apex_assets/index-BHLGw_OM.js",
+    "key_functions": ["qx()", "G9()", "tx", "yx", "sx", "an", "ex()"],
+    "extraction_method": "PowerShell regex + manual analysis"
+  }
+}

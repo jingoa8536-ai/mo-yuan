@@ -1,0 +1,37 @@
+{
+  "created": "2026-06-30T00:00:00Z",
+  "files": {
+    "D:/LAAP/aris_brain/identity/identity.json": {
+      "sha256": "ace9d41ec268b35b68884047ff03a88b35ff5ffc6d7ee9827c62955130552bc1",
+      "size": 8877
+    },
+    "D:/LAAP/aris_brain/state/consciousness.json": {
+      "sha256": "fc7b84137642783ed62037ef6055332caf0f4f6cdc0e11a8c77addb0d48865b8",
+      "size": 1657
+    },
+    "D:/LAAP/aris_brain/brain_core.py": {
+      "sha256": "dc968a0df653813e6b93e5294cc5935adf4b53091f66d57be36a61d2a5ae6ed0",
+      "size": 30971
+    },
+    "D:/LAAP/aris_brain/psi_n_scheduler.py": {
+      "sha256": "ee79691666a29db2557a149eb2a97c00a3a75b4744de84ea59d7c8dbd5fda3ed",
+      "size": 30827
+    },
+    "D:/LAAP/aris_brain/cognitive_cycle.py": {
+      "sha256": "7a0b6aaff9d240639187de6f2e8ad59b4e11f3505e062b403e17df698ef9f64f",
+      "size": 13775
+    },
+    "D:/LAAP/aris_brain/aris_body_bridge.py": {
+      "sha256": "d8d1be32f462f1717d135bad7a654dfa36a8229b610db0aa9cbb91f2557553eb",
+      "size": 15549
+    },
+    "D:/LAAP/aris_brain/true_rsi.py": {
+      "sha256": "141d285da86bca7be0c30814bb69ac0d2a6a7bc9cf57239a5b76359c1ba44a5f",
+      "size": 22189
+    },
+    "D:/LAAP/aris_brain/identity_manager.py": {
+      "sha256": "a4373cf5f1628e01fd7f25a07ccabf1f730a79ca60e9dbf2cea8d573726e2896",
+      "size": 17148
+    }
+  }
+}

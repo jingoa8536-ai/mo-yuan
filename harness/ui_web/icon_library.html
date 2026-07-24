@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAAP Icon Library</title>
+    <style>
+        :root {
+            --bg-base: #0a0a0f;
+            --bg-surface: #12121a;
+            --bg-card: #1a1a24;
+            --bg-card-hover: #22222e;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255,255,255,0.6);
+            --text-muted: rgba(255,255,255,0.4);
+            --border-default: rgba(255,255,255,0.08);
+            --border-hover: rgba(255,255,255,0.16);
+            --accent: #7c7cff;
+            --accent-light: #9494ff;
+            --accent-muted: rgba(124,124,255,0.15);
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --transition-fast: 150ms ease;
+            --transition-normal: 200ms ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: var(--bg-base);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border-default);
+            backdrop-filter: blur(12px);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: -0.5px;
+        }
+
+        .logo span { color: var(--text-primary); }
+
+        .search-wrapper { flex: 1; max-width: 480px; }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-size: 14px;
+            outline: none;
+            transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+        }
+
+        .search-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-muted);
+        }
+
+        .header-actions { display: flex; align-items: center; gap: 12px; }
+
+        .btn {
+            padding: 8px 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-sm);
+            color: var(--text-secondary);
+            font-size: 13px;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .btn:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            color: var(--text-primary);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #ffffff;
+        }
+
+        .btn-primary:hover { background: var(--accent-light); border-color: var(--accent-light); }
+
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px;
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 24px;
+        }
+
+        .sidebar { position: sticky; top: 80px; height: fit-content; }
+
+        .section-title {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            padding-left: 4px;
+        }
+
+        .category-list { list-style: none; }
+
+        .category-item {
+            padding: 8px 12px;
+            margin-bottom: 4px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-size: 13px;
+            color: var(--text-secondary);
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .category-item:hover { background: var(--bg-card); color: var(--text-primary); }
+        .category-item.active { background: var(--accent-muted); color: var(--accent); }
+
+        .category-count {
+            font-size: 11px;
+            color: var(--text-muted);
+            background: var(--bg-card);
+            padding: 2px 6px;
+            border-radius: 10px;
+            min-width: 24px;
+            text-align: center;
+        }
+
+        .category-item.active .category-count { background: var(--accent); color: #ffffff; }
+
+        .settings-panel {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-default);
+        }
+
+        .setting-row { margin-bottom: 16px; }
+
+        .setting-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .setting-value { font-size: 12px; color: var(--accent); font-family: monospace; }
+
+        .slider {
+            width: 100%;
+            height: 4px;
+            background: var(--bg-card);
+            border-radius: 2px;
+            outline: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            background: var(--accent);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform var(--transition-fast);
+        }
+
+        .slider::-webkit-slider-thumb:hover { transform: scale(1.2); }
+
+        .content-area { min-height: 400px; }
+
+        .stats-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .stats-text { font-size: 13px; color: var(--text-muted); }
+        .stats-text strong { color: var(--text-primary); font-weight: 500; }
+
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 12px;
+        }
+
+        .icon-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .icon-card:hover {
+            border-color: var(--accent);
+            background: var(--bg-card-hover);
+            transform: translateY(-2px);
+        }
+
+        .icon-preview {
+            width: var(--icon-size, 40px);
+            height: var(--icon-size, 40px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--icon-color, var(--text-primary));
+        }
+
+        .icon-preview svg {
+            width: 100%;
+            height: 100%;
+            stroke-width: var(--stroke-width, 2);
+        }
+
+        .icon-name {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-align: center;
+            word-break: break-word;
+            max-width: 100%;
+        }
+
+        .icon-card:hover .icon-name { color: var(--accent); }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+        }
+
+        .empty-state h3 {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+
+        .detail-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity var(--transition-normal), visibility var(--transition-normal);
+        }
+
+        .detail-modal.open { opacity: 1; visibility: visible; }
+
+        .modal-content {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-lg);
+            width: 90%;
+            max-width: 520px;
+            padding: 24px;
+            transform: scale(0.95);
+            transition: transform var(--transition-normal);
+        }
+
+        .detail-modal.open .modal-content { transform: scale(1); }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .modal-title { font-size: 18px; font-weight: 600; color: var(--text-primary); }
+
+        .modal-close {
+            width: 32px;
+            height: 32px;
+            background: var(--bg-card);
+            border: none;
+            border-radius: var(--radius-sm);
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: all var(--transition-fast);
+        }
+
+        .modal-close:hover { background: var(--bg-card-hover); color: var(--text-primary); }
+
+        .detail-icon-preview {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            color: var(--text-primary);
+        }
+
+        .detail-icon-preview svg { width: 100%; height: 100%; padding: 16px; }
+
+        .detail-info { margin-bottom: 20px; }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-default);
+        }
+
+        .info-label { font-size: 13px; color: var(--text-muted); }
+        .info-value { font-size: 13px; color: var(--text-primary); font-family: monospace; }
+
+        .tags-section { margin-bottom: 20px; }
+
+        .tags-title {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .tags-list { display: flex; flex-wrap: wrap; gap: 8px; }
+
+        .tag {
+            padding: 4px 10px;
+            background: var(--accent-muted);
+            border-radius: 12px;
+            font-size: 12px;
+            color: var(--accent);
+        }
+
+        .code-section { margin-bottom: 20px; }
+
+        .code-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .code-title { font-size: 13px; color: var(--text-secondary); }
+
+        .code-block {
+            background: var(--bg-base);
+            border-radius: var(--radius-sm);
+            padding: 12px 16px;
+            font-family: "Fira Code", "Monaco", "Consolas", monospace;
+            font-size: 12px;
+            color: var(--text-primary);
+            overflow-x: auto;
+            border: 1px solid var(--border-default);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 32px 24px;
+            border-top: 1px solid var(--border-default);
+            margin-top: 48px;
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .main-content { grid-template-columns: 1fr; }
+            .sidebar { position: static; }
+            .header-content { flex-direction: column; gap: 12px; }
+            .search-wrapper { width: 100%; max-width: 100%; }
+            .icon-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">LAAP <span>Icon Library</span></div>
+            <div class="search-wrapper">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search icons by name or tags..." autocomplete="off">
+            </div>
+            <div class="header-actions">
+                <button class="btn" id="resetBtn">Reset</button>
+                <button class="btn btn-primary" id="exportBtn">Export All</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <aside class="sidebar">
+            <div>
+                <div class="section-title">Categories</div>
+                <ul class="category-list" id="categoryList">
+                    <li class="category-item active" data-category="all">
+                        <span>All Icons</span>
+                        <span class="category-count" id="allCount">0</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="settings-panel">
+                <div class="section-title">Icon Size</div>
+                <div class="setting-row">
+                    <div class="setting-label">
+                        <span>Size</span>
+                        <span class="setting-value" id="sizeValue">40px</span>
+                    </div>
+                    <input type="range" class="slider" id="sizeSlider" min="16" max="80" value="40" step="4">
+                </div>
+
+                <div class="section-title">Stroke Width</div>
+                <div class="setting-row">
+                    <div class="setting-label">
+                        <span>Width</span>
+                        <span class="setting-value" id="strokeValue">2</span>
+                    </div>
+                    <input type="range" class="slider" id="strokeSlider" min="1" max="4" value="2" step="0.5">
+                </div>
+            </div>
+        </aside>
+
+        <div class="content-area">
+            <div class="stats-bar">
+                <div class="stats-text" id="statsText">Loading icons...</div>
+            </div>
+            <div class="icon-grid" id="iconGrid">
+                <div class="loading">Loading icon library...</div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        LAAP Icon Library | Powered by Lucide Icons | Version 1.0.0
+    </footer>
+
+    <div class="detail-modal" id="detailModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title" id="modalTitle">Icon Details</div>
+                <button class="modal-close" id="modalClose">X</button>
+            </div>
+            <div class="detail-icon-preview" id="detailIconPreview"></div>
+            <div class="detail-info">
+                <div class="info-row">
+                    <span class="info-label">Name</span>
+                    <span class="info-value" id="detailName">icon-name</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Category</span>
+                    <span class="info-value" id="detailCategory">category</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">SVG Size</span>
+                    <span class="info-value">24x24</span>
+                </div>
+            </div>
+            <div class="tags-section">
+                <div class="tags-title">Tags</div>
+                <div class="tags-list" id="detailTags"></div>
+            </div>
+            <div class="code-section">
+                <div class="code-header">
+                    <span class="code-title">HTML</span>
+                    <button class="btn copy-btn" id="copyHtmlBtn">Copy</button>
+                </div>
+                <div class="code-block" id="htmlCode"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const categories = {
+            user: { name: "User/People", count: 18 },
+            layout: { name: "Layout/Editor", count: 30 },
+            action: { name: "Action/Feedback", count: 22 },
+            navigation: { name: "Navigation/Arrow", count: 30 },
+            files: { name: "Files/Storage", count: 25 },
+            media: { name: "Media/Device", count: 28 },
+            communication: { name: "Communication", count: 22 },
+            finance: { name: "Finance/Commerce", count: 25 },
+            map: { name: "Map/Location", count: 20 },
+            text: { name: "Text/Typography", count: 28 },
+            system: { name: "System/Hardware", count: 25 },
+            shapes: { name: "Shapes/Design", count: 20 },
+            accessibility: { name: "Accessibility", count: 15 },
+            social: { name: "Social", count: 22 }
+        };
+
+        const iconMetadata = {};
+        const allIcons = {};
+        let currentCategory = 'all';
+        let searchQuery = '';
+        let iconSize = 40;
+        let strokeWidth = 2;
+
+        function initCategories() {
+            const categoryList = document.getElementById('categoryList');
+            let totalCount = 0;
+
+            for (const [key, value] of Object.entries(categories)) {
+                totalCount += value.count;
+                const li = document.createElement('li');
+                li.className = 'category-item';
+                li.dataset.category = key;
+                li.innerHTML = `<span>${value.name}</span><span class="category-count">${value.count}</span>`;
+                li.addEventListener('click', () => selectCategory(key));
+                categoryList.appendChild(li);
+            }
+
+            document.getElementById('allCount').textContent = totalCount;
+        }
+
+        async function loadIcons() {
+            try {
+                const indexResponse = await fetch('../laap_coding/core/templates/icons/index.json');
+                const indexData = await indexResponse.json();
+
+                if (indexData.icon_metadata) {
+                    Object.assign(iconMetadata, indexData.icon_metadata);
+                }
+
+                const loadingPromises = Object.keys(categories).map(async (category) => {
+                    try {
+                        const response = await fetch(`../laap_coding/core/templates/icons/${category}.json`);
+                        const data = await response.json();
+                        if (data.icons) {
+                            Object.assign(allIcons, data.icons);
+                        }
+                    } catch (e) {
+                        console.warn(`Failed to load ${category}.json`);
+                    }
+                });
+
+                await Promise.all(loadingPromises);
+                renderIcons();
+                document.getElementById('statsText').textContent = `Showing ${Object.keys(allIcons).length} icons`;
+            } catch (error) {
+                console.error('Failed to load icon library:', error);
+                document.getElementById('iconGrid').innerHTML = '<div class="empty-state"><h3>Failed to load icons</h3><p>Please check if the icon files exist</p></div>';
+            }
+        }
+
+        function selectCategory(category) {
+            currentCategory = category;
+            document.querySelectorAll('.category-item').forEach(item => item.classList.remove('active'));
+            document.querySelector(`[data-category="${category}"]`).classList.add('active');
+            renderIcons();
+        }
+
+        function renderIcons() {
+            const grid = document.getElementById('iconGrid');
+            grid.innerHTML = '';
+
+            let filteredIcons = Object.entries(allIcons);
+
+            if (currentCategory !== 'all') {
+                const categoryIcons = categories[currentCategory];
+                if (categoryIcons) {
+                    filteredIcons = filteredIcons.filter(([name]) => {
+                        return name.startsWith(currentCategory) || 
+                               (iconMetadata[name] && iconMetadata[name].tags?.includes(currentCategory));
+                    });
+                }
+            }
+
+            if (searchQuery) {
+                const query = searchQuery.toLowerCase();
+                filteredIcons = filteredIcons.filter(([name]) => {
+                    const metadata = iconMetadata[name];
+                    return name.toLowerCase().includes(query) ||
+                           (metadata && metadata.tags?.some(tag => tag.toLowerCase().includes(query))) ||
+                           (metadata && metadata.aliases?.some(alias => alias.toLowerCase().includes(query)));
+                });
+            }
+
+            if (filteredIcons.length === 0) {
+                grid.innerHTML = '<div class="empty-state"><h3>No icons found</h3><p>Try adjusting your search or category filter</p></div>';
+                return;
+            }
+
+            filteredIcons.forEach(([name, svg]) => {
+                const card = document.createElement('div');
+                card.className = 'icon-card';
+                card.dataset.name = name;
+                card.innerHTML = `
+                    <div class="icon-preview" style="--icon-size: ${iconSize}px; --stroke-width: ${strokeWidth}">${svg}</div>
+                    <div class="icon-name">${name}</div>
+                `;
+                card.addEventListener('click', () => showDetail(name, svg));
+                grid.appendChild(card);
+            });
+
+            document.getElementById('statsText').textContent = `Showing ${filteredIcons.length} icons`;
+        }
+
+        function showDetail(name, svg) {
+            const modal = document.getElementById('detailModal');
+            const metadata = iconMetadata[name] || {};
+            const categoryName = Object.entries(categories).find(([key]) => 
+                name.startsWith(key) || metadata.tags?.includes(key)
+            )?.[1]?.name || 'General';
+
+            document.getElementById('modalTitle').textContent = `Icon: ${name}`;
+            document.getElementById('detailIconPreview').innerHTML = svg;
+            document.getElementById('detailName').textContent = name;
+            document.getElementById('detailCategory').textContent = categoryName;
+
+            const tagsContainer = document.getElementById('detailTags');
+            tagsContainer.innerHTML = '';
+            const tags = metadata.tags || [];
+            tags.forEach(tag => {
+                const span = document.createElement('span');
+                span.className = 'tag';
+                span.textContent = tag;
+                tagsContainer.appendChild(span);
+            });
+
+            const htmlCode = svg.replace(/stroke-width="[^"]*"/g, `stroke-width="${strokeWidth}"`);
+            document.getElementById('htmlCode').textContent = htmlCode;
+
+            modal.classList.add('open');
+        }
+
+        function closeModal() {
+            document.getElementById('detailModal').classList.remove('open');
+        }
+
+        async function copyToClipboard(text) {
+            try {
+                await navigator.clipboard.writeText(text);
+                alert('Copied to clipboard!');
+            } catch (err) {
+                console.error('Failed to copy:', err);
+            }
+        }
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            renderIcons();
+        });
+
+        document.getElementById('resetBtn').addEventListener('click', () => {
+            searchQuery = '';
+            document.getElementById('searchInput').value = '';
+            selectCategory('all');
+            iconSize = 40;
+            strokeWidth = 2;
+            document.getElementById('sizeSlider').value = 40;
+            document.getElementById('strokeSlider').value = 2;
+            document.getElementById('sizeValue').textContent = '40px';
+            document.getElementById('strokeValue').textContent = '2';
+            renderIcons();
+        });
+
+        document.getElementById('sizeSlider').addEventListener('input', (e) => {
+            iconSize = parseInt(e.target.value);
+            document.getElementById('sizeValue').textContent = `${iconSize}px`;
+            renderIcons();
+        });
+
+        document.getElementById('strokeSlider').addEventListener('input', (e) => {
+            strokeWidth = parseFloat(e.target.value);
+            document.getElementById('strokeValue').textContent = strokeWidth;
+            renderIcons();
+        });
+
+        document.getElementById('modalClose').addEventListener('click', closeModal);
+        document.getElementById('detailModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('detailModal')) {
+                closeModal();
+            }
+        });
+
+        document.getElementById('copyHtmlBtn').addEventListener('click', () => {
+            const code = document.getElementById('htmlCode').textContent;
+            copyToClipboard(code);
+        });
+
+        document.getElementById('exportBtn').addEventListener('click', () => {
+            const data = JSON.stringify({
+                icons: allIcons,
+                metadata: iconMetadata,
+                categories
+            }, null, 2);
+            const blob = new Blob([data], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'laap-icon-library.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        });
+
+        initCategories();
+        loadIcons();
+    </script>
+</body>
+</html>

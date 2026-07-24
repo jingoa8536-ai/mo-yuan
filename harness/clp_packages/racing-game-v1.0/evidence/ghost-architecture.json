@@ -1,0 +1,77 @@
+{
+  "$schema": "https://laap.harness/protocol/v1.0/evidence.json",
+  "component_id": "ghost-system",
+  "evidence_type": "architecture_analysis",
+  "extraction_date": "2026-07-05",
+
+  "source_bundle": {
+    "path": "D:/LAAP/_apex_assets/index-BHLGw_OM.js",
+    "extraction_method": "subagent reverse engineering + manual verification"
+  },
+
+  "ghost_system_summary": {
+    "original_site_has_ghost": true,
+    "original_site_has_ai_opponents": false,
+    "ghost_purpose": "玩家最佳圈录制/回放，替代 AI 对手",
+    "persistence": "localStorage"
+  },
+
+  "identified_classes": {
+    "RT_O": {
+      "role": "GhostRecorder",
+      "methods": ["startLap", "record", "finishLap"],
+      "frame_format": "{ position, quaternion, speed, timestamp }"
+    },
+    "s9": {
+      "role": "GhostPlayer",
+      "methods": ["load", "play", "stop", "update"],
+      "interpolation": "linear"
+    }
+  },
+
+  "persistence_functions": {
+    "saveGhost": "保存到 localStorage",
+    "loadGhost": "从 localStorage 加载",
+    "key_format": "apex_ghost_<trackId>"
+  },
+
+  "missing_features_in_replica": [
+    {
+      "feature": "ghost 哈希签名",
+      "purpose": "防作弊，确保 Ghost 数据未被篡改",
+      "priority": "low"
+    },
+    {
+      "feature": "challenge ghost UI",
+      "purpose": "向他人发起挑战，分享 Ghost 数据",
+      "priority": "medium"
+    },
+    {
+      "feature": "ghost 分享 URL",
+      "purpose": "通过 URL 分享 Ghost 数据",
+      "priority": "medium"
+    }
+  ],
+
+  "frame_rate": {
+    "record_hz": 60,
+    "playback_hz": 60,
+    "interpolation": "linear (frame-to-frame)"
+  },
+
+  "replica_implementation": {
+    "file": "D:/ai-website-cloner-template-master/src/lib/racing/ghost.ts",
+    "lines_of_code": 220,
+    "classes_implemented": ["GhostRecorder", "GhostPlayer"],
+    "functions_implemented": ["saveGhostToLocal", "loadGhostFromLocal"],
+    "render_component": "D:/ai-website-cloner-template-master/src/components/three/GhostVehicle.tsx",
+    "verified_working": true
+  },
+
+  "verification": {
+    "playwright_test_passed": true,
+    "ghost_recording_persists_across_sessions": true,
+    "ghost_playback_synchronized_with_racing_phase": true,
+    "ghost_vehicle_renders_semi_transparent": true
+  }
+}

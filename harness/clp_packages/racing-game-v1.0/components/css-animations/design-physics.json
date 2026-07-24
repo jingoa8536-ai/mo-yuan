@@ -1,0 +1,47 @@
+{
+  "$schema": "https://laap.harness/protocol/v1.0/design-physics.json",
+  "component_id": "keyframes-pack",
+
+  "extraction_method": {
+    "tool": "PowerShell regex",
+    "source_file": "D:/LAAP/_apex_assets/index-BDb15dJl.css",
+    "pattern": "@keyframes\\s+([a-zA-Z0-9_-]+)\\s*\\{([\\s\\S]*?)\\}",
+    "extracted_count": 22,
+    "verification": "1:1 with original CSS, no modification"
+  },
+
+  "color_palette": {
+    "background": "#0c1219",
+    "primary": "#3683ff",
+    "accent": "#ffd76a",
+    "destructive": "#ff6b6b",
+    "hud_text": "rgba(245, 236, 228, 0.96)",
+    "hud_muted": "rgba(245, 236, 228, 0.48)",
+    "hud_shell": "rgba(18, 9, 7, 0.88)"
+  },
+
+  "font_stack": {
+    "display": "Exo 2",
+    "racing": "Oxanium, Rajdhani",
+    "stats": "Electrolize, Azeret Mono",
+    "time": "JetBrains Mono, IBM Plex Mono",
+    "ui": "Chakra Petch, Inter"
+  },
+
+  "keyframes_categories": {
+    "hud": ["racing-hud-rise", "racing-hud-blink", "racing-waiting-pulse"],
+    "home": ["home-corner-panel-rise", "home-lb-row-in", "home-live-pulse"],
+    "lobby": ["lobby-backdrop-in", "lobby-pulse", "lobby-window-in"],
+    "menu": ["settings-panel-rise", "splash-loading-dot"],
+    "notification": ["notif-pop", "pm-fade-in", "pm-flash", "pm-saved-toast"],
+    "race": ["race-chat-in", "replay-overlay-fade", "replay-rec-pulse"],
+    "ui_element": ["clock-blink", "thumb-frame-breathe", "thumb-img-compensate", "wheel-spin"]
+  },
+
+  "evidence": {
+    "bundle_file": "D:/LAAP/_apex_assets/index-BDb15dJl.css",
+    "bundle_size_bytes": "approximately 380KB",
+    "extraction_date": "2026-07-05",
+    "verified_against": "D:/ai-website-cloner-template-master/docs/apex-css-evidence.md"
+  }
+}

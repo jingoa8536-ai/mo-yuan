@@ -16,8 +16,6 @@ P1-2: 让 Aris 拥有主动设计学习路径的能力。
 
 from __future__ import annotations
 
-import os
-
 import logging
 
 import json, math, time, random, logging, uuid
@@ -654,8 +652,7 @@ class CurriculumEngine:
             "active_path": self.active_path,
         }
 
-    def save(self, path: str = None):
-        path = path or os.environ.get("LAAP_STATE_PATH", "./agi_state/curriculum.json")
+    def save(self, path: str = "D:/LAAP/aris_brain/state/curriculum.json"):
         """持久化课程学习状态"""
         data = {
             "mastery": {k: v.to_dict() for k, v in self.mastery.items()},
@@ -669,8 +666,7 @@ class CurriculumEngine:
                               encoding="utf-8")
         logger.info(f"[CurriculumEngine] 保存到 {path}")
 
-    def load(self, path: str = None):
-        path = path or os.environ.get("LAAP_STATE_PATH", "./agi_state/curriculum.json")
+    def load(self, path: str = "D:/LAAP/aris_brain/state/curriculum.json"):
         """加载课程学习状态"""
         p = Path(path)
         if not p.exists():

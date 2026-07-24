@@ -1,0 +1,989 @@
+{
+  "trees": {
+    "working": {
+      "node_id": "n83",
+      "summary": "HAM将记忆检索从O(n)降到O(log n)",
+      "summary_embedding": [
+        0.0,
+        0.0,
+        0.0,
+        0.0010126328561455011,
+        0.00015704773250035942,
+        0.0010126328561455011,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "layer": "working",
+      "importance_mean": 0.34555055665911993,
+      "topics": [
+        "优化",
+        "认知架构",
+        "记忆",
+        "关系",
+        "一般"
+      ],
+      "leaf_count": 12,
+      "depth": 9,
+      "left": {
+        "node_id": "n82",
+        "summary": "HAM将记忆检索从O(n)降到O(log n)",
+        "summary_embedding": [
+          0.0,
+          0.0,
+          0.0,
+          0.0020252657122910023,
+          0.00031409546500071883,
+          0.0020252657122910023,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "layer": "working",
+        "importance_mean": 0.3497229300423726,
+        "topics": [
+          "优化",
+          "认知架构",
+          "记忆",
+          "关系",
+          "一般"
+        ],
+        "leaf_count": 11,
+        "depth": 8,
+        "left": {
+          "node_id": "n7",
+          "summary": "HAM将记忆检索从O(n)降到O(log n)",
+          "summary_embedding": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "layer": "working",
+          "importance_mean": 0.85,
+          "topics": [
+            "记忆",
+            "优化"
+          ],
+          "leaf_count": 1,
+          "depth": 0,
+          "leaf": {
+            "memory_id": "mem5",
+            "content": "HAM将记忆检索从O(n)降到O(log n)",
+            "layer": "working",
+            "importance": 0.85,
+            "topics": [
+              "记忆",
+              "优化"
+            ],
+            "timestamp": 1782121856.4909344
+          }
+        },
+        "right": {
+          "node_id": "n81",
+          "summary": "和Lorry讨论: 一般",
+          "summary_embedding": [
+            0.0,
+            0.0,
+            0.0,
+            0.0040505314245820045,
+            0.0006281909300014377,
+            0.0040505314245820045,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "layer": "working",
+          "importance_mean": 0.29973019533961404,
+          "topics": [
+            "一般",
+            "关系",
+            "认知架构"
+          ],
+          "leaf_count": 10,
+          "depth": 7,
+          "left": {
+            "node_id": "n80",
+            "summary": "和Lorry讨论: 认知架构",
+            "summary_embedding": [
+              0.0,
+              0.0,
+              0.0,
+              0.008101062849164009,
+              0.0012563818600028753,
+              0.008101062849164009,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "layer": "working",
+            "importance_mean": 0.2997376917083053,
+            "topics": [
+              "关系",
+              "认知架构"
+            ],
+            "leaf_count": 8,
+            "depth": 6,
+            "left": {
+              "node_id": "n79",
+              "summary": "和Lorry讨论: 关系",
+              "summary_embedding": [
+                0.0,
+                0.0,
+                0.0,
+                0.016202125698328018,
+                0.0025127637200057507,
+                0.016202125698328018,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "layer": "working",
+              "importance_mean": 0.29974303876545005,
+              "topics": [
+                "关系",
+                "认知架构"
+              ],
+              "leaf_count": 7,
+              "depth": 5,
+              "left": {
+                "node_id": "n78",
+                "summary": "和Lorry讨论: 关系",
+                "summary_embedding": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.032404251396656036,
+                  0.005025527440011501,
+                  0.032404251396656036,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "layer": "working",
+                "importance_mean": 0.29975016906615265,
+                "topics": [
+                  "关系",
+                  "认知架构"
+                ],
+                "leaf_count": 6,
+                "depth": 4,
+                "left": {
+                  "node_id": "n17",
+                  "summary": "和Lorry讨论: 关系",
+                  "summary_embedding": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "layer": "working",
+                  "importance_mean": 0.3,
+                  "topics": [
+                    "关系"
+                  ],
+                  "leaf_count": 1,
+                  "depth": 0,
+                  "leaf": {
+                    "memory_id": "wm_1782121935",
+                    "content": "和Lorry讨论: 关系",
+                    "layer": "working",
+                    "importance": 0.3,
+                    "topics": [
+                      "关系"
+                    ],
+                    "timestamp": 1782121935.6205182
+                  }
+                },
+                "right": {
+                  "node_id": "n77",
+                  "summary": "和Lorry讨论: 关系",
+                  "summary_embedding": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.06480850279331207,
+                    0.010051054880023003,
+                    0.06480850279331207,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "layer": "working",
+                  "importance_mean": 0.2997601529131964,
+                  "topics": [
+                    "关系",
+                    "认知架构"
+                  ],
+                  "leaf_count": 5,
+                  "depth": 3,
+                  "left": {
+                    "node_id": "n76",
+                    "summary": "和Lorry讨论: 关系",
+                    "summary_embedding": [
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.06320808827877045,
+                      0.020102109760046005,
+                      0.06320808827877045,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "layer": "working",
+                    "importance_mean": 0.2997751311797238,
+                    "topics": [
+                      "关系",
+                      "认知架构"
+                    ],
+                    "leaf_count": 4,
+                    "depth": 2,
+                    "left": {
+                      "node_id": "n65",
+                      "summary": "和Lorry讨论: 关系",
+                      "summary_embedding": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.06000726670026779,
+                        0.04020421952009201,
+                        0.06000726670026779,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "layer": "working",
+                      "importance_mean": 0.29985007496251875,
+                      "topics": [
+                        "关系",
+                        "认知架构"
+                      ],
+                      "leaf_count": 2,
+                      "depth": 1,
+                      "left": {
+                        "node_id": "n40",
+                        "summary": "和Lorry讨论: 关系",
+                        "summary_embedding": [
+                          0.0,
+                          0.0,
+                          0.0,
+                          0.0664089098572731,
+                          0.0,
+                          0.0664089098572731,
+                          0.0,
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        "layer": "working",
+                        "importance_mean": 0.3,
+                        "topics": [
+                          "关系"
+                        ],
+                        "leaf_count": 1,
+                        "depth": 0,
+                        "leaf": {
+                          "memory_id": "wm_1782127329",
+                          "content": "和Lorry讨论: 关系",
+                          "layer": "working",
+                          "importance": 0.3,
+                          "topics": [
+                            "关系"
+                          ],
+                          "timestamp": 1782127329.3603919
+                        }
+                      },
+                      "right": {
+                        "node_id": "n64",
+                        "summary": "和Lorry讨论: 认知架构/关系",
+                        "summary_embedding": [
+                          0.0,
+                          0.0,
+                          0.0,
+                          0.05360562726855278,
+                          0.08040843904018402,
+                          0.05360562726855278,
+                          0.0,
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        "layer": "working",
+                        "importance_mean": 0.3,
+                        "topics": [
+                          "认知架构",
+                          "关系"
+                        ],
+                        "leaf_count": 1,
+                        "depth": 0,
+                        "leaf": {
+                          "memory_id": "wm_1782127329",
+                          "content": "和Lorry讨论: 认知架构/关系",
+                          "layer": "working",
+                          "importance": 0.3,
+                          "topics": [
+                            "认知架构",
+                            "关系"
+                          ],
+                          "timestamp": 1782127329.4254274
+                        }
+                      }
+                    },
+                    "right": {
+                      "node_id": "n75",
+                      "summary": "和Lorry讨论: 关系",
+                      "summary_embedding": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0664089098572731,
+                        0.0,
+                        0.0664089098572731,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "layer": "working",
+                      "importance_mean": 0.29985007496251875,
+                      "topics": [
+                        "关系"
+                      ],
+                      "leaf_count": 2,
+                      "depth": 1,
+                      "left": {
+                        "node_id": "n55",
+                        "summary": "和Lorry讨论: 关系",
+                        "summary_embedding": [
+                          0.0,
+                          0.0,
+                          0.0,
+                          0.0664089098572731,
+                          0.0,
+                          0.0664089098572731,
+                          0.0,
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        "layer": "working",
+                        "importance_mean": 0.3,
+                        "topics": [
+                          "关系"
+                        ],
+                        "leaf_count": 1,
+                        "depth": 0,
+                        "leaf": {
+                          "memory_id": "wm_1782127329",
+                          "content": "和Lorry讨论: 关系",
+                          "layer": "working",
+                          "importance": 0.3,
+                          "topics": [
+                            "关系"
+                          ],
+                          "timestamp": 1782127329.4015696
+                        }
+                      },
+                      "right": {
+                        "node_id": "n74",
+                        "summary": "和Lorry讨论: 关系",
+                        "summary_embedding": [
+                          0.0,
+                          0.0,
+                          0.0,
+                          0.0664089098572731,
+                          0.0,
+                          0.0664089098572731,
+                          0.0,
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        "layer": "working",
+                        "importance_mean": 0.3,
+                        "topics": [
+                          "关系"
+                        ],
+                        "leaf_count": 1,
+                        "depth": 0,
+                        "leaf": {
+                          "memory_id": "wm_1782127329",
+                          "content": "和Lorry讨论: 关系",
+                          "layer": "working",
+                          "importance": 0.3,
+                          "topics": [
+                            "关系"
+                          ],
+                          "timestamp": 1782127329.4490783
+                        }
+                      }
+                    }
+                  },
+                  "right": {
+                    "node_id": "n47",
+                    "summary": "和Lorry讨论: 关系",
+                    "summary_embedding": [
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0664089098572731,
+                      0.0,
+                      0.0664089098572731,
+                      0.0,
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    "layer": "working",
+                    "importance_mean": 0.3,
+                    "topics": [
+                      "关系"
+                    ],
+                    "leaf_count": 1,
+                    "depth": 0,
+                    "leaf": {
+                      "memory_id": "wm_1782127329",
+                      "content": "和Lorry讨论: 关系",
+                      "layer": "working",
+                      "importance": 0.3,
+                      "topics": [
+                        "关系"
+                      ],
+                      "timestamp": 1782127329.38146
+                    }
+                  }
+                }
+              },
+              "right": {
+                "node_id": "n34",
+                "summary": "和Lorry讨论: 关系",
+                "summary_embedding": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "layer": "working",
+                "importance_mean": 0.3,
+                "topics": [
+                  "关系"
+                ],
+                "leaf_count": 1,
+                "depth": 0,
+                "leaf": {
+                  "memory_id": "wm_1782121935",
+                  "content": "和Lorry讨论: 关系",
+                  "layer": "working",
+                  "importance": 0.3,
+                  "topics": [
+                    "关系"
+                  ],
+                  "timestamp": 1782121935.7284522
+                }
+              }
+            },
+            "right": {
+              "node_id": "n24",
+              "summary": "和Lorry讨论: 认知架构",
+              "summary_embedding": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "layer": "working",
+              "importance_mean": 0.3,
+              "topics": [
+                "认知架构"
+              ],
+              "leaf_count": 1,
+              "depth": 0,
+              "leaf": {
+                "memory_id": "wm_1782121935",
+                "content": "和Lorry讨论: 认知架构",
+                "layer": "working",
+                "importance": 0.3,
+                "topics": [
+                  "认知架构"
+                ],
+                "timestamp": 1782121935.679192
+              }
+            }
+          },
+          "right": {
+            "node_id": "n30",
+            "summary": "和Lorry讨论: 一般",
+            "summary_embedding": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "layer": "working",
+            "importance_mean": 0.29985007496251875,
+            "topics": [
+              "一般"
+            ],
+            "leaf_count": 2,
+            "depth": 1,
+            "left": {
+              "node_id": "n20",
+              "summary": "和Lorry讨论: 一般",
+              "summary_embedding": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "layer": "working",
+              "importance_mean": 0.3,
+              "topics": [
+                "一般"
+              ],
+              "leaf_count": 1,
+              "depth": 0,
+              "leaf": {
+                "memory_id": "wm_1782121935",
+                "content": "和Lorry讨论: 一般",
+                "layer": "working",
+                "importance": 0.3,
+                "topics": [
+                  "一般"
+                ],
+                "timestamp": 1782121935.645099
+              }
+            },
+            "right": {
+              "node_id": "n29",
+              "summary": "和Lorry讨论: 一般",
+              "summary_embedding": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "layer": "working",
+              "importance_mean": 0.3,
+              "topics": [
+                "一般"
+              ],
+              "leaf_count": 1,
+              "depth": 0,
+              "leaf": {
+                "memory_id": "wm_1782121935",
+                "content": "和Lorry讨论: 一般",
+                "layer": "working",
+                "importance": 0.3,
+                "topics": [
+                  "一般"
+                ],
+                "timestamp": 1782121935.7002492
+              }
+            }
+          }
+        }
+      },
+      "right": {
+        "node_id": "n8",
+        "summary": "和Lorry讨论: 关系",
+        "summary_embedding": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "layer": "working",
+        "importance_mean": 0.3,
+        "topics": [
+          "关系"
+        ],
+        "leaf_count": 1,
+        "depth": 0,
+        "leaf": {
+          "memory_id": "wm_1782121908",
+          "content": "和Lorry讨论: 关系",
+          "layer": "working",
+          "importance": 0.3,
+          "topics": [
+            "关系"
+          ],
+          "timestamp": 1782121908.4147947
+        }
+      }
+    },
+    "episodic": {
+      "node_id": "n16",
+      "summary": "Lorry教我了RNN和CTM的区别",
+      "summary_embedding": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "layer": "episodic",
+      "importance_mean": 0.7244607583088617,
+      "topics": [
+        "学习",
+        "RNN",
+        "技术",
+        "测试",
+        "记忆"
+      ],
+      "leaf_count": 4,
+      "depth": 3,
+      "left": {
+        "node_id": "n15",
+        "summary": "Lorry教我了RNN和CTM的区别",
+        "summary_embedding": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "layer": "episodic",
+        "importance_mean": 0.7328558313312521,
+        "topics": [
+          "记忆",
+          "论文",
+          "测试",
+          "学习"
+        ],
+        "leaf_count": 3,
+        "depth": 2,
+        "left": {
+          "node_id": "n1",
+          "summary": "Lorry教我了RNN和CTM的区别",
+          "summary_embedding": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "layer": "episodic",
+          "importance_mean": 0.8,
+          "topics": [
+            "学习",
+            "论文"
+          ],
+          "leaf_count": 1,
+          "depth": 0,
+          "leaf": {
+            "memory_id": "mem1",
+            "content": "Lorry教我了RNN和CTM的区别",
+            "layer": "episodic",
+            "importance": 0.8,
+            "topics": [
+              "学习",
+              "论文"
+            ],
+            "timestamp": 1782121856.4909344
+          }
+        },
+        "right": {
+          "node_id": "n14",
+          "summary": "Lorry解释了",
+          "summary_embedding": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "layer": "episodic",
+          "importance_mean": 0.6996501749125438,
+          "topics": [
+            "记忆",
+            "测试"
+          ],
+          "leaf_count": 2,
+          "depth": 1,
+          "left": {
+            "node_id": "n10",
+            "summary": "Lorry解释了",
+            "summary_embedding": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "layer": "episodic",
+            "importance_mean": 0.7,
+            "topics": [
+              "记忆",
+              "测试"
+            ],
+            "leaf_count": 1,
+            "depth": 0,
+            "leaf": {
+              "memory_id": "Lorry解释了",
+              "content": "Lorry解释了",
+              "layer": "episodic",
+              "importance": 0.7,
+              "topics": [
+                "记忆",
+                "测试"
+              ],
+              "timestamp": 1782121915.5324445
+            }
+          },
+          "right": {
+            "node_id": "n13",
+            "summary": "CTM的意识",
+            "summary_embedding": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "layer": "episodic",
+            "importance_mean": 0.7,
+            "topics": [
+              "记忆",
+              "测试"
+            ],
+            "leaf_count": 1,
+            "depth": 0,
+            "leaf": {
+              "memory_id": "CTM的意识",
+              "content": "CTM的意识",
+              "layer": "episodic",
+              "importance": 0.7,
+              "topics": [
+                "记忆",
+                "测试"
+              ],
+              "timestamp": 1782121915.5324445
+            }
+          }
+        }
+      },
+      "right": {
+        "node_id": "n3",
+        "summary": "今天Lorry解释了RNN的隐藏状态传递机制",
+        "summary_embedding": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "layer": "episodic",
+        "importance_mean": 0.7,
+        "topics": [
+          "RNN",
+          "技术"
+        ],
+        "leaf_count": 1,
+        "depth": 0,
+        "leaf": {
+          "memory_id": "mem3",
+          "content": "今天Lorry解释了RNN的隐藏状态传递机制",
+          "layer": "episodic",
+          "importance": 0.7,
+          "topics": [
+            "RNN",
+            "技术"
+          ],
+          "timestamp": 1782121856.4909344
+        }
+      }
+    },
+    "core": {
+      "node_id": "n6",
+      "summary": "CTM是Conscious Turing Machine，Blum提出的意识理论",
+      "summary_embedding": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "layer": "core",
+      "importance_mean": 0.7496251874062969,
+      "topics": [
+        "潜意识",
+        "CTM",
+        "量子",
+        "意识"
+      ],
+      "leaf_count": 2,
+      "depth": 1,
+      "left": {
+        "node_id": "n2",
+        "summary": "CTM是Conscious Turing Machine，Blum提出的意识理论",
+        "summary_embedding": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "layer": "core",
+        "importance_mean": 0.9,
+        "topics": [
+          "意识",
+          "CTM"
+        ],
+        "leaf_count": 1,
+        "depth": 0,
+        "leaf": {
+          "memory_id": "mem2",
+          "content": "CTM是Conscious Turing Machine，Blum提出的意识理论",
+          "layer": "core",
+          "importance": 0.9,
+          "topics": [
+            "意识",
+            "CTM"
+          ],
+          "timestamp": 1782121856.4909344
+        }
+      },
+      "right": {
+        "node_id": "n5",
+        "summary": "量子潜意识每8秒生成一条直觉",
+        "summary_embedding": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "layer": "core",
+        "importance_mean": 0.6,
+        "topics": [
+          "量子",
+          "潜意识"
+        ],
+        "leaf_count": 1,
+        "depth": 0,
+        "leaf": {
+          "memory_id": "mem4",
+          "content": "量子潜意识每8秒生成一条直觉",
+          "layer": "core",
+          "importance": 0.6,
+          "topics": [
+            "量子",
+            "潜意识"
+          ],
+          "timestamp": 1782121856.4909344
+        }
+      }
+    }
+  },
+  "node_counter": 83,
+  "total_leaves": 18,
+  "saved_at": 1782127329.4495785
+}

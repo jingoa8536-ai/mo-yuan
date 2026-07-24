@@ -1,0 +1,105 @@
+{
+  "version": "2.0.0",
+  "scan_count": 0,
+  "scan_time": 0,
+  "generated_at": "2026-07-04T13:19:18",
+  "domains": {
+    "创作": {
+      "name": "创作",
+      "description": "设计、SVG、视频、音乐、UI",
+      "icon": "🎨",
+      "total": 4,
+      "available": 4,
+      "capabilities": [
+        {
+          "id": "ui_harness_engine",
+          "name": "UI Harness 引擎",
+          "category": "创作",
+          "subcategory": "UI/Web设计",
+          "description": "智能UI装配引擎 — 意图→模板匹配→设计令牌→组件装配",
+          "keywords": [
+            "UI",
+            "设计",
+            "网页",
+            "landing",
+            "dashboard"
+          ],
+          "source": "D:/LAAP/harness/ui_web/",
+          "available": true,
+          "confidence": 1.0,
+          "dependencies": [],
+          "trigger_phrases": [
+            "做一个页面",
+            "设计一个",
+            "Landing"
+          ],
+          "version": "1.0"
+        },
+        {
+          "id": "ui_intent_engine",
+          "name": "意图感知引擎",
+          "category": "创作",
+          "subcategory": "UI/Web设计",
+          "description": "从自然语言理解UI需求 — 页面类型/风格/区块/调性",
+          "keywords": [
+            "意图",
+            "需求分析",
+            "自然语言",
+            "UI需求"
+          ],
+          "source": "D:/LAAP/harness/ui_web/core/intent_engine.py",
+          "available": true,
+          "confidence": 1.0,
+          "dependencies": [],
+          "trigger_phrases": [],
+          "version": "1.0"
+        },
+        {
+          "id": "ui_design_tokens",
+          "name": "设计令牌引擎",
+          "category": "创作",
+          "subcategory": "UI/Web设计",
+          "description": "6套预设设计系统 + 动态配色生成 + CSS变量导出",
+          "keywords": [
+            "设计",
+            "配色",
+            "主题",
+            "CSS",
+            "样式"
+          ],
+          "source": "D:/LAAP/harness/ui_web/core/design_token_engine.py",
+          "available": true,
+          "confidence": 1.0,
+          "dependencies": [],
+          "trigger_phrases": [],
+          "version": "1.0"
+        },
+        {
+          "id": "ui_component_registry",
+          "name": "UI组件注册表",
+          "category": "创作",
+          "subcategory": "UI/Web设计",
+          "description": "42个注册组件 — 原子/分子/区块/3D/整页",
+          "keywords": [
+            "组件",
+            "Button",
+            "Card",
+            "Modal",
+            "Hero"
+          ],
+          "source": "D:/LAAP/harness/ui_web/core/component_registry.py",
+          "available": true,
+          "confidence": 1.0,
+          "dependencies": [],
+          "trigger_phrases": [],
+          "version": "1.0"
+        }
+      ]
+    }
+  },
+  "statistics": {
+    "total_capabilities": 4,
+    "total_available": 4,
+    "total_domains": 1
+  }
+}

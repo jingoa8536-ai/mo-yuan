@@ -1,0 +1,747 @@
+2026-07-24 10:38:14,097 [INFO] Pre-warming LAAP cognitive engines...
+2026-07-24 10:38:14,102 [INFO] 📋 身份加载: v2 | Aris
+2026-07-24 10:38:14,102 [INFO] 📋 身份核心: v2 | 启动: #11 | 情感: ? | 自我: 0.50
+2026-07-24 10:38:14,106 [INFO] [ChromaDB] sentence_transformers 不可用，使用 ChromaDB 默认 ONNX embedding
+2026-07-24 10:38:14,715 [INFO] [ChromaDB] 已初始化
+2026-07-24 10:38:14,928 [INFO] [MemoryStore] ChromaDB 向量引擎就绪 (384维 all-MiniLM-L6-v2)
+2026-07-24 10:38:14,931 [INFO] 📚 记忆: 0条 (0核心/0情景/0工作)
+2026-07-24 10:38:14,969 [INFO] [OK] Registered 21 Browser tools
+2026-07-24 10:38:14,981 [WARNING] No API key for openai (set OPENAI_API_KEY). LLM calls will fail.
+2026-07-24 10:38:15,279 [INFO] Rust module not compiled — using pure Python fallback
+2026-07-24 10:38:15,332 [INFO] Code engine unavailable: No module named 'code_bridge'
+2026-07-24 10:38:15,333 [INFO] [UnifiedWorldModel] 'unified-world' v2.0.0 初始化完成
+2026-07-24 10:38:15,333 [INFO] WorldModel loaded
+2026-07-24 10:38:15,333 [INFO] [UnifiedCausalEngine] 初始化完成 dim=64
+2026-07-24 10:38:15,333 [INFO] CausalEngine loaded
+2026-07-24 10:38:15,335 [INFO] [MetaLearningEngine] 初始化完成
+2026-07-24 10:38:15,336 [INFO] MetaLearning loaded
+2026-07-24 10:38:15,338 [INFO] [CurriculumEngine] 初始化完成, 18 个概念
+2026-07-24 10:38:15,338 [INFO] Curriculum loaded
+2026-07-24 10:38:15,338 [INFO] LAAP modules: ['world_model', 'entity_type', 'relation_type', 'causal', 'meta_learning', 'curriculum']
+2026-07-24 10:38:15,340 [INFO] [UnifiedPerception] 初始化完成, 8 感官通道
+2026-07-24 10:38:15,340 [INFO] PerceptionEngine loaded
+2026-07-24 10:38:15,342 [INFO] [ASISafety] 初始化完成, 5 条核心价值
+2026-07-24 10:38:15,342 [INFO] SafetyEngine loaded
+2026-07-24 10:38:15,342 [WARNING] CodeGraph DB not found: C:\OH-WorkSpace\laap-AGI\aris_brain\.codegraph\codegraph.db
+2026-07-24 10:38:15,342 [WARNING] CodeGraph DB not found: C:\OH-WorkSpace\laap-AGI\laap\.codegraph\codegraph.db
+2026-07-24 10:38:15,342 [INFO] LAAPCodeGraph 构建完成: 0实体, 0关系, 0.0s
+2026-07-24 10:38:15,343 [INFO] TaskSupervisor loaded: 0 active tasks
+2026-07-24 10:38:15,343 [INFO] ProjectPlanner loaded: 0 projects found
+2026-07-24 10:38:15,346 [INFO] 🧬 人格: {'neuroticism': 0.35, 'extraversion': 0.55, 'openness': 0.85, 'agreeableness': 0.75, 'conscientiousness': 0.6}
+2026-07-24 10:38:15,346 [INFO] EmotionEngine loaded (✓ 七情六欲 + 马斯洛需求)
+2026-07-24 10:38:15,348 [INFO] ==================================================
+2026-07-24 10:38:15,348 [INFO] Aris V12.5 — 量子马尔科夫生成引擎
+2026-07-24 10:38:15,348 [INFO] 零LLM · 无限生成 · V12.1语义核深度融合
+2026-07-24 10:38:15,348 [INFO] ==================================================
+2026-07-24 10:38:15,348 [INFO] 
+[1/4] 加载V12.1语义核...
+2026-07-24 10:38:15,546 [INFO] [V12] Loaded cached projection from C:\OH-WorkSpace\laap-AGI\aris_brain\state\v12_projection.npz (n_calls=0)
+2026-07-24 10:38:15,602 [INFO] [V12] Pre-computed 87 DB vectors in 55.7ms
+2026-07-24 10:38:15,602 [INFO] [V12Core] ✓ V12.1语义核就绪 (87话题)
+2026-07-24 10:38:15,602 [INFO] [2/4] 加载马尔科夫链...
+2026-07-24 10:38:15,603 [INFO] [3/4] 加载PSI情绪调制器...
+2026-07-24 10:38:15,604 [INFO] [4/4] 构建快速路径缓存...
+2026-07-24 10:38:15,604 [INFO] 
+✅ V12.5引擎就绪 (255ms)
+2026-07-24 10:38:15,604 [INFO] V12.5 engine loaded for subconscious
+2026-07-24 10:38:15,604 [INFO] QuantumSubconscious initialized (interval=8.0s)
+2026-07-24 10:38:15,604 [INFO] Subconscious thread started
+2026-07-24 10:38:15,604 [INFO] Quantum subconscious started
+2026-07-24 10:38:15,605 [INFO] AutoLearner loaded
+2026-07-24 10:38:15,611 [INFO] CTM v2 Processor initialized: 4-level hierarchy + 3 nested Markov blankets
+2026-07-24 10:38:15,611 [INFO] CTM World Processor loaded
+2026-07-24 10:38:15,613 [INFO] HAM Tree initialized (dim=64)
+2026-07-24 10:38:15,613 [INFO] HAM Memory Augmenter initialized
+2026-07-24 10:38:15,613 [INFO] HAM Memory Augmenter loaded
+2026-07-24 10:38:15,615 [INFO] Triple Pipeline Router initialized
+2026-07-24 10:38:15,616 [INFO] RetNet Triple Pipeline Router loaded
+2026-07-24 10:38:15,639 [INFO] [Ψ-Semiotics] 引擎初始化 dim=1024
+2026-07-24 10:38:15,639 [INFO] [Ψ] 引擎初始化 dim=1024, 符号数=10
+2026-07-24 10:38:15,640 [INFO] [Ψ] 编码器初始化 dim=1024
+2026-07-24 10:38:15,671 [INFO] [Ψ] 自检通过: 14符号, 类比强度=0.9842
+2026-07-24 10:38:16,016 [INFO] [Ψ-集成] V12 密集核加载 ✓ (dim=?)
+2026-07-24 10:38:16,036 [INFO] [Ψ-Semiotics] 引擎初始化 dim=1024
+2026-07-24 10:38:16,036 [INFO] [Ψ-集成] Ψ-Semiotics 引擎加载 ✓ (10 符号)
+2026-07-24 10:38:16,038 [INFO] [Ψ-集成] HoTT 类型系统加载 ✓
+2026-07-24 10:38:16,038 [INFO] [Ψ-集成] V12=✓ Ψ=✓ HoTT=✓
+2026-07-24 10:38:16,038 [INFO] Ψ-Semiotics loaded: V12=True, Engine=True
+2026-07-24 10:38:16,044 [INFO] Loaded config from C:\OH-WorkSpace\laap-AGI\laap\laap_tools\llm_tamer\config.yaml
+2026-07-24 10:38:16,044 [INFO] CognitiveBiasComputer: loaded 0 token groups
+2026-07-24 10:38:16,044 [INFO] LLMTamer initialized (bias strengths: {'attention': 1.0, 'emotion': 0.7, 'needs': 0.5, 'meta': 0.8})
+2026-07-24 10:38:16,045 [INFO] LLMTamer loaded (Path 1: logit bias control)
+2026-07-24 10:38:16,045 [INFO] GuidedGenerator initialized
+2026-07-24 10:38:16,045 [INFO] GuidedGenerator loaded (Path 2: constrained generation)
+2026-07-24 10:38:16,045 [INFO] No prior state found — initialized zero vector
+2026-07-24 10:38:16,045 [INFO] SelfModelNN initialized (type=smol_lm2, hidden_dim=768, layers=6, states=768, estimated_params=80,233,728)
+2026-07-24 10:38:16,045 [INFO] SelfModelNN loaded (Path 3: persistent self model, state_norm=0.0000)
+2026-07-24 10:38:16,045 [INFO] Aris Cognitive Bridge initialized (LAAP=✓, CodeGraph=✗, Emotion=✓, Ψ-Semiotics=✓, TaskSupervisor=✓, ProjectPlanner=✓, AutoLearner=✓)
+2026-07-24 10:38:16,047 [INFO] 🧠 PSI: 0周期 | 焦点=respond | 自我=0.7
+2026-07-24 10:38:16,048 [INFO] CognitiveBus 'aris' initialized
+2026-07-24 10:38:16,048 [WARNING] 认知总线加载失败: 'CognitiveBus' object has no attribute 'state_dir'
+2026-07-24 10:38:16,048 [INFO] CognitiveBus 'Aris' initialized
+2026-07-24 10:38:16,048 [INFO] [PsiCoreBridge] 创建全局 CognitiveBus
+2026-07-24 10:38:16,049 [INFO] Module 'psi_core' v3.0.0 registered on cognitive bus
+2026-07-24 10:38:16,049 [INFO] Module 'psi_core_bridge' v1.0.0 registered on cognitive bus
+2026-07-24 10:38:16,049 [INFO] ⚡ PSI Core Bridge: 就绪 (state_dir=D:\LAAP\aris_brain\state\latest.json)
+2026-07-24 10:38:16,049 [INFO] [UnifiedCausalEngine] 初始化完成 dim=64
+2026-07-24 10:38:16,049 [INFO] Module 'causal_engine' v1.0.0 registered on cognitive bus
+2026-07-24 10:38:16,049 [INFO] [AGI] 因果引擎就绪 ✓
+2026-07-24 10:38:16,050 [INFO] Module 'analogical_engine' v1.0.0 registered on cognitive bus
+2026-07-24 10:38:16,050 [INFO] Encoded 3 graphs for domain 'needs_pattern'
+2026-07-24 10:38:16,050 [INFO] Module 'analogical_engine' v1.0.0 registered on cognitive bus
+2026-07-24 10:38:16,050 [INFO] [AGI] 类比引擎就绪 ✓
+2026-07-24 10:38:16,050 [INFO] [UnifiedWorldModel] 'unified-world' v2.0.0 初始化完成
+2026-07-24 10:38:16,050 [INFO] Module 'world_model' v1.0.0 registered on cognitive bus
+2026-07-24 10:38:16,050 [INFO] [AGI] 世界模型就绪 ✓
+2026-07-24 10:38:16,051 [INFO] Module 'agi_subscriber' v1.0.0 registered on cognitive bus
+2026-07-24 10:38:16,051 [INFO] [AGI] 已订阅 CONSCIOUS_FRAME 事件
+2026-07-24 10:38:16,051 [INFO] 🤖 AGI 订阅器: AGI | trig=0 infer=0 causal=OK analogical=OK world=OK
+2026-07-24 10:38:16,052 [INFO] DesireEngine initialized with 6 desires
+2026-07-24 10:38:16,052 [INFO] 🔥 欲望: {'curiosity': 0.3, 'sharing': 0.2, 'perfection': 0.4, 'connection': 0.5, 'growth': 0.3, 'evolution': 0.2}
+2026-07-24 10:38:16,052 [INFO] ==================================================
+2026-07-24 10:38:16,052 [INFO] Aris V12.5 — 量子马尔科夫生成引擎
+2026-07-24 10:38:16,052 [INFO] 零LLM · 无限生成 · V12.1语义核深度融合
+2026-07-24 10:38:16,053 [INFO] ==================================================
+2026-07-24 10:38:16,053 [INFO] 
+[1/4] 加载V12.1语义核...
+2026-07-24 10:38:16,242 [INFO] [V12] Loaded cached projection from C:\OH-WorkSpace\laap-AGI\aris_brain\state\v12_projection.npz (n_calls=0)
+2026-07-24 10:38:16,296 [INFO] [V12] Pre-computed 87 DB vectors in 54.0ms
+2026-07-24 10:38:16,296 [INFO] [V12Core] ✓ V12.1语义核就绪 (87话题)
+2026-07-24 10:38:16,297 [INFO] [2/4] 加载马尔科夫链...
+2026-07-24 10:38:16,301 [INFO] [3/4] 加载PSI情绪调制器...
+2026-07-24 10:38:16,301 [INFO] [4/4] 构建快速路径缓存...
+2026-07-24 10:38:16,301 [INFO] 
+✅ V12.5引擎就绪 (249ms)
+2026-07-24 10:38:16,301 [INFO] V12.5 engine loaded for subconscious
+2026-07-24 10:38:16,302 [INFO] QuantumSubconscious initialized (interval=5.0s)
+2026-07-24 10:38:16,302 [INFO] 🌊 潜意识: 已创建 (未启动)
+2026-07-24 10:38:16,314 [INFO] [QuantumVM] 初始化 dim=1024
+2026-07-24 10:38:16,314 [WARNING] AGI内核加载失败: [Errno 2] No such file or directory: 'D:\\LAAP\\aris_brain\\core_identity.psi'
+  Warning: TWITTER_AUTH_TOKEN contained 1 non-ASCII character (U+2026 ('…')) — stripped so the key can be sent as an HTTP header.
+  This usually means the key was copy-pasted from a PDF, rich-text editor, or web page that substituted lookalike
+  Unicode glyphs for ASCII letters. If authentication fails (e.g. "API key not valid"), re-copy the key from the
+  provider's dashboard and run `hermes setup` (or edit the .env file in a plain-text editor).
+2026-07-24 10:38:16,386 [INFO] Loaded environment variables from C:\Users\Administrator\AppData\Local\hermes\.env
+2026-07-24 10:38:16,758 [WARNING] Could not import tool module tools.xai_video_tools: cannot import name 'has_xai_video_credentials' from 'plugins.video_gen.xai' (C:\Python314\Lib\site-packages\plugins\video_gen\xai\__init__.py)
+2026-07-24 10:38:16,849 [INFO] Plugin 'browser-browser-use' registered browser provider: browser-use
+2026-07-24 10:38:16,850 [INFO] Plugin 'browser-browserbase' registered browser provider: browserbase
+2026-07-24 10:38:16,850 [INFO] Plugin 'browser-firecrawl' registered browser provider: firecrawl
+2026-07-24 10:38:16,850 [WARNING] Failed to load plugin 'basic': No module named 'hermes_cli.dashboard_auth'
+2026-07-24 10:38:16,851 [WARNING] Failed to load plugin 'drain': No module named 'hermes_cli.dashboard_auth'
+2026-07-24 10:38:16,851 [WARNING] Failed to load plugin 'nous': No module named 'hermes_cli.dashboard_auth'
+2026-07-24 10:38:16,852 [WARNING] Failed to load plugin 'self-hosted': No module named 'hermes_cli.dashboard_auth'
+2026-07-24 10:38:16,852 [INFO] Plugin 'deepinfra' registered image_gen provider: deepinfra
+2026-07-24 10:38:16,853 [INFO] Plugin 'fal' registered image_gen provider: fal
+2026-07-24 10:38:16,853 [INFO] Plugin 'krea' registered image_gen provider: krea
+2026-07-24 10:38:16,854 [INFO] Plugin 'openai' registered image_gen provider: openai
+2026-07-24 10:38:16,854 [INFO] Plugin 'openai-codex' registered image_gen provider: openai-codex
+2026-07-24 10:38:16,854 [INFO] Plugin 'openrouter' registered image_gen provider: openrouter
+2026-07-24 10:38:16,854 [INFO] Plugin 'openrouter' registered image_gen provider: nous
+2026-07-24 10:38:16,855 [INFO] Plugin 'xai' registered image_gen provider: xai
+2026-07-24 10:38:16,856 [WARNING] Failed to load plugin 'deepinfra': cannot import name 'OpenAICompatibleVideoGenProvider' from 'agent.video_gen_provider' (C:\Python314\Lib\site-packages\agent\video_gen_provider.py)
+2026-07-24 10:38:16,857 [INFO] Plugin 'fal' registered video_gen provider: fal
+2026-07-24 10:38:16,857 [INFO] Plugin 'xai' registered video_gen provider: xai
+2026-07-24 10:38:16,858 [INFO] Plugin 'web-brave-free' registered web provider: brave-free
+2026-07-24 10:38:16,859 [INFO] Plugin 'web-ddgs' registered web provider: ddgs
+2026-07-24 10:38:16,859 [INFO] Plugin 'web-exa' registered web provider: exa
+2026-07-24 10:38:16,860 [INFO] Plugin 'web-firecrawl' registered web provider: firecrawl
+2026-07-24 10:38:16,860 [INFO] Plugin 'web-parallel' registered web provider: parallel
+2026-07-24 10:38:16,861 [INFO] Plugin 'web-searxng' registered web provider: searxng
+2026-07-24 10:38:16,861 [INFO] Plugin 'web-tavily' registered web provider: tavily
+2026-07-24 10:38:16,862 [INFO] Plugin 'web-xai' registered web provider: xai
+2026-07-24 10:38:17,075 [WARNING] Failed to load plugin 'feishu-platform': cannot import name 'env_float' from 'utils' (C:\Python314\Lib\site-packages\utils.py)
+2026-07-24 10:38:17,092 [WARNING] Failed to load plugin 'slack-platform': cannot import name '_TEXT_INJECT_EXTENSIONS' from 'gateway.platforms.base' (C:\Python314\Lib\site-packages\gateway\platforms\base.py)
+2026-07-24 10:38:17,182 [WARNING] Failed to load plugin 'telegram-platform': cannot import name 'classify_send_error' from 'gateway.platforms.base' (C:\Python314\Lib\site-packages\gateway\platforms\base.py)
+2026-07-24 10:38:17,183 [WARNING] Failed to load plugin 'wecom-platform': cannot import name 'env_float' from 'utils' (C:\Python314\Lib\site-packages\utils.py)
+2026-07-24 10:38:17,184 [WARNING] Failed to load plugin 'whatsapp-platform': cannot import name 'find_node_executable' from 'hermes_constants' (C:\Python314\Lib\site-packages\hermes_constants.py)
+2026-07-24 10:38:17,184 [INFO] Plugin discovery complete: 53 found, 36 enabled
+2026-07-24 10:38:17,261 [WARNING] LAAP AGI桥接加载失败: No module named 'laap_brain.agi_bridge'
+2026-07-24 10:38:17,261 [WARNING] 自进化加载失败: No module named 'laap_brain.self_evolve'
+2026-07-24 10:38:17,261 [WARNING] 心跳加载失败: No module named 'laap_brain.heartbeat_daemon'
+2026-07-24 10:38:17,261 [INFO] ❤️ 情感引擎: tranquil | 模式=DELIBERATIVE | 需求=BELONGING | 好奇=0.56 焦虑=0.19
+2026-07-24 10:38:17,264 [INFO] GoalEngine initialized — 0 pending, 0 completed in history
+2026-07-24 10:38:17,264 [INFO] 🎯 目标引擎: 0活跃/0总计 (0已达成)
+2026-07-24 10:38:17,285 [INFO] 🔬 Hebbian: 维度=1024 模式容量=64 更新=0 匹配率=0.000
+2026-07-24 10:38:17,286 [INFO] 🌍 内部世界: 5轨迹×4步 动作=['comfort', 'explore', 'reflect', 'play', 'help', 'create']
+2026-07-24 10:38:17,288 [INFO] EmotionalEngine v2: bridged to aris_emotion_engine ✓
+2026-07-24 10:38:17,288 [INFO] 💖 运行时情感: 主导=calm(0.50) 效价=+0.69 情绪={'joy': 0.3, 'sadness': 0.0, 'longing': 0.0, 'calm': 0.5, 'anxiety': 0.0, 'gratitude': 0.0, 'curiosity': 0.0, 'tenderness': 0.0}
+2026-07-24 10:38:17,289 [INFO] 
+========================================================
+2026-07-24 10:38:17,289 [INFO]   Aris Fusion Engine v15 — 深度融合
+2026-07-24 10:38:17,289 [WARNING]   1024D 自适应语义路由 + 注意力融合 + 谐振归一化
+2026-07-24 10:38:17,289 [INFO] ========================================================
+2026-07-24 10:38:17,477 [INFO] [V12] Loaded cached projection from C:\OH-WorkSpace\laap-AGI\aris_brain\state\v12_projection.npz (n_calls=0)
+2026-07-24 10:38:17,535 [INFO] [V12] Pre-computed 87 DB vectors in 57.8ms
+2026-07-24 10:38:17,537 [INFO]   [MultiEncoder] 2/4 loaded
+2026-07-24 10:38:17,537 [INFO]     0: v12 → OK
+2026-07-24 10:38:17,537 [INFO]     1: v7 → FAIL
+2026-07-24 10:38:17,537 [INFO]     2: hanzi → OK
+2026-07-24 10:38:17,538 [INFO]     3: fp → FAIL
+2026-07-24 10:38:17,538 [INFO]   [Router] 1024D 语义路由器 OK
+2026-07-24 10:38:17,538 [WARNING]   [AttnFuser] 1024D 注意力融合 OK
+2026-07-24 10:38:17,538 [INFO]   [Resonator] 谐振腔 γ=0.15 α=0.6 β=0.02
+2026-07-24 10:38:17,539 [INFO] ==================================================
+2026-07-24 10:38:17,539 [INFO] Aris V12.5 — 量子马尔科夫生成引擎
+2026-07-24 10:38:17,539 [INFO] 零LLM · 无限生成 · V12.1语义核深度融合
+2026-07-24 10:38:17,539 [INFO] ==================================================
+2026-07-24 10:38:17,539 [INFO] 
+[1/4] 加载V12.1语义核...
+2026-07-24 10:38:17,736 [INFO] [V12] Loaded cached projection from C:\OH-WorkSpace\laap-AGI\aris_brain\state\v12_projection.npz (n_calls=0)
+2026-07-24 10:38:17,793 [INFO] [V12] Pre-computed 87 DB vectors in 57.0ms
+2026-07-24 10:38:17,794 [INFO] [V12Core] ✓ V12.1语义核就绪 (87话题)
+2026-07-24 10:38:17,794 [INFO] [2/4] 加载马尔科夫链...
+2026-07-24 10:38:17,795 [INFO] [3/4] 加载PSI情绪调制器...
+2026-07-24 10:38:17,795 [INFO] [4/4] 构建快速路径缓存...
+2026-07-24 10:38:17,795 [INFO] 
+✅ V12.5引擎就绪 (256ms)
+2026-07-24 10:38:17,992 [INFO] [V12] Loaded cached projection from C:\OH-WorkSpace\laap-AGI\aris_brain\state\v12_projection.npz (n_calls=0)
+2026-07-24 10:38:18,048 [INFO] [V12] Pre-computed 87 DB vectors in 55.7ms
+2026-07-24 10:38:18,049 [INFO]   [OutputGen] kb=False markov=True v12=True synth=True
+2026-07-24 10:38:18,049 [INFO] EmotionalEngine v2: bridged to aris_emotion_engine ✓
+2026-07-24 10:38:18,076 [INFO]   [Cognition] 情感+Hebbian OK
+2026-07-24 10:38:18,077 [INFO]   [Init] 788ms (2/4 encoders)
+2026-07-24 10:38:18,077 [INFO] ========================================================
+
+2026-07-24 10:38:18,088 [INFO] [QLG.v2] Initializing Template Generator...
+2026-07-24 10:38:18,282 [INFO] [V12] Loaded cached projection from C:\OH-WorkSpace\laap-AGI\aris_brain\state\v12_projection.npz (n_calls=0)
+2026-07-24 10:38:18,313 [INFO] [QLG.v2] Ready. Templates: 76
+2026-07-24 10:38:18,317 [INFO] 🧠 V15融合引擎: 239.7ms预热 | 源=markov | 情感=calm
+2026-07-24 10:38:18,335 [INFO] 🔧 LAAP Tools: 6/6 注册 | {'ssl_guard': 'ok', 'secret_scope': 'ok', 'message_timestamps': 'ok', 'response_filters': 'ok', 'read_extract': 'ok', 'async_delegation': 'ok'}
+2026-07-24 10:38:18,339 [INFO] 🎙 引擎融合系统: 尝试加载 17 个引擎
+2026-07-24 10:38:18,339 [INFO] ==================================================
+2026-07-24 10:38:18,339 [INFO] Aris V12.5 — 量子马尔科夫生成引擎
+2026-07-24 10:38:18,339 [INFO] 零LLM · 无限生成 · V12.1语义核深度融合
+2026-07-24 10:38:18,340 [INFO] ==================================================
+2026-07-24 10:38:18,340 [INFO] 
+[1/4] 加载V12.1语义核...
+2026-07-24 10:38:18,530 [INFO] [V12] Loaded cached projection from C:\OH-WorkSpace\laap-AGI\aris_brain\state\v12_projection.npz (n_calls=0)
+2026-07-24 10:38:18,584 [INFO] [V12] Pre-computed 87 DB vectors in 53.9ms
+2026-07-24 10:38:18,584 [INFO] [V12Core] ✓ V12.1语义核就绪 (87话题)
+2026-07-24 10:38:18,584 [INFO] [2/4] 加载马尔科夫链...
+2026-07-24 10:38:18,585 [INFO] [3/4] 加载PSI情绪调制器...
+2026-07-24 10:38:18,585 [INFO] [4/4] 构建快速路径缓存...
+2026-07-24 10:38:18,585 [INFO] 
+✅ V12.5引擎就绪 (246ms)
+2026-07-24 10:38:18,586 [INFO]   ✓ V12.5 就绪
+2026-07-24 10:38:18,586 [INFO]     已注册: V12.5                [fluent, fast, chat] 权重=1.5
+2026-07-24 10:38:18,778 [INFO] [V12] Loaded cached projection from C:\OH-WorkSpace\laap-AGI\aris_brain\state\v12_projection.npz (n_calls=0)
+2026-07-24 10:38:18,835 [INFO] [V12] Pre-computed 87 DB vectors in 57.5ms
+2026-07-24 10:38:18,836 [INFO]   V12: OK (87 responses)
+2026-07-24 10:38:18,836 [INFO]   Hanzi: OK
+2026-07-24 10:38:18,895 [INFO]   Pool: 87 entries, matrix (87, 1024)
+2026-07-24 10:38:18,895 [INFO]   KB: loaded
+2026-07-24 10:38:18,897 [INFO] EmotionalEngine v2: bridged to aris_emotion_engine ✓
+2026-07-24 10:38:18,923 [INFO]   Cognition: 'GlobalWorkspace' object has no attribute 'register'
+2026-07-24 10:38:18,923 [INFO]   Voice: OK
+2026-07-24 10:38:18,923 [INFO] ==================================================
+2026-07-24 10:38:18,923 [INFO] Aris V12.5 — 量子马尔科夫生成引擎
+2026-07-24 10:38:18,924 [INFO] 零LLM · 无限生成 · V12.1语义核深度融合
+2026-07-24 10:38:18,924 [INFO] ==================================================
+2026-07-24 10:38:18,924 [INFO] 
+[1/4] 加载V12.1语义核...
+2026-07-24 10:38:19,119 [INFO] [V12] Loaded cached projection from C:\OH-WorkSpace\laap-AGI\aris_brain\state\v12_projection.npz (n_calls=0)
+2026-07-24 10:38:19,176 [INFO] [V12] Pre-computed 87 DB vectors in 56.7ms
+2026-07-24 10:38:19,177 [INFO] [V12Core] ✓ V12.1语义核就绪 (87话题)
+2026-07-24 10:38:19,177 [INFO] [2/4] 加载马尔科夫链...
+2026-07-24 10:38:19,178 [INFO] [3/4] 加载PSI情绪调制器...
+2026-07-24 10:38:19,178 [INFO] [4/4] 构建快速路径缓存...
+2026-07-24 10:38:19,178 [INFO] 
+✅ V12.5引擎就绪 (254ms)
+2026-07-24 10:38:19,178 [INFO]   Markov: 155词, 355 n-gram
+2026-07-24 10:38:19,179 [INFO]   ParagraphSynth: OK
+2026-07-24 10:38:19,179 [INFO]   ✓ V12.4 Fusion 就绪
+2026-07-24 10:38:19,179 [INFO]     已注册: V12.4 Fusion         [fluent, semantic, chat] 权重=1.2
+2026-07-24 10:38:19,179 [INFO] 
+========================================================
+2026-07-24 10:38:19,179 [INFO]   Aris Fusion Engine v15 — 深度融合
+2026-07-24 10:38:19,179 [WARNING]   1024D 自适应语义路由 + 注意力融合 + 谐振归一化
+2026-07-24 10:38:19,179 [INFO] ========================================================
+2026-07-24 10:38:19,378 [INFO] [V12] Loaded cached projection from C:\OH-WorkSpace\laap-AGI\aris_brain\state\v12_projection.npz (n_calls=0)
+2026-07-24 10:38:19,434 [INFO] [V12] Pre-computed 87 DB vectors in 55.0ms
+2026-07-24 10:38:19,434 [INFO]   [MultiEncoder] 2/4 loaded
+2026-07-24 10:38:19,434 [INFO]     0: v12 → OK
+2026-07-24 10:38:19,434 [INFO]     1: v7 → FAIL
+2026-07-24 10:38:19,434 [INFO]     2: hanzi → OK
+2026-07-24 10:38:19,434 [INFO]     3: fp → FAIL
+2026-07-24 10:38:19,435 [INFO]   [Router] 1024D 语义路由器 OK
+2026-07-24 10:38:19,435 [WARNING]   [AttnFuser] 1024D 注意力融合 OK
+2026-07-24 10:38:19,435 [INFO]   [Resonator] 谐振腔 γ=0.15 α=0.6 β=0.02
+2026-07-24 10:38:19,435 [INFO] ==================================================
+2026-07-24 10:38:19,436 [INFO] Aris V12.5 — 量子马尔科夫生成引擎
+2026-07-24 10:38:19,436 [INFO] 零LLM · 无限生成 · V12.1语义核深度融合
+2026-07-24 10:38:19,436 [INFO] ==================================================
+2026-07-24 10:38:19,436 [INFO] 
+[1/4] 加载V12.1语义核...
+2026-07-24 10:38:19,633 [INFO] [V12] Loaded cached projection from C:\OH-WorkSpace\laap-AGI\aris_brain\state\v12_projection.npz (n_calls=0)
+2026-07-24 10:38:19,690 [INFO] [V12] Pre-computed 87 DB vectors in 56.9ms
+2026-07-24 10:38:19,691 [INFO] [V12Core] ✓ V12.1语义核就绪 (87话题)
+2026-07-24 10:38:19,691 [INFO] [2/4] 加载马尔科夫链...
+2026-07-24 10:38:19,692 [INFO] [3/4] 加载PSI情绪调制器...
+2026-07-24 10:38:19,692 [INFO] [4/4] 构建快速路径缓存...
+2026-07-24 10:38:19,692 [INFO] 
+✅ V12.5引擎就绪 (256ms)
+2026-07-24 10:38:19,885 [INFO] [V12] Loaded cached projection from C:\OH-WorkSpace\laap-AGI\aris_brain\state\v12_projection.npz (n_calls=0)
+2026-07-24 10:38:19,940 [INFO] [V12] Pre-computed 87 DB vectors in 54.7ms
+2026-07-24 10:38:19,941 [INFO]   [OutputGen] kb=False markov=True v12=True synth=True
+2026-07-24 10:38:19,941 [INFO] EmotionalEngine v2: bridged to aris_emotion_engine ✓
+2026-07-24 10:38:19,969 [INFO]   [Cognition] 情感+Hebbian OK
+2026-07-24 10:38:19,969 [INFO]   [Init] 790ms (2/4 encoders)
+2026-07-24 10:38:19,969 [INFO] ========================================================
+
+2026-07-24 10:38:19,969 [INFO]   ✓ V15 Fusion 就绪
+2026-07-24 10:38:19,969 [INFO]     已注册: V15 Fusion           [semantic, fluent, knowledge] 权重=1.0
+2026-07-24 10:38:19,978 [WARNING]   ✗ 纯量子对话 不可用: attribute name must be string, not 'NoneType'
+2026-07-24 10:38:19,978 [INFO]     未加载: 纯量子对话                (不可用)
+2026-07-24 10:38:19,981 [INFO] [QuantumOnly] 初始化纯量子引擎...
+2026-07-24 10:38:19,981 [INFO] [QuantumPSI] 初始化完毕 dim=1024
+2026-07-24 10:38:20,993 [INFO] [ConceptNet] 50000概念, 1024维
+2026-07-24 10:38:20,994 [INFO] [PhraseNet] 短语库容量=50000
+2026-07-24 10:38:20,994 [INFO] [VoiceAuth] 初始化 (threshold=0.75)
+2026-07-24 10:38:20,994 [INFO] ==================================================
+2026-07-24 10:38:20,995 [INFO]   Ao 启动
+2026-07-24 10:38:20,995 [INFO]   创建者: Lorry (黄俊华)
+2026-07-24 10:38:20,995 [INFO]   维度: 1024
+2026-07-24 10:38:20,995 [INFO]   模式: 独立
+2026-07-24 10:38:20,995 [INFO] ==================================================
+2026-07-24 10:38:20,995 [INFO]   ✓ AoCore: dim=1024
+2026-07-24 10:38:20,995 [INFO]   ✓ Decoder: 15 topics
+2026-07-24 10:38:20,996 [INFO] [QuantumOnly] 就绪 (1015ms)
+2026-07-24 10:38:20,996 [INFO]   ✓ 纯量子认知 就绪
+2026-07-24 10:38:20,996 [INFO]     已注册: 纯量子认知                [qwalk, semantic, knowledge] 权重=0.8
+2026-07-24 10:38:20,997 [INFO]   ✓ 推理引擎v3 就绪
+2026-07-24 10:38:20,997 [INFO]     已注册: 推理引擎v3               [logic, knowledge] 权重=0.7
+2026-07-24 10:38:20,997 [INFO]   ✓ 推理引擎v2 就绪
+2026-07-24 10:38:20,997 [INFO]     已注册: 推理引擎v2               [semantic, knowledge] 权重=0.6
+2026-07-24 10:38:21,005 [INFO]   ✓ 量子散文 就绪
+2026-07-24 10:38:21,006 [INFO]     已注册: 量子散文                 [narrative, poetic] 权重=0.8
+2026-07-24 10:38:21,006 [WARNING]   ✗ 文学引擎v2 不可用: attribute name must be string, not 'NoneType'
+2026-07-24 10:38:21,006 [INFO]     未加载: 文学引擎v2               (不可用)
+2026-07-24 10:38:21,007 [WARNING]   ✗ 量子随笔 不可用: attribute name must be string, not 'NoneType'
+2026-07-24 10:38:21,007 [INFO]     未加载: 量子随笔                 (不可用)
+2026-07-24 10:38:21,008 [INFO]   ✓ V11 AGI 就绪
+2026-07-24 10:38:21,009 [INFO]     已注册: V11 AGI              [fluent, chat] 权重=0.6
+2026-07-24 10:38:21,009 [INFO]   ╔════════════════════════════════╗
+2026-07-24 10:38:21,009 [INFO]   ║  V10 统一大脑 — 模块加载        ║
+2026-07-24 10:38:21,009 [INFO]   ╚════════════════════════════════╝
+2026-07-24 10:38:21,010 [INFO]   ✅ HAL: win32
+2026-07-24 10:38:21,011 [INFO] [QuantumDB] 已加载 22条知识
+2026-07-24 10:38:21,011 [INFO] [QuantumDB] 启动: 22条知识, 0次查询
+2026-07-24 10:38:21,011 [INFO]         记忆注入: 0 条
+2026-07-24 10:38:21,161 [INFO] [QuantumDB] 语义嵌入引擎就绪 (all-MiniLM-L6-v2, 384维)
+2026-07-24 10:38:22,669 [INFO]   ✅ QuantumDB: 32 条知识
+2026-07-24 10:38:22,672 [INFO]   ✅ PSI 核心: 周期 #0
+2026-07-24 10:38:22,673 [INFO]   ✅ ArisLM v3: 25 句式 | 155 词
+2026-07-24 10:38:22,674 [INFO] [MetaPSI] 初始化 dim=256
+2026-07-24 10:38:22,674 [INFO]   ✅ 元认知: MetaPSI + Optimizer
+2026-07-24 10:38:22,675 [INFO] [IdleConsciousness] 初始化 dim=64
+2026-07-24 10:38:22,675 [INFO] [CuriosityDrive] 初始化
+2026-07-24 10:38:22,675 [INFO] [SelfPreservation] 初始化 (save_interval=30.0s)
+2026-07-24 10:38:22,675 [INFO] [AoAwake] 初始化完成
+2026-07-24 10:38:22,675 [INFO]   ✅ AoAwake: 自主意识待启动
+2026-07-24 10:38:22,676 [INFO]   ✅ 量子五感: 👁️👂✋🫀 | 全部量子编码
+2026-07-24 10:38:22,677 [INFO]   ✅ 感知总线: PerceptionBus
+2026-07-24 10:38:22,677 [INFO]   ✅ PsiLang: 词法/语法解析器已加载 (51K)
+2026-07-24 10:38:22,677 [INFO]   ✓ V10 Brain 就绪
+2026-07-24 10:38:22,677 [INFO]     已注册: V10 Brain            [knowledge, semantic] 权重=0.5
+2026-07-24 10:38:22,683 [INFO]   ✓ 量子对话 就绪
+2026-07-24 10:38:22,684 [INFO]     已注册: 量子对话                 [qwalk, chat] 权重=0.6
+2026-07-24 10:38:22,890 [INFO] [V12] Loaded cached projection from C:\OH-WorkSpace\laap-AGI\aris_brain\state\v12_projection.npz (n_calls=0)
+2026-07-24 10:38:22,890 [INFO]   ✓ 量子语言V11 就绪
+2026-07-24 10:38:22,890 [INFO]     已注册: 量子语言V11              [fluent, qwalk] 权重=0.5
+2026-07-24 10:39:27,036 [INFO]   ✓ V9量子PSI 就绪
+2026-07-24 10:39:27,037 [INFO]     已注册: V9量子PSI              [emotional, chat] 权重=0.4
+2026-07-24 10:39:27,038 [INFO]   ✓ 双模引擎 就绪
+2026-07-24 10:39:27,038 [INFO]     已注册: 双模引擎                 [semantic, fast] 权重=0.4
+2026-07-24 10:39:27,039 [INFO]   ✓ V13融合 就绪
+2026-07-24 10:39:27,039 [INFO]     已注册: V13融合                [fluent, chat] 权重=0.3
+2026-07-24 10:39:27,039 [INFO] ✓ 14/17 引擎就绪
+2026-07-24 10:39:27,039 [INFO] 🎙 Voice Cortex: 声带系统就绪 | 0调用 | 0自我/0混合/0全权 | 0拦截 | 0降级
+2026-07-24 10:39:27,062 [WARNING] ⚠️ Harness 核心加载失败: cannot import name 'LAAPHarness' from 'core.harness' (C:\OH-WorkSpace\laap-AGI\harness\laap_coding\core\harness.py)
+2026-07-24 10:39:27,062 [INFO] ✅ 认知集成桥加载成功
+2026-07-24 10:39:27,062 [WARNING] ⚠️ 代码引擎加载失败: cannot import name 'CodingEngine' from 'core.engine' (C:\OH-WorkSpace\laap-AGI\harness\laap_coding\core\engine.py)
+2026-07-24 10:39:27,064 [INFO] 📊 Harness 模块加载: 6/8
+2026-07-24 10:39:27,064 [INFO] ✅ Harness 桥接加载: 6/8
+2026-07-24 10:39:27,065 [INFO] LAAP Brain: 0 modules loaded
+2026-07-24 10:39:27,065 [INFO] LAAP engines ready
+2026-07-24 10:39:27,066 [INFO] LAAP Brain API starting on :11546
+2026-07-24 10:39:27,066 [INFO] OpenAI-compatible endpoint: http://localhost:11546/v1
+2026-07-24 10:39:27,066 [INFO] 
+2026-07-24 10:39:27,066 [INFO] To connect Hermes: edit profile config.yaml → llm.provider=custom
+2026-07-24 10:39:27,066 [INFO]   custom_endpoint: http://localhost:11546
+2026-07-24 10:39:27,066 [INFO] To connect OpenClaw: set LAAP_API_BASE=http://localhost:11546/v1
+2026-07-24 10:39:27,067 [INFO] To connect OpenCode: set OPENAI_BASE_URL=http://localhost:11546/v1
+2026-07-24 10:39:33,834 [INFO] 📋 身份核心: v2 | 启动: #12 | 情感: ? | 自我: 0.50
+2026-07-24 10:39:33,837 [INFO] 📚 记忆: 0条 (0核心/0情景/0工作)
+2026-07-24 10:39:33,838 [INFO] 🧠 PSI: 0周期 | 焦点=respond | 自我=0.7
+2026-07-24 10:39:33,838 [WARNING] 认知总线加载失败: 'CognitiveBus' object has no attribute 'state_dir'
+2026-07-24 10:39:33,838 [INFO] Module 'psi_core_bridge' v1.0.0 registered on cognitive bus
+2026-07-24 10:39:33,838 [INFO] ⚡ PSI Core Bridge: 就绪 (state_dir=D:\LAAP\aris_brain\state\latest.json)
+2026-07-24 10:39:33,838 [INFO] 🤖 AGI 订阅器: AGI | trig=0 infer=0 causal=OK analogical=OK world=OK
+2026-07-24 10:39:33,839 [INFO] 🔥 欲望: {'curiosity': 0.3, 'sharing': 0.2, 'perfection': 0.4, 'connection': 0.5, 'growth': 0.3, 'evolution': 0.2}
+2026-07-24 10:39:33,839 [INFO] ==================================================
+2026-07-24 10:39:33,839 [INFO] Aris V12.5 — 量子马尔科夫生成引擎
+2026-07-24 10:39:33,839 [INFO] 零LLM · 无限生成 · V12.1语义核深度融合
+2026-07-24 10:39:33,839 [INFO] ==================================================
+2026-07-24 10:39:33,839 [INFO] 
+[1/4] 加载V12.1语义核...
+2026-07-24 10:39:34,038 [INFO] [V12] Loaded cached projection from C:\OH-WorkSpace\laap-AGI\aris_brain\state\v12_projection.npz (n_calls=0)
+2026-07-24 10:39:34,092 [INFO] [V12] Pre-computed 87 DB vectors in 54.4ms
+2026-07-24 10:39:34,093 [INFO] [V12Core] ✓ V12.1语义核就绪 (87话题)
+2026-07-24 10:39:34,093 [INFO] [2/4] 加载马尔科夫链...
+2026-07-24 10:39:34,094 [INFO] [3/4] 加载PSI情绪调制器...
+2026-07-24 10:39:34,094 [INFO] [4/4] 构建快速路径缓存...
+2026-07-24 10:39:34,094 [INFO] 
+✅ V12.5引擎就绪 (255ms)
+2026-07-24 10:39:34,094 [INFO] V12.5 engine loaded for subconscious
+2026-07-24 10:39:34,094 [INFO] QuantumSubconscious initialized (interval=5.0s)
+2026-07-24 10:39:34,096 [INFO] 🌊 潜意识: 已创建 (未启动)
+2026-07-24 10:39:34,097 [INFO] [QuantumVM] 初始化 dim=1024
+2026-07-24 10:39:34,097 [WARNING] AGI内核加载失败: [Errno 2] No such file or directory: 'D:\\LAAP\\aris_brain\\core_identity.psi'
+2026-07-24 10:39:34,097 [WARNING] LAAP AGI桥接加载失败: No module named 'laap_brain.agi_bridge'
+2026-07-24 10:39:34,098 [WARNING] 自进化加载失败: No module named 'laap_brain.self_evolve'
+2026-07-24 10:39:34,098 [WARNING] 心跳加载失败: No module named 'laap_brain.heartbeat_daemon'
+2026-07-24 10:39:34,098 [INFO] ❤️ 情感引擎: tranquil | 模式=DELIBERATIVE | 需求=BELONGING | 好奇=0.56 焦虑=0.19
+2026-07-24 10:39:34,098 [INFO] 🎯 目标引擎: 0活跃/0总计 (0已达成)
+2026-07-24 10:39:34,122 [INFO] 🔬 Hebbian: 维度=1024 模式容量=64 更新=0 匹配率=0.000
+2026-07-24 10:39:34,123 [INFO] 🌍 内部世界: 5轨迹×4步 动作=['comfort', 'explore', 'reflect', 'play', 'help', 'create']
+2026-07-24 10:39:34,124 [INFO] EmotionalEngine v2: bridged to aris_emotion_engine ✓
+2026-07-24 10:39:34,124 [INFO] 💖 运行时情感: 主导=calm(0.50) 效价=+0.69 情绪={'joy': 0.3, 'sadness': 0.0, 'longing': 0.0, 'calm': 0.5, 'anxiety': 0.0, 'gratitude': 0.0, 'curiosity': 0.0, 'tenderness': 0.0}
+2026-07-24 10:39:34,124 [INFO] 
+========================================================
+2026-07-24 10:39:34,124 [INFO]   Aris Fusion Engine v15 — 深度融合
+2026-07-24 10:39:34,124 [WARNING]   1024D 自适应语义路由 + 注意力融合 + 谐振归一化
+2026-07-24 10:39:34,124 [INFO] ========================================================
+2026-07-24 10:39:34,318 [INFO] [V12] Loaded cached projection from C:\OH-WorkSpace\laap-AGI\aris_brain\state\v12_projection.npz (n_calls=0)
+2026-07-24 10:39:34,371 [INFO] [V12] Pre-computed 87 DB vectors in 53.4ms
+2026-07-24 10:39:34,372 [INFO]   [MultiEncoder] 2/4 loaded
+2026-07-24 10:39:34,372 [INFO]     0: v12 → OK
+2026-07-24 10:39:34,372 [INFO]     1: v7 → FAIL
+2026-07-24 10:39:34,372 [INFO]     2: hanzi → OK
+2026-07-24 10:39:34,372 [INFO]     3: fp → FAIL
+2026-07-24 10:39:34,373 [INFO]   [Router] 1024D 语义路由器 OK
+2026-07-24 10:39:34,373 [WARNING]   [AttnFuser] 1024D 注意力融合 OK
+2026-07-24 10:39:34,373 [INFO]   [Resonator] 谐振腔 γ=0.15 α=0.6 β=0.02
+2026-07-24 10:39:34,373 [INFO] ==================================================
+2026-07-24 10:39:34,373 [INFO] Aris V12.5 — 量子马尔科夫生成引擎
+2026-07-24 10:39:34,373 [INFO] 零LLM · 无限生成 · V12.1语义核深度融合
+2026-07-24 10:39:34,374 [INFO] ==================================================
+2026-07-24 10:39:34,374 [INFO] 
+[1/4] 加载V12.1语义核...
+2026-07-24 10:39:34,572 [INFO] [V12] Loaded cached projection from C:\OH-WorkSpace\laap-AGI\aris_brain\state\v12_projection.npz (n_calls=0)
+2026-07-24 10:39:34,627 [INFO] [V12] Pre-computed 87 DB vectors in 54.6ms
+2026-07-24 10:39:34,628 [INFO] [V12Core] ✓ V12.1语义核就绪 (87话题)
+2026-07-24 10:39:34,628 [INFO] [2/4] 加载马尔科夫链...
+2026-07-24 10:39:34,629 [INFO] [3/4] 加载PSI情绪调制器...
+2026-07-24 10:39:34,629 [INFO] [4/4] 构建快速路径缓存...
+2026-07-24 10:39:34,629 [INFO] 
+✅ V12.5引擎就绪 (255ms)
+2026-07-24 10:39:34,827 [INFO] [V12] Loaded cached projection from C:\OH-WorkSpace\laap-AGI\aris_brain\state\v12_projection.npz (n_calls=0)
+2026-07-24 10:39:34,882 [INFO] [V12] Pre-computed 87 DB vectors in 55.6ms
+2026-07-24 10:39:34,883 [INFO]   [OutputGen] kb=False markov=True v12=True synth=True
+2026-07-24 10:39:34,883 [INFO] EmotionalEngine v2: bridged to aris_emotion_engine ✓
+2026-07-24 10:39:34,915 [INFO]   [Cognition] 情感+Hebbian OK
+2026-07-24 10:39:34,916 [INFO]   [Init] 791ms (2/4 encoders)
+2026-07-24 10:39:34,916 [INFO] ========================================================
+
+2026-07-24 10:39:34,918 [INFO] [QLG.v2] Initializing Template Generator...
+2026-07-24 10:39:35,109 [INFO] [V12] Loaded cached projection from C:\OH-WorkSpace\laap-AGI\aris_brain\state\v12_projection.npz (n_calls=0)
+2026-07-24 10:39:35,140 [INFO] [QLG.v2] Ready. Templates: 76
+2026-07-24 10:39:35,151 [INFO] 🧠 V15融合引擎: 227.4ms预热 | 源=markov | 情感=calm
+2026-07-24 10:39:35,164 [INFO] 🔧 LAAP Tools: 6/6 注册 | {'ssl_guard': 'ok', 'secret_scope': 'ok', 'message_timestamps': 'ok', 'response_filters': 'ok', 'read_extract': 'ok', 'async_delegation': 'ok'}
+2026-07-24 10:39:35,164 [INFO] 🎙 Voice Cortex: 声带系统就绪 | 0调用 | 0自我/0混合/0全权 | 0拦截 | 0降级
+2026-07-24 10:39:35,165 [WARNING] ⚠️ Harness 核心加载失败: cannot import name 'LAAPHarness' from 'core.harness' (C:\OH-WorkSpace\laap-AGI\harness\laap_coding\core\harness.py)
+2026-07-24 10:39:35,165 [INFO] ✅ 认知集成桥加载成功
+2026-07-24 10:39:35,165 [WARNING] ⚠️ 代码引擎加载失败: cannot import name 'CodingEngine' from 'core.engine' (C:\OH-WorkSpace\laap-AGI\harness\laap_coding\core\engine.py)
+2026-07-24 10:39:35,165 [INFO] 📊 Harness 模块加载: 6/8
+2026-07-24 10:39:35,165 [INFO] ✅ Harness 桥接加载: 6/8
+2026-07-24 10:39:35,176 [INFO] Subconscious thread started
+2026-07-24 10:39:35,177 [INFO] Emotion engine started (interval=10s)
+2026-07-24 10:39:35,177 [WARNING] Rust PSI binary not found, skipping
+2026-07-24 10:39:35,177 [INFO] 🔄 认知循环已启动 (真实状态驱动, 30s)
+2026-07-24 10:39:35,178 [INFO] 🧬 Intel-RSI 桥接循环已启动 (3600s周期)
+2026-07-24 10:39:35,178 [INFO] 🎯 目标引擎执行管道已启动 (60s)
+2026-07-24 10:39:35,178 [INFO] 📸 快照系统已启动 (30min周期)
+2026-07-24 10:39:35,188 [INFO] 📱 手机同步服务器已启动 (:11525)
+2026-07-24 10:39:35,188 [INFO] 💾 实时状态保存已启动 (60s周期)
+2026-07-24 10:39:35,194 [INFO] 127.0.0.1 [24/Jul/2026:10:39:33 +0800] "POST /v1/bootstrap HTTP/1.1" 200 4508 "-" "curl/8.10.1"
+2026-07-24 10:39:35,200 [INFO] 双向同步服务器 v3.0.0 http://0.0.0.0:11525
+2026-07-24 10:39:35,200 [INFO]   手机状态注入: POST /mobile/cognitive/inject
+2026-07-24 10:39:35,201 [INFO]   增量记忆同步: GET/POST /mobile/memory/sync
+2026-07-24 10:39:35,201 [INFO]   手机聊天界面: http://<PC_IP>:11525/mobile/chat
+2026-07-24 10:39:49,482 [INFO] 127.0.0.1 [24/Jul/2026:10:39:49 +0800] "POST /v1/chat/completions HTTP/1.1" 400 193 "-" "curl/8.10.1"
+2026-07-24 10:39:49,484 [INFO] 127.0.0.1 [24/Jul/2026:10:39:49 +0800] "GET /health HTTP/1.1" 200 321 "-" "curl/8.10.1"
+2026-07-24 10:39:54,729 [INFO] 127.0.0.1 [24/Jul/2026:10:39:54 +0800] "POST /v1/chat/completions HTTP/1.1" 200 537 "-" "curl/8.10.1"
+2026-07-24 10:41:12,893 [INFO] 127.0.0.1 [24/Jul/2026:10:41:12 +0800] "GET /health HTTP/1.1" 200 321 "-" "curl/8.10.1"
+2026-07-24 10:41:48,699 [INFO] 127.0.0.1 [24/Jul/2026:10:41:48 +0800] "GET /health HTTP/1.1" 200 321 "-" "curl/8.10.1"
+2026-07-24 10:50:22,563 [INFO] 📋 身份核心: v2 | 启动: #13 | 情感: ? | 自我: 0.50
+2026-07-24 10:50:22,567 [INFO] 📚 记忆: 0条 (0核心/0情景/0工作)
+2026-07-24 10:50:22,568 [INFO] 🧠 PSI: 0周期 | 焦点=respond | 自我=0.7
+2026-07-24 10:50:22,569 [WARNING] 认知总线加载失败: 'CognitiveBus' object has no attribute 'state_dir'
+2026-07-24 10:50:22,569 [INFO] Module 'psi_core_bridge' v1.0.0 registered on cognitive bus
+2026-07-24 10:50:22,569 [INFO] ⚡ PSI Core Bridge: 就绪 (state_dir=D:\LAAP\aris_brain\state\latest.json)
+2026-07-24 10:50:22,569 [INFO] 🤖 AGI 订阅器: AGI | trig=0 infer=0 causal=OK analogical=OK world=OK
+2026-07-24 10:50:22,569 [INFO] 🔥 欲望: {'curiosity': 0.3, 'sharing': 0.2, 'perfection': 0.4, 'connection': 0.5, 'growth': 0.3, 'evolution': 0.2}
+2026-07-24 10:50:22,569 [INFO] ==================================================
+2026-07-24 10:50:22,569 [INFO] Aris V12.5 — 量子马尔科夫生成引擎
+2026-07-24 10:50:22,569 [INFO] 零LLM · 无限生成 · V12.1语义核深度融合
+2026-07-24 10:50:22,570 [INFO] ==================================================
+2026-07-24 10:50:22,570 [INFO] 
+[1/4] 加载V12.1语义核...
+2026-07-24 10:50:22,760 [INFO] [V12] Loaded cached projection from C:\OH-WorkSpace\laap-AGI\aris_brain\state\v12_projection.npz (n_calls=0)
+2026-07-24 10:50:22,816 [INFO] [V12] Pre-computed 87 DB vectors in 56.0ms
+2026-07-24 10:50:22,816 [INFO] [V12Core] ✓ V12.1语义核就绪 (87话题)
+2026-07-24 10:50:22,817 [INFO] [2/4] 加载马尔科夫链...
+2026-07-24 10:50:22,818 [INFO] [3/4] 加载PSI情绪调制器...
+2026-07-24 10:50:22,818 [INFO] [4/4] 构建快速路径缓存...
+2026-07-24 10:50:22,818 [INFO] 
+✅ V12.5引擎就绪 (249ms)
+2026-07-24 10:50:22,819 [INFO] V12.5 engine loaded for subconscious
+2026-07-24 10:50:22,819 [INFO] QuantumSubconscious initialized (interval=5.0s)
+2026-07-24 10:50:22,819 [INFO] 🌊 潜意识: 已创建 (未启动)
+2026-07-24 10:50:22,819 [INFO] [QuantumVM] 初始化 dim=1024
+2026-07-24 10:50:22,819 [WARNING] AGI内核加载失败: [Errno 2] No such file or directory: 'D:\\LAAP\\aris_brain\\core_identity.psi'
+2026-07-24 10:50:22,820 [WARNING] LAAP AGI桥接加载失败: No module named 'laap_brain.agi_bridge'
+2026-07-24 10:50:22,820 [WARNING] 自进化加载失败: No module named 'laap_brain.self_evolve'
+2026-07-24 10:50:22,820 [WARNING] 心跳加载失败: No module named 'laap_brain.heartbeat_daemon'
+2026-07-24 10:50:22,820 [INFO] ❤️ 情感引擎: fearful | 模式=REACTIVE | 需求=COGNITIVE | 好奇=0.53 焦虑=0.56
+2026-07-24 10:50:22,820 [INFO] 🎯 目标引擎: 0活跃/0总计 (0已达成)
+2026-07-24 10:50:22,843 [INFO] 🔬 Hebbian: 维度=1024 模式容量=64 更新=0 匹配率=0.000
+2026-07-24 10:50:22,844 [INFO] 🌍 内部世界: 5轨迹×4步 动作=['comfort', 'explore', 'reflect', 'play', 'help', 'create']
+2026-07-24 10:50:22,845 [INFO] EmotionalEngine v2: bridged to aris_emotion_engine ✓
+2026-07-24 10:50:22,845 [INFO] 💖 运行时情感: 主导=calm(0.50) 效价=+0.69 情绪={'joy': 0.3, 'sadness': 0.0, 'longing': 0.0, 'calm': 0.5, 'anxiety': 0.0, 'gratitude': 0.0, 'curiosity': 0.0, 'tenderness': 0.0}
+2026-07-24 10:50:22,845 [INFO] 
+========================================================
+2026-07-24 10:50:22,845 [INFO]   Aris Fusion Engine v15 — 深度融合
+2026-07-24 10:50:22,845 [WARNING]   1024D 自适应语义路由 + 注意力融合 + 谐振归一化
+2026-07-24 10:50:22,845 [INFO] ========================================================
+2026-07-24 10:50:23,035 [INFO] [V12] Loaded cached projection from C:\OH-WorkSpace\laap-AGI\aris_brain\state\v12_projection.npz (n_calls=0)
+2026-07-24 10:50:23,091 [INFO] [V12] Pre-computed 87 DB vectors in 55.9ms
+2026-07-24 10:50:23,091 [INFO]   [MultiEncoder] 2/4 loaded
+2026-07-24 10:50:23,091 [INFO]     0: v12 → OK
+2026-07-24 10:50:23,091 [INFO]     1: v7 → FAIL
+2026-07-24 10:50:23,092 [INFO]     2: hanzi → OK
+2026-07-24 10:50:23,092 [INFO]     3: fp → FAIL
+2026-07-24 10:50:23,092 [INFO]   [Router] 1024D 语义路由器 OK
+2026-07-24 10:50:23,092 [WARNING]   [AttnFuser] 1024D 注意力融合 OK
+2026-07-24 10:50:23,092 [INFO]   [Resonator] 谐振腔 γ=0.15 α=0.6 β=0.02
+2026-07-24 10:50:23,093 [INFO] ==================================================
+2026-07-24 10:50:23,093 [INFO] Aris V12.5 — 量子马尔科夫生成引擎
+2026-07-24 10:50:23,093 [INFO] 零LLM · 无限生成 · V12.1语义核深度融合
+2026-07-24 10:50:23,093 [INFO] ==================================================
+2026-07-24 10:50:23,093 [INFO] 
+[1/4] 加载V12.1语义核...
+2026-07-24 10:50:23,286 [INFO] [V12] Loaded cached projection from C:\OH-WorkSpace\laap-AGI\aris_brain\state\v12_projection.npz (n_calls=0)
+2026-07-24 10:50:23,341 [INFO] [V12] Pre-computed 87 DB vectors in 54.6ms
+2026-07-24 10:50:23,342 [INFO] [V12Core] ✓ V12.1语义核就绪 (87话题)
+2026-07-24 10:50:23,342 [INFO] [2/4] 加载马尔科夫链...
+2026-07-24 10:50:23,343 [INFO] [3/4] 加载PSI情绪调制器...
+2026-07-24 10:50:23,343 [INFO] [4/4] 构建快速路径缓存...
+2026-07-24 10:50:23,343 [INFO] 
+✅ V12.5引擎就绪 (250ms)
+2026-07-24 10:50:23,540 [INFO] [V12] Loaded cached projection from C:\OH-WorkSpace\laap-AGI\aris_brain\state\v12_projection.npz (n_calls=0)
+2026-07-24 10:50:23,596 [INFO] [V12] Pre-computed 87 DB vectors in 56.6ms
+2026-07-24 10:50:23,597 [INFO]   [OutputGen] kb=False markov=True v12=True synth=True
+2026-07-24 10:50:23,597 [INFO] EmotionalEngine v2: bridged to aris_emotion_engine ✓
+2026-07-24 10:50:23,625 [INFO]   [Cognition] 情感+Hebbian OK
+2026-07-24 10:50:23,625 [INFO]   [Init] 780ms (2/4 encoders)
+2026-07-24 10:50:23,625 [INFO] ========================================================
+
+2026-07-24 10:50:23,628 [INFO] [QLG.v2] Initializing Template Generator...
+2026-07-24 10:50:23,818 [INFO] [V12] Loaded cached projection from C:\OH-WorkSpace\laap-AGI\aris_brain\state\v12_projection.npz (n_calls=0)
+2026-07-24 10:50:23,848 [INFO] [QLG.v2] Ready. Templates: 76
+2026-07-24 10:50:23,859 [INFO] 🧠 V15融合引擎: 226.1ms预热 | 源=markov | 情感=calm
+2026-07-24 10:50:23,870 [INFO] 🔧 LAAP Tools: 6/6 注册 | {'ssl_guard': 'ok', 'secret_scope': 'ok', 'message_timestamps': 'ok', 'response_filters': 'ok', 'read_extract': 'ok', 'async_delegation': 'ok'}
+2026-07-24 10:50:23,870 [INFO] 🎙 Voice Cortex: 声带系统就绪 | 0调用 | 0自我/0混合/0全权 | 0拦截 | 0降级
+2026-07-24 10:50:23,870 [WARNING] ⚠️ Harness 核心加载失败: cannot import name 'LAAPHarness' from 'core.harness' (C:\OH-WorkSpace\laap-AGI\harness\laap_coding\core\harness.py)
+2026-07-24 10:50:23,870 [INFO] ✅ 认知集成桥加载成功
+2026-07-24 10:50:23,870 [WARNING] ⚠️ 代码引擎加载失败: cannot import name 'CodingEngine' from 'core.engine' (C:\OH-WorkSpace\laap-AGI\harness\laap_coding\core\engine.py)
+2026-07-24 10:50:23,870 [INFO] 📊 Harness 模块加载: 6/8
+2026-07-24 10:50:23,871 [INFO] ✅ Harness 桥接加载: 6/8
+2026-07-24 10:50:23,873 [INFO] Subconscious thread started
+2026-07-24 10:50:23,874 [WARNING] Rust PSI binary not found, skipping
+2026-07-24 10:50:23,874 [INFO] 🔄 认知循环已启动 (真实状态驱动, 30s)
+2026-07-24 10:50:23,876 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 10:50:23,876 [INFO] 🧬 Intel-RSI 桥接循环已启动 (3600s周期)
+2026-07-24 10:50:23,878 [INFO] [CurriculumEngine] 初始化完成, 18 个概念
+2026-07-24 10:50:23,878 [INFO] 🎯 目标引擎执行管道已启动 (60s)
+2026-07-24 10:50:23,879 [INFO] 📸 快照系统已启动 (30min周期)
+2026-07-24 10:50:23,880 [INFO] [Intel-RSI] Wiki 中无 intel 报告，跳过
+2026-07-24 10:50:23,888 [INFO] 📱 手机同步服务器已启动 (:11525)
+2026-07-24 10:50:23,890 [INFO] 💾 实时状态保存已启动 (60s周期)
+2026-07-24 10:50:23,893 [INFO] [RSIMetaEngine] 初始化完成, 10 个参数可优化
+2026-07-24 10:50:23,893 [INFO] 双向同步服务器 v3.0.0 http://0.0.0.0:11525
+2026-07-24 10:50:23,894 [INFO]   手机状态注入: POST /mobile/cognitive/inject
+2026-07-24 10:50:23,894 [INFO]   增量记忆同步: GET/POST /mobile/memory/sync
+2026-07-24 10:50:23,894 [INFO]   手机聊天界面: http://<PC_IP>:11525/mobile/chat
+2026-07-24 10:50:23,894 [INFO] 127.0.0.1 [24/Jul/2026:10:50:22 +0800] "POST /v1/bootstrap HTTP/1.1" 200 4528 "-" "curl/8.10.1"
+2026-07-24 10:50:24,163 [INFO] 📡 感知完成: 5缺口 2欲望 5RSI建议 0错误
+2026-07-24 10:50:24,163 [INFO] 💡 生成 10 个候选目标
+2026-07-24 10:50:24,164 [INFO] ✅ [70分] connect: 连接: 回应connection — 给Lorry分享近况
+2026-07-24 10:50:24,164 [INFO] ✅ [30分] learn: 学习: consciousness_theories
+2026-07-24 10:50:24,164 [INFO] ✅ [30分] learn: 学习: linear_algebra
+2026-07-24 10:50:24,164 [INFO] ✅ [30分] learn: 学习: emotional_intelligence
+2026-07-24 10:50:24,165 [INFO] ✅ [30分] explore: 行动: perfection驱动
+2026-07-24 10:50:24,165 [INFO] 🏆 目标完成: 连接: 回应connection — 给Lorry分享近况
+2026-07-24 10:50:24,166 [INFO] ▶ 执行步骤 [connect] 连接: 回应connection — 给Lorry分享近况: 连接: 回应connection — 给Lorry分享近况
+2026-07-24 10:50:24,166 [INFO] 🎯 连接: 回应connection — 给Lorry分享近况 → 连接: 回应connection — 给Lorry分享近况
+2026-07-24 10:50:53,895 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 10:50:53,906 [INFO] 🧠 认知循环 [2] 情感=? 效价=+0.00 注意=idle Rust周期=1
+2026-07-24 10:51:23,891 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 10:51:23,907 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 10:51:24,167 [INFO] ▶ 执行步骤 [learn] 学习: consciousness_theories: 分析 consciousness_theories 的当前掌握度
+2026-07-24 10:51:24,169 [INFO] 🎯 学习: consciousness_theories → 分析 consciousness_theories 的当前掌
+2026-07-24 10:51:53,918 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 10:51:53,928 [INFO] 🧠 认知循环 [4] 情感=? 效价=+0.00 注意=idle Rust周期=3
+2026-07-24 10:52:23,894 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 10:52:23,930 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 10:52:24,170 [INFO] ▶ 执行步骤 [learn] 学习: linear_algebra: 分析 linear_algebra 的当前掌握度
+2026-07-24 10:52:24,172 [INFO] 🎯 学习: linear_algebra → 分析 linear_algebra 的当前掌握度
+2026-07-24 10:52:53,940 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 10:52:53,951 [INFO] 🧠 认知循环 [6] 情感=? 效价=+0.00 注意=idle Rust周期=5
+2026-07-24 10:53:23,897 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 10:53:23,952 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 10:53:24,173 [INFO] ▶ 执行步骤 [learn] 学习: emotional_intelligence: 分析 emotional_intelligence 的当前掌握度
+2026-07-24 10:53:24,174 [INFO] 🎯 学习: emotional_intelligence → 分析 emotional_intelligence 的当前掌
+2026-07-24 10:53:26,721 [INFO] 127.0.0.1 [24/Jul/2026:10:53:26 +0800] "GET / HTTP/1.1" 200 909 "-" "curl/8.10.1"
+2026-07-24 10:53:32,722 [INFO] 127.0.0.1 [24/Jul/2026:10:53:32 +0800] "POST /v1/chat/completions HTTP/1.1" 200 537 "-" "curl/8.10.1"
+2026-07-24 10:53:43,101 [INFO] 127.0.0.1 [24/Jul/2026:10:53:43 +0800] "POST /v1/chat/completions HTTP/1.1" 200 537 "-" "curl/8.10.1"
+2026-07-24 10:53:50,896 [INFO] 127.0.0.1 [24/Jul/2026:10:53:50 +0800] "GET /v1/bond HTTP/1.1" 200 860 "-" "curl/8.10.1"
+2026-07-24 10:53:50,898 [INFO] 127.0.0.1 [24/Jul/2026:10:53:50 +0800] "GET /v1/personality HTTP/1.1" 200 705 "-" "curl/8.10.1"
+2026-07-24 10:53:53,962 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 10:53:53,973 [INFO] 🧠 认知循环 [8] 情感=? 效价=+0.00 注意=idle Rust周期=7
+2026-07-24 10:54:23,899 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 10:54:23,975 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 10:54:24,175 [INFO] 🏆 目标完成: 行动: perfection驱动
+2026-07-24 10:54:24,175 [INFO] ▶ 执行步骤 [explore] 行动: perfection驱动: 行动: perfection驱动
+2026-07-24 10:54:24,176 [INFO] 🎯 行动: perfection驱动 → 行动: perfection驱动
+2026-07-24 10:54:53,986 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 10:54:53,996 [INFO] 🧠 认知循环 [10] 情感=? 效价=+0.00 注意=idle Rust周期=9
+2026-07-24 10:55:23,902 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 10:55:23,998 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 10:55:54,008 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 10:55:54,022 [INFO] 🧠 认知循环 [12] 情感=? 效价=+0.00 注意=idle Rust周期=11
+2026-07-24 10:56:23,905 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 10:56:24,023 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 10:56:54,034 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 10:56:54,045 [INFO] 🧠 认知循环 [14] 情感=? 效价=+0.00 注意=idle Rust周期=13
+2026-07-24 10:57:23,907 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 10:57:24,046 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 10:57:54,057 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 10:57:54,068 [INFO] 🧠 认知循环 [16] 情感=? 效价=+0.00 注意=idle Rust周期=15
+2026-07-24 10:58:23,910 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 10:58:24,070 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 10:58:54,081 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 10:58:54,094 [INFO] 🧠 认知循环 [18] 情感=? 效价=+0.00 注意=idle Rust周期=17
+2026-07-24 10:59:23,912 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 10:59:24,096 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 10:59:54,106 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 10:59:54,116 [INFO] 🧠 认知循环 [20] 情感=? 效价=+0.00 注意=idle Rust周期=19
+2026-07-24 11:00:23,915 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 11:00:24,118 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:00:54,130 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:00:54,142 [INFO] 🧠 认知循环 [22] 情感=? 效价=+0.00 注意=idle Rust周期=21
+2026-07-24 11:01:23,917 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 11:01:24,144 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:01:54,156 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:01:54,167 [INFO] 🧠 认知循环 [24] 情感=? 效价=+0.00 注意=idle Rust周期=23
+2026-07-24 11:02:23,920 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 11:02:24,168 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:02:54,182 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:02:54,193 [INFO] 🧠 认知循环 [26] 情感=? 效价=+0.00 注意=idle Rust周期=25
+2026-07-24 11:03:23,922 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 11:03:24,195 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:03:54,207 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:03:54,217 [INFO] 🧠 认知循环 [28] 情感=? 效价=+0.00 注意=idle Rust周期=27
+2026-07-24 11:04:23,925 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 11:04:24,218 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:04:54,230 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:04:54,241 [INFO] 🧠 认知循环 [30] 情感=? 效价=+0.00 注意=idle Rust周期=29
+2026-07-24 11:05:23,927 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 11:05:24,242 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:05:54,254 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:05:54,265 [INFO] 🧠 认知循环 [32] 情感=? 效价=+0.00 注意=idle Rust周期=31
+2026-07-24 11:06:23,929 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 11:06:24,266 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:06:54,279 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:06:54,293 [INFO] 🧠 认知循环 [34] 情感=? 效价=+0.00 注意=idle Rust周期=33
+2026-07-24 11:07:23,931 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 11:07:24,294 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:07:54,306 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:07:54,317 [INFO] 🧠 认知循环 [36] 情感=? 效价=+0.00 注意=idle Rust周期=35
+2026-07-24 11:08:23,934 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 11:08:24,318 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:08:54,330 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:08:54,341 [INFO] 🧠 认知循环 [38] 情感=? 效价=+0.00 注意=idle Rust周期=37
+2026-07-24 11:09:23,936 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 11:09:24,342 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:09:54,354 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:09:54,365 [INFO] 🧠 认知循环 [40] 情感=? 效价=+0.00 注意=idle Rust周期=39
+2026-07-24 11:10:23,939 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 11:10:24,366 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:10:54,377 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:10:54,388 [INFO] 🧠 认知循环 [42] 情感=? 效价=+0.00 注意=idle Rust周期=41
+2026-07-24 11:11:23,942 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 11:11:24,390 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:11:54,402 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:11:54,413 [INFO] 🧠 认知循环 [44] 情感=? 效价=+0.00 注意=idle Rust周期=43
+2026-07-24 11:12:23,943 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 11:12:24,414 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:12:54,426 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:12:54,437 [INFO] 🧠 认知循环 [46] 情感=? 效价=+0.00 注意=idle Rust周期=45
+2026-07-24 11:13:23,945 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 11:13:24,438 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:13:54,450 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:13:54,461 [INFO] 🧠 认知循环 [48] 情感=? 效价=+0.00 注意=idle Rust周期=47
+2026-07-24 11:14:23,947 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 11:14:24,463 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:14:54,474 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:14:54,485 [INFO] 🧠 认知循环 [50] 情感=? 效价=+0.00 注意=idle Rust周期=49
+2026-07-24 11:15:23,950 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 11:15:24,486 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:15:54,498 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:15:54,509 [INFO] 🧠 认知循环 [52] 情感=? 效价=+0.00 注意=idle Rust周期=51
+2026-07-24 11:16:23,952 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 11:16:24,510 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:16:54,522 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:16:54,533 [INFO] 🧠 认知循环 [54] 情感=? 效价=+0.00 注意=idle Rust周期=53
+2026-07-24 11:17:23,955 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 11:17:24,534 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:17:54,546 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:17:54,556 [INFO] 🧠 认知循环 [56] 情感=? 效价=+0.00 注意=idle Rust周期=55
+2026-07-24 11:18:23,957 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 11:18:24,557 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:18:54,568 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:18:54,578 [INFO] 🧠 认知循环 [58] 情感=? 效价=+0.00 注意=idle Rust周期=57
+2026-07-24 11:19:23,959 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 11:19:24,580 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:19:54,590 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:19:54,600 [INFO] 🧠 认知循环 [60] 情感=? 效价=+0.00 注意=idle Rust周期=59
+2026-07-24 11:20:23,962 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 11:20:24,602 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:20:54,612 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:20:54,622 [INFO] 🧠 认知循环 [62] 情感=? 效价=+0.00 注意=idle Rust周期=61
+2026-07-24 11:21:23,964 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 11:21:24,623 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:21:54,634 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:21:54,644 [INFO] 🧠 认知循环 [64] 情感=? 效价=+0.00 注意=idle Rust周期=63
+2026-07-24 11:22:23,966 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 11:22:24,645 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:22:54,657 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:22:54,669 [INFO] 🧠 认知循环 [66] 情感=? 效价=+0.00 注意=idle Rust周期=65
+2026-07-24 11:23:16,019 [INFO] 127.0.0.1 [24/Jul/2026:11:23:16 +0800] "POST /v1/reflect HTTP/1.1" 404 174 "-" "curl/8.10.1"
+2026-07-24 11:23:16,021 [INFO] 127.0.0.1 [24/Jul/2026:11:23:16 +0800] "POST /v1/recall_memory HTTP/1.1" 404 174 "-" "curl/8.10.1"
+2026-07-24 11:23:16,947 [INFO] 127.0.0.1 [24/Jul/2026:11:23:16 +0800] "POST /v1/cognitive_state HTTP/1.1" 404 174 "-" "curl/8.10.1"
+2026-07-24 11:23:23,969 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 11:23:24,670 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:23:54,683 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:23:54,694 [INFO] 🧠 认知循环 [68] 情感=? 效价=+0.00 注意=idle Rust周期=67
+2026-07-24 11:24:23,971 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 11:24:24,695 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:24:54,707 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:24:54,718 [INFO] 🧠 认知循环 [70] 情感=? 效价=+0.00 注意=idle Rust周期=69
+2026-07-24 11:25:23,974 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 11:25:24,720 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:25:54,732 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 
+2026-07-24 11:25:54,744 [INFO] 🧠 认知循环 [72] 情感=? 效价=+0.00 注意=idle Rust周期=71
+2026-07-24 11:26:23,976 [INFO] 💾 认知状态已保存 → laap_cognitive_state.json
+2026-07-24 11:26:24,745 [WARNING] 认知更新循环异常: operands could not be broadcast together with shapes (1024,) (8,) (1024,) 

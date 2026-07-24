@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang=zh-CN><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1.0">
+<title>Harness Backend DB</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel=stylesheet>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,sans-serif;background:#000;color:#f5f5f7;padding:40px;max-width:1200px;margin:0 auto}
+h1{font-size:32px;font-weight:700;margin-bottom:8px}
+.gd{background:linear-gradient(135deg,#7c7cff,#c07cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+p{font-size:14px;color:rgba(255,255,255,0.4);margin-bottom:40px}
+.sl{font-size:11px;font-weight:600;letter-spacing:2px;color:#7c7cff;margin:40px 0 16px;text-transform:uppercase}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.lc{transition:all.3s}
+.lc:hover{transform:translateY(-2px);border-color:rgba(124,124,255,0.2)!important}
+</style></head><body>
+<h1><span class=gd>Harness</span> Backend Engineering DB</h1>
+<p>10 frameworks - 5 databases - 5 patterns - 0 token generation</p>
+
+<div class=sl>Backend Frameworks (10)</div>
+<div class=g3><div class="lc" style="padding:28px;border-radius:14px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05)">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+    <div style="width:6px;height:6px;border-radius:50%;background:#3776AB"></div>
+    <div style="font-size:13px;font-weight:600">Django</div>
+    <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-left:auto">Star 80k+</div>
+  </div>
+  <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:8px">Python - 全栈 Web 框架, ORM, Admin, 认证一体化</div>
+  <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-bottom:6px">Templates: <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(124,124,255,0.1);color:#7c7cff">django_crud</span> <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(124,124,255,0.1);color:#7c7cff">django_api</span> <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(124,124,255,0.1);color:#7c7cff">django_admin</span></div>
+  <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3)">CMS</span> <span style="font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3)">电商</span> <span style="font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3)">SaaS</span></div>
+</div><div class="lc" style="padding:28px;border-radius:14px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05)">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+    <div style="width:6px;height:6px;border-radius:50%;background:#3776AB"></div>
+    <div style="font-size:13px;font-weight:600">FastAPI</div>
+    <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-left:auto">Star 78k+</div>
+  </div>
+  <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:8px">Python - 高性能异步 Python API 框架, 自动 OpenAPI 文档</div>
+  <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-bottom:6px">Templates: <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(124,124,255,0.1);color:#7c7cff">fastapi_crud</span> <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(124,124,255,0.1);color:#7c7cff">fastapi_auth</span> <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(124,124,255,0.1);color:#7c7cff">fastapi_async</span></div>
+  <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3)">REST API</span> <span style="font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3)">微服务</span> <span style="font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3)">实时服务</span></div>
+</div><div class="lc" style="padding:28px;border-radius:14px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05)">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+    <div style="width:6px;height:6px;border-radius:50%;background:#3776AB"></div>
+    <div style="font-size:13px;font-weight:600">Flask</div>
+    <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-left:auto">Star 68k+</div>
+  </div>
+  <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:8px">Python - 轻量级 Python Web 框架, 灵活可扩展</div>
+  <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-bottom:6px">Templates: <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(124,124,255,0.1);color:#7c7cff">flask_crud</span> <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(124,124,255,0.1);color:#7c7cff">flask_auth</span></div>
+  <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3)">小型API</span> <span style="font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3)">原型</span> <span style="font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3)">微服务</span></div>
+</div><div class="lc" style="padding:28px;border-radius:14px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05)">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+    <div style="width:6px;height:6px;border-radius:50%;background:#ED8B00"></div>
+    <div style="font-size:13px;font-weight:600">Spring Boot</div>
+    <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-left:auto">Star 75k+</div>
+  </div>
+  <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:8px">Java - Java 企业级微服务框架, 自动化配置</div>
+  <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-bottom:6px">Templates: <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(124,124,255,0.1);color:#7c7cff">spring_crud</span> <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(124,124,255,0.1);color:#7c7cff">spring_microservice</span> <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(124,124,255,0.1);color:#7c7cff">spring_auth</span></div>
+  <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3)">企业后台</span> <span style="font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3)">微服务</span> <span style="font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3)">金融系统</span></div>
+</div><div class="lc" style="padding:28px;border-radius:14px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05)">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+    <div style="width:6px;height:6px;border-radius:50%;background:#00ADD8"></div>
+    <div style="font-size:13px;font-weight:600">Gin</div>
+    <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-left:auto">Star 79k+</div>
+  </div>
+  <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:8px">Go - Go 语言高性能 Web 框架, 极速路由</div>
+  <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-bottom:6px">Templates: <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(124,124,255,0.1);color:#7c7cff">gin_crud</span> <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(124,124,255,0.1);color:#7c7cff">gin_api</span> <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(124,124,255,0.1);color:#7c7cff">gin_micro</span></div>
+  <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3)">API 网关</span> <span style="font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3)">微服务</span> <span style="font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3)">高并发服务</span></div>
+</div><div class="lc" style="padding:28px;border-radius:14px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05)">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+    <div style="width:6px;height:6px;border-radius:50%;background:#00ADD8"></div>
+    <div style="font-size:13px;font-weight:600">Echo</div>
+    <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-left:auto">Star 30k+</div>
+  </div>
+  <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:8px">Go - Go 极简高性能 Web 框架</div>
+  <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-bottom:6px">Templates: <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(124,124,255,0.1);color:#7c7cff">echo_crud</span></div>
+  <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3)">REST API</span> <span style="font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3)">微服务</span></div>
+</div><div class="lc" style="padding:28px;border-radius:14px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05)">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+    <div style="width:6px;height:6px;border-radius:50%;background:#3178C6"></div>
+    <div style="font-size:13px;font-weight:600">NestJS</div>
+    <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-left:auto">Star 68k+</div>
+  </div>
+  <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:8px">TypeScript/Node - TypeScript 企业级 Node.js 框架, 模块化架构</div>
+  <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-bottom:6px">Templates: <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(124,124,255,0.1);color:#7c7cff">nest_crud</span> <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(124,124,255,0.1);color:#7c7cff">nest_graphql</span> <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(124,124,255,0.1);color:#7c7cff">nest_microservice</span></div>
+  <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3)">企业 API</span> <span style="font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3)">微服务</span> <span style="font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3)">实时应用</span></div>
+</div><div class="lc" style="padding:28px;border-radius:14px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05)">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+    <div style="width:6px;height:6px;border-radius:50%;background:#F7DF1E"></div>
+    <div style="font-size:13px;font-weight:600">Express</div>
+    <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-left:auto">Star 65k+</div>
+  </div>
+  <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:8px">JavaScript/Node - Node.js 最流行的 Web 框架, 中间件架构</div>
+  <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-bottom:6px">Templates: <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(124,124,255,0.1);color:#7c7cff">express_crud</span> <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(124,124,255,0.1);color:#7c7cff">express_auth</span></div>
+  <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3)">REST API</span> <span style="font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3)">SSR</span> <span style="font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3)">原型</span></div>
+</div><div class="lc" style="padding:28px;border-radius:14px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05)">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+    <div style="width:6px;height:6px;border-radius:50%;background:#777BB4"></div>
+    <div style="font-size:13px;font-weight:600">Laravel</div>
+    <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-left:auto">Star 79k+</div>
+  </div>
+  <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:8px">PHP - PHP 全栈框架, Eloquent ORM, Artisan CLI</div>
+  <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-bottom:6px">Templates: <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(124,124,255,0.1);color:#7c7cff">laravel_crud</span> <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(124,124,255,0.1);color:#7c7cff">laravel_api</span></div>
+  <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3)">CMS</span> <span style="font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3)">电商</span> <span style="font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3)">SaaS</span></div>
+</div><div class="lc" style="padding:28px;border-radius:14px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05)">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+    <div style="width:6px;height:6px;border-radius:50%;background:#000000"></div>
+    <div style="font-size:13px;font-weight:600">Axum</div>
+    <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-left:auto">Star 20k+</div>
+  </div>
+  <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:8px">Rust - Rust 异步 Web 框架, Tokio 生态, 极致性能</div>
+  <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-bottom:6px">Templates: <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(124,124,255,0.1);color:#7c7cff">axum_crud</span> <span style="font-size:10px;padding:2px 8px;border-radius:4px;background:rgba(124,124,255,0.1);color:#7c7cff">axum_api</span></div>
+  <div style="display:flex;gap:4px;flex-wrap:wrap"><span style="font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3)">高并发API</span> <span style="font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3)">网关</span> <span style="font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.3)">实时服务</span></div>
+</div></div>
+
+<div class=sl>Database Engines (5)</div>
+<div class=g4><div style="padding:20px;border-radius:12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05)"><div style="font-size:14px;font-weight:600;margin-bottom:4px">PostgreSQL</div><div style="font-size:11px;color:rgba(255,255,255,0.3)">关系型 (SQL)</div><div style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:6px">最先进的开源关系型数据库, JSONB, 全文检索, GIS</div></div><div style="padding:20px;border-radius:12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05)"><div style="font-size:14px;font-weight:600;margin-bottom:4px">MySQL</div><div style="font-size:11px;color:rgba(255,255,255,0.3)">关系型 (SQL)</div><div style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:6px">最流行的开源关系型数据库, 性能稳定</div></div><div style="padding:20px;border-radius:12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05)"><div style="font-size:14px;font-weight:600;margin-bottom:4px">MongoDB</div><div style="font-size:11px;color:rgba(255,255,255,0.3)">文档型 (NoSQL)</div><div style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:6px">最流行的 NoSQL 文档数据库, 灵活 Schema</div></div><div style="padding:20px;border-radius:12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05)"><div style="font-size:14px;font-weight:600;margin-bottom:4px">Redis</div><div style="font-size:11px;color:rgba(255,255,255,0.3)">键值/缓存</div><div style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:6px">内存缓存 + 消息队列 + 数据结构服务器</div></div><div style="padding:20px;border-radius:12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05)"><div style="font-size:14px;font-weight:600;margin-bottom:4px">Elasticsearch</div><div style="font-size:11px;color:rgba(255,255,255,0.3)">搜索引擎</div><div style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:6px">分布式全文搜索引擎, 实时分析</div></div></div>
+
+<div class=sl>Architecture Patterns (5)</div>
+<div class=g4><div style="padding:20px;border-radius:12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05)"><div style="font-size:14px;font-weight:600;margin-bottom:4px">RESTful API</div><div style="font-size:11px;color:rgba(255,255,255,0.4)">资源导向的 API 设计风格, HTTP 动词操作资源</div></div><div style="padding:20px;border-radius:12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05)"><div style="font-size:14px;font-weight:600;margin-bottom:4px">GraphQL</div><div style="font-size:11px;color:rgba(255,255,255,0.4)">声明式数据查询语言, 客户端精确获取所需数据</div></div><div style="padding:20px;border-radius:12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05)"><div style="font-size:14px;font-weight:600;margin-bottom:4px">微服务</div><div style="font-size:11px;color:rgba(255,255,255,0.4)">将单体应用拆分为独立部署的小服务</div></div><div style="padding:20px;border-radius:12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05)"><div style="font-size:14px;font-weight:600;margin-bottom:4px">CQRS</div><div style="font-size:11px;color:rgba(255,255,255,0.4)">命令查询职责分离, 读写分离架构</div></div><div style="padding:20px;border-radius:12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05)"><div style="font-size:14px;font-weight:600;margin-bottom:4px">事件驱动</div><div style="font-size:11px;color:rgba(255,255,255,0.4)">通过事件异步通信, 解耦服务</div></div></div>
+
+<footer style="text-align:center;padding:40px;font-size:12px;color:rgba(255,255,255,0.2);margin-top:40px;border-top:1px solid rgba(255,255,255,0.05)">
+Harness Backend Engineering Database - Integrated into LAAP
+</footer></body></html>

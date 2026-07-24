@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APEX Racing</title>
+    <meta name="description" content="Set a lap, climb the leaderboard, and challenge the next driver to beat your time in APEX.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">APEX</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#leaderboard">Leaderboard</a></li>
+                <li><a href="#stats">Stats</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <button class="nav-btn">Start Race</button>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">RACING GAME</div>
+                <h1>Set a Lap,
+                <br>Climb the Leaderboard</h1>
+                <p>Challenge the next driver to beat your time in APEX.
+                Every second counts.</p>
+                <div class="hero-actions">
+                    <button class="btn btn-primary">Start Racing</button>
+                    <button class="btn btn-secondary">Watch Trailer</button>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-value">10K+</div>
+                    <div class="stat-label">Active Players</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">1M+</div>
+                    <div class="stat-label">Races Completed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">50+</div>
+                    <div class="stat-label">Tracks Available</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Leaderboard Section -->
+    <section class="leaderboard" id="leaderboard">
+        <div class="container">
+            <div class="section-header">
+                <h2>Leaderboard</h2>
+                <p>Top drivers this week</p>
+            </div>
+            <div class="leaderboard-table">
+                <div class="table-header">
+                    <span>Rank</span>
+                    <span>Driver</span>
+                    <span>Car</span>
+                    <span>Best Time</span>
+                    <span>Points</span>
+                </div>
+                <div class="table-row podium-1">
+                    <span class="rank">🥇</span>
+                    <span class="driver">SpeedDemon_99</span>
+                    <span class="car">Ferrari SF90</span>
+                    <span class="time">1:23.456</span>
+                    <span class="points">12,840</span>
+                </div>
+                <div class="table-row podium-2">
+                    <span class="rank">🥈</span>
+                    <span class="driver">RacingPro_X</span>
+                    <span class="car">McLaren P1</span>
+                    <span class="time">1:25.789</span>
+                    <span class="points">11,520</span>
+                </div>
+                <div class="table-row podium-3">
+                    <span class="rank">🥉</span>
+                    <span class="driver">TurboCharged</span>
+                    <span class="car">Lamborghini Huracan</span>
+                    <span class="time">1:27.123</span>
+                    <span class="points">10,380</span>
+                </div>
+                <div class="table-row">
+                    <span class="rank">4</span>
+                    <span class="driver">FormulaOne</span>
+                    <span class="car">Red Bull RB19</span>
+                    <span class="time">1:28.456</span>
+                    <span class="points">9,240</span>
+                </div>
+                <div class="table-row">
+                    <span class="rank">5</span>
+                    <span class="driver">DriftKing</span>
+                    <span class="car">Nissan GT-R</span>
+                    <span class="time">1:29.789</span>
+                    <span class="points">8,670</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Stats Section -->
+    <section class="stats" id="stats">
+        <div class="container">
+            <div class="section-header">
+                <h2>Real-time Stats</h2>
+                <p>Track your performance</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card-large">
+                    <div class="stat-icon">⏱️</div>
+                    <div class="stat-info">
+                        <div class="stat-value-lg">1:23.456</div>
+                        <div class="stat-label">Best Lap Time</div>
+                    </div>
+                </div>
+                <div class="stat-card-large">
+                    <div class="stat-icon">🏁</div>
+                    <div class="stat-info">
+                        <div class="stat-value-lg">47</div>
+                        <div class="stat-label">Races Won</div>
+                    </div>
+                </div>
+                <div class="stat-card-large">
+                    <div class="stat-icon">💨</div>
+                    <div class="stat-info">
+                        <div class="stat-value-lg">320</div>
+                        <div class="stat-label">Top Speed (km/h)</div>
+                    </div>
+                </div>
+                <div class="stat-card-large">
+                    <div class="stat-icon">🔥</div>
+                    <div class="stat-info">
+                        <div class="stat-value-lg">89%</div>
+                        <div class="stat-label">Completion Rate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Race?</h2>
+            <p>Join thousands of drivers and climb the leaderboard today.</p>
+            <div class="cta-actions">
+                <button class="btn btn-primary">Download Now</button>
+                <button class="btn btn-outline">Learn More</button>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer" id="about">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-icon">⚡</span>
+                    <span class="logo-text">APEX</span>
+                    <p>Experience the thrill of racing.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#leaderboard">Leaderboard</a></li>
+                        <li><a href="#stats">Stats</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 APEX Racing. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="app.js"></script>
+</body>
+</html>

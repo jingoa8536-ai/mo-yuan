@@ -1,0 +1,755 @@
+# abbreviations.yaml — 缩写映射配置
+# 由 semantic_expander.py 硬编码迁移而来（Task C2.2）
+# 格式：每项包含 abbreviation（缩写）与 expansion（完整形式）
+# 运行时由 load_abbreviations() 热加载，支持自定义 yaml_path 覆盖
+# 注：原硬编码中 api/redis/cdn/lighthouse 等存在重复键，此处去重保留（值相同）
+
+- abbreviation: "btn"
+  expansion: "button"
+
+- abbreviation: "btns"
+  expansion: "buttons"
+
+- abbreviation: "nav"
+  expansion: "navigation"
+
+- abbreviation: "hdr"
+  expansion: "header"
+
+- abbreviation: "ftr"
+  expansion: "footer"
+
+- abbreviation: "tbl"
+  expansion: "table"
+
+- abbreviation: "frm"
+  expansion: "form"
+
+- abbreviation: "img"
+  expansion: "image"
+
+- abbreviation: "imgs"
+  expansion: "images"
+
+- abbreviation: "icon"
+  expansion: "icon"
+
+- abbreviation: "icons"
+  expansion: "icons"
+
+- abbreviation: "cnt"
+  expansion: "content"
+
+- abbreviation: "info"
+  expansion: "information"
+
+- abbreviation: "desc"
+  expansion: "description"
+
+- abbreviation: "feat"
+  expansion: "feature"
+
+- abbreviation: "feats"
+  expansion: "features"
+
+- abbreviation: "auth"
+  expansion: "authentication"
+
+- abbreviation: "api"
+  expansion: "api"
+
+- abbreviation: "db"
+  expansion: "database"
+
+- abbreviation: "sql"
+  expansion: "sql"
+
+- abbreviation: "nosql"
+  expansion: "nosql"
+
+- abbreviation: "js"
+  expansion: "javascript"
+
+- abbreviation: "ts"
+  expansion: "typescript"
+
+- abbreviation: "css"
+  expansion: "css"
+
+- abbreviation: "html"
+  expansion: "html"
+
+- abbreviation: "ui"
+  expansion: "user-interface"
+
+- abbreviation: "ux"
+  expansion: "user-experience"
+
+- abbreviation: "a11y"
+  expansion: "accessibility"
+
+- abbreviation: "k8s"
+  expansion: "kubernetes"
+
+- abbreviation: "gql"
+  expansion: "graphql"
+
+- abbreviation: "http"
+  expansion: "http"
+
+- abbreviation: "https"
+  expansion: "https"
+
+- abbreviation: "url"
+  expansion: "url"
+
+- abbreviation: "www"
+  expansion: "www"
+
+- abbreviation: "cms"
+  expansion: "content-management-system"
+
+- abbreviation: "saas"
+  expansion: "software-as-a-service"
+
+- abbreviation: "paas"
+  expansion: "platform-as-a-service"
+
+- abbreviation: "iaas"
+  expansion: "infrastructure-as-a-service"
+
+- abbreviation: "devops"
+  expansion: "devops"
+
+- abbreviation: "ci"
+  expansion: "continuous-integration"
+
+- abbreviation: "cd"
+  expansion: "continuous-deployment"
+
+- abbreviation: "qa"
+  expansion: "quality-assurance"
+
+- abbreviation: "tdd"
+  expansion: "test-driven-development"
+
+- abbreviation: "bdd"
+  expansion: "behavior-driven-development"
+
+- abbreviation: "oop"
+  expansion: "object-oriented-programming"
+
+- abbreviation: "fp"
+  expansion: "functional-programming"
+
+- abbreviation: "rest"
+  expansion: "rest"
+
+- abbreviation: "json"
+  expansion: "json"
+
+- abbreviation: "xml"
+  expansion: "xml"
+
+- abbreviation: "yaml"
+  expansion: "yaml"
+
+- abbreviation: "yml"
+  expansion: "yaml"
+
+- abbreviation: "md"
+  expansion: "markdown"
+
+- abbreviation: "txt"
+  expansion: "text"
+
+- abbreviation: "csv"
+  expansion: "csv"
+
+- abbreviation: "pdf"
+  expansion: "pdf"
+
+- abbreviation: "png"
+  expansion: "png"
+
+- abbreviation: "jpg"
+  expansion: "jpg"
+
+- abbreviation: "jpeg"
+  expansion: "jpg"
+
+- abbreviation: "svg"
+  expansion: "svg"
+
+- abbreviation: "gif"
+  expansion: "gif"
+
+- abbreviation: "mp4"
+  expansion: "mp4"
+
+- abbreviation: "webm"
+  expansion: "webm"
+
+- abbreviation: "ogg"
+  expansion: "ogg"
+
+- abbreviation: "tw"
+  expansion: "tailwind"
+
+- abbreviation: "ng"
+  expansion: "angular"
+
+- abbreviation: "pg"
+  expansion: "postgresql"
+
+- abbreviation: "mongo"
+  expansion: "mongodb"
+
+- abbreviation: "redis"
+  expansion: "redis"
+
+- abbreviation: "dbms"
+  expansion: "database-management-system"
+
+- abbreviation: "orm"
+  expansion: "object-relational-mapper"
+
+- abbreviation: "cli"
+  expansion: "command-line-interface"
+
+- abbreviation: "gui"
+  expansion: "graphical-user-interface"
+
+- abbreviation: "ide"
+  expansion: "integrated-development-environment"
+
+- abbreviation: "vcs"
+  expansion: "version-control-system"
+
+- abbreviation: "sso"
+  expansion: "single-sign-on"
+
+- abbreviation: "jwt"
+  expansion: "json-web-token"
+
+- abbreviation: "oauth"
+  expansion: "oauth"
+
+- abbreviation: "ssl"
+  expansion: "ssl"
+
+- abbreviation: "tls"
+  expansion: "tls"
+
+- abbreviation: "cdn"
+  expansion: "cdn"
+
+- abbreviation: "dns"
+  expansion: "dns"
+
+- abbreviation: "ip"
+  expansion: "ip"
+
+- abbreviation: "tcp"
+  expansion: "tcp"
+
+- abbreviation: "udp"
+  expansion: "udp"
+
+- abbreviation: "sdk"
+  expansion: "software-development-kit"
+
+- abbreviation: "npm"
+  expansion: "npm"
+
+- abbreviation: "yarn"
+  expansion: "yarn"
+
+- abbreviation: "pnpm"
+  expansion: "pnpm"
+
+- abbreviation: "pip"
+  expansion: "pip"
+
+- abbreviation: "conda"
+  expansion: "conda"
+
+- abbreviation: "docker"
+  expansion: "docker"
+
+- abbreviation: "vagrant"
+  expansion: "vagrant"
+
+- abbreviation: "terraform"
+  expansion: "terraform"
+
+- abbreviation: "ansible"
+  expansion: "ansible"
+
+- abbreviation: "helm"
+  expansion: "helm"
+
+- abbreviation: "istio"
+  expansion: "istio"
+
+- abbreviation: "prometheus"
+  expansion: "prometheus"
+
+- abbreviation: "grafana"
+  expansion: "grafana"
+
+- abbreviation: "elk"
+  expansion: "elk-stack"
+
+- abbreviation: "aws"
+  expansion: "aws"
+
+- abbreviation: "gcp"
+  expansion: "google-cloud-platform"
+
+- abbreviation: "azure"
+  expansion: "microsoft-azure"
+
+- abbreviation: "s3"
+  expansion: "s3"
+
+- abbreviation: "ec2"
+  expansion: "ec2"
+
+- abbreviation: "lambda"
+  expansion: "lambda"
+
+- abbreviation: "rds"
+  expansion: "rds"
+
+- abbreviation: "sns"
+  expansion: "sns"
+
+- abbreviation: "sqs"
+  expansion: "sqs"
+
+- abbreviation: "memcached"
+  expansion: "memcached"
+
+- abbreviation: "rabbitmq"
+  expansion: "rabbitmq"
+
+- abbreviation: "kafka"
+  expansion: "kafka"
+
+- abbreviation: "zookeeper"
+  expansion: "zookeeper"
+
+- abbreviation: "cassandra"
+  expansion: "cassandra"
+
+- abbreviation: "dynamodb"
+  expansion: "dynamodb"
+
+- abbreviation: "firestore"
+  expansion: "firestore"
+
+- abbreviation: "realtime"
+  expansion: "realtime-database"
+
+- abbreviation: "graphql"
+  expansion: "graphql"
+
+- abbreviation: "apollo"
+  expansion: "apollo-graphql"
+
+- abbreviation: "prisma"
+  expansion: "prisma"
+
+- abbreviation: "drizzle"
+  expansion: "drizzle-orm"
+
+- abbreviation: "sqlalchemy"
+  expansion: "sqlalchemy"
+
+- abbreviation: "django-orm"
+  expansion: "django-orm"
+
+- abbreviation: "sequelize"
+  expansion: "sequelize"
+
+- abbreviation: "typeorm"
+  expansion: "typeorm"
+
+- abbreviation: "mongoose"
+  expansion: "mongoose"
+
+- abbreviation: "waterline"
+  expansion: "waterline"
+
+- abbreviation: "react-router"
+  expansion: "react-router"
+
+- abbreviation: "next-router"
+  expansion: "next-router"
+
+- abbreviation: "vue-router"
+  expansion: "vue-router"
+
+- abbreviation: "react-query"
+  expansion: "react-query"
+
+- abbreviation: "suspense"
+  expansion: "react-suspense"
+
+- abbreviation: "zustand"
+  expansion: "zustand"
+
+- abbreviation: "redux"
+  expansion: "redux"
+
+- abbreviation: "mobx"
+  expansion: "mobx"
+
+- abbreviation: "jotai"
+  expansion: "jotai"
+
+- abbreviation: "effector"
+  expansion: "effector"
+
+- abbreviation: "immer"
+  expansion: "immer"
+
+- abbreviation: "recoil"
+  expansion: "recoil"
+
+- abbreviation: "storybook"
+  expansion: "storybook"
+
+- abbreviation: "cypress"
+  expansion: "cypress"
+
+- abbreviation: "playwright"
+  expansion: "playwright"
+
+- abbreviation: "testing-library"
+  expansion: "testing-library"
+
+- abbreviation: "jest"
+  expansion: "jest"
+
+- abbreviation: "vitest"
+  expansion: "vitest"
+
+- abbreviation: "mocha"
+  expansion: "mocha"
+
+- abbreviation: "chai"
+  expansion: "chai"
+
+- abbreviation: "sinon"
+  expansion: "sinon"
+
+- abbreviation: "nock"
+  expansion: "nock"
+
+- abbreviation: "msw"
+  expansion: "msw"
+
+- abbreviation: "webpack"
+  expansion: "webpack"
+
+- abbreviation: "vite"
+  expansion: "vite"
+
+- abbreviation: "rollup"
+  expansion: "rollup"
+
+- abbreviation: "esbuild"
+  expansion: "esbuild"
+
+- abbreviation: "parcel"
+  expansion: "parcel"
+
+- abbreviation: "babel"
+  expansion: "babel"
+
+- abbreviation: "eslint"
+  expansion: "eslint"
+
+- abbreviation: "prettier"
+  expansion: "prettier"
+
+- abbreviation: "stylelint"
+  expansion: "stylelint"
+
+- abbreviation: "husky"
+  expansion: "husky"
+
+- abbreviation: "lint-staged"
+  expansion: "lint-staged"
+
+- abbreviation: "commitlint"
+  expansion: "commitlint"
+
+- abbreviation: "standard-version"
+  expansion: "standard-version"
+
+- abbreviation: "semantic-release"
+  expansion: "semantic-release"
+
+- abbreviation: "conventional-commits"
+  expansion: "conventional-commits"
+
+- abbreviation: "git-flow"
+  expansion: "git-flow"
+
+- abbreviation: "trunk-based"
+  expansion: "trunk-based-development"
+
+- abbreviation: "feature-flags"
+  expansion: "feature-flags"
+
+- abbreviation: "canary-deployment"
+  expansion: "canary-deployment"
+
+- abbreviation: "blue-green"
+  expansion: "blue-green-deployment"
+
+- abbreviation: "a-b-testing"
+  expansion: "a-b-testing"
+
+- abbreviation: "feature-toggle"
+  expansion: "feature-toggle"
+
+- abbreviation: "rollback"
+  expansion: "rollback"
+
+- abbreviation: "monitoring"
+  expansion: "monitoring"
+
+- abbreviation: "logging"
+  expansion: "logging"
+
+- abbreviation: "tracing"
+  expansion: "tracing"
+
+- abbreviation: "alerting"
+  expansion: "alerting"
+
+- abbreviation: "observability"
+  expansion: "observability"
+
+- abbreviation: "metrics"
+  expansion: "metrics"
+
+- abbreviation: "distributed-tracing"
+  expansion: "distributed-tracing"
+
+- abbreviation: "structured-logging"
+  expansion: "structured-logging"
+
+- abbreviation: "health-check"
+  expansion: "health-check"
+
+- abbreviation: "circuit-breaker"
+  expansion: "circuit-breaker"
+
+- abbreviation: "rate-limiter"
+  expansion: "rate-limiter"
+
+- abbreviation: "retry"
+  expansion: "retry"
+
+- abbreviation: "fallback"
+  expansion: "fallback"
+
+- abbreviation: "bulkhead"
+  expansion: "bulkhead"
+
+- abbreviation: "dead-letter-queue"
+  expansion: "dead-letter-queue"
+
+- abbreviation: "event-sourcing"
+  expansion: "event-sourcing"
+
+- abbreviation: "cqrs"
+  expansion: "cqrs"
+
+- abbreviation: "ddd"
+  expansion: "domain-driven-design"
+
+- abbreviation: "microservices"
+  expansion: "microservices"
+
+- abbreviation: "monolith"
+  expansion: "monolith"
+
+- abbreviation: "serverless"
+  expansion: "serverless"
+
+- abbreviation: "edge-computing"
+  expansion: "edge-computing"
+
+- abbreviation: "caching"
+  expansion: "caching"
+
+- abbreviation: "lazy-loading"
+  expansion: "lazy-loading"
+
+- abbreviation: "code-splitting"
+  expansion: "code-splitting"
+
+- abbreviation: "tree-shaking"
+  expansion: "tree-shaking"
+
+- abbreviation: "bundle-analysis"
+  expansion: "bundle-analysis"
+
+- abbreviation: "perf-metrics"
+  expansion: "performance-metrics"
+
+- abbreviation: "lighthouse"
+  expansion: "lighthouse"
+
+- abbreviation: "web-vitals"
+  expansion: "web-vitals"
+
+- abbreviation: "core-web-vitals"
+  expansion: "core-web-vitals"
+
+- abbreviation: "cls"
+  expansion: "cumulative-layout-shift"
+
+- abbreviation: "fid"
+  expansion: "first-input-delay"
+
+- abbreviation: "lcp"
+  expansion: "largest-contentful-paint"
+
+- abbreviation: "inp"
+  expansion: "interaction-to-next-paint"
+
+- abbreviation: "fcp"
+  expansion: "first-contentful-paint"
+
+- abbreviation: "ttfb"
+  expansion: "time-to-first-byte"
+
+- abbreviation: "tbt"
+  expansion: "total-blocking-time"
+
+- abbreviation: "si"
+  expansion: "speed-index"
+
+- abbreviation: "chrome-devtools"
+  expansion: "chrome-devtools"
+
+- abbreviation: "web-audio"
+  expansion: "web-audio-api"
+
+- abbreviation: "web-rtc"
+  expansion: "web-rtc"
+
+- abbreviation: "web-gl"
+  expansion: "web-gl"
+
+- abbreviation: "web-assembly"
+  expansion: "web-assembly"
+
+- abbreviation: "service-worker"
+  expansion: "service-worker"
+
+- abbreviation: "web-push"
+  expansion: "web-push"
+
+- abbreviation: "manifest"
+  expansion: "web-app-manifest"
+
+- abbreviation: "pwa"
+  expansion: "progressive-web-app"
+
+- abbreviation: "ssr"
+  expansion: "server-side-rendering"
+
+- abbreviation: "ssg"
+  expansion: "static-site-generation"
+
+- abbreviation: "csr"
+  expansion: "client-side-rendering"
+
+- abbreviation: "isr"
+  expansion: "incremental-static-regeneration"
+
+- abbreviation: "hydration"
+  expansion: "hydration"
+
+- abbreviation: "streaming"
+  expansion: "streaming"
+
+- abbreviation: "server-components"
+  expansion: "server-components"
+
+- abbreviation: "edge-functions"
+  expansion: "edge-functions"
+
+- abbreviation: "middleware"
+  expansion: "middleware"
+
+- abbreviation: "api-routes"
+  expansion: "api-routes"
+
+- abbreviation: "next-auth"
+  expansion: "next-auth"
+
+- abbreviation: "auth0"
+  expansion: "auth0"
+
+- abbreviation: "firebase-auth"
+  expansion: "firebase-auth"
+
+- abbreviation: "supabase-auth"
+  expansion: "supabase-auth"
+
+- abbreviation: "magic-link"
+  expansion: "magic-link"
+
+- abbreviation: "passwordless"
+  expansion: "passwordless-authentication"
+
+- abbreviation: "multi-factor-auth"
+  expansion: "multi-factor-authentication"
+
+- abbreviation: "session-management"
+  expansion: "session-management"
+
+- abbreviation: "token-refresh"
+  expansion: "token-refresh"
+
+- abbreviation: "csrf-protection"
+  expansion: "csrf-protection"
+
+- abbreviation: "cors"
+  expansion: "cors"
+
+- abbreviation: "oauth2"
+  expansion: "oauth2"
+
+- abbreviation: "openid-connect"
+  expansion: "openid-connect"
+
+- abbreviation: "saml"
+  expansion: "saml"
+
+- abbreviation: "scim"
+  expansion: "scim"
+
+- abbreviation: "ldap"
+  expansion: "ldap"
+
+- abbreviation: "active-directory"
+  expansion: "active-directory"
+
+- abbreviation: "okta"
+  expansion: "okta"
+
+- abbreviation: "ping-identity"
+  expansion: "ping-identity"
+
+- abbreviation: "one-login"
+  expansion: "one-login"

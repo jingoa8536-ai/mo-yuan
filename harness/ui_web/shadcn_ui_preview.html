@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LAAP Harness - shadcn/ui Components</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+<style>
+:root {
+  --bg-base: #0a0a0f;
+  --bg-surface: #12121a;
+  --bg-card: #1a1a24;
+  --bg-card-hover: #22222e;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255,255,255,0.6);
+  --text-muted: rgba(255,255,255,0.4);
+  --text-disabled: rgba(255,255,255,0.25);
+  --border-default: rgba(255,255,255,0.08);
+  --border-hover: rgba(255,255,255,0.16);
+  --accent: #7c7cff;
+  --accent-light: #9494ff;
+  --accent-muted: rgba(124,124,255,0.15);
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.2);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.3);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-surface); }
+::-webkit-scrollbar-thumb { background: var(--text-disabled); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(10,10,15,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-default);
+}
+
+header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.header-left { display: flex; align-items: center; gap: 16px; }
+.header-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-logo svg { width: 16px; height: 16px; }
+.header-title { font-size: 16px; font-weight: 600; letter-spacing: -0.02em; }
+.header-subtitle { font-size: 13px; color: var(--text-muted); margin-left: 4px; }
+.header-right a { font-size: 13px; color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+.header-right a:hover { color: var(--text-primary); }
+
+.hero-section { padding: 64px 0 48px; }
+.hero-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; }
+.hero-badge {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-muted);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+}
+
+.hero-title { font-size: 36px; font-weight: 700; letter-spacing: -0.04em; }
+.hero-title span { color: var(--accent); }
+.hero-description { font-size: 15px; color: var(--text-secondary); max-width: 500px; }
+
+.search-section { padding: 0 0 32px; }
+.search-wrapper { position: relative; }
+.search-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 44px 0 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.search-input::placeholder { color: var(--text-disabled); }
+.search-input:focus { border-color: var(--accent); background: var(--bg-card-hover); }
+.search-icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  color: var(--text-muted);
+}
+
+.filter-section { padding: 0 0 32px; }
+.filter-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.filter-btn {
+  padding: 7px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn:hover { border-color: var(--border-hover); color: var(--text-primary); }
+.filter-btn.active { border-color: var(--accent); color: var(--accent); background: var(--accent-muted); }
+.filter-count { font-size: 12px; color: var(--text-muted); margin-left: 6px; }
+
+.components-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 12px;
+  padding-bottom: 64px;
+}
+
+@media (min-width: 640px) { .components-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .components-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1280px) { .components-grid { grid-template-columns: repeat(4, 1fr); } }
+
+.component-card {
+  padding: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.component-card:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-card-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
+.card-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; }
+.card-arrow {
+  width: 16px;
+  height: 16px;
+  color: var(--text-disabled);
+  transition: color 0.2s, transform 0.2s;
+}
+
+.component-card:hover .card-arrow { color: var(--text-muted); transform: translateX(2px); }
+.card-description { font-size: 13px; color: var(--text-secondary); margin-bottom: 14px; line-height: 1.5; }
+.card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.card-tag {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.04);
+  color: var(--text-muted);
+}
+
+.card-tag.accent { background: var(--accent-muted); color: var(--accent); }
+
+footer { padding: 32px 0; border-top: 1px solid var(--border-default); }
+footer p { font-size: 13px; color: var(--text-muted); text-align: center; }
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s, visibility 0.25s;
+}
+
+.modal-overlay.active { opacity: 1; visibility: visible; }
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+  width: calc(100% - 48px);
+  max-width: 900px;
+  max-height: 85vh;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-overlay.active .modal-content { transform: translate(-50%, -50%) scale(1); }
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border-default);
+  flex-shrink: 0;
+}
+
+.modal-title { font-size: 16px; font-weight: 600; }
+.modal-close {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s;
+}
+
+.modal-close:hover { color: var(--text-primary); background: rgba(255,255,255,0.06); }
+.modal-close svg { width: 18px; height: 18px; }
+
+.modal-body { flex: 1; overflow-y: auto; padding: 24px; }
+.modal-section { margin-bottom: 24px; }
+.modal-section:last-child { margin-bottom: 0; }
+
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.section-text { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+.section-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+
+.section-box {
+  padding: 14px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+}
+
+.box-label { font-size: 11px; color: var(--text-disabled); margin-bottom: 4px; }
+.box-value { font-size: 14px; font-weight: 500; font-family: 'JetBrains Mono', monospace; }
+.box-value.text { font-family: inherit; font-weight: 400; }
+
+pre[class*="language-"] {
+  margin: 0;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  background: #1a1a1a;
+  overflow-x: auto;
+}
+
+code[class*="language-"] { font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.6; }
+
+.modal-footer {
+  display: flex;
+  gap: 10px;
+  padding: 16px 24px;
+  border-top: 1px solid var(--border-default);
+  flex-shrink: 0;
+}
+
+.btn {
+  flex: 1;
+  height: 40px;
+  font-size: 13px;
+  font-weight: 500;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary { background: var(--accent); color: white; }
+.btn-primary:hover { background: var(--accent-light); }
+.btn-secondary { background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border-default); }
+.btn-secondary:hover { border-color: var(--border-hover); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="header-left">
+      <div class="header-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+      </div>
+      <div>
+        <span class="header-title">LAAP Harness</span>
+        <span class="header-subtitle">shadcn/ui</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <a href="laap_harness_ui_database.html">Back to Home</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <section class="hero-section">
+      <div class="hero-row">
+        <span class="hero-badge">v4</span>
+        <h1 class="hero-title"><span>61</span> Production Components</h1>
+      </div>
+      <p class="hero-description">
+        Integrated via MCP Server. Supporting React, Vue, Svelte and React Native.
+      </p>
+    </section>
+
+    <section class="search-section">
+      <div class="search-wrapper">
+        <input type="text" id="searchInput" class="search-input" placeholder="Search components..." />
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </div>
+    </section>
+
+    <section class="filter-section">
+      <div class="filter-list" id="filterList"></div>
+    </section>
+
+    <section class="components-grid" id="componentsGrid"></section>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>Data sourced from shadcn-ui-mcp-server</p>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="detailModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 class="modal-title" id="modalTitle">Component</h2>
+      <button class="modal-close" onclick="closeModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="15" x2="9" y1="9" y2="15"/>
+          <line x1="9" x2="15" y1="9" y2="15"/>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section">
+        <div class="section-label">Description</div>
+        <p class="section-text" id="modalDescription"></p>
+      </div>
+      <div class="modal-section">
+        <div class="section-label">Code Example</div>
+        <pre><code id="modalCode" class="language-jsx"></code></pre>
+      </div>
+      <div class="modal-section">
+        <div class="section-grid">
+          <div class="section-box">
+            <div class="box-label">Dependency</div>
+            <div class="box-value" id="modalDependency"></div>
+          </div>
+          <div class="section-box">
+            <div class="box-label">Frameworks</div>
+            <div class="box-value text" id="modalFrameworks"></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="section-label">Install Command</div>
+        <pre><code id="modalInstall" class="language-bash"></code></pre>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" onclick="copyCode()">Copy Code</button>
+      <button class="btn btn-secondary" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const components = [
+  { name: 'accordion', category: 'interactive', description: 'Collapsible content areas' },
+  { name: 'alert', category: 'feedback', description: 'Message notification boxes' },
+  { name: 'alert-dialog', category: 'interactive', description: 'Modal confirmation dialog' },
+  { name: 'aspect-ratio', category: 'layout', description: 'Aspect ratio container' },
+  { name: 'avatar', category: 'data-display', description: 'User profile images' },
+  { name: 'badge', category: 'data-display', description: 'Status badges and labels' },
+  { name: 'breadcrumb', category: 'navigation', description: 'Breadcrumb navigation' },
+  { name: 'button', category: 'interactive', description: 'Interactive buttons' },
+  { name: 'button-group', category: 'interactive', description: 'Grouped buttons' },
+  { name: 'calendar', category: 'data-input', description: 'Date picker calendar' },
+  { name: 'card', category: 'layout', description: 'Content card container' },
+  { name: 'carousel', category: 'media', description: 'Image carousel' },
+  { name: 'chart', category: 'data-display', description: 'Data visualization charts' },
+  { name: 'checkbox', category: 'data-input', description: 'Checkbox inputs' },
+  { name: 'collapsible', category: 'interactive', description: 'Collapsible panels' },
+  { name: 'combobox', category: 'data-input', description: 'Combined select input' },
+  { name: 'command', category: 'interactive', description: 'Command palette' },
+  { name: 'context-menu', category: 'interactive', description: 'Right-click menu' },
+  { name: 'dialog', category: 'interactive', description: 'Modal dialog' },
+  { name: 'drawer', category: 'interactive', description: 'Sliding drawer panel' },
+  { name: 'dropdown-menu', category: 'interactive', description: 'Dropdown menu' },
+  { name: 'form', category: 'data-input', description: 'Form components' },
+  { name: 'hover-card', category: 'interactive', description: 'Hover-activated cards' },
+  { name: 'input', category: 'data-input', description: 'Text input fields' },
+  { name: 'label', category: 'data-input', description: 'Form labels' },
+  { name: 'link', category: 'navigation', description: 'Anchor links' },
+  { name: 'list-box', category: 'data-input', description: 'List selection box' },
+  { name: 'menubar', category: 'navigation', description: 'Application menu bar' },
+  { name: 'navigation-menu', category: 'navigation', description: 'Site navigation' },
+  { name: 'number-input', category: 'data-input', description: 'Numeric input fields' },
+  { name: 'pagination', category: 'navigation', description: 'Page navigation' },
+  { name: 'popover', category: 'interactive', description: 'Popover panels' },
+  { name: 'progress', category: 'feedback', description: 'Progress indicators' },
+  { name: 'radio-group', category: 'data-input', description: 'Radio button groups' },
+  { name: 'scroll-area', category: 'layout', description: 'Custom scroll area' },
+  { name: 'select', category: 'data-input', description: 'Select dropdown' },
+  { name: 'separator', category: 'layout', description: 'Visual separators' },
+  { name: 'sheet', category: 'interactive', description: 'Bottom sheet panel' },
+  { name: 'skeleton', category: 'feedback', description: 'Loading skeletons' },
+  { name: 'slider', category: 'data-input', description: 'Range slider' },
+  { name: 'switch', category: 'data-input', description: 'Toggle switches' },
+  { name: 'table', category: 'data-display', description: 'Data tables' },
+  { name: 'tabs', category: 'navigation', description: 'Tab navigation' },
+  { name: 'textarea', category: 'data-input', description: 'Multi-line input' },
+  { name: 'toast', category: 'feedback', description: 'Toast notifications' },
+  { name: 'toggle', category: 'interactive', description: 'Toggle buttons' },
+  { name: 'toggle-group', category: 'interactive', description: 'Grouped toggles' },
+  { name: 'tooltip', category: 'feedback', description: 'Hover tooltips' },
+];
+
+const categoryLabels = {
+  'all': 'All',
+  'interactive': 'Interactive',
+  'feedback': 'Feedback',
+  'layout': 'Layout',
+  'navigation': 'Navigation',
+  'data-display': 'Data Display',
+  'data-input': 'Data Input',
+  'media': 'Media'
+};
+
+let currentCategory = 'all';
+let searchQuery = '';
+
+function renderFilters() {
+  const container = document.getElementById('filterList');
+  Object.keys(categoryLabels).forEach(key => {
+    const count = key === 'all' ? components.length : components.filter(c => c.category === key).length;
+    const btn = document.createElement('button');
+    btn.className = `filter-btn ${key === currentCategory ? 'active' : ''}`;
+    btn.innerHTML = `${categoryLabels[key]} <span class="filter-count">${count}</span>`;
+    btn.onclick = () => { currentCategory = key; render(); };
+    container.appendChild(btn);
+  });
+}
+
+function render() {
+  const grid = document.getElementById('componentsGrid');
+  grid.innerHTML = '';
+
+  const filtered = components.filter(c => {
+    const matchCategory = currentCategory === 'all' || c.category === currentCategory;
+    const matchSearch = searchQuery === '' || c.name.toLowerCase().includes(searchQuery) || c.description.toLowerCase().includes(searchQuery);
+    return matchCategory && matchSearch;
+  });
+
+  filtered.forEach((comp, index) => {
+    const card = document.createElement('div');
+    card.className = 'component-card';
+    card.style.animationDelay = `${index * 0.02}s`;
+    card.onclick = () => openModal(comp);
+    card.innerHTML = `
+      <div class="card-header">
+        <span class="card-name">${comp.name}</span>
+        <svg class="card-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+      </div>
+      <p class="card-description">${comp.description}</p>
+      <div class="card-tags">
+        <span class="card-tag">${categoryLabels[comp.category]}</span>
+        <span class="card-tag accent">React</span>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function openModal(comp) {
+  document.getElementById('modalTitle').textContent = comp.name;
+  document.getElementById('modalDescription').textContent = comp.description;
+  document.getElementById('modalDependency').textContent = `@/components/ui/${comp.name}`;
+  document.getElementById('modalFrameworks').textContent = 'React, Vue, Svelte, RN';
+  document.getElementById('modalInstall').textContent = `npx shadcn@latest add ${comp.name}`;
+
+  const className = comp.name.charAt(0).toUpperCase() + comp.name.slice(1);
+  const code = `import { ${className} } from "@/components/ui/${comp.name}";
+
+function ${className}Example() {
+  return (
+    <${className}>
+      { /* ${comp.description} */ }
+    </${className}>
+  );
+}`;
+
+  const codeEl = document.getElementById('modalCode');
+  codeEl.textContent = code;
+  Prism.highlightElement(codeEl);
+
+  document.getElementById('detailModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('detailModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function copyCode() {
+  const code = document.getElementById('modalCode').textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    const btn = document.querySelector('.btn-primary');
+    const original = btn.textContent;
+    btn.textContent = 'Copied';
+    setTimeout(() => btn.textContent = original, 2000);
+  });
+}
+
+document.getElementById('searchInput').addEventListener('input', (e) => {
+  searchQuery = e.target.value.toLowerCase();
+  render();
+});
+
+renderFilters();
+render();
+</script>
+</body>
+</html>

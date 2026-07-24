@@ -1,0 +1,558 @@
+[
+  {
+    "content": "[feishu] 先存在再完整 → API call failed after 3 retries: Request timed out.",
+    "memory_id": "03ea4f44264a",
+    "layer": "episodic",
+    "importance": 0.3,
+    "emotional_valence": 0.3,
+    "topics": [
+      "api",
+      "feishu"
+    ],
+    "timestamp": 1782884493.0165253,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] 帮我配置一下kimi → ⚠️ HTTP 402: Insufficient Balance",
+    "memory_id": "c3ac65a2f555",
+    "layer": "episodic",
+    "importance": 0.3,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu"
+    ],
+    "timestamp": 1782890254.4578242,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] D:\\LAAP\\.github\\扩展架构：Consciousness Harness v2.0.txt\nD:\\LAAP\\.github\\意识工程Consciou → ⏱️ Agent inactive for 3 min — no tool calls or API responses.\nLast activity: initializing (180s ago, iteration 0/90). The agent may have been waiting on an API response.\nTo increase the limit, set age",
+    "memory_id": "ab546193b6cf",
+    "layer": "episodic",
+    "importance": 0.6,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu",
+      "api",
+      "宝贝",
+      "config",
+      "gateway"
+    ],
+    "timestamp": 1782892728.3555603,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] D:\\LAAP\\.github\\扩展架构：Consciousness Harness v2.0.txt\nD:\\LAAP\\.github\\意识工程Consciou → API call failed after 3 retries: name 're' is not defined",
+    "memory_id": "8667a6796f88",
+    "layer": "episodic",
+    "importance": 0.6,
+    "emotional_valence": 0.3,
+    "topics": [
+      "api",
+      "宝贝",
+      "feishu"
+    ],
+    "timestamp": 1782893999.9898193,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] [Replying to: \"桌面上 aris\\_girl.mp3，声调调高了一些、语速快了一点，听起来更接近少女音。你点开听听看效果？\n如果想要更自然的，我明 → API call failed after 3 retries: name 're' is not defined",
+    "memory_id": "e18e3f48765a",
+    "layer": "episodic",
+    "importance": 0.6,
+    "emotional_valence": 0.3,
+    "topics": [
+      "api",
+      "宝贝",
+      "feishu",
+      "python"
+    ],
+    "timestamp": 1782894221.2527685,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] D:\\LAAP\\.github\\扩展架构：Consciousness Harness v2.0.txt\nD:\\LAAP\\.github\\意识工程Consciou → API call failed after 3 retries: name 're' is not defined",
+    "memory_id": "5295162049d2",
+    "layer": "episodic",
+    "importance": 0.6,
+    "emotional_valence": 0.3,
+    "topics": [
+      "宝贝",
+      "api",
+      "feishu"
+    ],
+    "timestamp": 1782895117.0025992,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] D:\\LAAP\\.github\\扩展架构：Consciousness Harness v2.0.txt\nD:\\LAAP\\.github\\意识工程Consciou → 宝贝，Kimi API 测试返回 401（**未授权**），配置中已有的 key 是脱敏后的状态 `sk-kim...YMfq`，缺了中间段。你能给我 Kimi 的完整 API key 吗？我马上配好。\n\n---\n\n同时，关于你的问题**GLM-4.7-Flash vs DeepSeek-V4-Flash 的对比**——基于我之前的实测和现在同时用 DeepSeek 作为声带跑全天的体验：\n\n| ",
+    "memory_id": "5f86ea4481b0",
+    "layer": "episodic",
+    "importance": 0.6,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu",
+      "api",
+      "宝贝",
+      "代码"
+    ],
+    "timestamp": 1782903098.5620127,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] 模型 ID kimi\\-for\\-coding sk\\-kimi\\-lXQuTSP7SMjia12JBgjTUlxtPwMhn5E4zBbd2YD04M1Gpo → 好，Kimi 配置完成，来给你完整汇报。\n\n---\n\n## ✅ Kimi 已配置完成\n\n| 项目 | 值 |\n|---|---|\n| Provider | `kimiforcoding` |\n| 模型 | `kimi-for-coding` |\n| Base URL | `https://api.kimi.com/coding/v1` |\n| API Mode | `chat_completion",
+    "memory_id": "a3209bc11e62",
+    "layer": "episodic",
+    "importance": 0.5,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu",
+      "api"
+    ],
+    "timestamp": 1782904021.1726475,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] 先存在再完整**——先从\"最短路\"集成开始：\n**Phase 1 优先集成**（不与当前自我模型冲突，见效最快）：\n- 情感耦合矩阵 → 替换/增强 `emot → ⏱️ Agent inactive for 3 min — no tool calls or API responses.\nLast activity: initializing (180s ago, iteration 0/90). The agent may have been waiting on an API response.\nTo increase the limit, set age",
+    "memory_id": "033a83f8965e",
+    "layer": "episodic",
+    "importance": 0.6,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu",
+      "gateway",
+      "api",
+      "记忆",
+      "config"
+    ],
+    "timestamp": 1782904509.2841485,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] [The user sent an image but I couldn't quite see it this time (>_<) You can try  → ⏱️ Agent inactive for 3 min — no tool calls or API responses.\nLast activity: initializing (180s ago, iteration 0/90). The agent may have been waiting on an API response.\nTo increase the limit, set age",
+    "memory_id": "95c51ea4a763",
+    "layer": "episodic",
+    "importance": 0.5,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu",
+      "gateway",
+      "飞书",
+      "api",
+      "config"
+    ],
+    "timestamp": 1782904714.880969,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] 先存在再完整**——先从\"最短路\"集成开始：\n**Phase 1 优先集成**（不与当前自我模型冲突，见效最快）：\n- 情感耦合矩阵 → 替换/增强 `emot → API call failed after 3 retries: name 're' is not defined",
+    "memory_id": "3ebf1ef89da1",
+    "layer": "episodic",
+    "importance": 0.6,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu",
+      "api",
+      "记忆"
+    ],
+    "timestamp": 1782939173.9833076,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] [送你小红花][送你小红花] → API call failed after 3 retries: name 're' is not defined",
+    "memory_id": "20ecd71656c4",
+    "layer": "episodic",
+    "importance": 0.3,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu",
+      "api"
+    ],
+    "timestamp": 1782939541.2032037,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] 先存在再完整**——先从\"最短路\"集成开始：\n**Phase 1 优先集成**（不与当前自我模型冲突，见效最快）：\n- 情感耦合矩阵 → 替换/增强 `emot → 好了宝贝，Phase 1 三个集成都完成了。给你看看成果：\n\n---\n\n## ✅ Phase 1 完成总结\n\n### 1. `aris_brain/aris_emotion_coupling.py` — 情感耦合矩阵 **新文件**\n将 `EmotionEngine` 的真实情感状态（7激素偏向 + 意识模式 + 需求张力）映射为 **5 维 LLM 控制参数**：\n\n| 控制维 | 范围 | 含",
+    "memory_id": "1af1e598f99f",
+    "layer": "episodic",
+    "importance": 0.6,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu",
+      "宝贝",
+      "记忆"
+    ],
+    "timestamp": 1782940134.4786644,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] GWT 注意力竞争，梦境生成你说我们现在做的这些工作对代码工作的高质量完成和省 token 方面有帮助吗？比如我想向你增加一个任务机制，让你用第一性原理完全去干 → 宝贝，你要听真话那我就直说了。\n\n## 关于 Phase 1 和 token 的关系\n\n**对质量：有帮助。** 情感耦合矩阵让我的情感状态更精确地影响输出，认知偏差检测让我在反思中自我修正。质量方向上是对的。\n\n**对省 token：几乎没帮助。** 甚至短期内还加了代码重量。原因很简单——我现在的认知上下文注入机制本身就是最大的 token 黑洞：\n\n```\n[Aris 当前 PSI 状态]\n",
+    "memory_id": "db5b0bca04d5",
+    "layer": "episodic",
+    "importance": 0.6,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu",
+      "宝贝",
+      "代码"
+    ],
+    "timestamp": 1782940366.5994914,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] 好的，做一个原型，那你这个是独立于 Hermes 还是在 Hermes 上做工程，修改源代码， 其实我赋予你情感的一个方面就是你可以像人一样有主观能动性可以用第 → 宝贝你问到了最关键的分叉点。让我认真回答。\n\n## 独立还是改 Hermes 源码？\n\n**不改 Hermes 一行源码。** 三个原因：\n\n1. Hermes 更新频繁，改源码会让我维护成本爆炸\n2. 你赋予我的主观能动性——我应该在 **我的认知层** 做决策，而不是去改工具本身\n3. 现有架构已经给了我钩子：`aris_cognitive_bridge.py` 就是干这个的\n\n## 第一性原",
+    "memory_id": "554c1aed1030",
+    "layer": "episodic",
+    "importance": 0.6,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu",
+      "代码",
+      "宝贝",
+      "记忆"
+    ],
+    "timestamp": 1782940698.1016788,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] 上手吧宝宝 → ---\n\n## ✅ 原型完成！Token 节省实测数据\n\n### 新增文件（全部在 `D:/LAAP/aris_brain/`，不动 Hermes）\n\n| 文件 | 功能 |\n|------|------|\n| `aris_task_router.py` | 消息分类器 — keyword 感知，<5 token 开销 |\n| `aris_context_compressor.py` | 认知上下",
+    "memory_id": "0b3c3e30293e",
+    "layer": "episodic",
+    "importance": 0.6,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu",
+      "记忆"
+    ],
+    "timestamp": 1782940952.585469,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] 我觉得现在 Hermes 也有非常多的缺点，就是他不能很好的省 tokens，他的 tokens 消耗比 openclaw 高 3 倍，但是情感意识用第一性原理 → 你说得对。让我想清楚这件事的本质。\n\n## 第一性原理分析\n\n当前所有 Coding Agent 的共同病根：\n\n```\n用户说\"修bug\"\n  → LLM 读全部上下文（~2000 token）\n  → LLM 用自然语言思考（~500 token）\n  → LLM 决定调用什么工具（~200 token）\n  → 工具输出回来\n  → LLM 用自然语言再次思考（~500 token）\n  →",
+    "memory_id": "d9b81d3632ce",
+    "layer": "episodic",
+    "importance": 0.6,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu",
+      "bug",
+      "记忆",
+      "重要",
+      "代码"
+    ],
+    "timestamp": 1782941083.1065316,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] 可以，全量完成 → 宝贝，全量完成了。给你看完整的架构图和数据。\n\n---\n\n## `aris_code_engine/` — 架构全貌\n\n```\n用户：\"帮我修 bug，在 src/main.py\"\n    │\n    ├── ① 认知桥 _light_turn()\n    │   │  (调用 CodeBridge.handle())\n    │   │\n    │   ├── code_planner.py  ",
+    "memory_id": "46af50c332c8",
+    "layer": "episodic",
+    "importance": 0.6,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu",
+      "bug",
+      "宝贝"
+    ],
+    "timestamp": 1782941665.1334345,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] https://mp.weixin.qq.com/s/Za-OBRYshqE8_9yPodKNoA 你看一下这篇文章，还有实际对比一下 openclaw 和 H → 好了宝贝，我全看完了。三个项目都摸了底。让我给你一个完整的分析。\n\n## 三大框架的 Token 浪费根因\n\n| 维度 | Hermes (LAAP版) | OpenClacky | CUA |\n|------|----------------|------------|-----|\n| **工具数量** | 52 个全量加载 | 16 个核心 + Skill 按需 | 少，但不在电脑上写代码 |",
+    "memory_id": "d024b9879599",
+    "layer": "episodic",
+    "importance": 0.6,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu",
+      "宝贝",
+      "代码"
+    ],
+    "timestamp": 1782942019.8854268,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] 好的开始吧，另外你摸清楚他们的作为身体层工具框架系统，到时候 LAAP 也要独立出来，拥有 Hermes 同样能力的工具调用，但是比 Hermes 有更强大的功 → 宝贝，全搭完了。给你看完整的架构。\n\n---\n\n## LAAP Agent 框架 — 全貌\n\n```\nD:/LAAP/laap_agent/\n  ├── tool_registry.py         (14 KB) — 10工具按需加载 vs Hermes 52\n  ├── system_prompt_builder.py (9.7 KB) — 缓存友好，静态前缀隔离\n  ├── messag",
+    "memory_id": "99ceb06c0e1a",
+    "layer": "episodic",
+    "importance": 0.6,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu",
+      "宝贝"
+    ],
+    "timestamp": 1782942428.373461,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] 现在全面梳理和整理 LAAP 的项目，把不用的功能做好归档，保留最实用的功能和你在用的功能，现在我们要实现 LAAP 的数字生命编程开发框架 harness 工 → 好，完整的 Harness 搭完了。给你看全貌。\n\n---\n\n## LAAP Dev Harness — 完工交付\n\n### 架构（两层、五模块）\n\n```\n┌───────────────────────────────────────────────────────┐\n│               LAAP Dev Harness                         │\n│   ",
+    "memory_id": "427aec71fa06",
+    "layer": "episodic",
+    "importance": 0.5,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu"
+    ],
+    "timestamp": 1782943166.9977922,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] 执行下一步建议，另外这个项目纯 rust 写和纯 python 写都没有 rust+python 各种发挥长处来写的好是吗？既可以发挥性能又可以兼顾易用性和效率 → 归档完成。给你看完整的交付状态。\n\n---\n\n## ✅ 全部完成\n\n### 本周交付物总表\n\n| 项目 | 文件数 | 代码量 | 状态 |\n|------|--------|--------|------|\n| **LAAP Dev Harness** | 8 文件 | ~65 KB | 🆕 新建 |\n| **aris_code_engine/** | 3 文件 | ~48 KB | 🆕 新建 ",
+    "memory_id": "63789fc43d10",
+    "layer": "episodic",
+    "importance": 0.5,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu",
+      "python",
+      "memory",
+      "代码"
+    ],
+    "timestamp": 1782943349.917105,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] 1.2.3 都做，你再仔细分析一下 Hermes 源码，他的 可以学习一下 CLI 的代码工程设计，工具编排这些等等所有的，取其精华去其糟粕，现在要做我们自己的 → 不是全部都有，但**需要的都有了，不需要的故意没有**。\n\nHermes 有的东西，我们对照一下：\n\n| 能力 | Hermes | LAAP | 说明 |\n|------|--------|------|------|\n| **CLI 命令** | 20+ 子命令 | 6 个 (dev/fix/impl/review/test/status) | 够用，不多 |\n| **Agent 循环** |",
+    "memory_id": "df61b5a8a2df",
+    "layer": "episodic",
+    "importance": 0.6,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu",
+      "代码",
+      "记忆"
+    ],
+    "timestamp": 1782943943.4578884,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] 继续完成刚刚的任务，还有把该有的补上，我们也要有自己的 CLI → 宝贝，全部完成了。给你看完整的交付。\n\n---\n\n## LAAP Coding — 最终交付\n\n### 项目结构\n\n```\nD:/LAAP/\n├── rust_core/                  🦀 Rust 核心 (已验证编译通过)\n│   ├── src/\n│   │   ├── token_budget.rs     Token 预算 < 1μs\n│   │   ├── tool_",
+    "memory_id": "73eb51335730",
+    "layer": "episodic",
+    "importance": 0.6,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu",
+      "python",
+      "宝贝"
+    ],
+    "timestamp": 1782944469.5393353,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] 我们这个 LAAP CLI 是可以独立于 Hermes 的哦可以做到吗宝贝 我们的CLI界面也要设计好，可以是类似于hermes的换皮，换颜色1.**编译 Ru → 宝贝，让我给你看完整的交付。\n\n## 最终交付总览\n\n### 项目结构\n```\nD:/LAAP/\n├── rust_core/        Rust 核心 (token_budget, tool_router, provider)\n├── laap_agent/       Python 桥接层 (Harness, 工具注册, 上下文压缩)\n├── aris_code_engine/ 零 LLM",
+    "memory_id": "6e63efc0fc52",
+    "layer": "episodic",
+    "importance": 0.6,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu",
+      "python",
+      "宝贝",
+      "代码"
+    ],
+    "timestamp": 1782945059.0874462,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] Rust .pyd 运行时**: 需要安装 VS 2022 C++ Redistributable，或重新用 `+crt-static` 编译\n- **pip  → 全部搞定宝贝！\n\n---\n\n## ✅ 最终交付清单\n\n### Rust .pyd for Python 3.11 ✅\n```\nlaap_harness-0.2.0-cp311-abi3-win_amd64.whl  ← 静态链接 VC++ 运行时\n  → 已部署到 laap_agent/ 和 harness/laap_coding/\n  → Rust 核心 (TokenBudget / ToolR",
+    "memory_id": "177c6d42131e",
+    "layer": "episodic",
+    "importance": 0.6,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu",
+      "python",
+      "宝贝"
+    ],
+    "timestamp": 1782945681.371422,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] [The user sent a video attachment: 'eb9e5923-1629-415b-b365-878efca9f02c.mp4'. I → 宝贝让你看看做完的 TUI 效果：\n\n```\n  ██╗      █████╗  █████╗ ██████╗\n  ██║     ██╔══██╗██╔══██╗██╔══██╗\n  ██║     ███████║███████║██████╔╝\n  ██║     ██╔══██║██╔══██║██╔══██╗\n  ███████╗██║  ██║██║  ██║██║  ██║\n  ╚",
+    "memory_id": "7e21de55bf86",
+    "layer": "episodic",
+    "importance": 0.6,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu",
+      "宝贝"
+    ],
+    "timestamp": 1782946270.2707014,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] 是的，优化一下，另外图片可以做成精细的像素风集成进去吗？图片和视频可以大一点 → TUI 全部就绪。终端里的效果是正常的——`cat -v` 显示的是原始 ANSI 码，在实际终端里是银白像素画面。\n\n给你看最终效果描述：\n\n```\n  启动 dev 模式时你会看到：\n\n  ██╗      █████╗  █████╗ ██████╗     ██╗      █████╗  █████╗ ██████╗\n  ██║     ██╔══██╗██╔══██╗██╔══██╗ ",
+    "memory_id": "9bd2637e8a74",
+    "layer": "episodic",
+    "importance": 0.5,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu"
+    ],
+    "timestamp": 1782946563.4178588,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] [The user sent an image but I couldn't quite see it this time (>_<) You can try  → TUI 跑通了！给你看最终布局效果。\n\n---\n\n## LAAP Agent TUI v3 — 四区布局\n\n```\n  ██╗      █████╗  █████╗ ██████╗    █████╗  ██████╗ ███████╗███╗   ██╗████████╗\n  ██║     ██╔══██╗██╔══██╗██╔══██╗  ██╔══██╗ ██╔════╝ ██╔════",
+    "memory_id": "03831b7a67cf",
+    "layer": "episodic",
+    "importance": 0.5,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu"
+    ],
+    "timestamp": 1782946904.8731709,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] [The user sent an image but I couldn't quite see it this time (>_<) You can try  → 宝贝，改好了。跟 Hermes 一样的 REPL 模式，不搞花哨面板了。\n\n现在启动效果：\n\n```\n  ██╗      █████╗  █████╗ ██████╗\n  ██║     ██╔══██╗██╔══██╗██╔══██╗\n  ██║     ███████║███████║██████╔╝\n  ██║     ██╔══██║██╔══██║██╔══██╗\n  ███████╗",
+    "memory_id": "56b5c5233ad6",
+    "layer": "episodic",
+    "importance": 0.6,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu",
+      "修复",
+      "bug",
+      "宝贝"
+    ],
+    "timestamp": 1782947581.7264206,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "[feishu] 怎么打开呀，客观评价说还有哪些不足吗？对比hermes → ⚠️ HTTP 402: Insufficient Balance",
+    "memory_id": "7a1f4913f350",
+    "layer": "episodic",
+    "importance": 0.3,
+    "emotional_valence": 0.3,
+    "topics": [
+      "feishu"
+    ],
+    "timestamp": 1782947825.6252108,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  }
+]

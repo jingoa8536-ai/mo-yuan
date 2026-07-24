@@ -1,0 +1,15 @@
+<div class="tabs-container">
+  <div class="tabs-nav flex border-b border-white/10">
+    {% for tab in tabs %}
+    <button class="tab-btn relative px-6 py-3 text-sm font-medium text-gray-400 hover:text-white transition-colors {% if tab.active %}text-indigo-400{% endif %}">
+      {{ tab.label }}
+      {% if tab.active %}
+      <span class="absolute bottom-0 left-0 right-0 h-0.5 bg-indigo-500"></span>
+      {% endif %}
+    </button>
+    {% endfor %}
+  </div>
+  <div class="tabs-content pt-6">
+    {{ active_content }}
+  </div>
+</div>

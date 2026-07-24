@@ -1,0 +1,16 @@
+{
+  "device_id": "aris-mobile-DESKTOP-72HEU0O",
+  "pc_ip": "192.168.1.100",
+  "pc_port": 11525,
+  "sync_interval": 30,
+  "memory_sync_interval": 120,
+  "cognitive_inject_interval": 15,
+  "offline_timeout": 60,
+  "auto_connect": true,
+  "mode": "auto",
+  "name": "Aris Mobile v2",
+  "battery_save": false,
+  "local_port": 8888,
+  "version": "2.0.0",
+  "_note": "首次运行 python laap_mobile.py --setup 设置PC IP"
+}

@@ -1,0 +1,7 @@
+[gd_scene load_steps=1 format=3 uid="uid://abc123"]
+
+[node name="RaceCamera" type="Camera3D" parent="."]
+current = true
+fov = 60.0
+near = 0.1
+far = 200.0

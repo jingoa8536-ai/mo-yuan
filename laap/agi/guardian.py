@@ -149,7 +149,7 @@ class EmergencyStop:
 # ════════════════════════════════════════════════════════════
 
 def _default_repo_root() -> str:
-    """运行时推导 LAAP 项目根目录（不再硬编码 <LOCAL_PATH_REDACTED>
+    """运行时推导 LAAP 项目根目录（不再硬编码 D:\\LAAP）。
 
     优先级：LAAP_ROOT 环境变量 > 基于 __file__ 推导。
     guardian.py 位于 <repo>/laap/agi/guardian.py，三级 dirname 即仓库根。

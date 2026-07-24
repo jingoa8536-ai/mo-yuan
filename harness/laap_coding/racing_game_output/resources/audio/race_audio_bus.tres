@@ -1,0 +1,28 @@
+[gd_resource type="AudioBusLayout" load_steps=1 format=3]
+
+[resource]
+buses = [ {
+    "name": "Master",
+    "mute": false,
+    "volume_db": 0,
+}, {
+    "name": "Engine",
+    "mute": false,
+    "volume_db": -3,
+    "parent": "Master",
+}, {
+    "name": "SFX",
+    "mute": false,
+    "volume_db": -2,
+    "parent": "Master",
+}, {
+    "name": "Music",
+    "mute": false,
+    "volume_db": -5,
+    "parent": "Master",
+}, {
+    "name": "UI",
+    "mute": false,
+    "volume_db": 0,
+    "parent": "Master",
+} ]

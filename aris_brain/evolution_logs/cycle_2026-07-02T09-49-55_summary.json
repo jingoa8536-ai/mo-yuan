@@ -1,0 +1,60 @@
+{
+  "timestamp": "2026-07-02T09:49:55",
+  "duration_seconds": 119.3,
+  "phases": {
+    "phase1_arxiv": {
+      "new_papers": 0,
+      "high_value": 0,
+      "logged": 0,
+      "status": "coverage_saturated"
+    },
+    "phase2_rsi_meta_engine": {
+      "params_before": 10,
+      "attempts_total": 14,
+      "successful": 2,
+      "reverted": 5,
+      "success_rate": 0.143,
+      "changes_applied": [
+        {"param": "psi_emotion_decay", "old": 0.35, "new": 0.30, "reason": "尝试调优 PSI情感衰减率"},
+        {"param": "learning_rate", "old": 0.10, "new": 0.05, "evaluation": "成功 (feedback=0.041)"}
+      ],
+      "suggestions_pending": 5,
+      "goals_generated": 117,
+      "active_goals": 117,
+      "growth_need": 0.911,
+      "optimized_parameters": 4
+    },
+    "phase3_codebase_analysis": {
+      "aris_brain_files": 457,
+      "aris_brain_lines": 143860,
+      "aris_brain_largest": [
+        {"file": "aris_lm_v5.py", "lines": 1662},
+        {"file": "aris_cognitive_bridge.py", "lines": 1604},
+        {"file": "psilang_v2.py", "lines": 1570}
+      ],
+      "files_over_1000_lines": 10,
+      "functions_over_80_lines": 131,
+      "laap_files": 10861,
+      "laap_lines": 4056455
+    },
+    "phase4_true_rsi": {
+      "tunable_params_found": 178,
+      "papers_scanned": 35,
+      "pending": 0,
+      "successful_modifications": 0,
+      "rollbacks": 0,
+      "failures": 0
+    },
+    "phase5_optimization_report": {
+      "recommendations": 6,
+      "high_priority": 2,
+      "medium_priority": 3,
+      "high_priority_items": [
+        "10个文件超过1000行需模块化拆分",
+        "131个函数超过80行需拆分"
+      ]
+    }
+  },
+  "python_version": "3.11",
+  "exit_code": 0
+}

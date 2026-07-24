@@ -25,7 +25,8 @@ from typing import Optional, List, Dict, Any
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 
-from laap_brain.config import BRAIN_DIR as BRAIN, STATE_DIR, DB_DESIRE_STATE
+from config import BRAIN_DIR as BRAIN, STATE_DIR, DB_DESIRE_STATE, setup_paths
+setup_paths()
 
 logger = logging.getLogger("aris.desire_engine")
 
@@ -439,8 +440,7 @@ class DesireEngine:
         except Exception as e:
             logger.debug(f"操作失败: {e}")
         try:
-            gw_lock = Path(os.environ.get("HERMES_GATEWAY_LOCK",
-                os.path.expanduser("~/AppData/Local/hermes/gateway.lock")))
+            gw_lock = Path(os.path.expanduser("~/AppData/Local/hermes/gateway.lock"))
             if gw_lock.exists():
                 report.append("  gateway.lock 存在（可能是旧的）")
             else:

@@ -1,0 +1,84 @@
+{
+  "$schema": "https://laap.harness/protocol/v1.0/package-manifest.json",
+  "package_id": "racing-game-v1.0",
+  "name": "Racing Game CLP v1.0",
+  "version": "1.0.0",
+  "protocol": "LAAP Harness v1.0",
+  "created_at": "2026-07-05T12:00:00+08:00",
+  "author": "LAAP Harness Engineering",
+  "license": "MIT",
+  "description": "赛车游戏工程组件链接协议资产包 v1.0，从 Apex Racing 复刻案例提炼。包含 3 个核心模块：引擎声交叉淡入系统、Ghost 录制/回放系统、CSS @keyframes 动画包。所有组件均经反编译证据驱动验证，MatchScore ≥ 0.83。",
+
+  "domains": ["game", "frontend"],
+  "subdomains": ["audio", "racing", "animation"],
+  "granularities": ["module"],
+
+  "components": [
+    {
+      "component_id": "engine-sound-crossfade",
+      "uri": "harness://game/audio/module/engine-sound-crossfade@1.0.0#howler-webaudio",
+      "name": "Engine Sound Crossfade System",
+      "variant": "howler-webaudio",
+      "path": "components/audio-manager/",
+      "matchscore": 0.94
+    },
+    {
+      "component_id": "ghost-system",
+      "uri": "harness://game/racing/module/ghost-system@1.0.0#localstorage",
+      "name": "Ghost Recorder/Player System",
+      "variant": "localstorage",
+      "path": "components/ghost-system/",
+      "matchscore": 0.83
+    },
+    {
+      "component_id": "keyframes-pack",
+      "uri": "harness://frontend/animation/module/keyframes-pack@1.0.0#apex-racing",
+      "name": "CSS Keyframes Animation Pack",
+      "variant": "apex-racing",
+      "path": "components/css-animations/",
+      "matchscore": 0.99
+    }
+  ],
+
+  "dependencies_external": [
+    "howler@^2.2.4",
+    "three@^0.184.0",
+    "@react-three/fiber@^8.0.0",
+    "@react-three/drei@^9.0.0",
+    "cannon-es@^0.20.0",
+    "next@^14.0.0",
+    "react@^18.0.0"
+  ],
+
+  "evidence_sources": [
+    "evidence/audio-mapping.json",
+    "evidence/css-keyframes.json",
+    "evidence/ghost-architecture.json",
+    "evidence/source-bundle-hash.txt"
+  ],
+
+  "assembly_graph": "assembly-graph.json",
+  "matchscore_report": "matchscore-report.json",
+
+  "stats": {
+    "total_components": 3,
+    "total_lines_of_code": 1180,
+    "total_keyframes": 22,
+    "total_engine_bands": 18,
+    "total_sfx": 18,
+    "token_savings_estimate": "82% (vs full LLM generation)",
+    "matchscore_average": 0.92
+  },
+
+  "quality": {
+    "maturity": "production",
+    "verification": "playwright-passed",
+    "typecheck": "passed",
+    "lint": "passed-with-preexisting-warnings"
+  },
+
+  "tags": ["racing", "game", "audio", "ghost", "css-animations", "three.js", "howler", "web-audio-api"],
+  "keywords": ["engine sound", "crossfade", "ghost car", "lap recorder", "keyframes", "apex racing"],
+
+  "compatibility": ["web-threejs-r184", "godot-4.7"]
+}

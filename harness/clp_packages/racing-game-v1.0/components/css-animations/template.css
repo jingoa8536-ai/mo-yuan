@@ -1,0 +1,147 @@
+/**
+ * Apex Racing 原网站动画库
+ *
+ * 来源：D:\LAAP\_apex_assets\index-BDb15dJl.css 反编译
+ * 文档：docs/apex-css-evidence.md
+ *
+ * 22 个 @keyframes + 工具类
+ * 按 @keyframes 名称字母序排列
+ */
+
+/* ============ @keyframes 定义 ============ */
+
+@keyframes clock-blink {
+  0%, to { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes home-corner-panel-rise {
+  0% { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes home-lb-row-in {
+  0% { opacity: 0; transform: translate(-12px); }
+  to { opacity: 1; transform: translate(0); }
+}
+
+@keyframes home-live-pulse {
+  0%, to { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.75); }
+}
+
+@keyframes lobby-backdrop-in {
+  0% { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes lobby-pulse {
+  0%, to { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes lobby-window-in {
+  0% { opacity: 0; transform: translateY(20px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes notif-pop {
+  0% { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pm-fade-in {
+  0% { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pm-flash {
+  0%, to { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+@keyframes pm-saved-toast {
+  0% { opacity: 0; transform: translateY(10px); }
+  10%, 80% { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-10px); }
+}
+
+@keyframes race-chat-in {
+  0% { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes racing-hud-blink {
+  0%, to { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+@keyframes racing-hud-rise {
+  0% { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes racing-waiting-pulse {
+  0%, to { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes replay-overlay-fade {
+  0% { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes replay-rec-pulse {
+  0%, to { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes settings-panel-rise {
+  0% { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes splash-loading-dot {
+  0%, 80%, to { opacity: 0.18; transform: translateY(0); }
+  40% { opacity: 1; transform: translateY(-1px); }
+}
+
+@keyframes thumb-frame-breathe {
+  0%, to { filter: brightness(1); }
+  50% { filter: brightness(1.5); }
+}
+
+@keyframes thumb-img-compensate {
+  0%, to { filter: brightness(1) saturate(1) contrast(1.05); }
+  50% { filter: brightness(0.667) saturate(1) contrast(1.05); }
+}
+
+@keyframes wheel-spin {
+  0% { transform: rotate(0); }
+  to { transform: rotate(-360deg); }
+}
+
+/* ============ 工具类 ============ */
+
+.animate-clock-blink { animation: clock-blink 1s step-end infinite; }
+.animate-home-corner-panel-rise { animation: home-corner-panel-rise 0.22s cubic-bezier(0.22, 1, 0.36, 1); }
+.animate-home-lb-row-in { animation: home-lb-row-in 0.35s ease-out backwards; }
+.animate-home-live-pulse { animation: home-live-pulse 2s ease-in-out infinite; }
+.animate-lobby-backdrop-in { animation: lobby-backdrop-in 0.3s ease-out; }
+.animate-lobby-pulse { animation: lobby-pulse 2s ease-in-out infinite; }
+.animate-lobby-window-in { animation: lobby-window-in 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+.animate-notif-pop { animation: notif-pop 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+.animate-pm-fade-in { animation: pm-fade-in 0.2s ease-out; }
+.animate-pm-flash { animation: pm-flash 0.4s ease-out; }
+.animate-pm-saved-toast { animation: pm-saved-toast 2.5s ease-in-out forwards; }
+.animate-race-chat-in { animation: race-chat-in 0.25s ease-out; }
+.animate-racing-hud-blink { animation: racing-hud-blink 1s ease-in-out infinite; }
+.animate-racing-hud-rise { animation: racing-hud-rise 0.42s ease-out; }
+.animate-racing-waiting-pulse { animation: racing-waiting-pulse 1.6s ease-in-out infinite; }
+.animate-replay-overlay-fade { animation: replay-overlay-fade 0.3s ease-out; }
+.animate-replay-rec-pulse { animation: replay-rec-pulse 1s ease-in-out infinite; }
+.animate-settings-panel-rise { animation: settings-panel-rise 0.22s cubic-bezier(0.22, 1, 0.36, 1); }
+.animate-splash-loading-dot { animation: splash-loading-dot 1.4s ease-in-out infinite; }
+.animate-thumb-frame-breathe { animation: thumb-frame-breathe 2s ease-in-out infinite; }
+.animate-thumb-img-compensate { animation: thumb-img-compensate 2s ease-in-out infinite; }
+.animate-wheel-spin { animation: wheel-spin 0.6s linear infinite; }

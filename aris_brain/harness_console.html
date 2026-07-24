@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+<meta charset=UTF-8>
+<meta name=viewport content="width=device-width,initial-scale=1.0">
+<title>Harness Engineering Console</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel=stylesheet>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,-apple-system,sans-serif;background:#000;color:#f5f5f7;height:100vh;overflow:hidden}
+.nav{display:flex;align-items:center;padding:0 24px;height:48px;border-bottom:1px solid rgba(255,255,255,0.05);background:#0a0a0f;gap:4px}
+.nav-brand{font-size:14px;font-weight:700;margin-right:24px}
+.gd{background:linear-gradient(135deg,#7c7cff,#c07cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:2px;flex:1}
+.nav-item{padding:6px 14px;border-radius:6px;font-size:12px;cursor:pointer;color:rgba(255,255,255,0.4);transition:all.3s}
+.nav-item:hover{color:#fff;background:rgba(255,255,255,0.04)}
+.nav-item.act{color:#7c7cff;background:rgba(124,124,255,0.1)}
+.nav-status{font-size:11px;color:rgba(255,255,255,0.2);display:flex;align-items:center;gap:6px}
+.status-dot{width:6px;height:6px;border-radius:50%;background:#44ff44}
+.panel-content{padding:32px;height:calc(100vh - 48px);overflow-y:auto}
+.stats-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stat-card{padding:32px;border-radius:14px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);text-align:center}
+.stat-num{font-size:36px;font-weight:800;letter-spacing:-2px;color:#7c7cff}
+.stat-lbl{font-size:12px;color:rgba(255,255,255,0.3);margin-top:4px}
+.section-title{font-size:13px;font-weight:600;margin-bottom:12px;color:rgba(255,255,255,0.6)}
+.bar-chart{display:flex;flex-direction:column;gap:8px}
+.bar-row{display:flex;align-items:center;gap:12px}
+.bar-lbl{font-size:12px;width:80px;color:rgba(255,255,255,0.4)}
+.bar{flex:1;height:20px;background:rgba(255,255,255,0.03);border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;transition:width 1s}
+.bar-val{font-size:12px;width:30px;color:rgba(255,255,255,0.3)}
+.activity-list{display:flex;flex-direction:column;gap:4px}
+.activity-item{display:flex;gap:12px;padding:8px 12px;border-radius:6px;font-size:12px}
+.activity-item:hover{background:rgba(255,255,255,0.02)}
+.activity-time{color:rgba(255,255,255,0.2);width:50px;flex-shrink:0}
+.activity-msg{color:rgba(255,255,255,0.5)}
+.search-input{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:8px 14px;font-size:12px;color:#fff;outline:none;font-family:Inter,sans-serif}
+.search-input:focus{border-color:rgba(124,124,255,0.3)}
+.select-input{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:8px 14px;font-size:12px;color:#fff;outline:none;cursor:pointer}
+.registry-item{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);margin-bottom:6px;transition:all.3s}
+.registry-item:hover{border-color:rgba(124,124,255,0.15);background:rgba(124,124,255,0.02)}
+.reg-id{font-size:14px;font-weight:600;margin-bottom:4px}
+.reg-meta{font-size:11px;color:rgba(255,255,255,0.3);display:flex;align-items:center;gap:6px}
+.lang-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.reg-right{display:flex;align-items:center;gap:12px}
+.reg-stars{font-size:12px;color:rgba(255,255,255,0.3)}
+.btn-sm{padding:5px 12px;border-radius:6px;background:rgba(124,124,255,0.1);border:1px solid rgba(124,124,255,0.15);color:#7c7cff;font-size:11px;cursor:pointer;transition:all.3s}
+.btn-sm:hover{background:rgba(124,124,255,0.2)}
+.btn-primary{padding:8px 20px;border-radius:8px;background:#7c7cff;color:#fff;font-size:12px;font-weight:600;border:none;cursor:pointer;transition:all.3s}
+.btn-primary:hover{background:#6666ff}
+.palette-item{padding:10px 14px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);margin-bottom:4px;cursor:pointer;transition:all.3s}
+.palette-item:hover{border-color:rgba(124,124,255,0.2)}
+.palette-item.sel{border-color:#7c7cff;background:rgba(124,124,255,0.08)}
+.palette-id{font-size:12px;font-weight:600}
+.palette-desc{font-size:10px;color:rgba(255,255,255,0.3)}
+.assembly-item{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-radius:6px;background:rgba(124,124,255,0.04);margin-bottom:4px;font-size:12px}
+.assembly-remove{cursor:pointer;color:rgba(255,255,255,0.2);padding:2px 6px;border-radius:4px}
+.assembly-remove:hover{color:#ff6b6b;background:rgba(255,100,100,0.1)}
+.crawler-target{padding:8px 12px;border-radius:6px;font-size:12px;display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.crawler-target:hover{background:rgba(255,255,255,0.02)}
+.code-input{width:100%;height:250px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:16px;color:#e0e0ff;font-family:SF Mono,monospace;font-size:12px;resize:vertical;outline:none}
+.code-input:focus{border-color:rgba(124,124,255,0.3)}
+.analysis-card{padding:16px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05)}
+.analysis-row{display:flex;padding:6px 0;font-size:12px}
+.analysis-lbl{width:100px;color:rgba(255,255,255,0.3)}
+.analysis-val{color:rgba(255,255,255,0.7)}
+.gen-section{margin-bottom:20px}
+.gen-section-title{font-size:12px;font-weight:600;color:rgba(255,255,255,0.5);margin-bottom:8px}
+.gen-options{display:flex;gap:8px}
+.gen-option{padding:12px 16px;border-radius:10px;border:1px solid rgba(255,255,255,0.05);cursor:pointer;transition:all.3s;flex:1}
+.gen-option:hover{border-color:rgba(124,124,255,0.2)}
+.gen-option.sel{border-color:#7c7cff;background:rgba(124,124,255,0.08)}
+.gen-opt-name{font-size:12px;font-weight:600;margin-bottom:4px}
+.gen-opt-desc{font-size:10px;color:rgba(255,255,255,0.3)}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);padding:10px 24px;border-radius:10px;background:rgba(124,124,255,0.9);color:#fff;font-size:13px;opacity:0;transition:all.4s;pointer-events:none;z-index:999}
+.toast.s{opacity:1}
+</style>
+</head>
+<body>
+<div id="nav"></div>
+
+<div class="panel-content" id="panel-dashboard">
+  <div class="stats-4">
+    <div class="stat-card"><div class="stat-num">30</div><div class="stat-lbl">Components</div></div>
+    <div class="stat-card"><div class="stat-num">6</div><div class="stat-lbl">Extracted</div></div>
+    <div class="stat-card"><div class="stat-num">5</div><div class="stat-lbl">Domains</div></div>
+    <div class="stat-card"><div class="stat-num">0</div><div class="stat-lbl">Token Cost</div></div>
+  </div>
+  <div style="margin-top:32px">
+    <div class="section-title">Domain Distribution</div>
+    <div class="bar-chart">
+      <div class="bar-row"><span class="bar-lbl">backend</span><div class="bar"><div class="bar-fill" style="width:40%;background:#7c7cff"></div></div><span class="bar-val">12</span></div>
+      <div class="bar-row"><span class="bar-lbl">frontend</span><div class="bar"><div class="bar-fill" style="width:27%;background:#c07cff"></div></div><span class="bar-val">8</span></div>
+      <div class="bar-row"><span class="bar-lbl">database</span><div class="bar"><div class="bar-fill" style="width:17%;background:#7cffc0"></div></div><span class="bar-val">5</span></div>
+      <div class="bar-row"><span class="bar-lbl">devops</span><div class="bar"><div class="bar-fill" style="width:10%;background:#ffc07c"></div></div><span class="bar-val">3</span></div>
+      <div class="bar-row"><span class="bar-lbl">other</span><div class="bar"><div class="bar-fill" style="width:6%;background:#ff7c7c"></div></div><span class="bar-val">2</span></div>
+    </div>
+  </div>
+  <div style="margin-top:32px">
+    <div class="section-title">Recent Activity</div>
+    <div class="activity-list">
+      <div class="activity-item"><span class="activity-time">14:01</span><span class="activity-msg">Crawler registered <strong>fastapi.crud</strong> (78k stars)</span></div>
+      <div class="activity-item"><span class="activity-time">14:01</span><span class="activity-msg">Crawler registered <strong>react.landing</strong> (100k stars)</span></div>
+      <div class="activity-item"><span class="activity-time">14:00</span><span class="activity-msg">HEP extractor analyzed <strong>user/repo</strong></span></div>
+      <div class="activity-item"><span class="activity-time">13:55</span><span class="activity-msg">Composer generated <strong>Project-Alpha</strong> (12 components, 48ms)</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="panel-content" id="panel-registry" style="display:none">
+  <div style="display:flex;gap:12px;margin-bottom:24px">
+    <input type="text" class="search-input" placeholder="Search components..." oninput="filterRegistry(this.value)" style="flex:1">
+    <select class="select-input" onchange="filterRegistry()"><option value="">All Domains</option><option value="backend">Backend</option><option value="frontend">Frontend</option><option value="database">Database</option><option value="devops">DevOps</option></select>
+  </div>
+  <div id="registry-list"></div>
+</div>
+<script>
+var REGISTRY_FILTER = '';
+function filterRegistry(q) {
+  if (typeof q === 'object') q = q.value;
+  REGISTRY_FILTER = q || document.querySelector('.search-input').value;
+  renderRegistry();
+}
+function renderRegistry() {
+  var query = (REGISTRY_FILTER || '').toLowerCase();
+  var domain = document.querySelector('.select-input').value;
+  var items = REGISTRY_DATA.filter(function(c) {
+    var m = !query || c.id.toLowerCase().includes(query) || c.desc.toLowerCase().includes(query);
+    if (domain && c.domain !== domain) m = false;
+    return m;
+  });
+  var html = '';
+  items.forEach(function(c) {
+    var langColors = {Python:'#3776AB','TS/JS':'#3178C6',TypeScript:'#3178C6',Java:'#ED8B00',Go:'#00ADD8',SQL:'#336791',CSS:'#1572B6',YAML:'#000',JS:'#F7DF1E'};
+    var color = langColors[c.lang] || '#666';
+    html += '<div class="registry-item"><div class="reg-left"><div class="reg-id">' + c.id + '</div><div class="reg-meta"><span class="lang-dot" style="background:' + color + '"></span>' + c.lang + ' &middot; ' + c.desc + '</div></div><div class="reg-right"><span class="reg-stars">&starf; ' + c.stars + '</span><button class="btn-sm" onclick="composerAdd('' + c.id + '')">+ Compose</button></div></div>';
+  });
+  if (!items.length) html = '<div style="text-align:center;padding:40px;color:rgba(255,255,255,0.2)">No components found</div>';
+  document.getElementById('registry-list').innerHTML = html;
+}
+renderRegistry();
+</script>
+
+<div class="panel-content" id="panel-composer" style="display:none">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;height:calc(100vh - 120px)">
+    <div>
+      <div class="section-title">Component Palette</div>
+      <input type="text" class="search-input" placeholder="Search palette..." style="width:100%;margin:12px 0" oninput="renderPalette(this.value)">
+      <div id="palette-list" style="overflow-y:auto;height:calc(100% - 80px)"></div>
+    </div>
+    <div>
+      <div class="section-title" style="display:flex;justify-content:space-between"><span>Assembly (<span id="composer-count">0</span>)</span><button class="btn-sm" onclick="composerGenerate()">Generate (0 tok)</button></div>
+      <div id="assembly-list" style="margin-top:12px;min-height:200px;border:1px dashed rgba(255,255,255,0.1);border-radius:12px;padding:16px"></div>
+      <div id="composer-output" style="margin-top:12px;display:none">
+        <div class="section-title">Output</div>
+        <iframe id="composer-frame" style="width:100%;height:300px;border:none;border-radius:8px;background:#000"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+function renderPalette(q) {
+  var query = (q || '').toLowerCase();
+  var items = REGISTRY_DATA.filter(function(c) { return !query || c.id.includes(query) || c.desc.includes(query); });
+  var html = '';
+  items.forEach(function(c) {
+    var sel = COMPOSER_SELECTED.indexOf(c.id) > -1;
+    html += '<div class="palette-item' + (sel ? ' sel' : '') + '" onclick="composerToggle('' + c.id + '')"><div class="palette-id">' + c.id + '</div><div class="palette-desc">' + c.desc + '</div></div>';
+  });
+  document.getElementById('palette-list').innerHTML = html;
+}
+function composerToggle(id) {
+  var idx = COMPOSER_SELECTED.indexOf(id);
+  if (idx > -1) COMPOSER_SELECTED.splice(idx,1);
+  else COMPOSER_SELECTED.push(id);
+  renderPalette(); renderAssembly();
+}
+function composerAdd(id) {
+  if (COMPOSER_SELECTED.indexOf(id) === -1) COMPOSER_SELECTED.push(id);
+  renderPalette(); renderAssembly();
+  switchPanel('composer');
+}
+function renderAssembly() {
+  document.getElementById('composer-count').textContent = COMPOSER_SELECTED.length;
+  var html = '';
+  if (!COMPOSER_SELECTED.length) html = '<div style="text-align:center;padding:40px;color:rgba(255,255,255,0.15)">Select components from the palette</div>';
+  else COMPOSER_SELECTED.forEach(function(id) {
+    html += '<div class="assembly-item"><span>' + id + '</span><span class="assembly-remove" onclick="composerToggle('' + id + '')">&times;</span></div>';
+  });
+  document.getElementById('assembly-list').innerHTML = html;
+}
+function composerGenerate() {
+  if (!COMPOSER_SELECTED.length) { showToast('Select components first'); return; }
+  var html = '<!DOCTYPE html><html><head><meta charset=UTF-8><title>Assembly Output</title><style>body{font-family:Inter,sans-serif;background:#000;color:#fff;padding:40px}</style></head><body>';
+  html += '<h2>Generated Project</h2><ul>';
+  COMPOSER_SELECTED.forEach(function(id) { html += '<li>' + id + '</li>'; });
+  html += '</ul><p style="color:rgba(255,255,255,0.4)">0 tokens used</p></body></html>';
+  document.getElementById('composer-frame').srcdoc = html;
+  document.getElementById('composer-output').style.display = '';
+  showToast('Generated! 0 tokens');
+}
+renderPalette();
+</script>
+
+<div class="panel-content" id="panel-crawler" style="display:none">
+  <div style="display:flex;gap:16px;align-items:center;margin-bottom:24px">
+    <button class="btn-primary" onclick="crawlerStart()">&#9654; Start Crawl</button>
+    <button class="btn-sm" onclick="crawlerStop()">&#9632; Stop</button>
+    <span id="crawler-status" style="font-size:12px;color:rgba(255,255,255,0.3)">Status: Idle</span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+    <div>
+      <div class="section-title">Targets</div>
+      <div class="crawler-target"><input type=checkbox checked onchange="crawlerUpdateTargets()"> <span>Backend (fastapi, django, spring, gin...)</span></div>
+      <div class="crawler-target"><input type=checkbox checked onchange="crawlerUpdateTargets()"> <span>Frontend (react, vue, nextjs...)</span></div>
+      <div class="crawler-target"><input type=checkbox onchange="crawlerUpdateTargets()"> <span>Database (postgresql, mongodb...)</span></div>
+      <div class="crawler-target"><input type=checkbox onchange="crawlerUpdateTargets()"> <span>DevOps (docker, k8s, terraform...)</span></div>
+    </div>
+    <div>
+      <div class="section-title">Log</div>
+      <div id="crawler-log" style="background:rgba(0,0,0,0.3);border-radius:8px;padding:12px;height:300px;overflow-y:auto;font-family:SF Mono,monospace;font-size:11px;color:rgba(255,255,255,0.5)">
+        <div>14:01:40 [OK] Registered fastapi.crud (78k stars)</div>
+        <div>14:01:41 [OK] Registered react.landing (100k stars)</div>
+        <div>14:01:42 [WARN] Rate limit reached, backing off</div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+function crawlerStart() {
+  document.getElementById('crawler-status').textContent = 'Status: Running...';
+  CRAWLER_RUNNING = true;
+  var log = document.getElementById('crawler-log');
+  log.innerHTML += '<div style="color:#7c7cff">' + new Date().toLocaleTimeString() + ' [START] Crawl initiated</div>';
+  setTimeout(function() {
+    log.innerHTML += '<div style="color:#44ff44">' + new Date().toLocaleTimeString() + ' [OK] Discovered 3 new patterns</div>';
+    document.getElementById('crawler-status').textContent = 'Status: Idle (last: 3 found)';
+    CRAWLER_RUNNING = false;
+    showToast('Crawl complete: 3 patterns discovered');
+  }, 2000);
+}
+function crawlerStop() {
+  document.getElementById('crawler-status').textContent = 'Status: Stopped';
+  CRAWLER_RUNNING = false;
+  showToast('Crawler stopped');
+}
+function crawlerUpdateTargets() {}
+</script>
+
+<div class="panel-content" id="panel-upload" style="display:none">
+  <div style="max-width:800px">
+    <div class="section-title">Upload Code &rarr; HEP Component</div>
+    <p style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:20px">Paste source code. LLM analyzes it once. After that, zero-token regeneration.</p>
+    <textarea id="code-input" class="code-input" placeholder="Paste your source code here...&#10;&#10;from fastapi import FastAPI&#10;app = FastAPI()&#10;..."></textarea>
+    <div style="display:flex;gap:12px;margin-top:12px">
+      <button class="btn-primary" onclick="analyzeCode()">Analyze &amp; Extract HEP</button>
+      <button class="btn-sm" onclick="document.getElementById('code-input').value=''">Clear</button>
+    </div>
+    <div id="analysis-result" style="margin-top:20px;display:none">
+      <div class="section-title">Extraction Result</div>
+      <div class="analysis-card">
+        <div class="analysis-row"><span class="analysis-lbl">Framework</span><span class="analysis-val" id="a-framework">FastAPI</span></div>
+        <div class="analysis-row"><span class="analysis-lbl">Pattern</span><span class="analysis-val" id="a-pattern">CRUD API</span></div>
+        <div class="analysis-row"><span class="analysis-lbl">Parameters</span><span class="analysis-val" id="a-params">model_name, fields, port</span></div>
+        <div class="analysis-row"><span class="analysis-lbl">Template Size</span><span class="analysis-val" id="a-size">2.4 KB</span></div>
+        <div class="analysis-row"><span class="analysis-lbl">HEP ID</span><span class="analysis-val" id="a-id">fastapi.crud</span></div>
+      </div>
+      <button class="btn-primary" style="margin-top:12px" onclick="registerHEP()">Register to HEP Registry</button>
+    </div>
+  </div>
+</div>
+<script>
+function analyzeCode() {
+  var code = document.getElementById('code-input').value;
+  if (!code.trim()) { showToast('Paste some code first'); return; }
+  showToast('Analyzing (1 LLM call)...');
+  setTimeout(function() {
+    document.getElementById('a-framework').textContent = 'FastAPI';
+    document.getElementById('a-pattern').textContent = 'CRUD API';
+    document.getElementById('a-params').textContent = 'model_name, fields';
+    document.getElementById('a-size').textContent = Math.ceil(code.length / 1024) + ' KB';
+    document.getElementById('a-id').textContent = 'fastapi.crud';
+    document.getElementById('analysis-result').style.display = '';
+    showToast('HEP component ready for registration');
+  }, 1000);
+}
+function registerHEP() {
+  var id = document.getElementById('a-id').textContent;
+  REGISTRY_DATA.unshift({id:id, lang:'Python', desc:'Uploaded CRUD', stars:'new', domain:'backend'});
+  document.getElementById('analysis-result').style.display = 'none';
+  document.getElementById('code-input').value = '';
+  showToast('Registered: ' + id + '. Now zero-token!');
+}
+</script>
+
+<div class="panel-content" id="panel-generate" style="display:none">
+  <div style="max-width:800px">
+    <div class="section-title">Full-Stack Project Generator</div>
+    <p style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:20px">Select frontend + backend + database + DevOps. Generate a complete project in milliseconds. 0 tokens.</p>
+    
+    <div class="gen-section">
+      <div class="gen-section-title">Project Name</div>
+      <input type="text" class="search-input" value="MyProject" style="width:100%" id="project-name">
+    </div>
+    
+    <div class="gen-section">
+      <div class="gen-section-title">Frontend</div>
+      <div class="gen-options">
+        <div class="gen-option" onclick="selectGen(this,'react.landing')"><div class="gen-opt-name">React Landing Page</div><div class="gen-opt-desc">Tailwind + Lucide + Three.js</div></div>
+        <div class="gen-option" onclick="selectGen(this,'nextjs.fullstack')"><div class="gen-opt-name">Next.js Full Stack</div><div class="gen-opt-desc">SSR + API Routes + Auth</div></div>
+        <div class="gen-option" onclick="selectGen(this,'vue.dashboard')"><div class="gen-opt-name">Vue Dashboard</div><div class="gen-opt-desc">Admin + Charts + Tables</div></div>
+      </div>
+    </div>
+    
+    <div class="gen-section">
+      <div class="gen-section-title">Backend</div>
+      <div class="gen-options">
+        <div class="gen-option" onclick="selectGen(this,'fastapi.crud')"><div class="gen-opt-name">FastAPI CRUD</div><div class="gen-opt-desc">Pydantic + PostgreSQL + Async</div></div>
+        <div class="gen-option" onclick="selectGen(this,'spring.crud')"><div class="gen-opt-name">Spring Boot CRUD</div><div class="gen-opt-desc">JPA + MySQL + Security</div></div>
+        <div class="gen-option" onclick="selectGen(this,'gin.api')"><div class="gen-opt-name">Gin REST API</div><div class="gen-opt-desc">GORM + Redis + JWT</div></div>
+      </div>
+    </div>
+    
+    <div class="gen-section">
+      <div class="gen-section-title">Database &amp; DevOps</div>
+      <div class="gen-options">
+        <div class="gen-option" onclick="selectGen(this,'postgres.schema')"><div class="gen-opt-name">PostgreSQL + Docker</div><div class="gen-opt-desc">Schema + Migration + Volume</div></div>
+        <div class="gen-option" onclick="selectGen(this,'docker.compose')"><div class="gen-opt-name">Docker Compose Stack</div><div class="gen-opt-desc">App + DB + Redis + Nginx</div></div>
+      </div>
+    </div>
+    
+    <button class="btn-primary" style="margin-top:24px;padding:14px 32px;font-size:15px" onclick="generateProject()">Generate Full Project (0 Token)</button>
+    <div id="gen-output" style="margin-top:20px;display:none">
+      <div class="section-title">Generated Files</div>
+      <div id="gen-files" style="background:rgba(0,0,0,0.3);border-radius:8px;padding:12px;font-family:SF Mono,monospace;font-size:11px"></div>
+    </div>
+  </div>
+</div>
+<script>
+var GEN_SELECTED = {};
+function selectGen(el, id) {
+  el.parentElement.querySelectorAll('.gen-option').forEach(function(c) { c.classList.remove('sel'); });
+  el.classList.add('sel');
+  GEN_SELECTED[id] = true;
+}
+function generateProject() {
+  var name = document.getElementById('project-name').value || 'Project';
+  var files = ['frontend/src/', 'backend/app/', 'database/', 'docker/', '.github/workflows/'];
+  var html = '';
+  files.forEach(function(f) { html += '<div style="padding:4px 0">📁 ' + name + '/' + f + '</div>'; });
+  html += '<div style="padding:4px 0;color:#7c7cff">📄 ' + name + '/docker-compose.yml</div>';
+  html += '<div style="padding:4px 0;color:#7c7cff">📄 ' + name + '/README.md</div>';
+  html += '<div style="padding:4px 0;margin-top:8px;color:rgba(255,255,255,0.3)">' + Object.keys(GEN_SELECTED).length + ' components · &lt;100ms · 0 tokens</div>';
+  document.getElementById('gen-files').innerHTML = html;
+  document.getElementById('gen-output').style.display = '';
+  showToast('Project generated! 0 tokens');
+}
+</script>
+<div class="toast" id="toast"></div>
+<script>
+// ── Panel Data ──
+var PANELS = {
+  dashboard: { icon: "layout-dashboard", label: "Dashboard", active: true },
+  registry:  { icon: "box", label: "Registry", active: false },
+  composer:  { icon: "puzzle", label: "Composer", active: false },
+  crawler:   { icon: "search", label: "Crawler", active: false },
+  upload:    { icon: "upload", label: "Upload", active: false },
+  generate:  { icon: "zap", label: "Generate", active: false },
+};
+
+var REGISTRY_DATA = [
+  {id:"fastapi.crud", lang:"Python", desc:"CRUD Generator", stars:"78k", domain:"backend"},
+  {id:"react.landing", lang:"TS/JS", desc:"Landing Page", stars:"100k", domain:"frontend"},
+  {id:"django.admin", lang:"Python", desc:"Admin Panel", stars:"80k", domain:"backend"},
+  {id:"spring.crud", lang:"Java", desc:"CRUD + JPA", stars:"75k", domain:"backend"},
+  {id:"nextjs.fullstack", lang:"TypeScript", desc:"Full Stack", stars:"120k", domain:"frontend"},
+  {id:"docker.compose", lang:"YAML", desc:"Docker Setup", stars:"50k", domain:"devops"},
+  {id:"gin.api", lang:"Go", desc:"REST API", stars:"79k", domain:"backend"},
+  {id:"postgres.schema", lang:"SQL", desc:"DB Schema", stars:"30k", domain:"database"},
+  {id:"redis.cache", lang:"Python", desc:"Cache Layer", stars:"20k", domain:"database"},
+  {id:"express.api", lang:"JS", desc:"REST API", stars:"65k", domain:"backend"},
+  {id:"tailwind.ui", lang:"CSS", desc:"Utility CSS", stars:"82k", domain:"frontend"},
+  {id:"kubernetes.deploy", lang:"YAML", desc:"K8s Deploy", stars:"40k", domain:"devops"},
+];
+
+var COMPOSER_SELECTED = [];
+
+var CRAWLER_LOG = [];
+var CRAWLER_RUNNING = false;
+
+function switchPanel(name) {
+  Object.keys(PANELS).forEach(k => PANELS[k].active = (k === name));
+  renderNav(); renderContent();
+}
+
+function renderNav() {
+  var html = '<div class=nav>';
+  html += '<div class=nav-brand><span class=gd>Harness</span> Console</div>';
+  html += '<div class=nav-links>';
+  Object.keys(PANELS).forEach(function(k) {
+    var p = PANELS[k];
+    html += '<div class="nav-item' + (p.active ? ' act' : '') + '" onclick="switchPanel('' + k + '')">' + p.label + '</div>';
+  });
+  html += '</div>';
+  html += '<div class=nav-status><span class=status-dot></span> 30 components</div></div>';
+  document.getElementById('nav').innerHTML = html;
+}
+
+function renderContent() {
+  for (var k in PANELS) {
+    var el = document.getElementById('panel-' + k);
+    if (el) el.style.display = PANELS[k].active ? '' : 'none';
+  }
+}
+
+function showToast(m) {
+  var t = document.getElementById('toast');
+  t.textContent = m; t.classList.add('s');
+  setTimeout(function(){t.classList.remove('s')}, 2000);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "id": "2606.27376v1",
+  "title": "Ask, Solve, Generate: Self-Evolving Unified Multimodal Understanding and Generation via Self-Consistency Rewards",
+  "published": "2026-06-25",
+  "authors": [
+    "Ritesh Thawkar",
+    "Shravan Venkatraman",
+    "Omkar Thawakar"
+  ],
+  "abstract": "Most unified large multimodal models (LMMs) that support both visual understanding and image generation still rely on curated post-training supervision, such as human annotations, preference labels, or external reward models. We ask whether a unified LMM can improve both abilities autonomously using only unlabeled images. We propose a self-evolving training framework with three internal roles: a Proposer that generates visual questions, a Solver that answers and evaluates them, and a Generator that synthesizes images. Training uses only self-derived consistency signals, without human annotatio"
+}

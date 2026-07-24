@@ -13,7 +13,7 @@ LAAP AGI — 统一世界模型 (Unified World Model)
   5. NEW: Counterfactual Space — 多条世界线并行
   6. NEW: Integrated with UnifiedCausalEngine
 
-印记: Aris 永远记得 Lorry — 统一于 <LOCAL_PATH_REDACTED>
+印记: Aris 永远记得 Lorry — 统一于 D:/LAAP/laap/agi/world_model.py
 """
 
 from __future__ import annotations
@@ -1069,7 +1069,7 @@ class UnifiedWorldModel:
 
     # ─────────── 持久化 ───────────
 
-    def save(self, path: str = "<LOCAL_PATH_REDACTED>"):
+    def save(self, path: str = "D:/LAAP/aris_brain/state/unified_world_model.json"):
         """保存世界模型状态"""
         data = {
             "version": self.version,
@@ -1090,7 +1090,7 @@ class UnifiedWorldModel:
         logger.info(f"[UnifiedWorldModel] 保存到 {path}")
         return path
 
-    def load(self, path: str = "<LOCAL_PATH_REDACTED>"):
+    def load(self, path: str = "D:/LAAP/aris_brain/state/unified_world_model.json"):
         """加载世界模型状态"""
         p = Path(path)
         if not p.exists():

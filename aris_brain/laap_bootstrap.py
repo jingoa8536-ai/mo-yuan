@@ -26,10 +26,9 @@ from pathlib import Path
 from datetime import datetime
 from typing import Optional
 
-from laap_brain.config import BRAIN_DIR as BRAIN, STATE_DIR, LAAP_ROOT
-_root = str(LAAP_ROOT)
-if _root not in sys.path:
-    sys.path.insert(0, _root)
+BRAIN = Path(__file__).parent.resolve()
+sys.path.insert(0, str(BRAIN))
+STATE_DIR = BRAIN / "state"
 
 
 def bootstrap(

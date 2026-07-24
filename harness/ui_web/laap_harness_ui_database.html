@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LAAP Harness UI Database - 顶级UI组件库集成</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { font-family: 'Inter', sans-serif; }
+:root {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #111118;
+  --bg-card: rgba(255,255,255,0.04);
+  --bg-card-hover: rgba(255,255,255,0.08);
+  --text-primary: #f5f5f7;
+  --text-secondary: rgba(255,255,255,0.5);
+  --text-tertiary: rgba(255,255,255,0.3);
+  --accent: #7c7cff;
+  --accent-light: #a07cff;
+  --accent-glow: rgba(124,124,255,0.3);
+  --border: rgba(255,255,255,0.06);
+  --border-hover: rgba(124,124,255,0.25);
+  --gradient-text: linear-gradient(135deg, #7c7cff, #c07cff, #7ce5ff);
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --error: #ef4444;
+}
+body { background: var(--bg-primary); color: var(--text-primary); -webkit-font-smoothing: antialiased; }
+.gradient-text { background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.gradient-border { border: 1px solid transparent; background: linear-gradient(var(--bg-card), var(--bg-card)) padding-box, linear-gradient(135deg, rgba(124,124,255,0.3), rgba(192,124,255,0.2)) border-box; }
+.glass { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+.card-hover { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+.card-hover:hover { transform: translateY(-4px); border-color: var(--border-hover); box-shadow: 0 24px 80px rgba(0,0,0,0.4); }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(124,124,255,0.3); }
+.match-bar { transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+.node-line { stroke-dasharray: 4; animation: dash 20s linear infinite; }
+@keyframes dash { to { stroke-dashoffset: -100; } }
+.search-highlight { background: rgba(124,124,255,0.2); padding: 2px 4px; border-radius: 4px; }
+</style>
+</head>
+<body class="overflow-x-hidden">
+
+<script>
+const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+requestAnimationFrame(raf);
+
+gsap.registerPlugin(ScrollTrigger);
+gsap.utils.toArray('.animate-fade-up').forEach(el => {
+  gsap.from(el, {
+    scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none reverse' },
+    y: 60, opacity: 0, duration: 0.8, ease: 'power3.out'
+  });
+});
+gsap.utils.toArray('.animate-scale-in').forEach(el => {
+  gsap.from(el, {
+    scrollTrigger: { trigger: el, start: 'top 80%' },
+    scale: 0.85, opacity: 0, duration: 1, ease: 'elastic.out(1, 0.5)'
+  });
+});
+gsap.utils.toArray('.animate-slide-left').forEach(el => {
+  gsap.from(el, {
+    scrollTrigger: { trigger: el, start: 'top 85%' },
+    x: -80, opacity: 0, duration: 0.8, ease: 'power3.out'
+  });
+});
+gsap.utils.toArray('.animate-slide-right').forEach(el => {
+  gsap.from(el, {
+    scrollTrigger: { trigger: el, start: 'top 85%' },
+    x: 80, opacity: 0, duration: 0.8, ease: 'power3.out'
+  });
+});
+gsap.utils.toArray('.animate-count-up').forEach(el => {
+  const target = parseInt(el.dataset.target) || 0;
+  gsap.from(el, {
+    scrollTrigger: { trigger: el, start: 'top 85%' },
+    innerHTML: 0, duration: 2, ease: 'power2.out',
+    snap: { innerHTML: 1 },
+    onUpdate: function() { el.innerHTML = Math.round(this.targets()[0].innerHTML).toLocaleString(); }
+  });
+});
+
+function filterCategory(cat) {
+  const cards = document.querySelectorAll('.lib-card');
+  cards.forEach(card => {
+    if (cat === 'all' || card.dataset.category === cat) {
+      gsap.to(card, { opacity: 1, scale: 1, duration: 0.3 });
+      card.style.display = 'block';
+    } else {
+      gsap.to(card, { opacity: 0, scale: 0.9, duration: 0.3 });
+      setTimeout(() => { if(card.style.opacity === '0') card.style.display = 'none'; }, 300);
+    }
+  });
+  document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.toggle('bg-accent/20', btn.dataset.cat === cat));
+}
+
+function toggleModal(id) {
+  const modal = document.getElementById(id);
+  gsap.fromTo(modal, { opacity: 0 }, { opacity: 1, duration: 0.3 });
+  modal.classList.toggle('hidden');
+}
+
+function searchComponents() {
+  const query = document.getElementById('search-input').value.toLowerCase();
+  const cards = document.querySelectorAll('.lib-card');
+  let matchCount = 0;
+  
+  cards.forEach(card => {
+    const text = card.textContent.toLowerCase();
+    const hasMatch = text.includes(query);
+    
+    if (!query || hasMatch) {
+      gsap.to(card, { opacity: 1, scale: 1, duration: 0.3 });
+      card.style.display = 'block';
+      matchCount++;
+    } else {
+      gsap.to(card, { opacity: 0, scale: 0.9, duration: 0.3 });
+      setTimeout(() => { if(card.style.opacity === '0') card.style.display = 'none'; }, 300);
+    }
+  });
+  
+  document.getElementById('search-results').textContent = `${matchCount} 个匹配`;
+}
+
+const mockDatabase = {
+  ui_libraries: [
+    { id: 'shadcn_ui', name: 'shadcn/ui', stars: '118k+', tech: 'React + Tailwind', tags: ['react', 'tailwind', 'ui', 'components'], style: 'modern-minimal' },
+    { id: 'ant_design', name: 'Ant Design', stars: '93k+', tech: 'React', tags: ['react', 'enterprise', 'ui'], style: 'enterprise-standard' },
+    { id: 'material_ui', name: 'Material UI', stars: '94k+', tech: 'React', tags: ['react', 'material', 'ui'], style: 'material-design' },
+    { id: 'chakra_ui', name: 'Chakra UI', stars: '35k+', tech: 'React', tags: ['react', 'ui', 'accessibility'], style: 'modern-minimal' },
+    { id: 'element_plus', name: 'Element Plus', stars: '22k+', tech: 'Vue 3', tags: ['vue', 'ui', 'enterprise'], style: 'enterprise-standard' },
+    { id: 'mantine', name: 'Mantine', stars: '23k+', tech: 'React', tags: ['react', 'ui', 'ssr'], style: 'modern-standard' },
+    { id: 'daisyui', name: 'DaisyUI', stars: '35k+', tech: 'Tailwind', tags: ['tailwind', 'css', 'ui'], style: 'tailwind-semantic' },
+    { id: 'heroui', name: 'HeroUI', stars: '22k+', tech: 'React + Tailwind', tags: ['react', 'tailwind', 'ui'], style: 'modern-glossy' },
+    { id: 'shadcn_vue', name: 'shadcn-vue', stars: '9k+', tech: 'Vue 3 + Tailwind', tags: ['vue', 'tailwind', 'ui'], style: 'modern-minimal' },
+    { id: 'prime_react', name: 'PrimeReact', stars: '13k+', tech: 'React', tags: ['react', 'enterprise', 'ui'], style: 'enterprise-standard' },
+    { id: 'radix_ui', name: 'Radix UI', stars: '22k+', tech: 'React', tags: ['react', 'ui', 'primitives'], style: 'unstyled' },
+    { id: 'flowbite', name: 'Flowbite', stars: '19k+', tech: 'Tailwind', tags: ['tailwind', 'css', 'ui'], style: 'tailwind-semantic' },
+    { id: 'headless_ui', name: 'Headless UI', stars: '21k+', tech: 'React/Vue', tags: ['react', 'vue', 'headless'], style: 'unstyled' },
+    { id: 'blueprint', name: 'Blueprint', stars: '20k+', tech: 'React', tags: ['react', 'enterprise', 'ui'], style: 'enterprise-standard' },
+    { id: 'semantic_ui', name: 'Semantic UI', stars: '15k+', tech: 'React', tags: ['react', 'semantic', 'ui'], style: 'semantic' },
+    { id: 'evergreen', name: 'Evergreen', stars: '12k+', tech: 'React', tags: ['react', 'ui', 'design-system'], style: 'modern-minimal' }
+  ],
+  animation_libraries: [
+    { id: 'three_js', name: 'Three.js', stars: '93k+', tech: 'WebGL', tags: ['3d', 'webgl', 'animation'] },
+    { id: 'gsap', name: 'GSAP', stars: '14k+', tech: 'JavaScript', tags: ['animation', 'tween', 'gsap'] },
+    { id: 'framer_motion', name: 'Framer Motion', stars: '23k+', tech: 'React', tags: ['react', 'animation', 'motion'] },
+    { id: 'lenis', name: 'Lenis', stars: '2.5k+', tech: 'JavaScript', tags: ['scroll', 'smooth', 'animation'] },
+    { id: 'babylon_js', name: 'Babylon.js', stars: '22k+', tech: 'WebGL', tags: ['3d', 'webgl', 'game'] }
+  ],
+  icon_libraries: [
+    { id: 'lucide', name: 'Lucide Icons', stars: '16k+', count: '2000+', tags: ['icons', 'svg', 'ui'] },
+    { id: 'heroicons', name: 'Heroicons', stars: '22k+', count: '400+', tags: ['icons', 'svg', 'tailwind'] },
+    { id: 'phosphor', name: 'Phosphor Icons', stars: '7k+', count: '1400+', tags: ['icons', 'svg', 'ui'] }
+  ]
+};
+
+function runMatchingDemo() {
+  const input = document.getElementById('match-input').value;
+  const resultsDiv = document.getElementById('match-results');
+  const loading = document.getElementById('match-loading');
+  
+  loading.classList.remove('hidden');
+  resultsDiv.innerHTML = '';
+  
+  setTimeout(() => {
+    loading.classList.add('hidden');
+    
+    const tokens = input.toLowerCase().split(/\s+/);
+    const results = [];
+    
+    mockDatabase.ui_libraries.forEach(lib => {
+      let score = 0;
+      let matchedTags = [];
+      
+      tokens.forEach(token => {
+        if (lib.name.toLowerCase().includes(token)) score += 0.3;
+        if (lib.tags.some(tag => tag.includes(token))) {
+          score += 0.2;
+          matchedTags.push(token);
+        }
+        if (lib.tech.toLowerCase().includes(token)) score += 0.15;
+        if (lib.style.toLowerCase().includes(token)) score += 0.1;
+      });
+      
+      if (score > 0) {
+        results.push({
+          ...lib,
+          score: Math.min(score, 1).toFixed(2),
+          matchedTags
+        });
+      }
+    });
+    
+    results.sort((a, b) => b.score - a.score);
+    
+    if (results.length === 0) {
+      resultsDiv.innerHTML = '<p class="text-center text-[var(--text-tertiary)] py-8">未找到匹配的组件库</p>';
+      return;
+    }
+    
+    results.slice(0, 5).forEach((lib, index) => {
+      const level = parseFloat(lib.score) >= 0.8 ? '完美匹配' : parseFloat(lib.score) >= 0.6 ? '良好匹配' : '可用匹配';
+      const color = parseFloat(lib.score) >= 0.8 ? 'text-green-400' : parseFloat(lib.score) >= 0.6 ? 'text-[var(--accent)]' : 'text-yellow-400';
+      
+      const card = document.createElement('div');
+      card.className = 'p-4 rounded-xl bg-[var(--bg-card)] border border-[var(--border)] mb-4 animate-fade-up';
+      card.style.animationDelay = `${index * 0.1}s`;
+      card.innerHTML = `
+        <div class="flex items-center justify-between mb-3">
+          <div>
+            <h4 class="font-semibold">${lib.name}</h4>
+            <p class="text-xs text-[var(--text-tertiary)]">${lib.tech} · ${lib.stars}</p>
+          </div>
+          <span class="${color} text-sm font-medium">${level}</span>
+        </div>
+        <div class="h-2 rounded-full bg-white/5 overflow-hidden mb-3">
+          <div class="h-full match-bar bg-gradient-to-r from-[var(--accent)] to-[var(--accent-light)] rounded-full" style="width: ${lib.score * 100}%"></div>
+        </div>
+        <div class="flex items-center justify-between">
+          <div class="flex flex-wrap gap-2">
+            ${lib.matchedTags.map(t => `<span class="px-2 py-1 rounded bg-[var(--accent)]/10 text-[var(--accent)] text-xs">${t}</span>`).join('')}
+          </div>
+          <span class="text-xs text-[var(--text-secondary)]">匹配度: ${lib.score}</span>
+        </div>
+      `;
+      resultsDiv.appendChild(card);
+    });
+  }, 500);
+}
+
+function parseURI() {
+  const uri = document.getElementById('uri-input').value;
+  const resultDiv = document.getElementById('uri-result');
+  
+  if (!uri) return;
+  
+  const parts = uri.match(/harness:\/\/([^\/]+)\/([^\/]+)\/([^\/]+)\/([^@#]+)(?:@([^#]+))?(?:#(.+))?/);
+  
+  if (!parts) {
+    resultDiv.innerHTML = '<p class="text-red-400 text-sm">无效的URI格式</p>';
+    return;
+  }
+  
+  const [, domain, subdomain, granularity, name, version, variant] = parts;
+  
+  resultDiv.innerHTML = `
+    <div class="grid grid-cols-2 gap-3 mt-4">
+      <div class="p-3 rounded-lg bg-white/5">
+        <div class="text-xs text-[var(--text-tertiary)]">Domain</div>
+        <div class="text-sm font-medium text-[var(--accent)]">${domain}</div>
+      </div>
+      <div class="p-3 rounded-lg bg-white/5">
+        <div class="text-xs text-[var(--text-tertiary)]">Subdomain</div>
+        <div class="text-sm font-medium text-[var(--accent)]">${subdomain}</div>
+      </div>
+      <div class="p-3 rounded-lg bg-white/5">
+        <div class="text-xs text-[var(--text-tertiary)]">Granularity</div>
+        <div class="text-sm font-medium text-[var(--accent)]">${granularity}</div>
+      </div>
+      <div class="p-3 rounded-lg bg-white/5">
+        <div class="text-xs text-[var(--text-tertiary)]">Name</div>
+        <div class="text-sm font-medium text-[var(--accent)]">${name}</div>
+      </div>
+      <div class="p-3 rounded-lg bg-white/5">
+        <div class="text-xs text-[var(--text-tertiary)]">Version</div>
+        <div class="text-sm font-medium">${version || 'latest'}</div>
+      </div>
+      <div class="p-3 rounded-lg bg-white/5">
+        <div class="text-xs text-[var(--text-tertiary)]">Variant</div>
+        <div class="text-sm font-medium">${variant || 'default'}</div>
+      </div>
+    </div>
+    <div class="mt-4 p-3 rounded-lg bg-[var(--accent)]/10 border border-[var(--accent)]/20">
+      <div class="text-xs text-[var(--text-tertiary)] mb-1">组件标识符</div>
+      <div class="text-sm font-mono text-[var(--accent)]">${domain}/${subdomain}/${granularity}/${name}${version ? '@' + version : ''}</div>
+    </div>
+  `;
+}
+
+function assemblePage() {
+  const theme = document.getElementById('assemble-theme').value;
+  const sections = Array.from(document.querySelectorAll('.assemble-section:checked')).map(cb => cb.value);
+  const preview = document.getElementById('assemble-preview');
+  
+  if (sections.length === 0) {
+    preview.innerHTML = '<p class="text-center text-[var(--text-tertiary)] py-8">请选择至少一个区块</p>';
+    return;
+  }
+  
+  const themeColors = {
+    'dark_flagship': { primary: '#6366f1', bg: '#0f172a', card: 'rgba(255,255,255,0.05)' },
+    'minimal_white': { primary: '#3b82f6', bg: '#ffffff', card: '#f8fafc' },
+    'ocean_blue': { primary: '#06b6d4', bg: '#0c1929', card: 'rgba(30,58,95,0.5)' },
+    'forest_green': { primary: '#22c55e', bg: '#052e16', card: 'rgba(20,83,45,0.5)' },
+    'sunset_orange': { primary: '#f97316', bg: '#1c0a00', card: 'rgba(249,115,22,0.1)' },
+    'midnight_purple': { primary: '#a855f7', bg: '#0f0a1e', card: 'rgba(168,85,247,0.1)' }
+  };
+  
+  const colors = themeColors[theme] || themeColors['dark_flagship'];
+  
+  let html = `<div style="background: ${colors.bg}; padding: 20px; min-height: 300px; border-radius: 12px;">`;
+  
+  sections.forEach(section => {
+    const sectionConfigs = {
+      'navbar': `<div style="background: ${colors.card}; padding: 16px 20px; border-radius: 8px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;"><span style="font-weight: 600;">LAAP Harness</span><div><button style="margin-left: 12px; padding: 6px 12px; border: none; border-radius: 6px; background: ${colors.primary}; color: white;">Get Started</button></div></div>`,
+      'hero': `<div style="background: ${colors.card}; padding: 40px 20px; border-radius: 8px; margin-bottom: 16px; text-align: center;"><h2 style="margin: 0 0 8px 0;">Build Amazing Pages</h2><p style="margin: 0 0 16px 0;">LAAP Harness makes page assembly easy</p><button style="padding: 10px 24px; border: none; border-radius: 8px; background: ${colors.primary}; color: white; font-weight: 600;">Get Started</button></div>`,
+      'features': `<div style="background: ${colors.card}; padding: 20px; border-radius: 8px; margin-bottom: 16px;"><h3 style="margin: 0 0 16px 0;">Features</h3><div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;"><div style="padding: 12px; background: rgba(0,0,0,0.1); border-radius: 6px;"><div style="width: 32px; height: 32px; border-radius: 6px; background: ${colors.primary}; margin-bottom: 8px;"></div><div style="font-weight: 600;">Fast</div></div><div style="padding: 12px; background: rgba(0,0,0,0.1); border-radius: 6px;"><div style="width: 32px; height: 32px; border-radius: 6px; background: ${colors.primary}; margin-bottom: 8px;"></div><div style="font-weight: 600;">Secure</div></div><div style="padding: 12px; background: rgba(0,0,0,0.1); border-radius: 6px;"><div style="width: 32px; height: 32px; border-radius: 6px; background: ${colors.primary}; margin-bottom: 8px;"></div><div style="font-weight: 600;">Beautiful</div></div></div></div>`,
+      'pricing': `<div style="background: ${colors.card}; padding: 20px; border-radius: 8px; margin-bottom: 16px;"><h3 style="margin: 0 0 16px 0;">Pricing</h3><div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;"><div style="padding: 16px; background: rgba(0,0,0,0.1); border-radius: 6px; text-align: center;"><div style="font-weight: 700; font-size: 24px;">$0</div><div style="margin: 8px 0;">Free</div><button style="width: 100%; padding: 8px; border: none; border-radius: 6px; background: ${colors.primary}; color: white;">Start</button></div><div style="padding: 16px; background: ${colors.primary}; border-radius: 6px; text-align: center;"><div style="font-weight: 700; font-size: 24px;">$29</div><div style="margin: 8px 0;">Pro</div><button style="width: 100%; padding: 8px; border: none; border-radius: 6px; background: white; color: ${colors.primary}; font-weight: 600;">Start</button></div><div style="padding: 16px; background: rgba(0,0,0,0.1); border-radius: 6px; text-align: center;"><div style="font-weight: 700; font-size: 24px;">$99</div><div style="margin: 8px 0;">Enterprise</div><button style="width: 100%; padding: 8px; border: none; border-radius: 6px; background: ${colors.primary}; color: white;">Contact</button></div></div></div>`,
+      'cta': `<div style="background: ${colors.primary}; padding: 32px 20px; border-radius: 8px; margin-bottom: 16px; text-align: center;"><h3 style="margin: 0 0 8px 0; color: white;">Ready to Start?</h3><p style="margin: 0 0 16px 0; color: rgba(255,255,255,0.8);">Join thousands of developers</p><button style="padding: 10px 24px; border: none; border-radius: 8px; background: white; color: ${colors.primary}; font-weight: 600;">Get Started</button></div>`,
+      'footer': `<div style="background: ${colors.card}; padding: 20px; border-radius: 8px;"><div style="display: flex; justify-content: space-between; align-items: center;"><span>LAAP Harness</span><span style="font-size: 12px;">2024 LAAP. All rights reserved.</span></div></div>`
+    };
+    
+    html += sectionConfigs[section] || '';
+  });
+  
+  html += '</div>';
+  preview.innerHTML = html;
+}
+</script>
+
+<nav class="fixed top-0 left-0 right-0 z-50 px-6 lg:px-12 py-4 glass bg-black/60 border-b border-[var(--border)]">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-[var(--accent)] to-[var(--accent-light)] flex items-center justify-center">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <span class="text-lg font-semibold gradient-text">LAAP Harness</span>
+    </div>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#overview" class="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">Overview</a>
+      <a href="#libraries" class="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">UI Libraries</a>
+      <a href="#components" class="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">Components</a>
+      <a href="#matching" class="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">Matching</a>
+      <a href="#assemble" class="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">Assembly</a>
+      <a href="shadcn_ui_preview.html" class="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">shadcn/ui</a>
+    </div>
+    <button class="px-4 py-2 rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-light)] text-white text-sm font-medium hover:shadow-lg hover:shadow-[var(--accent-glow)] transition-all">
+      生成页面
+    </button>
+  </div>
+</nav>
+
+<section class="relative min-h-screen flex items-center justify-center px-6 pt-24">
+  <div class="absolute inset-0 overflow-hidden">
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-[var(--accent)]/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[var(--accent-light)]/5 rounded-full blur-3xl"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] opacity-10">
+      <svg viewBox="0 0 600 600" class="w-full h-full animate-spin" style="animation-duration: 60s;">
+        <defs>
+          <linearGradient id="gridGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:rgba(124,124,255,0.1)"/>
+            <stop offset="100%" style="stop-color:rgba(192,124,255,0.1)"/>
+          </linearGradient>
+        </defs>
+        <circle cx="300" cy="300" r="280" fill="none" stroke="url(#gridGrad)" stroke-width="1"/>
+        <circle cx="300" cy="300" r="240" fill="none" stroke="url(#gridGrad)" stroke-width="1"/>
+        <circle cx="300" cy="300" r="200" fill="none" stroke="url(#gridGrad)" stroke-width="1"/>
+        <circle cx="300" cy="300" r="160" fill="none" stroke="url(#gridGrad)" stroke-width="1"/>
+        <line x1="300" y1="20" x2="300" y2="580" stroke="url(#gridGrad)" stroke-width="1"/>
+        <line x1="20" y1="300" x2="580" y2="300" stroke="url(#gridGrad)" stroke-width="1"/>
+        <line x1="80" y1="80" x2="520" y2="520" stroke="url(#gridGrad)" stroke-width="1"/>
+        <line x1="520" y1="80" x2="80" y2="520" stroke="url(#gridGrad)" stroke-width="1"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="relative z-10 text-center max-w-5xl mx-auto">
+    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--accent)]/10 border border-[var(--accent)]/20 text-[var(--accent)] text-xs font-semibold tracking-wider mb-6 animate-fade-up">
+      <span class="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse"></span>
+      HARNESS ENGINE v3.0
+    </div>
+    <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight animate-fade-up">
+      <span class="bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">零LLM生成</span><br/>
+      <span class="gradient-text">顶级UI体验</span>
+    </h1>
+    <p class="text-lg md:text-xl text-[var(--text-secondary)] max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-up">
+      收录全球顶级UI组件库与3D动画引擎，LLM只需输出数十Token的JSON指令，即可生成精美页面。
+      <span class="text-[var(--accent)]">Token消耗降低99%</span>，UI质量提升10倍。
+    </p>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 animate-scale-in">
+      <div class="p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border)] card-hover">
+        <div class="text-3xl md:text-4xl font-bold gradient-text mb-2 animate-count-up" data-target="16">0</div>
+        <div class="text-xs text-[var(--text-tertiary)]">顶级UI库</div>
+      </div>
+      <div class="p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border)] card-hover">
+        <div class="text-3xl md:text-4xl font-bold gradient-text mb-2 animate-count-up" data-target="150">0</div>
+        <div class="text-xs text-[var(--text-tertiary)]">组件索引</div>
+      </div>
+      <div class="p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border)] card-hover">
+        <div class="text-3xl md:text-4xl font-bold gradient-text mb-2 animate-count-up" data-target="3800">0</div>
+        <div class="text-xs text-[var(--text-tertiary)]">SVG图标</div>
+      </div>
+      <div class="p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border)] card-hover">
+        <div class="text-3xl md:text-4xl font-bold gradient-text mb-2 animate-count-up" data-target="5">0</div>
+        <div class="text-xs text-[var(--text-tertiary)]">3D/动画库</div>
+      </div>
+    </div>
+
+    <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up">
+      <button onclick="filterCategory('all')" class="px-8 py-4 rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-light)] text-white font-semibold hover:shadow-xl hover:shadow-[var(--accent-glow)] hover:-translate-y-0.5 transition-all">
+        浏览全部库 →
+      </button>
+      <button onclick="toggleModal('token-modal')" class="px-8 py-4 rounded-full bg-[var(--bg-card)] border border-[var(--border)] text-[var(--text-primary)] font-semibold hover:bg-[var(--bg-card-hover)] transition-all">
+        查看Token对比
+      </button>
+    </div>
+  </div>
+</section>
+
+<section id="overview" class="px-6 lg:px-12 py-24">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <span class="text-xs font-semibold tracking-wider text-[var(--accent)] uppercase">Architecture</span>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4">Harness架构</h2>
+      <p class="text-[var(--text-secondary)] mt-4 max-w-2xl mx-auto">模板匹配 + 组件注册表 + 设计令牌引擎，三层架构实现零LLM依赖的UI生成</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="p-8 rounded-2xl bg-[var(--bg-card)] border border-[var(--border)] card-hover animate-fade-up">
+        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-[var(--accent)]/20 to-[var(--accent-light)]/20 flex items-center justify-center mb-6">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-3">组件注册表</h3>
+        <p class="text-sm text-[var(--text-secondary)] leading-relaxed">60+组件元数据，支持按标签搜索、依赖树解析、质量评分排序。每个组件包含ID、名称、类别、变体、属性Schema。</p>
+        <div class="mt-6 flex items-center gap-2 text-xs text-[var(--accent)]">
+          <span class="px-2 py-1 rounded bg-[var(--accent)]/10">60+组件</span>
+          <span class="px-2 py-1 rounded bg-[var(--accent)]/10">5类别</span>
+        </div>
+      </div>
+
+      <div class="p-8 rounded-2xl bg-[var(--bg-card)] border border-[var(--border)] card-hover animate-fade-up" style="animation-delay: 0.1s">
+        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-[var(--accent)]/20 to-[var(--accent-light)]/20 flex items-center justify-center mb-6">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-3">设计令牌引擎</h3>
+        <p class="text-sm text-[var(--text-secondary)] leading-relaxed">管理颜色、字体、间距、圆角、阴影等设计令牌，支持6种预设主题，动态覆盖。</p>
+        <div class="mt-6 flex items-center gap-2 text-xs text-[var(--accent)]">
+          <span class="px-2 py-1 rounded bg-[var(--accent)]/10">6主题</span>
+          <span class="px-2 py-1 rounded bg-[var(--accent)]/10">12令牌类型</span>
+        </div>
+      </div>
+
+      <div class="p-8 rounded-2xl bg-[var(--bg-card)] border border-[var(--border)] card-hover animate-fade-up" style="animation-delay: 0.2s">
+        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-[var(--accent)]/20 to-[var(--accent-light)]/20 flex items-center justify-center mb-6">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><rect width="18" height="18" x="3" y="3" rx="2"/><line x1="9" x2="15" y1="9" y2="9"/><line x1="9" x2="15" y1="15" y2="15"/></svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-3">意图引擎</h3>
+        <p class="text-sm text-[var(--text-secondary)] leading-relaxed">解析自然语言提取UI需求：页面类型、风格标签、必需区块、色调。将自然语言转换为结构化JSON。</p>
+        <div class="mt-6 flex items-center gap-2 text-xs text-[var(--accent)]">
+          <span class="px-2 py-1 rounded bg-[var(--accent)]/10">15+模式</span>
+          <span class="px-2 py-1 rounded bg-[var(--accent)]/10">意图提取</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-20 p-8 rounded-3xl bg-[var(--bg-card)] border border-[var(--border)] animate-fade-up">
+      <div class="flex flex-col lg:flex-row items-center gap-8">
+        <div class="flex-1">
+          <h3 class="text-2xl font-bold mb-4">组件层级结构</h3>
+          <p class="text-sm text-[var(--text-secondary)] mb-6">从原子到页面的五层组件架构，支持灵活组合和复用</p>
+          <div class="space-y-3">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-lg bg-[var(--accent)]/20 flex items-center justify-center text-[var(--accent)] font-bold text-sm">1</div>
+              <div>
+                <div class="font-medium">Atoms 原子</div>
+                <div class="text-xs text-[var(--text-tertiary)]">Button、Input、Badge、Typography等基础元素</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-lg bg-[var(--accent)]/20 flex items-center justify-center text-[var(--accent)] font-bold text-sm">2</div>
+              <div>
+                <div class="font-medium">Molecules 分子</div>
+                <div class="text-xs text-[var(--text-tertiary)]">Card、Modal、Tabs、Accordion等组合元素</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-lg bg-[var(--accent)]/20 flex items-center justify-center text-[var(--accent)] font-bold text-sm">3</div>
+              <div>
+                <div class="font-medium">Sections 区块</div>
+                <div class="text-xs text-[var(--text-tertiary)]">Hero、Features、Pricing、CTA等页面区块</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-lg bg-[var(--accent)]/20 flex items-center justify-center text-[var(--accent)] font-bold text-sm">4</div>
+              <div>
+                <div class="font-medium">Pages 页面</div>
+                <div class="text-xs text-[var(--text-tertiary)]">Landing、Dashboard、Auth等完整页面模板</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-lg bg-[var(--accent)]/20 flex items-center justify-center text-[var(--accent)] font-bold text-sm">5</div>
+              <div>
+                <div class="font-medium">3D Components 3D组件</div>
+                <div class="text-xs text-[var(--text-tertiary)]">粒子系统、3D地球、浮动几何体等</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex-1">
+          <svg viewBox="0 0 400 300" class="w-full h-auto">
+            <defs>
+              <linearGradient id="arrowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:rgba(124,124,255,0.5)"/>
+                <stop offset="100%" style="stop-color:rgba(192,124,255,0.3)"/>
+              </linearGradient>
+            </defs>
+            <rect x="50" y="30" width="300" height="40" rx="8" fill="rgba(124,124,255,0.15)" stroke="rgba(124,124,255,0.3)"/>
+            <text x="200" y="55" text-anchor="middle" fill="white" font-size="14" font-weight="600">Pages</text>
+            <line x1="200" y1="70" x2="200" y2="90" stroke="url(#arrowGrad)" stroke-width="2" class="node-line"/>
+            <rect x="70" y="95" width="260" height="40" rx="8" fill="rgba(124,124,255,0.15)" stroke="rgba(124,124,255,0.3)"/>
+            <text x="200" y="120" text-anchor="middle" fill="white" font-size="14" font-weight="600">Sections</text>
+            <line x1="200" y1="135" x2="200" y2="155" stroke="url(#arrowGrad)" stroke-width="2" class="node-line"/>
+            <rect x="90" y="160" width="220" height="40" rx="8" fill="rgba(124,124,255,0.15)" stroke="rgba(124,124,255,0.3)"/>
+            <text x="200" y="185" text-anchor="middle" fill="white" font-size="14" font-weight="600">Molecules</text>
+            <line x1="200" y1="200" x2="200" y2="220" stroke="url(#arrowGrad)" stroke-width="2" class="node-line"/>
+            <rect x="110" y="225" width="180" height="40" rx="8" fill="rgba(124,124,255,0.15)" stroke="rgba(124,124,255,0.3)"/>
+            <text x="200" y="250" text-anchor="middle" fill="white" font-size="14" font-weight="600">Atoms</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="libraries" class="px-6 lg:px-12 py-24 bg-[var(--bg-secondary)]">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <span class="text-xs font-semibold tracking-wider text-[var(--accent)] uppercase">UI Libraries</span>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4">顶级UI库收录</h2>
+      <p class="text-[var(--text-secondary)] mt-4">精选全球最受欢迎的UI组件库，涵盖React、Vue、Tailwind</p>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-4 mb-10">
+      <div class="relative flex-1">
+        <input type="text" id="search-input" placeholder="搜索组件库..." 
+          class="w-full h-12 rounded-xl bg-[var(--bg-card)] border border-[var(--border)] px-4 pr-12 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[var(--accent)] transition-colors"
+          oninput="searchComponents()"/>
+        <svg class="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--text-tertiary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <button onclick="filterCategory('all')" class="filter-btn px-5 py-2 rounded-full bg-[var(--accent)]/20 text-[var(--accent)] text-sm font-medium transition-all" data-cat="all">全部</button>
+        <button onclick="filterCategory('react')" class="filter-btn px-5 py-2 rounded-full bg-[var(--bg-card)] border border-[var(--border)] text-[var(--text-secondary)] text-sm font-medium hover:border-[var(--border-hover)] transition-all" data-cat="react">React</button>
+        <button onclick="filterCategory('vue')" class="filter-btn px-5 py-2 rounded-full bg-[var(--bg-card)] border border-[var(--border)] text-[var(--text-secondary)] text-sm font-medium hover:border-[var(--border-hover)] transition-all" data-cat="vue">Vue</button>
+        <button onclick="filterCategory('tailwind')" class="filter-btn px-5 py-2 rounded-full bg-[var(--bg-card)] border border-[var(--border)] text-[var(--text-secondary)] text-sm font-medium hover:border-[var(--border-hover)] transition-all" data-cat="tailwind">Tailwind</button>
+      </div>
+      <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--bg-card)] border border-[var(--border)]">
+        <span id="search-results" class="text-sm text-[var(--text-secondary)]">16 个匹配</span>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="lib-card p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border)] card-hover cursor-pointer" data-category="react" onclick="toggleModal('modal-shadcn')">
+        <div class="flex items-start justify-between mb-4">
+          <div>
+            <h3 class="text-lg font-semibold">shadcn/ui</h3>
+            <p class="text-xs text-[var(--text-tertiary)]">118k+ Stars</p>
+          </div>
+          <div class="px-3 py-1 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] text-xs font-medium">React</div>
+        </div>
+        <p class="text-sm text-[var(--text-secondary)] mb-4">复制即用的React组件库，无样式锁定，基于Radix UI</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2 py-1 rounded bg-white/5 text-xs text-[var(--text-tertiary)]">button</span>
+          <span class="px-2 py-1 rounded bg-white/5 text-xs text-[var(--text-tertiary)]">card</span>
+          <span class="px-2 py-1 rounded bg-white/5 text-xs text-[var(--text-tertiary)]">dialog</span>
+          <span class="px-2 py-1 rounded bg-white/5 text-xs text-[var(--text-tertiary)]">form</span>
+        </div>
+      </div>
+
+      <div class="lib-card p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border)] card-hover cursor-pointer" data-category="react" onclick="toggleModal('modal-antd')">
+        <div class="flex items-start justify-between mb-4">
+          <div>
+            <h3 class="text-lg font-semibold">Ant Design</h3>
+            <p class="text-xs text-[var(--text-tertiary)]">93k+ Stars</p>
+          </div>
+          <div class="px-3 py-1 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] text-xs font-medium">React</div>
+        </div>
+        <p class="text-sm text-[var(--text-secondary)] mb-4">企业级中后台设计系统，60+组件</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2 py-1 rounded bg-white/5 text-xs text-[var(--text-tertiary)]">table</span>
+          <span class="px-2 py-1 rounded bg-white/5 text-xs text-[var(--text-tertiary)]">form</span>
+          <span class="px-2 py-1 rounded bg-white/5 text-xs text-[var(--text-tertiary)]">chart</span>
+          <span class="px-2 py-1 rounded bg-white/5 text-xs text-[var(--text-tertiary)]">menu</span>
+        </div>
+      </div>
+
+      <div class="lib-card p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border)] card-hover cursor-pointer" data-category="react" onclick="toggleModal('modal-mui')">
+        <div class="flex items-start justify-between mb-4">
+          <div>
+            <h3 class="text-lg font-semibold">Material UI</h3>
+            <p class="text-xs text-[var(--text-tertiary)]">94k+ Stars</p>
+          </div>
+          <div class="px-3 py-1 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] text-xs font-medium">React</div>
+        </div>
+        <p class="text-sm text-[var(--text-secondary)] mb-4">Google Material Design官方React实现</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2 py-1 rounded bg-white/5 text-xs text-[var(--text-tertiary)]">theme</span>
+          <span class="px-2 py-1 rounded bg-white/5 text-xs text-[var(--text-tertiary)]">icons</span>
+          <span class="px-2 py-1 rounded bg-white/5 text-xs text-[var(--text-tertiary)]">layout</span>
+        </div>
+      </div>
+
+      <div class="lib-card p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border)] card-hover cursor-pointer" data-category="react" onclick="toggleModal('modal-chakra')">
+        <div class="flex items-start justify-between mb-4">
+          <div>
+            <h3 class="text-lg font-semibold">Chakra UI</h3>
+            <p class="text-xs text-[var(--text-tertiary)]">35k+ Stars</p>
+          </div>
+          <div class="px-3 py-1 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] text-xs font-medium">React</div>
+        </div>
+        <p class="text-sm text-[var(--text-secondary)] mb-4">简单、模块化、可访问的React UI组件库</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2 py-1 rounded bg-white/5 text-xs text-[var(--text-tertiary)]">a11y</span>
+          <span class="px-2 py-1 rounded bg-white/5 text-xs text-[var(--text-tertiary)]">theme</span>
+          <span class="px-2 py-1 rounded bg-white/5 text-xs text-[var(--text-tertiary)]">hooks</span>
+        </div>
+      </div>
+
+      <div class="lib-card p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border)] card-hover cursor-pointer" data-category="vue" onclick="toggleModal('modal-element')">
+        <div class="flex items-start justify-between mb-4">
+          <div>
+            <h3 class="text-lg font-semibold">Element Plus</h3>
+            <p class="text-xs text-[var(--text-tertiary)]">22k+ Stars</p>
+          </div>
+          <div class="px-3 py-1 rounded-full bg-green-500/10 text-green-400 text-xs font-medium">Vue</div>
+        </div>
+        <p class="text-sm text-[var(--text-secondary)] mb-4">Vue 3组件库，基于Element UI重构</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2 py-1 rounded bg-white/5 text-xs text-[var(--text-tertiary)]">form</span>
+          <span class="px-2 py-1 rounded bg-white/5 text-xs text-[var(--text-tertiary)]">table</span>
+          <span class="px-2 py-1 rounded bg-white/5 text-xs text-[var(--text-tertiary)]">select</span>
+        </div>
+      </div>
+
+      <div class="lib-card p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border)] card-hover cursor-pointer" data-category="tailwind" onclick="toggleModal('modal-daisy')">
+        <div class="flex items-start justify-between mb-4">
+          <div>
+            <h3 class="text-lg font-semibold">DaisyUI</h3>
+            <p class="text-xs text-[var(--text-tertiary)]">35k+ Stars</p>
+          </div>
+          <div class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-medium">Tailwind</div>
+        </div>
+        <p class="text-sm text-[var(--text-secondary)] mb-4">Tailwind CSS语义化组件，换肤极简</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2 py-1 rounded bg-white/5 text-xs text-[var(--text-tertiary)]">theming</span>
+          <span class="px-2 py-1 rounded bg-white/5 text-xs text-[var(--text-tertiary)]">css</span>
+          <span class="px-2 py-1 rounded bg-white/5 text-xs text-[var(--text-tertiary)]">components</span>
+        </div>
+      </div>
+
+      <div class="lib-card p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border)] card-hover cursor-pointer" data-category="react" onclick="toggleModal('modal-mantine')">
+        <div class="flex items-start justify-between mb-4">
+          <div>
+            <h3 class="text-lg font-semibold">Mantine</h3>
+            <p class="text-xs text-[var(--text-tertiary)]">23k+ Stars</p>
+          </div>
+          <div class="px-3 py-1 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] text-xs font-medium">React</div>
+        </div>
+        <p class="text-sm text-[var(--text-secondary)] mb-4">功能丰富的React UI组件库，支持SSR</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2 py-1 rounded bg-white/5 text-xs text-[var(--text-tertiary)]">ssr</span>
+          <span class="px-2 py-1 rounded bg-white/5 text-xs text-[var(--text-tertiary)]">hooks</span>
+          <span class="px-2 py-1 rounded bg-white/5 text-xs text-[var(--text-tertiary)]">form</span>
+        </div>
+      </div>
+
+      <div class="lib-card p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border)] card-hover cursor-pointer" data-category="react" onclick="toggleModal('modal-heroui')">
+        <div class="flex items-start justify-between mb-4">
+          <div>
+            <h3 class="text-lg font-semibold">HeroUI</h3>
+            <p class="text-xs text-[var(--text-tertiary)]">22k+ Stars</p>
+          </div>
+          <div class="px-3 py-1 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] text-xs font-medium">React</div>
+        </div>
+        <p class="text-sm text-[var(--text-secondary)] mb-4">现代React UI，自带暗黑模式</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2 py-1 rounded bg-white/5 text-xs text-[var(--text-tertiary)]">dark-mode</span>
+          <span class="px-2 py-1 rounded bg-white/5 text-xs text-[var(--text-tertiary)]">components</span>
+        </div>
+      </div>
+
+      <div class="lib-card p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border)] card-hover cursor-pointer" data-category="vue" onclick="toggleModal('modal-shadcn-vue')">
+        <div class="flex items-start justify-between mb-4">
+          <div>
+            <h3 class="text-lg font-semibold">shadcn-vue</h3>
+            <p class="text-xs text-[var(--text-tertiary)]">9k+ Stars</p>
+          </div>
+          <div class="px-3 py-1 rounded-full bg-green-500/10 text-green-400 text-xs font-medium">Vue</div>
+        </div>
+        <p class="text-sm text-[var(--text-secondary)] mb-4">shadcn/ui的Vue 3移植版</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-2 py-1 rounded bg-white/5 text-xs text-[var(--text-tertiary)]">vue3</span>
+          <span class="px-2 py-1 rounded bg-white/5 text-xs text-[var(--text-tertiary)]">components</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="components" class="px-6 lg:px-12 py-24">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <span class="text-xs font-semibold tracking-wider text-[var(--accent)] uppercase">Components</span>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4">组件层级预览</h2>
+      <p class="text-[var(--text-secondary)] mt-4">从原子到页面的完整组件库展示</p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-8">
+      <div class="animate-fade-up">
+        <h3 class="text-xl font-semibold mb-6">Atoms 预览</h3>
+        <div class="p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border)]">
+          <div class="space-y-6">
+            <div>
+              <div class="text-xs text-[var(--text-tertiary)] mb-3">Buttons</div>
+              <div class="flex flex-wrap gap-3">
+                <button class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold text-sm shadow-lg shadow-indigo-500/30 hover:shadow-xl hover:shadow-indigo-500/40 hover:-translate-y-0.5 transition-all duration-300">Primary</button>
+                <button class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-white/10 border border-white/20 text-white font-semibold text-sm hover:bg-white/20 transition-all duration-300">Secondary</button>
+                <button class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-transparent text-white font-semibold text-sm hover:bg-white/5 transition-all duration-300">Ghost</button>
+                <button class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-white/30 text-white font-semibold text-sm hover:bg-white/5 transition-all duration-300">Outline</button>
+              </div>
+            </div>
+            <div>
+              <div class="text-xs text-[var(--text-tertiary)] mb-3">Badges</div>
+              <div class="flex flex-wrap gap-3">
+                <span class="px-3 py-1 rounded-full bg-white/5 text-white text-xs font-medium">Default</span>
+                <span class="px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-xs font-medium">Success</span>
+                <span class="px-3 py-1 rounded-full bg-yellow-500/20 text-yellow-400 text-xs font-medium">Warning</span>
+                <span class="px-3 py-1 rounded-full bg-red-500/20 text-red-400 text-xs font-medium">Error</span>
+              </div>
+            </div>
+            <div>
+              <div class="text-xs text-[var(--text-tertiary)] mb-3">Inputs</div>
+              <div class="flex flex-wrap gap-3">
+                <input type="text" placeholder="Text input..." class="flex h-10 w-48 rounded-lg border border-white/20 bg-white/5 px-4 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20"/>
+                <input type="search" placeholder="Search..." class="flex h-10 w-48 rounded-lg border border-white/20 bg-white/5 px-4 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/20"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="animate-fade-up" style="animation-delay: 0.1s">
+        <h3 class="text-xl font-semibold mb-6">Molecules 预览</h3>
+        <div class="p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border)]">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="group relative p-4 rounded-xl bg-white/5 border border-white/10 hover:border-indigo-500/30 hover:bg-white/10 hover:-translate-y-1 transition-all duration-300">
+              <div class="w-10 h-10 rounded-lg bg-indigo-500/20 flex items-center justify-center text-indigo-400 mb-3">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <h4 class="font-medium text-sm">Card Title</h4>
+              <p class="text-xs text-[var(--text-tertiary)] mt-1">Card description</p>
+            </div>
+            <div class="group relative p-4 rounded-xl bg-white/5 border border-white/10 hover:border-indigo-500/30 hover:bg-white/10 hover:-translate-y-1 transition-all duration-300">
+              <div class="w-10 h-10 rounded-lg bg-indigo-500/20 flex items-center justify-center text-indigo-400 mb-3">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+              </div>
+              <h4 class="font-medium text-sm">Another Card</h4>
+              <p class="text-xs text-[var(--text-tertiary)] mt-1">More content here</p>
+            </div>
+          </div>
+          <div class="mt-4 p-4 rounded-xl bg-white/5 border border-white/10">
+            <div class="flex border-b border-white/10">
+              <button class="px-4 py-2 text-sm font-medium text-[var(--accent)] border-b-2 border-[var(--accent)]">Tab 1</button>
+              <button class="px-4 py-2 text-sm font-medium text-[var(--text-secondary)] hover:text-white">Tab 2</button>
+              <button class="px-4 py-2 text-sm font-medium text-[var(--text-secondary)] hover:text-white">Tab 3</button>
+            </div>
+            <div class="mt-3 text-sm text-[var(--text-secondary)]">Tab content goes here</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="matching" class="px-6 lg:px-12 py-24 bg-[var(--bg-secondary)]">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <span class="text-xs font-semibold tracking-wider text-[var(--accent)] uppercase">Matching Engine</span>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4">匹配算法演示</h2>
+      <p class="text-[var(--text-secondary)] mt-4">输入需求，实时查看组件库匹配结果</p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-8">
+      <div class="animate-fade-up">
+        <div class="p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border)]">
+          <h3 class="text-lg font-semibold mb-4">输入需求</h3>
+          <input type="text" id="match-input" placeholder="react tailwind ui landing" 
+            class="w-full h-12 rounded-xl bg-white/5 border border-[var(--border)] px-4 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[var(--accent)]"/>
+          <button onclick="runMatchingDemo()" class="w-full mt-4 px-4 py-3 rounded-xl bg-[var(--accent)] text-white font-medium hover:bg-[var(--accent-light)]">
+            匹配
+          </button>
+        </div>
+      </div>
+      <div class="animate-fade-up">
+        <div class="p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border)] h-full">
+          <h3 class="text-lg font-semibold mb-4">匹配结果</h3>
+          <div id="match-results" class="space-y-4">
+            <p class="text-center text-[var(--text-tertiary)] py-8">输入需求并点击匹配</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="assemble" class="px-6 lg:px-12 py-24">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <span class="text-xs font-semibold tracking-wider text-[var(--accent)] uppercase">Page Assembly</span>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-4">页面组装预览</h2>
+      <p class="text-[var(--text-secondary)] mt-4">选择主题和区块，实时预览组装效果</p>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-8">
+      <div class="animate-fade-up">
+        <div class="p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border)]">
+          <h3 class="text-lg font-semibold mb-4">主题选择</h3>
+          <select id="assemble-theme" class="w-full h-12 rounded-xl bg-white/5 border border-[var(--border)] px-4 text-sm text-white">
+            <option value="dark_flagship">Dark Flagship</option>
+            <option value="minimal_white">Minimal White</option>
+            <option value="ocean_blue">Ocean Blue</option>
+            <option value="forest_green">Forest Green</option>
+          </select>
+        </div>
+      </div>
+      <div class="lg:col-span-2 animate-fade-up">
+        <div class="p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border)]">
+          <h3 class="text-lg font-semibold mb-4">实时预览</h3>
+          <div id="assemble-preview" class="min-h-[300px] bg-[#0f172a] rounded-xl p-4">
+            选择主题和区块查看预览
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="px-6 lg:px-12 py-16 border-t border-[var(--border)]">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex items-center gap-3 mb-4">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-[var(--accent)] to-[var(--accent-light)] flex items-center justify-center">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <span class="text-lg font-semibold gradient-text">LAAP Harness</span>
+    </div>
+    <p class="text-sm text-[var(--text-secondary)]">零LLM依赖的UI生成引擎</p>
+  </div>
+</footer>
+
+<div id="token-modal" class="fixed inset-0 z-50 hidden">
+  <div class="absolute inset-0 bg-black/60 glass" onclick="toggleModal('token-modal')"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-lg p-6 rounded-2xl bg-[var(--bg-card)] border border-[var(--border)]">
+    <div class="flex items-center justify-between mb-6">
+      <h3 class="text-xl font-semibold">Token消耗对比</h3>
+      <button onclick="toggleModal('token-modal')" class="text-[var(--text-tertiary)] hover:text-white">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="15" x2="9" y1="9" y2="15"/><line x1="9" x2="15" y1="9" y2="15"/></svg>
+      </button>
+    </div>
+    <div class="space-y-4">
+      <div>
+        <div class="flex justify-between mb-2">
+          <span class="text-sm text-[var(--text-secondary)]">传统LLM生成</span>
+          <span class="text-sm font-semibold text-red-400">~10,000 Tokens</span>
+        </div>
+        <div class="h-3 rounded-full bg-white/5 overflow-hidden">
+          <div class="h-full w-full bg-gradient-to-r from-red-500 to-red-400 rounded-full"></div>
+        </div>
+      </div>
+      <div>
+        <div class="flex justify-between mb-2">
+          <span class="text-sm text-[var(--text-secondary)]">Harness模板匹配</span>
+          <span class="text-sm font-semibold text-green-400">~100 Tokens</span>
+        </div>
+        <div class="h-3 rounded-full bg-white/5 overflow-hidden">
+          <div class="h-full w-[1%] bg-gradient-to-r from-green-500 to-green-400 rounded-full"></div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-6 p-4 rounded-xl bg-[var(--accent)]/10 border border-[var(--accent)]/20">
+      <p class="text-sm text-[var(--text-secondary)]">节省 <span class="text-[var(--accent)] font-bold">99%</span> 的Token消耗</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+Existing corpus files: 8
+  fineweb_chinese_10000.txt (29,582 KB)
+  fineweb_chinese_20260621_140951.txt (2,191 KB)
+  fineweb_chinese_20260622_081245.txt (1,448 KB)
+  fineweb_chinese_20260630_203730.txt (1,548 KB)
+  fineweb_chinese_20260702_100834.txt (1,555 KB)
+  fineweb_chinese_20260702_100857.txt (1,569 KB)
+  fineweb_chinese_300.txt (946 KB)
+  fineweb_chinese_5000.txt (14,875 KB)
+datasets not available: No module named 'pandas'
+
+--- Markov chain retrain ---
+[Markov] Loaded: 34272 words, 1015192 contexts, 36468268 n-grams
+Loaded existing model: 34272 vocab, 1015192 contexts, 36468268 n-grams
+  Training fineweb_chinese_10000.txt: 27 sentences
+[Markov] Trained: 34272 words, 1015963 contexts, 46537904 n-grams (12157ms)
+  Training fineweb_chinese_20260621_140951.txt: 1 sentences
+[Markov] Trained: 34272 words, 1015988 contexts, 47283001 n-grams (722ms)
+  Training fineweb_chinese_20260622_081245.txt: 4 sentences
+[Markov] Trained: 34272 words, 1016030 contexts, 47771665 n-grams (538ms)
+  Training fineweb_chinese_20260630_203730.txt: 1 sentences
+[Markov] Trained: 34272 words, 1016030 contexts, 48298321 n-grams (491ms)
+  Training fineweb_chinese_20260702_100834.txt: 1 sentences
+[Markov] Trained: 34272 words, 1016030 contexts, 48824977 n-grams (530ms)
+  Training fineweb_chinese_20260702_100857.txt: 1 sentences
+[Markov] Trained: 34272 words, 1016030 contexts, 49356344 n-grams (595ms)
+  Training fineweb_chinese_300.txt: 1 sentences
+[Markov] Trained: 34272 words, 1016030 contexts, 49677928 n-grams (295ms)
+  Training fineweb_chinese_5000.txt: 12 sentences
+[Markov] Trained: 34272 words, 1016030 contexts, 54741367 n-grams (5389ms)
+
+Training complete: 48 total sentences processed
+Saved model to D:\LAAP\aris_brain\state\markov_chain.pkl
+
+==================================================
+CORPUS EVOLUTION SUMMARY
+==================================================
+Time:          2026-07-04 12:30:52
+Corpus files:  8
+New download:  NONE
+Markov vocab:  34,272
+Contexts:      1,016,030
+Total n-grams: 54,741,367
+Trained:       True
+==================================================
+
+[SILENT_CHECK] Nothing new added -> signal SILENT

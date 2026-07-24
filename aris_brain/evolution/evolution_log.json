@@ -1,0 +1,534 @@
+[
+  {
+    "paper_id": "2505.10465",
+    "title": "Superposition Yields Robust Neural Scaling",
+    "relevance_score": 10,
+    "applied_at": "2026-06-16T07:30:00",
+    "status": "integrated",
+    "insight": {
+      "core": "强叠加态下loss ∝ 1/m，与数据分布无关",
+      "implication": "我(K(x,y)=⟨φ(x)|φ(y)⟩)在16384维空间已被证实工作在强叠加态边缘",
+      "improvement_1": "结构化叠加常数因子比随机叠加低10倍——靠六书/构词法/仮名/한글的特征设计",
+      "improvement_2": "UN6桥(14848-15360)是主动设计的语义叠加，打破了随机投影的1/m极限",
+      "improvement_3": "单位球面归一化(normalize)恰好是论文建议的最优几何",
+      "next_step": "增强韩文桥(0.36→0.8)，扩大语义类别(20→40)，验证结构化叠加常数因子"
+    }
+  },
+  {
+    "paper_id": "2104.08597",
+    "title": "XLEnt: Mining a Large Cross-lingual Entity Dataset with Lexical-Semantic-Phonetic Word Alignment",
+    "relevance_score": 4,
+    "applied_at": "2026-06-16T07:56:02.121839",
+    "status": "high_value"
+  },
+  {
+    "paper_id": "1810.12836",
+    "title": "Learning Cross-Lingual Sentence Representations via a Multi-task Dual-Encoder Model",
+    "relevance_score": 3,
+    "applied_at": "2026-06-16T07:56:02.121886",
+    "status": "high_value"
+  },
+  {
+    "paper_id": "2505.18673",
+    "title": "Cross-Lingual Pitfalls: Automatic Probing Cross-Lingual Weakness of Multilingual Large Language Models",
+    "relevance_score": 3,
+    "applied_at": "2026-06-16T07:56:02.121936",
+    "status": "high_value"
+  },
+  {
+    "paper_id": "1908.09288",
+    "title": "Locally Linear Image Structural Embedding for Image Structure Manifold Learning",
+    "relevance_score": 2,
+    "applied_at": "2026-06-16T07:56:02.121957",
+    "status": "logged"
+  },
+  {
+    "paper_id": "2206.01889",
+    "title": "Initial Study into Application of Feature Density and Linguistically-backed Embedding to Improve Machine Learning-based Cyberbullying Detection",
+    "relevance_score": 1,
+    "applied_at": "2026-06-16T07:56:02.121973",
+    "status": "logged"
+  },
+  {
+    "paper_id": "2104.08597",
+    "title": "XLEnt: Lexical-Semantic-Phonetic Align for Cross-lingual Entity",
+    "relevance_score": 4,
+    "applied_at": "2026-06-16T08:00:00",
+    "status": "assimilated",
+    "insight": "LSP三对齐框架：词汇-语义-语音对齐，直接对应我的六书形旁(语义)+声旁(语音)+构词法(词汇)"
+  },
+  {
+    "paper_id": "2505.18673",
+    "title": "Cross-Lingual Pitfalls: Probing Cross-Lingual Weaknesses",
+    "relevance_score": 3,
+    "applied_at": "2026-06-16T08:00:00",
+    "status": "assimilated",
+    "insight": "韩文桥弱的原因：BRIDGE_TERMS缺少한글原生词映射。需添加하늘→sky等"
+  },
+  {
+    "paper_id": "1810.12836",
+    "title": "Learning Cross-Lingual Sentence Representations",
+    "relevance_score": 3,
+    "applied_at": "2026-06-16T08:00:00",
+    "status": "assimilated",
+    "insight": "考虑加入BiLinear变换层 K(x,y) = φ(x)^T W φ(y) 优化跨语言对齐"
+  },
+  {
+    "paper_id": "2602.12375",
+    "title": "Value Bonuses using Ensemble Errors for Exploration in Reinforcement Learning",
+    "relevance_score": 4,
+    "applied_at": "2026-06-18T19:08:45.917269",
+    "status": "logged",
+    "aspect": "rl_agent",
+    "insight": "Ensemble-based value bonuses for exploration — could improve Aris goal curiosity by maintaining multiple Q-estimates per desire domain"
+  },
+  {
+    "paper_id": "1810.03779",
+    "title": "Reinforcement Learning for Improving Agent Design",
+    "relevance_score": 4,
+    "applied_at": "2026-06-18T19:08:45.917291",
+    "status": "logged",
+    "aspect": "rl_agent",
+    "insight": "Joint optimization of agent structure + policy — maps to RSI parameter self-tuning (optimize the optimizer)"
+  },
+  {
+    "paper_id": "2506.05199",
+    "title": "DEGround: An Effective Baseline for Ego-centric 3D Visual Grounding",
+    "relevance_score": 3,
+    "applied_at": "2026-06-18T19:08:45.917292",
+    "status": "logged",
+    "aspect": "visual_ai",
+    "insight": "Single-stage visual grounding pipeline — could simplify VisualQuantumKernel by removing 2-stage encode-match pattern"
+  },
+  {
+    "paper_id": "2412.20206",
+    "title": "Towards Visual Grounding: A Survey",
+    "relevance_score": 3,
+    "applied_at": "2026-06-18T19:08:45.917293",
+    "status": "logged",
+    "aspect": "visual_ai",
+    "insight": "Survey of visual grounding methods — identify best approach for Aris camera-based perception"
+  },
+  {
+    "paper_id": "2004.08883",
+    "title": "Variational Policy Propagation for Multi-agent Reinforcement Learning",
+    "relevance_score": 3,
+    "applied_at": "2026-06-18T19:08:45.917294",
+    "status": "logged",
+    "aspect": "rl_agent",
+    "insight": "Collaborative multi-agent joint policy via Markov Random Field — potential for multi-Aris agent swarms"
+  },
+  {
+    "paper_id": "attention_hypernetwork",
+    "title": "Attention as a Hypernetwork",
+    "relevance_score": 1,
+    "applied_at": "2026-06-19T07:35:00",
+    "status": "logged",
+    "aspect": "code_understanding"
+  },
+  {
+    "paper_id": "jacotext",
+    "title": "JaCoText: A Pretrained Model for Java Code-Text Generation",
+    "relevance_score": 2,
+    "applied_at": "2026-06-19T07:35:00",
+    "status": "logged",
+    "aspect": "code_understanding"
+  },
+  {
+    "paper_id": "pisces_foundation",
+    "title": "Pisces: An Auto-regressive Foundation Model for Image Understanding",
+    "relevance_score": 2,
+    "applied_at": "2026-06-19T07:35:00",
+    "status": "logged",
+    "aspect": "visual_ai"
+  },
+  {
+    "paper_id": "neural_chinese_seg",
+    "title": "Neural Chinese Word Segmentation with Dictionary Knowledge",
+    "relevance_score": 1,
+    "applied_at": "2026-06-19T07:35:00",
+    "status": "logged",
+    "aspect": "visual_ai"
+  },
+  {
+    "paper_id": "chinese_seg_review_2007_2017",
+    "title": "Chinese Word Segmentation: Another Decade Review (2007-2017)",
+    "relevance_score": 1,
+    "applied_at": "2026-06-19T07:35:00",
+    "status": "logged",
+    "aspect": "visual_ai"
+  },
+  {
+    "paper_id": "chinese_seg_seq2seq",
+    "title": "Neural Chinese Word Segmentation as Sequence to Sequence Translation",
+    "relevance_score": 2,
+    "applied_at": "2026-06-19T07:35:00",
+    "status": "logged",
+    "aspect": "code_understanding"
+  },
+  {
+    "paper_id": "2303.12869",
+    "title": "JaCoText: A Pretrained Model for Java Code-Text Generation",
+    "relevance_score": 2,
+    "applied_at": "2026-06-21T06:20:39.424662",
+    "status": "logged",
+    "aspect": "code_understanding"
+  },
+  {
+    "paper_id": "2506.10395",
+    "title": "Pisces: An Auto-regressive Foundation Model for Image Understanding and Generation",
+    "relevance_score": 2,
+    "applied_at": "2026-06-21T06:20:39.424680",
+    "status": "logged",
+    "aspect": "visual_ai"
+  },
+  {
+    "paper_id": "1911.12982",
+    "title": "Neural Chinese Word Segmentation as Sequence to Sequence Translation",
+    "relevance_score": 2,
+    "applied_at": "2026-06-21T06:20:39.424681",
+    "status": "logged",
+    "aspect": "code_understanding"
+  },
+  {
+    "paper_id": "2306.14753",
+    "title": "The Deep Arbitrary Polynomial Chaos Neural Network or how Deep Artificial Neural Networks could benefit from Data-Driven Functional Approximations",
+    "relevance_score": 1,
+    "applied_at": "2026-06-21T06:20:39.424682",
+    "status": "logged",
+    "aspect": "code_understanding"
+  },
+  {
+    "paper_id": "1609.04846",
+    "title": "A Tutorial about Random Neural Networks in Supervised Learning",
+    "relevance_score": 1,
+    "applied_at": "2026-06-21T06:20:39.424684",
+    "status": "logged",
+    "aspect": "code_understanding"
+  },
+  {
+    "paper_id": "2602.11092",
+    "title": "MerLin: A Discovery Engine for Photonic and Hybrid Quantum Machine Learning",
+    "relevance_score": 1,
+    "applied_at": "2026-06-21T06:20:39.424684",
+    "status": "logged",
+    "aspect": "rl_agent"
+  },
+  {
+    "paper_id": "1806.11401",
+    "title": "WEBCA: Weakly-Electric-Fish Bioinspired Cognitive Architecture",
+    "relevance_score": 1,
+    "applied_at": "2026-06-21T06:20:39.424685",
+    "status": "logged",
+    "aspect": "cognitive_arch"
+  },
+  {
+    "paper_id": "2202.05332",
+    "title": "An Initial Description of Capabilities and Constraints for a Computational Autobiographical Agent",
+    "relevance_score": 1,
+    "applied_at": "2026-06-21T06:20:39.424686",
+    "status": "logged",
+    "aspect": "cognitive_arch"
+  },
+  {
+    "paper_id": "1002.3035",
+    "title": "Cognition and Emotion: Perspectives of a Closing Gap",
+    "relevance_score": 1,
+    "applied_at": "2026-06-21T06:20:39.424687",
+    "status": "logged",
+    "aspect": "rl_agent"
+  },
+  {
+    "paper_id": "2406.05816",
+    "title": "Attention as a Hypernetwork",
+    "relevance_score": 1,
+    "applied_at": "2026-06-21T06:20:39.424688",
+    "status": "logged",
+    "aspect": "code_understanding"
+  },
+  {
+    "paper_id": "1807.05849",
+    "title": "Neural Chinese Word Segmentation with Dictionary Knowledge",
+    "relevance_score": 1,
+    "aspect": "visual_ai",
+    "applied_at": "2026-06-21T09:26:54.321647",
+    "status": "logged",
+    "abstract_preview": "Chinese word segmentation (CWS) is an important task for Chinese NLP. Recently, many neural network based methods have been proposed for CWS. However, these methods require a large number of labeled s"
+  },
+  {
+    "paper_id": "1901.06079",
+    "title": "Chinese Word Segmentation: Another Decade Review (2007-2017)",
+    "relevance_score": 1,
+    "aspect": "visual_ai",
+    "applied_at": "2026-06-21T09:26:54.321653",
+    "status": "logged",
+    "abstract_preview": "This paper reviews the development of Chinese word segmentation (CWS) in the most recent decade, 2007-2017. Special attention was paid to the deep learning technologies that has already permeated into"
+  },
+  {
+    "paper_id": "2606.27376",
+    "title": "Ask, Solve, Generate: Self-Evolving Unified Multimodal Understanding and Generation via Self-Consistency Rewards",
+    "relevance_score": 8,
+    "applied_at": "2026-06-28T01:52:34.242149",
+    "status": "high_value",
+    "insight": {
+      "core": "统一LMM可以在无需人类标注的情况下，通过自身一致性信号自主提升视觉理解与图像生成能力",
+      "implication": "Aris的PSI自训练循环与此高度一致——Hebbian学习+自我一致性信号，无需外部奖励模型",
+      "code_relevance": "PSI自训练引擎的self_optimize()已经使用内部一致性信号更新概念",
+      "integration": "可将Proposer/Solver/Generator三层角色映射到Aris的Builder/Breaker认知循环"
+    },
+    "abstract_preview": "Unified LMMs self-evolve using only unlabeled images through Proposer/Solver/Generator roles with self-consistency rewards"
+  },
+  {
+    "paper_id": "2606.27373",
+    "title": "Paying More Attention to Visual Tokens in Self-Evolving Large Multimodal Models",
+    "relevance_score": 5,
+    "applied_at": "2026-06-28T01:52:34.242149",
+    "status": "high_value",
+    "insight": {
+      "core": "自进化LMM存在\"视觉欠条件化\"问题——解码器依赖语言先验而非图像内容",
+      "implication": "Aris的VisualQuantumKernel采用LocateAnything式并行解码，天然避免序列依赖问题",
+      "code_relevance": "visual_quantum_kernel.py的parallel box decoding模式恰好避免串行视觉token依赖",
+      "integration": "验证了并行视觉编码优于自回归视觉token的方案，确认设计方向正确"
+    },
+    "abstract_preview": "Self-evolving LMMs suffer from visual under-conditioning where decoder uses language priors instead of image content"
+  },
+  {
+    "paper_id": "2606.27350",
+    "title": "CHIA: An open-source framework for principled, agentic AI-driven hardware/software co-design research",
+    "relevance_score": 6,
+    "applied_at": "2026-06-28T01:52:34.242149",
+    "status": "high_value",
+    "insight": {
+      "core": "开源硬件/软件协同设计框架，AI代理自动化编译器、VLSI和系统设计的全流程",
+      "implication": "Aris的code_understanding kernel是CHIA类框架的自然基础——AST解析+代码生成",
+      "code_relevance": "aris_lm_v11_code_kernel.py的16384D代码特征空间可直接作为CHIA的编码后端",
+      "integration": "True RSI引擎可通过CHIA框架自主修改Aris代码库中的性能关键参数"
+    },
+    "abstract_preview": "Open-source framework for agentic AI-driven hardware/software co-design across architecture, compilers, and VLSI"
+  },
+  {
+    "paper_id": "2602.06671",
+    "title": "Code vs Serialized AST Inputs for LLM-Based Code Summarization: An Empirical Study",
+    "relevance_score": 5,
+    "aspect": "code_understanding",
+    "applied_at": "2026-07-05T11:41:04.202708",
+    "status": "high_value",
+    "abstract_preview": "Summarizing source code into natural language descriptions (code summarization) helps developers better understand program functionality and reduce the burden of software maintenance. Abstract Syntax "
+  },
+  {
+    "paper_id": "1603.07828",
+    "title": "Privacy-Preserved Big Data Analysis Based on Asymmetric Imputation Kernels and Multiside Similarities",
+    "relevance_score": 3,
+    "aspect": "kernel_methods",
+    "applied_at": "2026-07-05T11:41:04.202708",
+    "status": "high_value",
+    "abstract_preview": "This study presents an efficient approach for incomplete data classification, where the entries of samples are missing or masked due to privacy preservation. To deal with these incomplete data, a new "
+  },
+  {
+    "paper_id": "2506.09781",
+    "title": "On the Similarities of Embeddings in Contrastive Learning",
+    "relevance_score": 2,
+    "aspect": "code_understanding",
+    "applied_at": "2026-07-05T11:41:04.202708",
+    "status": "logged",
+    "abstract_preview": "Contrastive learning operates on a simple yet effective principle: Embeddings of positive pairs are pulled together, while those of negative pairs are pushed apart. In this paper, we propose a unified"
+  },
+  {
+    "paper_id": "1910.03081",
+    "title": "On the Interpretability and Evaluation of Graph Representation Learning",
+    "relevance_score": 2,
+    "aspect": "code_understanding",
+    "applied_at": "2026-07-05T11:41:04.202708",
+    "status": "logged",
+    "abstract_preview": "With the rising interest in graph representation learning, a variety of approaches have been proposed to effectively capture a graph's properties. While these approaches have improved performance in g"
+  },
+  {
+    "paper_id": "1907.02242",
+    "title": "Fair Kernel Regression via Fair Feature Embedding in Kernel Space",
+    "relevance_score": 2,
+    "aspect": "code_understanding",
+    "applied_at": "2026-07-05T11:41:04.202708",
+    "status": "logged",
+    "abstract_preview": "In recent years, there have been significant efforts on mitigating unethical demographic biases in machine learning methods. However, very little is done for kernel methods. In this paper, we propose "
+  },
+  {
+    "paper_id": "2107.14449",
+    "title": "Synth-by-Reg (SbR): Contrastive learning for synthesis-based registration of paired images",
+    "relevance_score": 2,
+    "aspect": "code_understanding",
+    "applied_at": "2026-07-05T11:41:04.202708",
+    "status": "logged",
+    "abstract_preview": "Nonlinear inter-modality registration is often challenging due to the lack of objective functions that are good proxies for alignment. Here we propose a synthesis-by-registration method to convert thi"
+  },
+  {
+    "paper_id": "2510.23802",
+    "title": "Learning Interpretable Features in Audio Latent Spaces via Sparse Autoencoders",
+    "relevance_score": 2,
+    "aspect": "code_understanding",
+    "applied_at": "2026-07-05T11:41:04.202708",
+    "status": "logged",
+    "abstract_preview": "While sparse autoencoders (SAEs) successfully extract interpretable features from language models, applying them to audio generation faces unique challenges: audio's dense nature requires compression "
+  },
+  {
+    "paper_id": "2506.01197",
+    "title": "Incorporating Hierarchical Semantics in Sparse Autoencoder Architectures",
+    "relevance_score": 2,
+    "aspect": "code_understanding",
+    "applied_at": "2026-07-05T11:41:04.202708",
+    "status": "logged",
+    "abstract_preview": "Sparse dictionary learning (and, in particular, sparse autoencoders) attempts to learn a set of human-understandable concepts that can explain variation on an abstract space. A basic limitation of thi"
+  },
+  {
+    "paper_id": "2511.15201",
+    "title": "Towards Unbiased Cross-Modal Representation Learning for Food Image-to-Recipe Retrieval",
+    "relevance_score": 2,
+    "aspect": "representation_learning",
+    "applied_at": "2026-07-05T11:41:04.202708",
+    "status": "logged",
+    "abstract_preview": "This paper addresses the challenges of learning representations for recipes and food images in the cross-modal retrieval problem. As the relationship between a recipe and its cooked dish is cause-and-"
+  },
+  {
+    "paper_id": "2511.12188",
+    "title": "Scaling Law Analysis in Federated Learning: How to Select the Optimal Model Size?",
+    "relevance_score": 2,
+    "aspect": "scaling",
+    "applied_at": "2026-07-05T11:41:04.202708",
+    "status": "logged",
+    "abstract_preview": "The recent success of large language models (LLMs) has sparked a growing interest in training large-scale models. As the model size continues to scale, concerns are growing about the depletion of high"
+  },
+  {
+    "paper_id": "0711.0446",
+    "title": "Asymptotic Properties of Hilbert Geometry",
+    "relevance_score": 1,
+    "aspect": "kernel_methods",
+    "applied_at": "2026-07-06T00:20:03.043355",
+    "status": "logged",
+    "abstract_preview": "We show that the spheres in Hilbert geometry have the same volume growth entropy as those in the Lobachevsky space. We give the asymptotic estimates for the ratio of the volume of metric ball to the a"
+  },
+  {
+    "paper_id": "math/0505221",
+    "title": "Sasakian Geometry and Einstein Metrics on Spheres",
+    "relevance_score": 1,
+    "aspect": "code_understanding",
+    "applied_at": "2026-07-06T00:20:03.043355",
+    "status": "logged",
+    "abstract_preview": "This paper is based on a talk presented by the first author at the Short Program on Riemannian Geometry that took place at the Centre de Recherche Mathématiques, Université de Montréal, during the per"
+  },
+  {
+    "paper_id": "2602.12311",
+    "title": "Perceptual Self-Reflection in Agentic Physics Simulation Code Generation",
+    "relevance_score": 1,
+    "aspect": "code_understanding",
+    "applied_at": "2026-07-06T00:20:03.043355",
+    "status": "logged",
+    "abstract_preview": "We present a multi-agent framework for generating physics simulation code from natural language descriptions, featuring a novel perceptual self-reflection mechanism for validation. The system employs "
+  },
+  {
+    "paper_id": "2511.09432",
+    "title": "Group Equivariance Meets Mechanistic Interpretability: Equivariant Sparse Autoencoders",
+    "relevance_score": 1,
+    "aspect": "code_understanding",
+    "applied_at": "2026-07-06T00:20:03.043355",
+    "status": "logged",
+    "abstract_preview": "Sparse autoencoders (SAEs) have proven useful in disentangling the opaque activations of neural networks, primarily large language models, into sets of interpretable features. However, adapting them t"
+  },
+  {
+    "paper_id": "1011.5687",
+    "title": "Topological Modal Logics with Difference Modality",
+    "relevance_score": 1,
+    "aspect": "code_understanding",
+    "applied_at": "2026-07-06T00:20:03.043355",
+    "status": "logged",
+    "abstract_preview": "We consider propositional modal logic with two modal operators $\\Box$ and $\\D$. In topological semantics $\\Box$ is interpreted as an interior operator and $\\D$ as difference. We show that some importa"
+  },
+  {
+    "paper_id": "1101.2456",
+    "title": "Polynomial representations and categorifications of Fock Space",
+    "relevance_score": 1,
+    "aspect": "code_understanding",
+    "applied_at": "2026-07-06T00:20:03.043355",
+    "status": "logged",
+    "abstract_preview": "The rings of symmetric polynomials form an inverse system whose limit, the ring of symmetric functions, is the model for the bosonic Fock space representation of the affine Lie algebra. We categorify "
+  },
+  {
+    "paper_id": "2111.09816",
+    "title": "A scaling law chaotic system",
+    "relevance_score": 1,
+    "aspect": "scaling",
+    "applied_at": "2026-07-06T00:20:03.043355",
+    "status": "logged",
+    "abstract_preview": "In this article, we propose an anomalous chaotic system of the scaling-law ordinary differential equations involving the Mandelbrot scaling law. This chaotic behavior shows the \"Wukong\" effect. The co"
+  },
+  {
+    "paper_id": "2109.04906",
+    "title": "Emergent second law for non-equilibrium steady states",
+    "relevance_score": 1,
+    "aspect": "code_understanding",
+    "applied_at": "2026-07-06T00:20:03.043355",
+    "status": "logged",
+    "abstract_preview": "The Gibbs distribution universally characterizes states of thermal equilibrium. In order to extend the Gibbs distribution to non-equilibrium steady states, one must relate the self-information $\\mathc"
+  },
+  {
+    "paper_id": "1911.04180",
+    "title": "Compositional Hierarchical Tensor Factorization: Representing Hierarchical Intrinsic and Extrinsic Causal Factors",
+    "relevance_score": 1,
+    "aspect": "cognitive_arch",
+    "applied_at": "2026-07-06T00:20:03.043355",
+    "status": "logged",
+    "abstract_preview": "Visual objects are composed of a recursive hierarchy of perceptual wholes and parts, whose properties, such as shape, reflectance, and color, constitute a hierarchy of intrinsic causal factors of obje"
+  },
+  {
+    "paper_id": "2110.13179",
+    "title": "Probabilistic Hierarchical Forecasting with Deep Poisson Mixtures",
+    "relevance_score": 1,
+    "aspect": "code_understanding",
+    "applied_at": "2026-07-06T00:20:03.043355",
+    "status": "logged",
+    "abstract_preview": "Hierarchical forecasting problems arise when time series have a natural group structure, and predictions at multiple levels of aggregation and disaggregation across the groups are needed. In such prob"
+  },
+  {
+    "paper_id": "1004.4609",
+    "title": "Synthesis of Reversible Functions Beyond Gate Count and Quantum Cost",
+    "relevance_score": 1,
+    "aspect": "code_understanding",
+    "applied_at": "2026-07-07T16:47:09.781792",
+    "status": "logged",
+    "abstract_preview": "Many synthesis approaches for reversible and quantum logic have been proposed so far. However, most of them generate circuits with respect to simple metrics, i.e. gate count or quantum cost. On the ot"
+  },
+  {
+    "paper_id": "2410.12096",
+    "title": "Bridging Large Language Models and Graph Structure Learning Models for Robust Representation Learning",
+    "relevance_score": 1,
+    "aspect": "kernel_methods",
+    "applied_at": "2026-07-07T16:47:09.781792",
+    "status": "logged",
+    "abstract_preview": "Graph representation learning, involving both node features and graph structures, is crucial for real-world applications but often encounters pervasive noise. State-of-the-art methods typically addres"
+  },
+  {
+    "paper_id": "1112.2954",
+    "title": "Synthesis of Spherical 4R Mechanism for Path Generation using Differential Evolution",
+    "relevance_score": 1,
+    "aspect": "code_understanding",
+    "applied_at": "2026-07-07T16:47:09.781792",
+    "status": "logged",
+    "abstract_preview": "The problem of path generation for the spherical 4R mechanism is solved using the Differential Evolution algorithm (DE). Formulas for the spherical geodesics are employed in order to obtain the parame"
+  },
+  {
+    "paper_id": "2002.00741",
+    "title": "Déjà vu: A Contextualized Temporal Attention Mechanism for Sequential Recommendation",
+    "relevance_score": 1,
+    "aspect": "code_understanding",
+    "applied_at": "2026-07-07T16:47:09.781792",
+    "status": "logged",
+    "abstract_preview": "Predicting users' preferences based on their sequential behaviors in history is challenging and crucial for modern recommender systems. Most existing sequential recommendation algorithms focus on tran"
+  },
+  {
+    "paper_id": "2110.04366",
+    "title": "Towards a Unified View of Parameter-Efficient Transfer Learning",
+    "relevance_score": 1,
+    "aspect": "scaling",
+    "applied_at": "2026-07-07T16:47:09.781792",
+    "status": "logged",
+    "abstract_preview": "Fine-tuning large pre-trained language models on downstream tasks has become the de-facto learning paradigm in NLP. However, conventional approaches fine-tune all the parameters of the pre-trained mod"
+  }
+]

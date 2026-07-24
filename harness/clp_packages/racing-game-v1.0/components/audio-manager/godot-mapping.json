@@ -1,0 +1,200 @@
+{
+  "schema_version": "1.0",
+  "component_uri": "harness://game/audio/module/engine-sound-crossfade@1.0.0#howler-webaudio",
+  "godot_version": "4.7",
+  "description": "Howler.js + Web Audio API 引擎声交叉淡入系统 → Godot 4.7 AudioStreamPlayer3D + AudioBusLayout + GDScript 控制器映射。3 节流阀状态 × RPM 段交叉淡入、reverb 处理链、合成 fallback 全部映射至 Godot 原生音频节点。",
+
+  "target_resources": [
+    {
+      "type": "AudioStreamPlayer3D",
+      "path": "res://audio/EngineSound3D.tscn",
+      "node_path": "/root/AudioManager/EngineSound3D",
+      "properties": {
+        "stream": "res://audio/samples/911cup_offidle.ogg",
+        "autoplay": false,
+        "max_distance": 100.0,
+        "attenuation_model": 2,
+        "unit_size": 1.0,
+        "max_db": 0.0,
+        "bus": "Engine"
+      },
+      "bus": "Engine",
+      "clp_source": "AudioManager.ts (Howler Web Audio)",
+      "notes": "主引擎声播放器，运行时按 RPM/throttle 动态切换 stream 资源，实现 18 段交叉淡入"
+    },
+    {
+      "type": "AudioStreamPlayer3D",
+      "path": "res://audio/LimiterSound3D.tscn",
+      "node_path": "/root/AudioManager/LimiterSound3D",
+      "properties": {
+        "stream": "res://audio/samples/911cup_limiter.ogg",
+        "autoplay": false,
+        "max_distance": 100.0,
+        "attenuation_model": 2,
+        "bus": "Engine"
+      },
+      "bus": "Engine",
+      "clp_source": "design-physics.json:limiter_samples",
+      "notes": "RPM 限速器采样（rpm > 8500 时触发，volume=0.15）"
+    },
+    {
+      "type": "AudioStreamPlayer",
+      "path": "res://audio/SFXPlayer.tscn",
+      "node_path": "/root/AudioManager/SFXPlayer",
+      "properties": {
+        "autoplay": false,
+        "bus": "SFX"
+      },
+      "bus": "SFX",
+      "clp_source": "design-physics.json:sfx_files",
+      "notes": "SFX 一次性音效播放器（tick/accept/backfire/skid/curb/lapPb 等 18 个 SFX 文件）"
+    },
+    {
+      "type": "AudioBusLayout",
+      "path": "res://audio/engine_buses.tres",
+      "buses": [
+        {"name": "Master", "mute": false, "solo": false, "volume_db": 0},
+        {"name": "Engine", "mute": false, "solo": false, "volume_db": -3, "parent": "Master"},
+        {"name": "SFX", "mute": false, "solo": false, "volume_db": -6, "parent": "Master"}
+      ],
+      "effects": [
+        {
+          "bus": "Engine",
+          "type": "AudioEffectReverb",
+          "properties": {
+            "predelay_msec": 18,
+            "predelay_feedback": 0.0,
+            "room_size": 0.58,
+            "damping": 0.5,
+            "spread": 1.0,
+            "hipass": 140.0,
+            "dry": 1.0,
+            "wet": 0.42
+          },
+          "clp_source": "design-physics.json:reverb_chain",
+          "notes": "reverb_chain: dry_mix=1.0, wet_send=0.42, pre_delay=0.018s, decay=0.58s, highpass=140Hz, lowpass=4200Hz"
+        },
+        {
+          "bus": "Engine",
+          "type": "AudioEffectHighPassFilter",
+          "properties": {
+            "cutoff_hz": 140.0,
+            "resonance": 0.0
+          },
+          "clp_source": "design-physics.json:reverb_chain.highpass_hz"
+        },
+        {
+          "bus": "Engine",
+          "type": "AudioEffectLowPassFilter",
+          "properties": {
+            "cutoff_hz": 4200.0,
+            "resonance": 0.0
+          },
+          "clp_source": "design-physics.json:reverb_chain.lowpass_hz"
+        }
+      ]
+    },
+    {
+      "type": "AudioStreamGenerator",
+      "path": "res://audio/synth_fallback.tres",
+      "clp_source": "design-physics.json:synth_fallback",
+      "notes": "合成 fallback：osc1=sawtooth, osc2=square, base_freq=60Hz, rpm_freq_multiplier=280, lowpass filter base=400Hz + throttle*3000Hz, Q=5。当 911cup_*.ogg 资源加载失败时启用。"
+    }
+  ],
+
+  "target_scripts": [
+    {
+      "type": "GDScript",
+      "path": "res://scripts/engine_sound.gd",
+      "class_name": "EngineSoundController",
+      "extends": "Node3D",
+      "exports": [
+        {"name": "rpm_min", "type": "float", "default": 1000.0},
+        {"name": "rpm_max", "type": "float", "default": 9000.0},
+        {"name": "limiter_threshold_rpm", "type": "float", "default": 8500.0},
+        {"name": "fade_out_ms", "type": "float", "default": 150.0},
+        {"name": "fade_in_ms", "type": "float", "default": 150.0},
+        {"name": "state_volume_off", "type": "float", "default": 0.22},
+        {"name": "state_volume_steady", "type": "float", "default": 0.26},
+        {"name": "state_volume_on", "type": "float", "default": 0.31},
+        {"name": "use_synth_fallback", "type": "bool", "default": false}
+      ],
+      "methods": [
+        {"name": "update_engine", "params": ["rpm: float", "throttle: float", "speed: float"], "return": "void", "clp_source": "AudioManager.updateEngine"},
+        {"name": "_ready", "params": [], "return": "void"},
+        {"name": "_process", "params": ["delta: float"], "return": "void", "notes": "交叉淡入 _process 内执行：根据 rpm/throttle 计算目标 band，Tween 淡出旧 stream 淡入新 stream"},
+        {"name": "play_sfx", "params": ["sfx_name: String"], "return": "void", "clp_source": "AudioManager.playSFX"},
+        {"name": "start_engine", "params": [], "return": "void", "clp_source": "AudioManager.startEngine"},
+        {"name": "stop_engine", "params": [], "return": "void", "clp_source": "AudioManager.stopEngine"},
+        {"name": "_crossfade_to", "params": ["sample_path: String", "state: String"], "return": "void", "notes": "150ms 淡出 + 150ms 淡入，使用 Tween 实现交叉淡入"},
+        {"name": "_select_band", "params": ["rpm: float", "throttle: float"], "return": "Dictionary", "notes": "3 状态(off/steady/on) × RPM 段映射，返回 {sample, gain, state_volume}"},
+        {"name": "_play_limiter", "params": [], "return": "void", "notes": "rpm > 8500 时播放 911cup_limiter.ogg，volume=0.15"}
+      ],
+      "clp_source": "D:/ai-website-cloner-template-master/src/lib/audio/AudioManager.ts"
+    }
+  ],
+
+  "asset_files": [
+    {
+      "source": "design-physics.json:engine_bands",
+      "target": "res://audio/samples/911cup_*.ogg",
+      "count": 24,
+      "notes": "18 engine_bands 共 24 个采样文件（off=7 + steady=8 + on=9），含 offidle/offverylow_1..3/offlow/offmid/offhigh/steadyidle/steadyverylow_1..2/steadylow/steadylowmid/steadymid/steadyhigh/steadyveryhigh/onidle_1..3/onverylow_1..2/onlow/onmid/onhigh/onveryhigh"
+    },
+    {
+      "source": "design-physics.json:limiter_samples",
+      "target": "res://audio/samples/911cup_limiter*.ogg",
+      "count": 2,
+      "notes": "911cup_limiter.ogg, 911cup_steadylimiter.ogg"
+    },
+    {
+      "source": "design-physics.json:sfx_files",
+      "target": "res://audio/sfx/*.{mp3,ogg}",
+      "count": 18,
+      "notes": "tick.mp3/accept.mp3/return.mp3/start-game.mp3/backfire1..3.ogg/CarSkid.ogg/curb.ogg/dirt.ogg/gravel.ogg/carhit0..2.ogg/thump.ogg/lap-pb.ogg/good-time.ogg/bad-time.ogg"
+    },
+    {
+      "source": "design-physics.json:reverb_chain",
+      "target": "res://audio/engine_buses.tres (AudioEffectReverb)",
+      "count": 1,
+      "notes": "reverb 处理链映射为 Engine bus 上的 AudioEffectReverb + HPF + LPF"
+    },
+    {
+      "source": "design-physics.json:synth_fallback",
+      "target": "res://audio/synth_fallback.tres (AudioStreamGenerator)",
+      "count": 1,
+      "notes": "OscillatorNode 合成 fallback → AudioStreamGenerator + GDScript 实时填充 buffer"
+    }
+  ],
+
+  "state_mapping": {
+    "clp_states": ["off", "steady", "on"],
+    "godot_mapping": "throttle < 0.05 → off; 0.05 ≤ throttle < 0.5 → steady; throttle ≥ 0.5 → on",
+    "state_volumes": {
+      "off": 0.22,
+      "steady": 0.26,
+      "on": 0.31
+    }
+  },
+
+  "crossfade_mapping": {
+    "clp_source": "design-physics.json:crossfade",
+    "godot_implementation": "Tween.tween_property(stream_player, 'volume_db', -80, 0.150) + 同时新 stream 从 -80 tween 到 0",
+    "fade_out_ms": 150,
+    "fade_in_ms": 150,
+    "limiter_threshold_rpm": 8500,
+    "limiter_volume": 0.15
+  },
+
+  "assembly_steps": [
+    "1. 创建 Node3D /root/AudioManager 作为音频根节点",
+    "2. 创建 AudioStreamPlayer3D 子节点 EngineSound3D (bus=Engine) 和 LimiterSound3D (bus=Engine)",
+    "3. 创建 AudioStreamPlayer 子节点 SFXPlayer (bus=SFX)",
+    "4. 加载 24 个 engine_bands 采样 + 2 个 limiter 采样到 res://audio/samples/911cup_*.ogg",
+    "5. 加载 18 个 SFX 文件到 res://audio/sfx/*.{mp3,ogg}",
+    "6. 配置 AudioBusLayout: Master → Engine(bus=-3dB, 挂载 ReverbEffect+HPF140+LPF4200) + SFX(bus=-6dB)",
+    "7. 附加 engine_sound.gd 到 EngineSound3D，导出 rpm_min/rpm_max/fade_*_ms/state_volume_* 参数",
+    "8. 连接 PhysicsVehicle 的 update_engine(rpm, throttle, speed) 信号到 EngineSoundController.update_engine",
+    "9. 配置 synth_fallback AudioStreamGenerator 作为兜底（资源加载失败时启用）"
+  ]
+}

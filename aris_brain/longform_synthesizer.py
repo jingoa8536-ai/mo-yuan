@@ -18,10 +18,8 @@ import os, sys, time, re, json, hashlib
 import numpy as np
 from typing import Dict, List, Optional, Tuple
 
-from laap_brain.config import LAAP_ROOT
-_root = str(LAAP_ROOT)
-if _root not in sys.path:
-    sys.path.insert(0, _root)
+_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, _DIR)
 
 
 class LongFormSynthesizer:

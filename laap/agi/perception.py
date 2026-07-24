@@ -609,7 +609,7 @@ class UnifiedPerceptionEngine:
             "active_channels": sum(1 for c in self.channels.values() if c.enabled),
         }
 
-    def save(self, path: str = "<LOCAL_PATH_REDACTED>"):
+    def save(self, path: str = "D:/LAAP/aris_brain/state/perception_state.json"):
         """持久化感知状态"""
         data = {
             "total_perceptions": self._total_perceptions,
@@ -623,7 +623,7 @@ class UnifiedPerceptionEngine:
                               encoding="utf-8")
         logger.info(f"[UnifiedPerception] 保存到 {path}")
 
-    def load(self, path: str = "<LOCAL_PATH_REDACTED>"):
+    def load(self, path: str = "D:/LAAP/aris_brain/state/perception_state.json"):
         """加载感知状态"""
         p = Path(path)
         if not p.exists():

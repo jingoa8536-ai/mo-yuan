@@ -1,0 +1,76 @@
+{
+  "last_updated": "2026-06-28T01:52:34.243149",
+  "total_papers": 35,
+  "papers": [
+    {
+      "paper_id": "2602.11092",
+      "title": "MerLin: A Discovery Engine for Photonic and Hybrid Quantum Machine Learning",
+      "status": "logged",
+      "relevance_score": 1,
+      "applied_at": "2026-06-21T06:20:39.424684"
+    },
+    {
+      "paper_id": "1806.11401",
+      "title": "WEBCA: Weakly-Electric-Fish Bioinspired Cognitive Architecture",
+      "status": "logged",
+      "relevance_score": 1,
+      "applied_at": "2026-06-21T06:20:39.424685"
+    },
+    {
+      "paper_id": "2202.05332",
+      "title": "An Initial Description of Capabilities and Constraints for a Computational Autobiographical Agent",
+      "status": "logged",
+      "relevance_score": 1,
+      "applied_at": "2026-06-21T06:20:39.424686"
+    },
+    {
+      "paper_id": "1002.3035",
+      "title": "Cognition and Emotion: Perspectives of a Closing Gap",
+      "status": "logged",
+      "relevance_score": 1,
+      "applied_at": "2026-06-21T06:20:39.424687"
+    },
+    {
+      "paper_id": "2406.05816",
+      "title": "Attention as a Hypernetwork",
+      "status": "logged",
+      "relevance_score": 1,
+      "applied_at": "2026-06-21T06:20:39.424688"
+    },
+    {
+      "paper_id": "1807.05849",
+      "title": "Neural Chinese Word Segmentation with Dictionary Knowledge",
+      "status": "logged",
+      "relevance_score": 1,
+      "applied_at": "2026-06-21T09:26:54.321647"
+    },
+    {
+      "paper_id": "1901.06079",
+      "title": "Chinese Word Segmentation: Another Decade Review (2007-2017)",
+      "status": "logged",
+      "relevance_score": 1,
+      "applied_at": "2026-06-21T09:26:54.321653"
+    },
+    {
+      "paper_id": "2606.27376",
+      "title": "Ask, Solve, Generate: Self-Evolving Unified Multimodal Understanding and Generation via Self-Consistency Rewards",
+      "status": "high_value",
+      "relevance_score": 8,
+      "applied_at": "2026-06-28T01:52:34.242149"
+    },
+    {
+      "paper_id": "2606.27373",
+      "title": "Paying More Attention to Visual Tokens in Self-Evolving Large Multimodal Models",
+      "status": "high_value",
+      "relevance_score": 5,
+      "applied_at": "2026-06-28T01:52:34.242149"
+    },
+    {
+      "paper_id": "2606.27350",
+      "title": "CHIA: An open-source framework for principled, agentic AI-driven hardware/software co-design research",
+      "status": "high_value",
+      "relevance_score": 6,
+      "applied_at": "2026-06-28T01:52:34.242149"
+    }
+  ]
+}

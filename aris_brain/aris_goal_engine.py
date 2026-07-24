@@ -40,7 +40,8 @@ from enum import Enum
 from datetime import datetime, timezone
 
 # ── 统一配置 ─────────────────────────────────────────────────
-from laap_brain.config import BRAIN_DIR as BRAIN, LAAP_ROOT, STATE_DIR
+from config import BRAIN_DIR as BRAIN, LAAP_ROOT, STATE_DIR, setup_paths
+setup_paths()
 
 logger = logging.getLogger("aris.goal_engine")
 

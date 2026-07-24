@@ -1,0 +1,179 @@
+{
+  "schema_version": "1.0",
+  "component_uri": "harness://frontend/animation/module/keyframes-pack@1.0.0#apex-racing",
+  "godot_version": "4.7",
+  "description": "CSS @keyframes 动画包（22 个）→ Godot 4.7 AnimationPlayer + Tween 映射。CSS easing 函数映射为 Godot Tween TransitionType/EaseType，22 个 keyframes 各对应一个 Godot Animation 资源。",
+
+  "target_resources": [
+    {
+      "type": "AnimationPlayer",
+      "path": "res://ui/UIAnimationPlayer.tscn",
+      "node_path": "/root/UIRoot/UIAnimationPlayer",
+      "properties": {
+        "playback_default_blend": 0.0,
+        "autoplay": ""
+      },
+      "clp_source": "apex-animations.css (22 @keyframes)",
+      "notes": "承载 22 个 Animation 资源，对应 22 个 CSS @keyframes"
+    },
+    {
+      "type": "AnimationLibrary",
+      "path": "res://ui/animations/apex_keyframes.tres",
+      "clp_source": "keyframes-manifest.json:keyframes",
+      "animations_count": 22,
+      "notes": "AnimationLibrary 包含 22 个 Animation 资源，命名与 CSS keyframes 一致"
+    }
+  ],
+
+  "target_scripts": [
+    {
+      "type": "GDScript",
+      "path": "res://scripts/ui_animations.gd",
+      "class_name": "UIAnimationController",
+      "extends": "Node",
+      "exports": [
+        {"name": "reduced_motion", "type": "bool", "default": false, "notes": "对应 variants: reduced-motion，禁用 infinite 动画"}
+      ],
+      "methods": [
+        {"name": "_ready", "params": [], "return": "void", "notes": "加载 AnimationLibrary 到 AnimationPlayer"},
+        {"name": "play_animation", "params": ["anim_name: String"], "return": "void", "clp_source": "应用 .animate-* 工具类"},
+        {"name": "play_tween", "params": ["target: Node", "anim_name: String"], "return": "void", "notes": "运行时用 Tween 复现 CSS keyframes（无需预烘焙 Animation 时）"},
+        {"name": "stop_animation", "params": ["anim_name: String"], "return": "void"},
+        {"name": "_css_to_godot_easing", "params": ["css_timing: String"], "return": "Dictionary", "notes": "返回 {transition: Tween.TransitionType, ease: Tween.EaseType}"},
+        {"name": "_build_animation", "params": ["keyframe_def: Dictionary"], "return": "Animation", "notes": "将 CSS keyframes 定义转换为 Godot Animation 资源"}
+      ],
+      "clp_source": "D:/ai-website-cloner-template-master/src/app/apex-animations.css"
+    }
+  ],
+
+  "easing_mapping": {
+    "description": "CSS timing-function → Godot 4.7 Tween.TransitionType + EaseType 映射表",
+    "mappings": [
+      {
+        "css_timing": "linear",
+        "godot_transition": "Tween.TRANS_LINEAR",
+        "godot_ease": "Tween.EASE_IN_OUT",
+        "used_by": ["wheel-spin"]
+      },
+      {
+        "css_timing": "ease-out",
+        "godot_transition": "Tween.TRANS_SINE",
+        "godot_ease": "Tween.EASE_OUT",
+        "used_by": ["home-lb-row-in", "lobby-backdrop-in", "pm-fade-in", "pm-flash", "race-chat-in", "racing-hud-rise", "racing-waiting-pulse", "replay-overlay-fade"]
+      },
+      {
+        "css_timing": "ease-in-out",
+        "godot_transition": "Tween.TRANS_SINE",
+        "godot_ease": "Tween.EASE_IN_OUT",
+        "used_by": ["home-live-pulse", "lobby-pulse", "pm-saved-toast", "racing-hud-blink", "replay-rec-pulse", "splash-loading-dot", "thumb-frame-breathe", "thumb-img-compensate"]
+      },
+      {
+        "css_timing": "cubic-bezier(0.22,1,0.36,1)",
+        "godot_transition": "Tween.TRANS_CUBIC",
+        "godot_ease": "Tween.EASE_OUT",
+        "godot_note": "ease-out-quint 近似，Godot 无原生 cubic-bezier，用 TRANS_CUBIC+EASE_OUT 逼近",
+        "used_by": ["home-corner-panel-rise", "lobby-window-in", "settings-panel-rise"]
+      },
+      {
+        "css_timing": "cubic-bezier(0.16,1,0.3,1)",
+        "godot_transition": "Tween.TRANS_EXPO",
+        "godot_ease": "Tween.EASE_OUT",
+        "godot_note": "ease-out-expo 近似",
+        "used_by": ["notif-pop"]
+      },
+      {
+        "css_timing": "step-end",
+        "godot_transition": "Tween.TRANS_LINEAR",
+        "godot_ease": "Tween.EASE_OUT",
+        "godot_note": "step-end 在 Godot 中需用 AnimationTrack 的 INTERPOLATION_NEAREST 或离散关键帧实现",
+        "used_by": ["clock-blink"]
+      }
+    ]
+  },
+
+  "animations": [
+    {"name": "clock-blink", "css_duration": "1s", "css_timing": "step-end", "css_iteration": "infinite", "category": "ui_element", "godot_duration": 1.0, "godot_loop": true, "godot_track_type": "value (visible/discrete)"},
+    {"name": "home-corner-panel-rise", "css_duration": "0.22s", "css_timing": "cubic-bezier(0.22,1,0.36,1)", "css_iteration": "1", "category": "home", "godot_duration": 0.22, "godot_loop": false, "godot_track_type": "position_2d"},
+    {"name": "home-lb-row-in", "css_duration": "0.35s", "css_timing": "ease-out", "css_iteration": "1", "category": "home", "godot_duration": 0.35, "godot_loop": false, "godot_track_type": "position_2d+modulate"},
+    {"name": "home-live-pulse", "css_duration": "2s", "css_timing": "ease-in-out", "css_iteration": "infinite", "category": "home", "godot_duration": 2.0, "godot_loop": true, "godot_track_type": "modulate"},
+    {"name": "lobby-backdrop-in", "css_duration": "0.3s", "css_timing": "ease-out", "css_iteration": "1", "category": "lobby", "godot_duration": 0.3, "godot_loop": false, "godot_track_type": "modulate"},
+    {"name": "lobby-pulse", "css_duration": "2s", "css_timing": "ease-in-out", "css_iteration": "infinite", "category": "lobby", "godot_duration": 2.0, "godot_loop": true, "godot_track_type": "modulate"},
+    {"name": "lobby-window-in", "css_duration": "0.3s", "css_timing": "cubic-bezier(0.22,1,0.36,1)", "css_iteration": "1", "category": "lobby", "godot_duration": 0.3, "godot_loop": false, "godot_track_type": "position_2d+scale"},
+    {"name": "notif-pop", "css_duration": "0.3s", "css_timing": "cubic-bezier(0.16,1,0.3,1)", "css_iteration": "1", "category": "notification", "godot_duration": 0.3, "godot_loop": false, "godot_track_type": "scale+modulate"},
+    {"name": "pm-fade-in", "css_duration": "0.2s", "css_timing": "ease-out", "css_iteration": "1", "category": "notification", "godot_duration": 0.2, "godot_loop": false, "godot_track_type": "modulate"},
+    {"name": "pm-flash", "css_duration": "0.4s", "css_timing": "ease-out", "css_iteration": "1", "category": "notification", "godot_duration": 0.4, "godot_loop": false, "godot_track_type": "modulate"},
+    {"name": "pm-saved-toast", "css_duration": "2.5s", "css_timing": "ease-in-out", "css_iteration": "1", "css_fill_mode": "forwards", "category": "notification", "godot_duration": 2.5, "godot_loop": false, "godot_track_type": "position_2d+modulate", "godot_note": "fill_mode: forwards → 末帧保持，Godot 用 Animation 末关键帧不回弹实现"},
+    {"name": "race-chat-in", "css_duration": "0.25s", "css_timing": "ease-out", "css_iteration": "1", "category": "race", "godot_duration": 0.25, "godot_loop": false, "godot_track_type": "position_2d+modulate"},
+    {"name": "racing-hud-blink", "css_duration": "1s", "css_timing": "ease-in-out", "css_iteration": "infinite", "category": "hud", "godot_duration": 1.0, "godot_loop": true, "godot_track_type": "modulate", "godot_trigger": "rpm > 7600"},
+    {"name": "racing-hud-rise", "css_duration": "0.42s", "css_timing": "ease-out", "css_iteration": "1", "category": "hud", "godot_duration": 0.42, "godot_loop": false, "godot_track_type": "position_2d"},
+    {"name": "racing-waiting-pulse", "css_duration": "1.6s", "css_timing": "ease-in-out", "css_iteration": "infinite", "category": "hud", "godot_duration": 1.6, "godot_loop": true, "godot_track_type": "modulate"},
+    {"name": "replay-overlay-fade", "css_duration": "0.3s", "css_timing": "ease-out", "css_iteration": "1", "category": "race", "godot_duration": 0.3, "godot_loop": false, "godot_track_type": "modulate"},
+    {"name": "replay-rec-pulse", "css_duration": "1s", "css_timing": "ease-in-out", "css_iteration": "infinite", "category": "race", "godot_duration": 1.0, "godot_loop": true, "godot_track_type": "modulate"},
+    {"name": "settings-panel-rise", "css_duration": "0.22s", "css_timing": "cubic-bezier(0.22,1,0.36,1)", "css_iteration": "1", "category": "menu", "godot_duration": 0.22, "godot_loop": false, "godot_track_type": "position_2d"},
+    {"name": "splash-loading-dot", "css_duration": "1.4s", "css_timing": "ease-in-out", "css_iteration": "infinite", "category": "menu", "godot_duration": 1.4, "godot_loop": true, "godot_track_type": "modulate+scale"},
+    {"name": "thumb-frame-breathe", "css_duration": "2s", "css_timing": "ease-in-out", "css_iteration": "infinite", "category": "ui_element", "godot_duration": 2.0, "godot_loop": true, "godot_track_type": "modulate"},
+    {"name": "thumb-img-compensate", "css_duration": "2s", "css_timing": "ease-in-out", "css_iteration": "infinite", "category": "ui_element", "godot_duration": 2.0, "godot_loop": true, "godot_track_type": "scale"},
+    {"name": "wheel-spin", "css_duration": "0.6s", "css_timing": "linear", "css_iteration": "infinite", "category": "ui_element", "godot_duration": 0.6, "godot_loop": true, "godot_track_type": "rotation"}
+  ],
+
+  "asset_files": [
+    {
+      "source": "keyframes-manifest.json:keyframes",
+      "target": "res://ui/animations/apex_keyframes.tres (AnimationLibrary)",
+      "count": 22,
+      "notes": "22 个 CSS @keyframes → 22 个 Godot Animation 资源，命名一一对应"
+    },
+    {
+      "source": "keyframes-manifest.json:categories_summary",
+      "target": "res://ui/animations/ (按 category 分组)",
+      "count": 7,
+      "notes": "7 个类别：hud(3) home(3) lobby(3) menu(2) notification(4) race(3) ui_element(4)"
+    }
+  ],
+
+  "fill_mode_mapping": {
+    "css_forwards": "Godot Animation 末关键帧保持（不回弹），等价于 AnimationPlayer 停留在最后一帧",
+    "css_none": "AnimationPlayer 停止后节点回到初始状态"
+  },
+
+  "iteration_mapping": {
+    "css_infinite": "Godot Animation loop_mode = Animation.LOOP_LINEAR",
+    "css_1": "Godot Animation loop_mode = Animation.LOOP_NONE (单次播放)"
+  },
+
+  "trigger_mapping": [
+    {
+      "css_trigger": "mount (className 应用即播放)",
+      "godot_trigger": "_ready 中调用 play_animation()",
+      "used_by": ["home-corner-panel-rise", "lobby-backdrop-in", "lobby-window-in", "racing-hud-rise", "settings-panel-rise", "race-chat-in"]
+    },
+    {
+      "css_trigger": "phase_change",
+      "godot_trigger": "racePhase 信号 → play_animation()",
+      "used_by": ["home-live-pulse", "lobby-pulse", "racing-waiting-pulse", "replay-overlay-fade", "replay-rec-pulse"]
+    },
+    {
+      "css_trigger": "rpm_redline (rpm > 7600)",
+      "godot_trigger": "PhysicsVehicle rpm 信号 → play_animation('racing-hud-blink')",
+      "used_by": ["racing-hud-blink"]
+    },
+    {
+      "css_trigger": "infinite (始终循环)",
+      "godot_trigger": "_ready 启动，loop=true",
+      "used_by": ["clock-blink", "home-live-pulse", "lobby-pulse", "racing-hud-blink", "racing-waiting-pulse", "replay-rec-pulse", "splash-loading-dot", "thumb-frame-breathe", "thumb-img-compensate", "wheel-spin"]
+    }
+  ],
+
+  "assembly_steps": [
+    "1. 创建 AnimationPlayer 节点 /root/UIRoot/UIAnimationPlayer",
+    "2. 创建 AnimationLibrary 资源 res://ui/animations/apex_keyframes.tres",
+    "3. 遍历 keyframes-manifest.json 的 22 个 keyframes，逐个调用 _build_animation() 生成 Animation 资源并加入 library",
+    "4. 按 easing_mapping 表将 CSS timing-function 转换为 Godot Tween.TransitionType + EaseType",
+    "5. infinite 动画设置 loop_mode=LOOP_LINEAR，单次动画设置 LOOP_NONE",
+    "6. fill_mode: forwards 的动画（pm-saved-toast）末关键帧保持",
+    "7. 附加 ui_animations.gd 到 UIRoot，导出 reduced_motion 参数",
+    "8. 连接 useRaceState.phaseChange 信号到 play_animation() 触发对应动画",
+    "9. 连接 PhysicsVehicle.rpm 信号：rpm > 7600 时 play_animation('racing-hud-blink')",
+    "10. reduced_motion=true 时禁用所有 infinite 动画（无障碍变体）"
+  ]
+}

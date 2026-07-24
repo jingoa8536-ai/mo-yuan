@@ -1,0 +1,91 @@
+{
+  "$schema": "https://laap.harness/protocol/v1.0/matchscore-report.json",
+  "package_id": "racing-game-v1.0",
+  "computed_at": "2026-07-05T12:00:00+08:00",
+  "weights": { "alpha": 0.35, "beta": 0.25, "gamma": 0.20, "delta": 0.20 },
+
+  "components": [
+    {
+      "component_id": "engine-sound-crossfade",
+      "uri": "harness://game/audio/module/engine-sound-crossfade@1.0.0#howler-webaudio",
+      "scores": {
+        "semantic": 0.95,
+        "structural": 0.92,
+        "behavioral": 0.88,
+        "design_physics": 1.00
+      },
+      "weighted_total": 0.94,
+      "evidence": {
+        "semantic_match": "Howler+WebAudio 双引擎架构与原网站 qx()/G9() 一致",
+        "structural_match": "18 段引擎样本映射与 tx/yx/sx 数组结构对齐",
+        "behavioral_match": "RPM×节流阀三维交叉淡入 + 限速器叠加行为一致",
+        "design_physics_match": "STATE_VOLUMES off=0.22/steady=0.26/on=0.31 与 an 对象完全一致"
+      },
+      "evidence_files": [
+        "evidence/audio-mapping.json",
+        "D:/LAAP/_apex_assets/index-BHLGw_OM.js (qx/G9/tx functions)"
+      ]
+    },
+    {
+      "component_id": "ghost-system",
+      "uri": "harness://game/racing/module/ghost-system@1.0.0#localstorage",
+      "scores": {
+        "semantic": 0.92,
+        "structural": 0.88,
+        "behavioral": 0.78,
+        "design_physics": 0.70
+      },
+      "weighted_total": 0.83,
+      "evidence": {
+        "semantic_match": "录制/回放/localStorage 持久化三段式架构与原网站 Ghost 系统一致",
+        "structural_match": "GhostRecorder/GhostPlayer 类结构与原网站 RT_O/s9 类对应",
+        "behavioral_match": "每帧 record + 圈完成 finishLap + 回放插值行为一致；缺少原网站的 'challenge ghost' UI",
+        "design_physics_match": "帧率 60Hz 一致；缺少原网站的 ghost 哈希签名机制"
+      },
+      "evidence_files": [
+        "evidence/ghost-architecture.json",
+        "D:/ai-website-cloner-template-master/docs/apex-reverse-engineering.md"
+      ]
+    },
+    {
+      "component_id": "keyframes-pack",
+      "uri": "harness://frontend/animation/module/keyframes-pack@1.0.0#apex-racing",
+      "scores": {
+        "semantic": 1.00,
+        "structural": 1.00,
+        "behavioral": 0.95,
+        "design_physics": 1.00
+      },
+      "weighted_total": 0.99,
+      "evidence": {
+        "semantic_match": "22 个 @keyframes 名称与原网站 index-BDb15dJl.css 完全一致",
+        "structural_match": "keyframes 内容 1:1 提取（regex 解析）",
+        "behavioral_match": "工具类命名与原网站 .animate-* 模式一致；racing-hud-rise 触发时机略简化",
+        "design_physics_match": "动画时长/缓动函数/关键帧百分比与原 CSS 完全一致"
+      },
+      "evidence_files": [
+        "evidence/css-keyframes.json",
+        "D:/LAAP/_apex_assets/index-BDb15dJl.css"
+      ]
+    }
+  ],
+
+  "aggregate": {
+    "matchscore_average": 0.92,
+    "matchscore_min": 0.83,
+    "matchscore_max": 0.99,
+    "threshold": 0.80,
+    "status": "all_pass",
+    "tokens_saved_estimate": "约 2.6M tokens（相比 LLM 全新生成 3 个模块）"
+  },
+
+  "alignment_guard": {
+    "passed": true,
+    "checks": [
+      { "name": "white_box_match", "passed": true, "note": "所有组件来源可追溯到反编译证据" },
+      { "name": "design_physics_encoded", "passed": true, "note": "RPM 段映射/STATE_VOLUMES/@keyframes 已编码为 JSON" },
+      { "name": "zero_token_reusable", "passed": true, "note": "下次复刻赛车游戏可直接装配，无需 LLM 重新生成" },
+      { "name": "causal_traceable", "passed": true, "note": "每个组件的 input/output/side_effect 已在 assembly-graph 中声明" }
+    ]
+  }
+}

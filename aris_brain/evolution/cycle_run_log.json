@@ -1,0 +1,270 @@
+[
+  {
+    "timestamp": "2026-06-21T09:27:12.371471",
+    "arxiv_papers": 2,
+    "rsi_applied": true,
+    "true_rsi_applied": 0,
+    "code_lines": 113396,
+    "recommendations": 6,
+    "elapsed_s": 35.1
+  },
+  {
+    "timestamp": "2026-06-21T09:28:08.062349",
+    "arxiv_papers": 0,
+    "rsi_applied": true,
+    "true_rsi_applied": 34,
+    "code_lines": 113421,
+    "recommendations": 7,
+    "elapsed_s": 14.4
+  },
+  {
+    "timestamp": "2026-06-21T13:59:02.227988",
+    "arxiv_papers": 0,
+    "rsi_applied": true,
+    "true_rsi_applied": 0,
+    "code_lines": 115421,
+    "recommendations": 6,
+    "elapsed_s": 38.8
+  },
+  {
+    "timestamp": "2026-06-21T20:00:35.685160",
+    "arxiv_papers": 0,
+    "rsi_applied": true,
+    "true_rsi_applied": 0,
+    "code_lines": 115839,
+    "recommendations": 6,
+    "elapsed_s": 36.5
+  },
+  {
+    "timestamp": "2026-06-22T02:05:00.253159",
+    "arxiv_papers": 0,
+    "rsi_applied": true,
+    "true_rsi_applied": 0,
+    "code_lines": 121984,
+    "recommendations": 6,
+    "elapsed_s": 46.3
+  },
+  {
+    "timestamp": "2026-06-22T08:07:31.437033",
+    "arxiv_papers": 0,
+    "rsi_applied": true,
+    "true_rsi_applied": 0,
+    "code_lines": 127427,
+    "recommendations": 6,
+    "elapsed_s": 88.6
+  },
+  {
+    "timestamp": "2026-06-28T01:51:40.574055",
+    "arxiv_papers": 0,
+    "rsi_applied": false,
+    "true_rsi_applied": 0,
+    "code_lines": 1020501,
+    "recommendations": 3,
+    "elapsed_s": 53.8
+  },
+  {
+    "timestamp": "2026-06-29T02:08:39.738833",
+    "arxiv_papers": 0,
+    "rsi_applied": true,
+    "true_rsi_applied": 0,
+    "code_lines": 1022536,
+    "recommendations": 6,
+    "elapsed_s": 77.1
+  },
+  {
+    "timestamp": "2026-06-29T20:17:15.520188",
+    "arxiv_papers": 0,
+    "rsi_applied": true,
+    "true_rsi_applied": 0,
+    "code_lines": 1024124,
+    "recommendations": 6,
+    "elapsed_s": 91.5
+  },
+  {
+    "timestamp": "2026-06-30T02:22:46.315972",
+    "arxiv_papers": 0,
+    "rsi_applied": true,
+    "true_rsi_applied": 0,
+    "code_lines": 1024317,
+    "recommendations": 6,
+    "elapsed_s": 87.9
+  },
+  {
+    "timestamp": "2026-06-30T08:28:42.519215",
+    "arxiv_papers": 0,
+    "rsi_applied": true,
+    "true_rsi_applied": 0,
+    "code_lines": 3391953,
+    "recommendations": 6,
+    "elapsed_s": 124.2
+  },
+  {
+    "timestamp": "2026-06-30T20:36:04.962169",
+    "arxiv_papers": 0,
+    "rsi_applied": true,
+    "true_rsi_applied": 0,
+    "code_lines": 3392999,
+    "recommendations": 6,
+    "elapsed_s": 197.5
+  },
+  {
+    "timestamp": "2026-06-30T20:38:51.885824",
+    "arxiv_papers": 0,
+    "rsi_applied": true,
+    "true_rsi_applied": 0,
+    "code_lines": 3392999,
+    "recommendations": 6,
+    "elapsed_s": 139.9
+  },
+  {
+    "timestamp": "2026-07-02T09:51:55.315890",
+    "arxiv_papers": 0,
+    "rsi_applied": true,
+    "true_rsi_applied": 0,
+    "code_lines": 143860,
+    "recommendations": 6,
+    "elapsed_s": 119.3
+  },
+  {
+    "timestamp": "2026-07-02T22:07:45.444202",
+    "arxiv_papers": 0,
+    "rsi_applied": true,
+    "true_rsi_applied": 0,
+    "code_lines": 144429,
+    "recommendations": 6,
+    "elapsed_s": 85.5
+  },
+  {
+    "timestamp": "2026-07-04T12:28:44.655440",
+    "arxiv_papers": 0,
+    "rsi_applied": true,
+    "true_rsi_applied": 0,
+    "code_lines": 148832,
+    "recommendations": 6,
+    "elapsed_s": 130.9
+  },
+  {
+    "timestamp": "2026-07-05T03:01:26.991969",
+    "arxiv_papers": 0,
+    "rsi_applied": true,
+    "true_rsi_applied": 0,
+    "code_lines": 153670,
+    "recommendations": 6,
+    "elapsed_s": 96.2
+  },
+  {
+    "timestamp": "2026-07-05T03:04:55.904399",
+    "duration_seconds": 96.2,
+    "arxiv_papers": 0,
+    "arxiv_high_value": 0,
+    "arxiv_logged": 0,
+    "rsi_meta_applied": true,
+    "rsi_meta_param": "learning_rate 0.06 -> 0.11 (reverted)",
+    "rsi_meta_success_rate": 0.2,
+    "rsi_meta_total_attempts": 20,
+    "rsi_meta_growth_need": 0.9,
+    "rsi_meta_active_goals": 165,
+    "true_rsi_modifications": 0,
+    "true_rsi_papers_scanned": 35,
+    "codebase_files": 518,
+    "codebase_lines": 153670,
+    "codebase_large_funcs": 141,
+    "codebase_large_files": 10,
+    "laap_files": 11279,
+    "laap_lines": 4153846,
+    "recommendations": 6,
+    "query_rotation_needed": true,
+    "query_rotation_applied": true,
+    "query_rotation_v2": true
+  },
+  {
+    "timestamp": "2026-07-05T11:43:08.306423",
+    "arxiv_papers": 10,
+    "rsi_applied": true,
+    "true_rsi_applied": 12,
+    "code_lines": 154310,
+    "recommendations": 9,
+    "elapsed_s": 139.2
+  },
+  {
+    "timestamp": "2026-07-06T00:22:21.163418",
+    "arxiv_papers": 10,
+    "rsi_applied": true,
+    "true_rsi_applied": 12,
+    "code_lines": 154969,
+    "recommendations": 7,
+    "elapsed_s": 209.3
+  },
+  {
+    "timestamp": "2026-07-07T10:44:54.915617",
+    "arxiv_papers": 0,
+    "rsi_applied": true,
+    "true_rsi_applied": 0,
+    "code_lines": 155158,
+    "recommendations": 6,
+    "elapsed_s": 315.0
+  },
+  {
+    "timestamp": "2026-07-07T16:49:33.116101",
+    "arxiv_papers": 5,
+    "rsi_applied": true,
+    "true_rsi_applied": 4,
+    "code_lines": 155193,
+    "recommendations": 7,
+    "elapsed_s": 156.8
+  },
+  {
+    "timestamp": "2026-07-07T23:30:23.600826",
+    "arxiv_papers": 0,
+    "rsi_applied": true,
+    "true_rsi_applied": 0,
+    "code_lines": 155327,
+    "recommendations": 6,
+    "elapsed_s": 190.1
+  },
+  {
+    "timestamp": "2026-07-08T13:30:35.012209",
+    "arxiv_papers": 0,
+    "rsi_applied": true,
+    "true_rsi_applied": 0,
+    "code_lines": 160936,
+    "recommendations": 6,
+    "elapsed_s": 169.7
+  },
+  {
+    "timestamp": "2026-07-08T19:35:03.680232",
+    "arxiv_papers": 0,
+    "rsi_applied": true,
+    "true_rsi_applied": 0,
+    "code_lines": 164824,
+    "recommendations": 6,
+    "elapsed_s": 153.0
+  },
+  {
+    "timestamp": "2026-07-09T11:10:00.115171",
+    "arxiv_papers": 0,
+    "rsi_applied": true,
+    "true_rsi_applied": 0,
+    "code_lines": 165995,
+    "recommendations": 6,
+    "elapsed_s": 149.6
+  },
+  {
+    "timestamp": "2026-07-10T01:28:08.804585",
+    "arxiv_papers": 0,
+    "rsi_applied": true,
+    "true_rsi_applied": 0,
+    "code_lines": 167237,
+    "recommendations": 6,
+    "elapsed_s": 84.3
+  },
+  {
+    "timestamp": "2026-07-10T23:32:10.910207",
+    "arxiv_papers": 0,
+    "rsi_applied": true,
+    "true_rsi_applied": 0,
+    "code_lines": 175312,
+    "recommendations": 6,
+    "elapsed_s": 173.0
+  }
+]

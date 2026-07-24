@@ -1,0 +1,79 @@
+{
+  "test_date": "2026-07-05 04:24:43",
+  "test_cases": 3,
+  "passed": 3,
+  "failed": 0,
+  "pass_rate": 100.0,
+  "avg_token_saving": 99.0,
+  "avg_speedup": 8306.9993706984,
+  "test_details": [
+    {
+      "name": "Landing Page",
+      "intent": {
+        "tags": [
+          "react",
+          "tailwind",
+          "ui",
+          "landing",
+          "dark",
+          "modern"
+        ],
+        "style": "modern-minimal",
+        "tech": "React + Tailwind"
+      },
+      "theme": "dark_flagship",
+      "components": [
+        "sections/navbar_template_01",
+        "sections/hero_template_01",
+        "sections/features_template_01",
+        "sections/cta_template_01"
+      ],
+      "top_match": "Framer Motion",
+      "match_score": 0.8661902958633247,
+      "status": "PASS"
+    },
+    {
+      "name": "Dashboard",
+      "intent": {
+        "tags": [
+          "react",
+          "ui",
+          "dashboard",
+          "enterprise",
+          "charts"
+        ],
+        "style": "enterprise-standard",
+        "tech": "React"
+      },
+      "theme": "minimal_white",
+      "components": [
+        "sections/navbar_template_01",
+        "sections/features_template_01"
+      ],
+      "top_match": "Lucide Icons",
+      "match_score": 0.8723630300123033,
+      "status": "PASS"
+    },
+    {
+      "name": "Auth Page",
+      "intent": {
+        "tags": [
+          "vue",
+          "tailwind",
+          "auth",
+          "login",
+          "form"
+        ],
+        "style": "modern-minimal",
+        "tech": "Vue 3 + Tailwind"
+      },
+      "theme": "ocean_blue",
+      "components": [
+        "sections/hero_template_01"
+      ],
+      "top_match": "GSAP (GreenSock)",
+      "match_score": 0.8282394819239112,
+      "status": "PASS"
+    }
+  ]
+}

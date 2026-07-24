@@ -1,0 +1,83 @@
+{
+  "$schema": "https://laap.harness/protocol/v1.0/evidence.json",
+  "component_id": "keyframes-pack",
+  "evidence_type": "css_keyframes",
+  "extraction_date": "2026-07-05",
+
+  "source_bundle": {
+    "path": "D:/LAAP/_apex_assets/index-BDb15dJl.css",
+    "size_bytes": 388512,
+    "extraction_method": "PowerShell regex: @keyframes\\s+([a-zA-Z0-9_-]+)\\s*\\{([\\s\\S]*?)\\}"
+  },
+
+  "extraction_result": {
+    "total_keyframes_extracted": 22,
+    "extraction_pattern": "@keyframes\\s+([a-zA-Z0-9_-]+)\\s*\\{([\\s\\S]*?)\\}",
+    "verification_method": "manual review of each @keyframes block",
+    "modification_made": "none (1:1 extraction)"
+  },
+
+  "extracted_keyframes": [
+    "clock-blink",
+    "home-corner-panel-rise",
+    "home-lb-row-in",
+    "home-live-pulse",
+    "lobby-backdrop-in",
+    "lobby-pulse",
+    "lobby-window-in",
+    "notif-pop",
+    "pm-fade-in",
+    "pm-flash",
+    "pm-saved-toast",
+    "race-chat-in",
+    "racing-hud-blink",
+    "racing-hud-rise",
+    "racing-waiting-pulse",
+    "replay-overlay-fade",
+    "replay-rec-pulse",
+    "settings-panel-rise",
+    "splash-loading-dot",
+    "thumb-frame-breathe",
+    "thumb-img-compensate",
+    "wheel-spin"
+  ],
+
+  "color_tokens_extracted": {
+    "background": "#0c1219",
+    "primary": "#3683ff",
+    "accent": "#ffd76a",
+    "destructive": "#ff6b6b",
+    "hud_text": "rgba(245, 236, 228, 0.96)",
+    "hud_muted": "rgba(245, 236, 228, 0.48)",
+    "hud_shell": "rgba(18, 9, 7, 0.88)",
+    "hud_accent": "rgba(255, 215, 106, 1)",
+    "hud_track": "rgba(255, 255, 255, 0.05)"
+  },
+
+  "font_tokens_extracted": {
+    "display": "Exo 2",
+    "racing": ["Oxanium", "Rajdhani"],
+    "stats": ["Electrolize", "Azeret Mono"],
+    "time": ["JetBrains Mono", "IBM Plex Mono"],
+    "ui": ["Chakra Petch", "Inter"]
+  },
+
+  "class_taxonomy": {
+    "total_classes": 141,
+    "key_class_groups": [
+      "racing-* (HUD components)",
+      "home-* (homepage elements)",
+      "lobby-* (multiplayer lobby)",
+      "thumb-* (thumbnail cards)",
+      "pm-* (post-match modal)",
+      "replay-* (replay overlay)"
+    ]
+  },
+
+  "verification": {
+    "all_22_keyframes_present_in_bundle": true,
+    "all_keyframes_copied_to_template": true,
+    "utility_classes_match_keyframes": true,
+    "css_validated_in_browser": true
+  }
+}

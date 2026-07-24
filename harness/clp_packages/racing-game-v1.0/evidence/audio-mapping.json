@@ -1,0 +1,85 @@
+{
+  "$schema": "https://laap.harness/protocol/v1.0/evidence.json",
+  "component_id": "engine-sound-crossfade",
+  "evidence_type": "audio_mapping",
+  "extraction_date": "2026-07-05",
+
+  "source_bundle": {
+    "path": "D:/LAAP/_apex_assets/index-BHLGw_OM.js",
+    "size_bytes": 1536212,
+    "extraction_method": "PowerShell regex + manual analysis"
+  },
+
+  "key_functions_identified": {
+    "qx()": "Web Audio API reverb chain setup (dryGain/wetSend/convolver)",
+    "G9()": "Howler.js Howl constructor wrapper for engine samples",
+    "tx": "Engine band mapping array (off/steady/on × RPM bands)",
+    "yx": "Steady-state engine samples array",
+    "sx": "On-throttle engine samples array",
+    "an": "State volume mapping { off: 0.22, steady: 0.26, on: 0.31 }",
+    "ex()": "Impulse response generator for convolver (noise burst with exponential decay)"
+  },
+
+  "engine_sample_filename_pattern": "911cup_<state><rpm_band>[_<variant>].ogg",
+  "total_unique_samples": 27,
+  "samples_by_state": {
+    "off": 8,
+    "steady": 11,
+    "on": 6,
+    "limiter": 2
+  },
+
+  "rpm_band_thresholds": {
+    "idle": 1000,
+    "verylow": 2500,
+    "low": 4000,
+    "lowmid": 4500,
+    "mid": 6000,
+    "high": 8000,
+    "veryhigh": 9000
+  },
+
+  "throttle_state_thresholds": {
+    "off": "throttle <= 0.1",
+    "steady": "0.1 < throttle <= 0.6",
+    "on": "throttle > 0.6"
+  },
+
+  "reverb_chain_topology": [
+    "Howler.masterGain → dryGain → masterGain (dry signal)",
+    "Howler.masterGain → wetSendGain (reverb send)",
+    "wetSendGain → preDelay (0.018s)",
+    "preDelay → highpass (140Hz)",
+    "highpass → convolver (impulse response)",
+    "convolver → lowpass (4200Hz)",
+    "lowpass → wetGain (0.42)",
+    "wetGain → masterGain"
+  ],
+
+  "impulse_response_spec": {
+    "decay_seconds": 0.58,
+    "envelope_curve": "exponential (1-t)^2.35",
+    "channels": 2,
+    "stereo_width": 0.96 (left) / 1.0 (right)
+  },
+
+  "sfx_files_identified": {
+    "ui_sfx": ["tick.mp3", "accept.mp3", "return.mp3", "start-game.mp3"],
+    "race_sfx": [
+      "backfire1.ogg", "backfire2.ogg", "backfire3.ogg",
+      "CarSkid.ogg", "curb.ogg", "dirt.ogg", "gravel.ogg",
+      "carhit0.ogg", "carhit1.ogg", "carhit2.ogg",
+      "thump.ogg", "lap-pb.ogg", "good-time.ogg", "bad-time.ogg"
+    ],
+    "total_sfx": 18
+  },
+
+  "verification": {
+    "bundle_contains_911cup": true,
+    "bundle_contains_BiquadFilter": true,
+    "bundle_contains_createGain": true,
+    "bundle_contains_Howl": true,
+    "site_offline_at_extraction": true,
+    "fallback_synthesis_required": true
+  }
+}

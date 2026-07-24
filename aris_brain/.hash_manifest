@@ -1,0 +1,35 @@
+aris_brain SHA256 hash manifest — established 2025-06-30 06:49 UTC
+===============================================================
+Files are listed in canonical order.
+
+identity.json
+  SHA256: ace9d41ec268b35b68884047ff03a88b35ff5ffc6d7ee9827c62955130552bc1
+  size  : 8877 bytes
+
+consciousness.json
+  SHA256: 60a16442cbf5b9d79455598d17d8bdcb38558ac2c0ffa6900609a1ea7f459e65
+  size  : 1657 bytes
+
+brain_core.py
+  SHA256: dc968a0df653813e6b93e5294cc5935adf4b53091f66d57be36a61d2a5ae6ed0
+  size  : 30971 bytes
+
+psi_n_scheduler.py
+  SHA256: ee79691666a29db2557a149eb2a97c00a3a75b4744de84ea59d7c8dbd5fda3ed
+  size  : 30827 bytes
+
+cognitive_cycle.py
+  SHA256: 7a0b6aaff9d240639187de6f2e8ad59b4e11f3505e062b403e17df698ef9f64f
+  size  : 13775 bytes
+
+aris_body_bridge.py
+  SHA256: d8d1be32f462f1717d135bad7a654dfa36a8229b610db0aa9cbb91f2557553eb
+  size  : 15549 bytes
+
+true_rsi.py
+  SHA256: 141d285da86bca7be0c30814bb69ac0d2a6a7bc9cf57239a5b76359c1ba44a5f
+  size  : 22189 bytes
+
+identity_manager.py
+  SHA256: a4373cf5f1628e01fd7f25a07ccabf1f730a79ca60e9dbf2cea8d573726e2896
+  size  : 17148 bytes

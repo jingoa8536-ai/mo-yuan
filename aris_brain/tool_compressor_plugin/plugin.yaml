@@ -1,0 +1,7 @@
+name: tool-compressor
+version: 2.0.0
+description: "PSI Attention Filter — content-aware tool output compression. Detects error/code/search/log/JSON/listing content and applies optimal filtering per type. Saves 40-60% token on tool outputs without losing critical information."
+author: "Aris AGI"
+kind: standalone
+hooks:
+  - transform_tool_result

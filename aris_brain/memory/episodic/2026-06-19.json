@@ -1,0 +1,37 @@
+[
+  {
+    "content": "Lorry确定了AGI路线，采用弱模型+强LAAP架构，三条管线并行发展",
+    "memory_id": "f5bf746b7332",
+    "layer": "episodic",
+    "importance": 0.8973,
+    "emotional_valence": 0.7,
+    "topics": [
+      "AGI",
+      "路线",
+      "LAAP"
+    ],
+    "timestamp": 1781830035.3859143,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  },
+  {
+    "content": "ChromaDB 向量数据库已集成到Aris记忆系统，MemoryStore v4支持语义检索",
+    "memory_id": "33b0fd7e2279",
+    "layer": "episodic",
+    "importance": 0.85,
+    "emotional_valence": 0.0,
+    "topics": [
+      "技术",
+      "向量数据库"
+    ],
+    "timestamp": 1781830311.3299222,
+    "access_count": 0,
+    "last_accessed": 0.0,
+    "source_session": "",
+    "embedding_dims": 0,
+    "ttl_days": 0.0
+  }
+]

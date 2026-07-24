@@ -27,7 +27,7 @@ import sys, os, json, time, logging
 from pathlib import Path
 from typing import Any, Dict, Optional
 
-LAAP_ROOT = Path("<LOCAL_PATH_REDACTED>")
+LAAP_ROOT = Path("D:/LAAP")
 if str(LAAP_ROOT) not in sys.path:
     sys.path.insert(0, str(LAAP_ROOT))
 

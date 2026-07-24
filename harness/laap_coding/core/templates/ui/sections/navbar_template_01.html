@@ -1,0 +1,25 @@
+<nav class="navbar fixed top-0 left-0 right-0 z-50 px-6 py-4 bg-slate-900/80 backdrop-blur-xl border-b border-white/10">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <div class="navbar-logo flex items-center gap-2">
+      <div class="logo-icon w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold">
+        {{ logo }}
+      </div>
+      <span class="logo-text text-lg font-bold text-white">{{ brand }}</span>
+    </div>
+    <div class="navbar-links hidden md:flex items-center gap-8">
+      {% for link in links %}
+      <a href="{{ link.href }}" class="nav-link text-gray-400 hover:text-white transition-colors text-sm font-medium">
+        {{ link.label }}
+      </a>
+      {% endfor %}
+    </div>
+    <div class="navbar-actions flex items-center gap-4">
+      <button class="action-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-400 hover:text-white transition-colors">
+        Sign In
+      </button>
+      <button class="action-btn-primary px-4 py-2 rounded-lg text-sm font-medium bg-indigo-500 text-white hover:bg-indigo-600 transition-colors">
+        Get Started
+      </button>
+    </div>
+  </div>
+</nav>

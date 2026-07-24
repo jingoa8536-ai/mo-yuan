@@ -1,0 +1,16 @@
+<section class="cta-section py-20 px-4 relative overflow-hidden">
+  <div class="cta-bg absolute inset-0 bg-gradient-to-r from-indigo-900/50 via-purple-900/50 to-indigo-900/50"></div>
+  <div class="cta-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl"></div>
+  <div class="cta-content relative z-10 max-w-3xl mx-auto text-center">
+    <h2 class="cta-title text-3xl md:text-4xl font-bold text-white mb-4">{{ title }}</h2>
+    <p class="cta-desc text-gray-300 mb-8">{{ description }}</p>
+    <div class="cta-actions flex flex-col sm:flex-row gap-4 justify-center">
+      <button class="cta-primary px-8 py-4 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold hover:shadow-xl hover:shadow-indigo-500/30 hover:-translate-y-0.5 transition-all duration-300">
+        {{ primary_cta }}
+      </button>
+      <button class="cta-secondary px-8 py-4 rounded-full bg-white/10 border border-white/20 text-white font-semibold hover:bg-white/20 transition-all duration-300">
+        {{ secondary_cta }}
+      </button>
+    </div>
+  </div>
+</section>

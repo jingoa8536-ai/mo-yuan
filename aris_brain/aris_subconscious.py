@@ -21,7 +21,8 @@ from typing import List, Optional, Tuple
 from dataclasses import dataclass, field
 from collections import deque
 
-from laap_brain.config import BRAIN_DIR as BRAIN, QUANTUM_DIM
+from config import BRAIN_DIR as BRAIN, QUANTUM_DIM, setup_paths
+setup_paths()
 
 logger = logging.getLogger("aris.subconscious")
 

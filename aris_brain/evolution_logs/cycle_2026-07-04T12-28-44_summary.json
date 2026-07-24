@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-07-04T12:28:44",
+  "duration_seconds": 130.9,
+  "phases": {
+    "phase1_arxiv": {
+      "new_papers": 0,
+      "high_value": 0,
+      "logged": 0,
+      "total_unique_papers": 35,
+      "notes": "覆盖已饱和，12条查询均返回0新论文"
+    },
+    "phase2_rsi_meta_engine": {
+      "parameters_optimized": 10,
+      "total_attempts": 18,
+      "successful": 4,
+      "reverted": 5,
+      "success_rate": 0.222,
+      "goals_generated": 149,
+      "goals_completed": 0,
+      "growth_need": 0.896,
+      "changes_made": [
+        {"param": "psi_emotion_decay", "from": 0.250, "to": 0.200, "status": "applied"},
+        {"param": "learning_rate", "from": 0.010, "to": 0.060, "status": "applied", "feedback": 0.008}
+      ],
+      "pending_suggestions": [
+        {"param": "exploration_rate", "from": 0.15, "to": 0.1},
+        {"param": "transfer_sensitivity", "from": 0.4, "to": 0.45}
+      ]
+    },
+    "phase3_codebase_analysis": {
+      "aris_brain_python_files": 492,
+      "aris_brain_total_lines": 148832,
+      "aris_brain_total_kb": 5885.9,
+      "files_over_1000_lines": 10,
+      "total_functions": 4684,
+      "functions_over_80_lines": 138,
+      "laap_python_files": 11211,
+      "laap_total_lines": 4129311
+    },
+    "phase4_true_rsi": {
+      "tunable_params_discovered": 194,
+      "papers_processed": 35,
+      "papers_pending": 0,
+      "modifications_applied": 0,
+      "modifications_rolled_back": 0,
+      "modifications_failed": 0
+    },
+    "phase5_report": {
+      "recommendations": 6,
+      "high_priority": 2,
+      "medium_priority": 3,
+      "architecture": 1
+    }
+  },
+  "psi_trainer_status": {
+    "last_training": "2026-07-04T03:09:54",
+    "status": "活跃",
+    "tracker_entries": "178+ sessions"
+  },
+  "evolution_log_entries": 35,
+  "total_absorbed_papers": 35
+}

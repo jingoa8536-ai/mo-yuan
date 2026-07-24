@@ -1,0 +1,41 @@
+{
+  "$schema": "https://laap.harness/protocol/v1.0/keyframes-manifest.json",
+  "component_id": "keyframes-pack",
+  "total_keyframes": 22,
+  "extraction_source": "D:/LAAP/_apex_assets/index-BDb15dJl.css",
+
+  "keyframes": [
+    { "name": "clock-blink", "duration": "1s", "timing": "step-end", "iteration": "infinite", "category": "ui_element" },
+    { "name": "home-corner-panel-rise", "duration": "0.22s", "timing": "cubic-bezier(0.22,1,0.36,1)", "iteration": "1", "category": "home" },
+    { "name": "home-lb-row-in", "duration": "0.35s", "timing": "ease-out", "iteration": "1", "category": "home" },
+    { "name": "home-live-pulse", "duration": "2s", "timing": "ease-in-out", "iteration": "infinite", "category": "home" },
+    { "name": "lobby-backdrop-in", "duration": "0.3s", "timing": "ease-out", "iteration": "1", "category": "lobby" },
+    { "name": "lobby-pulse", "duration": "2s", "timing": "ease-in-out", "iteration": "infinite", "category": "lobby" },
+    { "name": "lobby-window-in", "duration": "0.3s", "timing": "cubic-bezier(0.22,1,0.36,1)", "iteration": "1", "category": "lobby" },
+    { "name": "notif-pop", "duration": "0.3s", "timing": "cubic-bezier(0.16,1,0.3,1)", "iteration": "1", "category": "notification" },
+    { "name": "pm-fade-in", "duration": "0.2s", "timing": "ease-out", "iteration": "1", "category": "notification" },
+    { "name": "pm-flash", "duration": "0.4s", "timing": "ease-out", "iteration": "1", "category": "notification" },
+    { "name": "pm-saved-toast", "duration": "2.5s", "timing": "ease-in-out", "iteration": "1", "fill_mode": "forwards", "category": "notification" },
+    { "name": "race-chat-in", "duration": "0.25s", "timing": "ease-out", "iteration": "1", "category": "race" },
+    { "name": "racing-hud-blink", "duration": "1s", "timing": "ease-in-out", "iteration": "infinite", "category": "hud" },
+    { "name": "racing-hud-rise", "duration": "0.42s", "timing": "ease-out", "iteration": "1", "category": "hud" },
+    { "name": "racing-waiting-pulse", "duration": "1.6s", "timing": "ease-in-out", "iteration": "infinite", "category": "hud" },
+    { "name": "replay-overlay-fade", "duration": "0.3s", "timing": "ease-out", "iteration": "1", "category": "race" },
+    { "name": "replay-rec-pulse", "duration": "1s", "timing": "ease-in-out", "iteration": "infinite", "category": "race" },
+    { "name": "settings-panel-rise", "duration": "0.22s", "timing": "cubic-bezier(0.22,1,0.36,1)", "iteration": "1", "category": "menu" },
+    { "name": "splash-loading-dot", "duration": "1.4s", "timing": "ease-in-out", "iteration": "infinite", "category": "menu" },
+    { "name": "thumb-frame-breathe", "duration": "2s", "timing": "ease-in-out", "iteration": "infinite", "category": "ui_element" },
+    { "name": "thumb-img-compensate", "duration": "2s", "timing": "ease-in-out", "iteration": "infinite", "category": "ui_element" },
+    { "name": "wheel-spin", "duration": "0.6s", "timing": "linear", "iteration": "infinite", "category": "ui_element" }
+  ],
+
+  "categories_summary": {
+    "hud": 3,
+    "home": 3,
+    "lobby": 3,
+    "menu": 2,
+    "notification": 4,
+    "race": 3,
+    "ui_element": 4
+  }
+}

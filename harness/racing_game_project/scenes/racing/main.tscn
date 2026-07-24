@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://main_racing_scene"]
+
+[ext_resource type="Script" path="res://scripts/racing/physics_vehicle.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/racing/engine_sound_controller.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/racing/ghost_recorder.gd" id="3"]
+[ext_resource type="Script" path="res://scripts/racing/ghost_player_controller.gd" id="4"]
+[ext_resource type="Material" path="res://resources/materials/car_material.tres" id="5"]
+[ext_resource type="Script" path="res://scripts/racing/speed_hud.gd" id="6"]
+
+[sub_resource type="BoxMesh" id="1"]
+size = Vector3(2, 1, 4)
+
+[sub_resource type="BoxMesh" id="2"]
+size = Vector3(0.8, 0.6, 0.8)
+
+[sub_resource type="BoxMesh" id="3"]
+size = Vector3(100, 0.5, 100)
+
+[node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = null
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 20, 10)
+light_color = Color(1, 1, 1, 1)
+energy = 1.0
+shadow_enabled = true
+
+[node name="Vehicle" type="VehicleBody3D" parent="."]
+script = ExtResource("1")
+max_speed = 300.0
+acceleration = 20.0
+brake_force = 30.0
+steering_angle = 0.5
+
+[node name="CarMesh" type="MeshInstance3D" parent="Vehicle"]
+mesh = SubResource(1)
+material_override = ExtResource("5")
+
+[node name="WheelFL" type="MeshInstance3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, -0.5, 1.5)
+mesh = SubResource(2)
+material_override = ExtResource("5")
+
+[node name="WheelFR" type="MeshInstance3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, -0.5, 1.5)
+mesh = SubResource(2)
+material_override = ExtResource("5")
+
+[node name="WheelRL" type="MeshInstance3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, -0.5, -1.5)
+mesh = SubResource(2)
+material_override = ExtResource("5")
+
+[node name="WheelRR" type="MeshInstance3D" parent="Vehicle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, -0.5, -1.5)
+mesh = SubResource(2)
+material_override = ExtResource("5")
+
+[node name="EngineSound3D" type="AudioStreamPlayer3D" parent="Vehicle"]
+stream = null
+autoplay = false
+max_distance = 100.0
+bus = "Engine"
+attenuation_model = 2
+doppler_tracking = 2
+
+[node name="EngineSoundController" type="Node3D" parent="Vehicle"]
+script = ExtResource("2")
+rpm_min = 1000.0
+rpm_max = 9000.0
+use_synth_fallback = false
+volume_multiplier = 1.0
+
+[node name="GhostRecorder" type="Node3D" parent="."]
+script = ExtResource("3")
+record_interval = 0.05
+max_record_time = 600.0
+is_recording = false
+
+[node name="GhostPlayer" type="Node3D" parent="."]
+script = ExtResource("4")
+playback_speed = 1.0
+
+[node name="RaceCamera" type="Camera3D" parent="Vehicle"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0, 3, -6)
+current = true
+fov = 60.0
+near = 0.1
+far = 200.0
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="GroundMesh" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource(3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = null
+
+[node name="SpeedHUD" type="CanvasLayer" parent="."]
+script = ExtResource("6")
+
+[connection signal="body_entered" from="Vehicle" to="GhostRecorder" method="start_recording"]
+[connection signal="body_exited" from="Vehicle" to="GhostRecorder" method="stop_recording"]

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://laap.harness/protocol/v1.0/component-metadata.json",
+  "component_id": "keyframes-pack",
+  "uri": "harness://frontend/animation/module/keyframes-pack@1.0.0#apex-racing",
+  "name": "CSS Keyframes Animation Pack",
+  "category": "module",
+  "domain": "frontend",
+  "subdomain": "animation",
+  "granularity": "module",
+  "variant": "apex-racing",
+  "version": "1.0.0",
+
+  "description": "从原网站 CSS 反编译提取的 22 个 @keyframes 动画 + 22 个 .animate-* 工具类。涵盖 HUD 进入、RPM 闪烁、首页呼吸、缩略图补偿、车轮旋转等赛车游戏 UI 全部动画模式。",
+
+  "tags": ["css", "keyframes", "animation", "ui", "hud", "racing", "apex"],
+  "keywords": ["@keyframes", "animation utility", "hud rise", "blink", "breathe", "wheel spin"],
+
+  "dependencies": [],
+  "dependencies_internal": [],
+
+  "props_schema": "props-schema.json",
+  "design_physics": "design-physics.json",
+  "template_path": "template.css",
+  "example_path": "example-usage.html",
+  "keyframes_manifest": "keyframes-manifest.json",
+
+  "quality_score": 0.99,
+  "compatibility": ["all-browsers", "tailwind-css", "vanilla-css"],
+  "framework_agnostic": true,
+
+  "variants": [
+    "apex-racing (primary, exact 1:1 extraction)",
+    "custom-themed (override colors via CSS variables)",
+    "reduced-motion (accessibility, disable infinite animations)"
+  ],
+
+  "source_project": "Apex Racing Replica",
+  "source_file": "D:/ai-website-cloner-template-master/src/app/apex-animations.css",
+  "evidence_file": "evidence/css-keyframes.json",
+  "extraction_method": "PowerShell regex on D:/LAAP/_apex_assets/index-BDb15dJl.css",
+
+  "license": "MIT",
+  "author": "LAAP Harness Engineering",
+  "last_updated": "2026-07-05T12:00:00+08:00"
+}

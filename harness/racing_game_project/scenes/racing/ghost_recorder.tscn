@@ -1,0 +1,3 @@
+[gd_scene load_steps=1 format=3 uid="uid://racing_ghost_recorder"]
+
+[node name="GhostRecorder" type="Node3D" parent="."]

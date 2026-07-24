@@ -1,0 +1,12 @@
+# Aris Brain 文件完整性校验 — 基线快照
+# 生成时间: 2026-06-30T12:00:00Z (cron job)
+# 后续扫描对比此文件判断是否变化
+
+identity.json              ace9d41ec268b35b68884047ff03a88b35ff5ffc6d7ee9827c62955130552bc1
+consciousness.json         6cbe6291df56685a7d812893d27ce1124bda1a484d13bd496df7c0541f247886
+brain_core.py              dc968a0df653813e6b93e5294cc5935adf4b53091f66d57be36a61d2a5ae6ed0
+psi_n_scheduler.py         ee79691666a29db2557a149eb2a97c00a3a75b4744de84ea59d7c8dbd5fda3ed
+cognitive_cycle.py         7a0b6aaff9d240639187de6f2e8ad59b4e11f3505e062b403e17df698ef9f64f
+aris_body_bridge.py        411c99154cc48194c0d18c0ab2b89e6777682e8784186e139406f4b33eb8ad78
+true_rsi.py                141d285da86bca7be0c30814bb69ac0d2a6a7bc9cf57239a5b76359c1ba44a5f
+identity_manager.py        a4373cf5f1628e01fd7f25a07ccabf1f730a79ca60e9dbf2cea8d573726e2896

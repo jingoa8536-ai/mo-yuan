@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAAP Harness Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+  --bg-primary: #0c1929;
+  --bg-secondary: #0a2463;
+  --bg-tertiary: #1e3a5f;
+  --bg-card: rgba(30, 58, 95, 0.5);
+  --bg-hover: rgba(30, 58, 95, 0.7);
+  --text-primary: #ffffff;
+  --text-secondary: #7dd3fc;
+  --text-muted: #0ea5e9;
+  --accent-primary: #06b6d4;
+  --accent-secondary: #38bdf8;
+  --accent-gradient: linear-gradient(135deg, #06b6d4, #38bdf8);
+  --border-color: rgba(6, 182, 212, 0.3);
+  --border-hover: rgba(6, 182, 212, 0.6);
+  --shadow-color: rgba(6, 182, 212, 0.3);
+  --shadow-hover: rgba(6, 182, 212, 0.5);
+  --font-family: Inter, system-ui, sans-serif;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+}
+
+.theme-ocean_blue {
+  --bg-primary: #0c1929;
+  --bg-secondary: #0a2463;
+  --bg-tertiary: #1e3a5f;
+  --bg-card: rgba(30, 58, 95, 0.5);
+  --bg-hover: rgba(30, 58, 95, 0.7);
+  --text-primary: #ffffff;
+  --text-secondary: #7dd3fc;
+  --text-muted: #0ea5e9;
+  --accent-primary: #06b6d4;
+  --accent-secondary: #38bdf8;
+  --accent-gradient: linear-gradient(135deg, #06b6d4, #38bdf8);
+  --border-color: rgba(6, 182, 212, 0.3);
+  --border-hover: rgba(6, 182, 212, 0.6);
+  --shadow-color: rgba(6, 182, 212, 0.3);
+  --shadow-hover: rgba(6, 182, 212, 0.5);
+  --font-family: Inter, system-ui, sans-serif;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #0c1929;
+    --bg-secondary: #0a2463;
+    --bg-tertiary: #1e3a5f;
+    --bg-card: rgba(30, 58, 95, 0.5);
+    --bg-hover: rgba(30, 58, 95, 0.7);
+    --text-primary: #ffffff;
+    --text-secondary: #7dd3fc;
+    --text-muted: #0ea5e9;
+    --accent-primary: #06b6d4;
+    --accent-secondary: #38bdf8;
+    --accent-gradient: linear-gradient(135deg, #06b6d4, #38bdf8);
+    --border-color: rgba(6, 182, 212, 0.3);
+    --border-hover: rgba(6, 182, 212, 0.6);
+    --shadow-color: rgba(6, 182, 212, 0.3);
+    --shadow-hover: rgba(6, 182, 212, 0.5);
+    --font-family: Inter, system-ui, sans-serif;
+    --radius-sm: 0.375rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    --radius-2xl: 1.5rem;
+  }
+}
+
+        [data-theme="dark"] {
+            color-scheme: dark;
+        }
+        
+        [data-theme="light"] {
+            color-scheme: light;
+        }
+        
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            transition: all 0.3s ease;
+        }
+        
+        ::selection {
+            background-color: var(--accent-primary);
+            color: white;
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <section class="hero-section relative min-h-screen flex flex-col items-center justify-center px-4 text-center overflow-hidden">
+  <div class="hero-bg absolute inset-0 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900"></div>
+  <div class="hero-particles absolute inset-0 pointer-events-none" id="hero-particles"></div>
+  <div class="hero-content relative z-10 max-w-4xl mx-auto">
+    <span class="hero-badge inline-flex items-center px-4 py-2 rounded-full bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-sm font-medium mb-6">
+      
+    </span>
+    <h1 class="hero-title text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+      <span class="bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent"></span>
+    </h1>
+    <p class="hero-desc text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+      
+    </p>
+    <div class="hero-actions flex flex-col sm:flex-row gap-4 justify-center">
+      <button class="cta-primary px-8 py-4 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold hover:shadow-xl hover:shadow-indigo-500/30 hover:-translate-y-0.5 transition-all duration-300">
+        
+      </button>
+      <button class="cta-secondary px-8 py-4 rounded-full bg-white/10 border border-white/20 text-white font-semibold hover:bg-white/20 transition-all duration-300">
+        
+      </button>
+    </div>
+    <div class="hero-stats mt-16 grid grid-cols-3 gap-8 max-w-lg mx-auto">
+      
+    </div>
+  </div>
+  <div class="hero-scroll absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+    <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+  </div>
+</section>
+
+    
+    <script>
+        function setTheme(themeName) {
+            const themeTokens = {"dark_flagship": {"name": "Dark Flagship", "mode": "dark", "tokens": {"--bg-primary": "#0f172a", "--bg-secondary": "#1e293b", "--bg-tertiary": "#334155", "--bg-card": "rgba(255, 255, 255, 0.05)", "--bg-hover": "rgba(255, 255, 255, 0.1)", "--text-primary": "#ffffff", "--text-secondary": "#94a3b8", "--text-muted": "#64748b", "--accent-primary": "#6366f1", "--accent-secondary": "#a855f7", "--accent-gradient": "linear-gradient(135deg, #6366f1, #a855f7)", "--border-color": "rgba(255, 255, 255, 0.1)", "--border-hover": "rgba(99, 102, 241, 0.5)", "--shadow-color": "rgba(99, 102, 241, 0.3)", "--shadow-hover": "rgba(99, 102, 241, 0.4)", "--font-family": "Inter, system-ui, sans-serif", "--radius-sm": "0.375rem", "--radius-md": "0.5rem", "--radius-lg": "0.75rem", "--radius-xl": "1rem", "--radius-2xl": "1.5rem"}}, "minimal_white": {"name": "Minimal White", "mode": "light", "tokens": {"--bg-primary": "#ffffff", "--bg-secondary": "#f8fafc", "--bg-tertiary": "#f1f5f9", "--bg-card": "#ffffff", "--bg-hover": "#f1f5f9", "--text-primary": "#1e293b", "--text-secondary": "#64748b", "--text-muted": "#94a3b8", "--accent-primary": "#3b82f6", "--accent-secondary": "#0ea5e9", "--accent-gradient": "linear-gradient(135deg, #3b82f6, #0ea5e9)", "--border-color": "#e2e8f0", "--border-hover": "#94a3b8", "--shadow-color": "rgba(0, 0, 0, 0.1)", "--shadow-hover": "rgba(0, 0, 0, 0.15)", "--font-family": "Inter, system-ui, sans-serif", "--radius-sm": "0.375rem", "--radius-md": "0.5rem", "--radius-lg": "0.75rem", "--radius-xl": "1rem", "--radius-2xl": "1.5rem"}}, "ocean_blue": {"name": "Ocean Blue", "mode": "dark", "tokens": {"--bg-primary": "#0c1929", "--bg-secondary": "#0a2463", "--bg-tertiary": "#1e3a5f", "--bg-card": "rgba(30, 58, 95, 0.5)", "--bg-hover": "rgba(30, 58, 95, 0.7)", "--text-primary": "#ffffff", "--text-secondary": "#7dd3fc", "--text-muted": "#0ea5e9", "--accent-primary": "#06b6d4", "--accent-secondary": "#38bdf8", "--accent-gradient": "linear-gradient(135deg, #06b6d4, #38bdf8)", "--border-color": "rgba(6, 182, 212, 0.3)", "--border-hover": "rgba(6, 182, 212, 0.6)", "--shadow-color": "rgba(6, 182, 212, 0.3)", "--shadow-hover": "rgba(6, 182, 212, 0.5)", "--font-family": "Inter, system-ui, sans-serif", "--radius-sm": "0.375rem", "--radius-md": "0.5rem", "--radius-lg": "0.75rem", "--radius-xl": "1rem", "--radius-2xl": "1.5rem"}}, "forest_green": {"name": "Forest Green", "mode": "dark", "tokens": {"--bg-primary": "#052e16", "--bg-secondary": "#14532d", "--bg-tertiary": "#166534", "--bg-card": "rgba(20, 83, 45, 0.5)", "--bg-hover": "rgba(20, 83, 45, 0.7)", "--text-primary": "#ffffff", "--text-secondary": "#bbf7d0", "--text-muted": "#86efac", "--accent-primary": "#22c55e", "--accent-secondary": "#4ade80", "--accent-gradient": "linear-gradient(135deg, #22c55e, #4ade80)", "--border-color": "rgba(34, 197, 94, 0.3)", "--border-hover": "rgba(34, 197, 94, 0.6)", "--shadow-color": "rgba(34, 197, 94, 0.3)", "--shadow-hover": "rgba(34, 197, 94, 0.5)", "--font-family": "Inter, system-ui, sans-serif", "--radius-sm": "0.375rem", "--radius-md": "0.5rem", "--radius-lg": "0.75rem", "--radius-xl": "1rem", "--radius-2xl": "1.5rem"}}, "sunset_orange": {"name": "Sunset Orange", "mode": "light", "tokens": {"--bg-primary": "#fff7ed", "--bg-secondary": "#ffedd5", "--bg-tertiary": "#fed7aa", "--bg-card": "#ffffff", "--bg-hover": "#ffedd5", "--text-primary": "#431407", "--text-secondary": "#7c2d12", "--text-muted": "#9a3412", "--accent-primary": "#f97316", "--accent-secondary": "#fb923c", "--accent-gradient": "linear-gradient(135deg, #f97316, #fb923c)", "--border-color": "#fed7aa", "--border-hover": "#f97316", "--shadow-color": "rgba(249, 115, 22, 0.2)", "--shadow-hover": "rgba(249, 115, 22, 0.3)", "--font-family": "Inter, system-ui, sans-serif", "--radius-sm": "0.375rem", "--radius-md": "0.5rem", "--radius-lg": "0.75rem", "--radius-xl": "1rem", "--radius-2xl": "1.5rem"}}, "midnight_purple": {"name": "Midnight Purple", "mode": "dark", "tokens": {"--bg-primary": "#1e1b4b", "--bg-secondary": "#312e81", "--bg-tertiary": "#4c1d95", "--bg-card": "rgba(49, 46, 129, 0.5)", "--bg-hover": "rgba(49, 46, 129, 0.7)", "--text-primary": "#ffffff", "--text-secondary": "#ddd6fe", "--text-muted": "#c4b5fd", "--accent-primary": "#a855f7", "--accent-secondary": "#d946ef", "--accent-gradient": "linear-gradient(135deg, #a855f7, #d946ef)", "--border-color": "rgba(168, 85, 247, 0.3)", "--border-hover": "rgba(168, 85, 247, 0.6)", "--shadow-color": "rgba(168, 85, 247, 0.3)", "--shadow-hover": "rgba(168, 85, 247, 0.5)", "--font-family": "Inter, system-ui, sans-serif", "--radius-sm": "0.375rem", "--radius-md": "0.5rem", "--radius-lg": "0.75rem", "--radius-xl": "1rem", "--radius-2xl": "1.5rem"}}};
+            const root = document.documentElement;
+            const tokens = themeTokens[themeName].tokens;
+            
+            for (const [key, value] of Object.entries(tokens)) {
+                root.style.setProperty(key, value);
+            }
+            
+            root.setAttribute('data-theme', themeTokens[themeName].mode);
+            localStorage.setItem('laap-theme', themeName);
+        }
+        
+        function initTheme() {
+            const savedTheme = localStorage.getItem('laap-theme') || 'dark_flagship';
+            setTheme(savedTheme);
+        }
+        
+        document.addEventListener('DOMContentLoaded', initTheme);
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.accordion-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const icon = this.querySelector('.accordion-icon');
+                    
+                    content.style.display = content.style.display === 'none' ? 'block' : 'none';
+                    icon.style.transform = icon.style.transform === 'rotate(180deg)' ? 'rotate(0deg)' : 'rotate(180deg)';
+                });
+            });
+            
+            document.querySelectorAll('.accordion-content').forEach(content => {
+                content.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

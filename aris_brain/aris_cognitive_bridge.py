@@ -25,10 +25,11 @@ from dataclasses import dataclass, field
 from enum import Enum
 
 # ── 路径 ────────────────────────────────────────────────────
-from laap_brain.config import BRAIN_DIR as BRAIN_ROOT, LAAP_ROOT
+from config import BRAIN_DIR as BRAIN_ROOT, LAAP_ROOT, setup_paths
+setup_paths()
 
-from aris_brain.memory_bridge import get_memory_context, recall_related, store_important
-from aris_brain.memory_store import MemoryStore, MemoryFragment
+from memory_bridge import get_memory_context, recall_related, store_important
+from memory_store import MemoryStore, MemoryFragment
 
 # ── CodeGraph 代码知识图谱 ──────────────────────────────────
 try:
@@ -74,6 +75,15 @@ except Exception:
     _cb_available = False
     _cb_route = None
     _get_cb = None
+
+# ── OrchestrationBridge 编排引擎桥接 ────────────────────────
+try:
+    from aris_orchestration_bridge import inject_into_context as _orch_inject
+    _orch_available = True
+except Exception as e:
+    _orch_available = False
+    _orch_inject = None
+    logger.info(f"OrchestrationBridge unavailable: {e}")
 
 logger = logging.getLogger("aris.cognitive_bridge")
 
@@ -594,6 +604,40 @@ class ArisCognitiveBridge:
             self._last_bus_decision = "no_engine"
             self._last_bus_response = ""
 
+        # ── Step 3.8: OrchestrationBridge 编排引擎 ──────────
+        # 将用户消息发送给编排引擎（5个 Actor 协作处理），
+        # 结果注入到上下文中供 LLM 使用。
+        # 编排引擎与 CognitiveBus 是并行关系：
+        #   - CognitiveBus: psi_core → PSI 状态路由
+        #   - Orchestration: RulesEngine + EpisodicMemory + PSI + LongForm + Fusion
+        orch_direct_response = None
+        if _orch_available and _orch_inject:
+            try:
+                orch_ctx = _orch_inject(user_message)
+                if orch_ctx:
+                    context_parts.append(orch_ctx)
+                    logger.debug(f"[Bridge] Orchestration context injected ({len(orch_ctx)} chars)")
+
+                # ── 编排引擎短路：高置信度匹配 → 跳过 LLM ──
+                # 通过读取编排引擎的最新结果文件判断是否可短路
+                _orch_result_path = BRAIN_ROOT / "state" / "orchestration_result.json"
+                if _orch_result_path.exists():
+                    try:
+                        with open(_orch_result_path, "r", encoding="utf-8") as _f:
+                            _odata = json.load(_f)
+                        _oresult = _odata.get("result", {})
+                        # 规则引擎匹配 + 高置信度 → 直接回复，不经过 LLM
+                        if _oresult.get("matched") and _oresult.get("confidence", 0) >= 0.85:
+                            orch_direct_response = _oresult.get("output", "")
+                            logger.info(
+                                f"[Bridge] 编排引擎短路: rule={_oresult.get('rule')} "
+                                f"confidence={_oresult.get('confidence')}"
+                            )
+                    except (json.JSONDecodeError, IOError, KeyError):
+                        pass
+            except Exception as e:
+                logger.debug(f"[Bridge] OrchestrationBridge error: {e}")
+
         self._last_context = "\\n".join(context_parts)
 
         # ── 三路径认知控制 ──
@@ -654,7 +698,7 @@ class ArisCognitiveBridge:
             "laap_available": self._laap_available,
             "cycle": self.state.cycle_count,
             # CognitiveBus 短路字段：如果引擎有输出，直接使用此文本
-            "direct_response": self._last_bus_response if self._last_bus_decision in ("qre_engine", "v12_kernel") else None,
+            "direct_response": self._last_bus_response if self._last_bus_decision in ("qre_engine", "v12_kernel") else orch_direct_response,
             # 三路径认知控制字段（None 表示不可用或未启用）
             "logit_bias": logit_bias if logit_bias else None,
             "grammar": grammar_constraint,

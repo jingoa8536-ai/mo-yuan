@@ -1,0 +1,81 @@
+{
+  "$schema": "https://laap.harness/protocol/v1.0/props-schema.json",
+  "component_id": "ghost-system",
+  "type": "object",
+  "properties": {
+    "trackId": {
+      "type": "string",
+      "required": true,
+      "description": "赛道 ID，用于 localStorage key 隔离"
+    },
+    "recordFrameRate": {
+      "type": "number",
+      "default": 60,
+      "description": "录制帧率（Hz）"
+    },
+    "playbackLoop": {
+      "type": "boolean",
+      "default": true,
+      "description": "回放是否循环"
+    },
+    "vehicleOpacity": {
+      "type": "number",
+      "default": 0.4,
+      "minimum": 0,
+      "maximum": 1
+    },
+    "vehicleColor": {
+      "type": "string",
+      "default": "#7dd3fc"
+    }
+  },
+
+  "input_events": [
+    {
+      "name": "startLap",
+      "description": "开始新一圈录制",
+      "params": []
+    },
+    {
+      "name": "record",
+      "description": "记录一帧（每帧调用）",
+      "params": [
+        { "name": "position", "type": "THREE.Vector3" },
+        { "name": "quaternion", "type": "THREE.Quaternion" },
+        { "name": "speed", "type": "number" }
+      ],
+      "frequency": "per_frame_during_racing"
+    },
+    {
+      "name": "finishLap",
+      "description": "完成一圈，返回录制的帧数据",
+      "params": [],
+      "returns": "GhostFrame[]"
+    },
+    {
+      "name": "play",
+      "description": "开始回放"
+    },
+    {
+      "name": "stop",
+      "description": "停止回放"
+    },
+    {
+      "name": "update",
+      "description": "每帧获取当前回放状态（位置/朝向）",
+      "returns": "GhostVehicleState | null"
+    }
+  ],
+
+  "persistence_functions": [
+    {
+      "name": "saveGhostToLocal",
+      "params": [{ "name": "frames", "type": "GhostFrame[]" }, { "name": "trackId", "type": "string" }]
+    },
+    {
+      "name": "loadGhostFromLocal",
+      "params": [{ "name": "trackId", "type": "string" }],
+      "returns": "GhostFrame[] | null"
+    }
+  ]
+}

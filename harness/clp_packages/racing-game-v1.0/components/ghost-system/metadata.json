@@ -1,0 +1,46 @@
+{
+  "$schema": "https://laap.harness/protocol/v1.0/component-metadata.json",
+  "component_id": "ghost-system",
+  "uri": "harness://game/racing/module/ghost-system@1.0.0#localstorage",
+  "name": "Ghost Recorder/Player System",
+  "category": "module",
+  "domain": "game",
+  "subdomain": "racing",
+  "granularity": "module",
+  "variant": "localstorage",
+  "version": "1.0.0",
+
+  "description": "Ghost 系统完整实现：录制玩家最佳圈，回放时半透明车辆沿轨迹行驶。包含 GhostRecorder（录制）、GhostPlayer（回放）、localStorage 持久化。原网站特色功能，无 AI 对手。",
+
+  "tags": ["ghost", "lap-recorder", "replay", "localstorage", "racing", "best-lap"],
+  "keywords": ["ghost car", "lap timer", "frame interpolation", "ghost vehicle"],
+
+  "dependencies": [
+    "three@^0.184.0"
+  ],
+  "dependencies_internal": [],
+
+  "props_schema": "props-schema.json",
+  "design_physics": "design-physics.json",
+  "template_path": "template.ts",
+  "example_path": "example-usage.tsx",
+
+  "quality_score": 0.83,
+  "compatibility": ["nextjs", "react", "vanilla-js"],
+  "framework_agnostic": false,
+
+  "variants": [
+    "localstorage (primary, browser persistence)",
+    "indexeddb (for larger frame counts)",
+    "server-synced (multiplayer ghost sharing)"
+  ],
+
+  "source_project": "Apex Racing Replica",
+  "source_file": "D:/ai-website-cloner-template-master/src/lib/racing/ghost.ts",
+  "render_component": "D:/ai-website-cloner-template-master/src/components/three/GhostVehicle.tsx",
+  "evidence_file": "evidence/ghost-architecture.json",
+
+  "license": "MIT",
+  "author": "LAAP Harness Engineering",
+  "last_updated": "2026-07-05T12:00:00+08:00"
+}
