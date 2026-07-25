@@ -40,3 +40,6 @@ aiohttp>=3.9.0
 # pytest>=7.0.0
 # pytest-asyncio>=0.21.0
 # pytest-cov>=4.0.0
+
+# ── OPTIONAL: MCP Server ──────────────────────────────
+pydantic>=2.0.0              # MCP 协议服务器
