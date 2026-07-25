@@ -31,18 +31,24 @@ pip install -e .
 Aris 是墨渊的默认 AI 人格，运行在 Hermes Agent 之上，连接 LAAP 认知引擎。
 
 ```bash
-# 安装 Aris profile
-profiles/aris/install.bat           # Windows
-# 或手动：
+# Windows:
+profiles/aris/install.bat
+
+# macOS / Linux:
+bash profiles/aris/install.sh
+
+# 或者手动安装（通用）：
 mkdir -p ~/.hermes/profiles/aris/
 cp profiles/aris/SOUL.md ~/.hermes/profiles/aris/
 cp profiles/aris/config.yaml.example ~/.hermes/profiles/aris/config.yaml
 
 # 编辑 config.yaml 填入你的 API Key
-# 然后创建启动别名
+vim ~/.hermes/profiles/aris/config.yaml
+
+# 创建启动别名（安装 Hermes 后执行）
 hermes profile alias aris --name hermes-aris
 
-# 启动 Aris
+# 启动 Aris 🎉
 hermes-aris
 ```
 
