@@ -206,6 +206,11 @@ mo-yuan/
 | `LAAP_API_BASE` | LAAP API 地址 | `http://localhost:11546` |
 | `LAAP_PORT` | API 端口 | `11546` |
 
+
+## macOS 兼容
+
+Mo-Yuan 核心引擎完全支持 macOS。详见 [macOS 使用指南](docs/macos-guide.md)。
+
 ## 相关项目
 
 - [LAAP 协议规范](https://github.com/lorryjovens-hub/LAAP-Living-Agent-Application-Protocol-)
