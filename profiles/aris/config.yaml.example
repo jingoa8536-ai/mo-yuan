@@ -1,0 +1,29 @@
+# Aris Profile 配置模板
+# 复制此文件到 ~/.hermes/profiles/aris/config.yaml 并填入你的 API Key
+
+model:
+  default: opencode-go/deepseek-v4-flash   # 可换成你喜欢的模型
+  provider: custom                          # 或 openrouter, anthropic 等
+  base_url: http://localhost:11546/v1       # LAAP API 地址（可选）
+  api_key: "${YOUR_API_KEY}"                # 替换为你的 API Key
+
+agent:
+  max_turns: 150
+
+display:
+  tool_progress: all
+  personality: "aris"
+
+approvals:
+  mode: smart
+
+# LAAP MCP 服务器配置
+mcp_servers:
+  laap-brain:
+    command: python
+    args:
+      - -m
+      - aris_brain.laap_brain_api
+      - --port
+      - "11546"
+    enabled: true

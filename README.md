@@ -10,6 +10,7 @@
 
 - Python 3.11+
 - pip
+- Hermes Agent（`pip install hermes-agent`）
 
 ### 安装
 
@@ -18,12 +19,36 @@
 git clone https://github.com/jingoa8536-ai/mo-yuan.git
 cd mo-yuan
 
-# 方式一：直接安装
+# 安装 Python 依赖
 pip install -r requirements.txt
 
-# 方式二：可编辑安装（方便修改代码）
+# 可编辑安装（方便修改代码）
 pip install -e .
 ```
+
+### 启动 Aris 人格（推荐）
+
+Aris 是墨渊的默认 AI 人格，运行在 Hermes Agent 之上，连接 LAAP 认知引擎。
+
+```bash
+# 安装 Aris profile
+profiles/aris/install.bat           # Windows
+# 或手动：
+mkdir -p ~/.hermes/profiles/aris/
+cp profiles/aris/SOUL.md ~/.hermes/profiles/aris/
+cp profiles/aris/config.yaml.example ~/.hermes/profiles/aris/config.yaml
+
+# 编辑 config.yaml 填入你的 API Key
+# 然后创建启动别名
+hermes profile alias aris --name hermes-aris
+
+# 启动 Aris
+hermes-aris
+```
+
+### 仅启动 LAAP Brain API
+
+如果不使用 Hermes，也可以单独启动 LAAP 认知引擎：
 
 ### 配置
 
